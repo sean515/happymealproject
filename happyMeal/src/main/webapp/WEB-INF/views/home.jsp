@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
+	.container{
+		position: relative;
+	}
+	
 	/*커밋용 수정*/
 	ul{
 		padding: 0;
@@ -18,7 +19,7 @@
 	/*메인영역 하루한끼 텍스트*/
 	.container>h1{
 		position:absolute;
-		top:100px;
+		top: -500px;
 		margin:0;
 		padding: 50px 0 0 0;
 		color: white;
@@ -26,7 +27,7 @@
 	/*메인영역 추가 텍스트*/
 	.container>h3{
 		position:absolute;
-		top:200px;
+		top: -400px;
 		margin:0;
 		padding: 50px 0 0 0;
 		color: white;
@@ -35,15 +36,17 @@
 	/*메인영역 더알아보기 텍스트*/
 	.container>a{
 		position:absolute;
-		top:400px;
+		top: -200px;
 		text-decoration: none;
 	}
+	
+	
 	
 	/*메인이미지*/
 	#mainimg{
 		position:absolute;
-		top: 155px;
-		right:200px;
+		top: -500px;
+		left:500px;
 		width: 600px;
 	}
 	/*메인 인기레시피*/
