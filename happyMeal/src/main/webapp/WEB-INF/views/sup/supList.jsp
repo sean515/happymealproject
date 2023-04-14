@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	.container{
 	padding:30px;
@@ -72,7 +69,7 @@
 <div class="container">
 	<h1>고객센터</h1>
 	<hr style="border: solid 2px black;">
-	<p><h4>&nbsp;&nbsp;&nbsp;1:1 문의 </h4></p>
+	<h4>&nbsp;&nbsp;&nbsp;1:1 문의 </h4>
 
 	<!-- 자주하는질문이동, 글작성 버튼 -->
 	<button type="button" class="btn btn-outline-success" style="float:right"><div class="board_header"><a href="supWrite">문의하기</a></div></button>
