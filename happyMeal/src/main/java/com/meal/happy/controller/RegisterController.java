@@ -97,4 +97,8 @@ public class RegisterController {
 	public String idSearchForm() {
 		return "register/idSearchForm";
 	}
+	@GetMapping("/index.html")
+	public String adminForm() {
+		return "resources/index.html";
+	}
 }
