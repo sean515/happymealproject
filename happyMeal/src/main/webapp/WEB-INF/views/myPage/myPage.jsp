@@ -70,7 +70,7 @@
 				<img src="img/user_icon.png" width="15%" height="15%"/>&emsp;&emsp;&emsp;
 				${dto.username}님 | ${dto.userid}<br/>&emsp;&emsp;&emsp;
 				${dto.gender}<br/>&emsp;&emsp;&emsp;
-				${dto.birthday}<br/>&emsp;&emsp;&emsp;
+				${dto.age}<br/>&emsp;&emsp;&emsp;
 				${dto.email}<br/>&emsp;&emsp;&emsp;
 				${dto.diseaseArr}<br/>&emsp;&emsp;&emsp;
 			</li>
