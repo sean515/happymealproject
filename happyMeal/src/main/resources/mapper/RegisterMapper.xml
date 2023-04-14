@@ -4,26 +4,26 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.meal.happy.dao.RegisterDAO">
 	<select id="loginOk" resultType="com.meal.happy.dto.RegisterDTO">
-		select userid, username from register
+		select userid, username from member
 		where userid = #{param1} and userpwd = #{param2}
 	</select>
 	<select id="idCheckCount" resultType="int">
-		select count(userid) cnt from register where userid=#{param1}
+		select count(userid) cnt from member where userid=#{param1}
 	</select>
 	<insert id="registerInsert">
-		insert into register(userid, userpwd, username, email, hobby) 
-		values (#{userid}, #{userpwd}, #{username}, #{email}, #{hobby})
+		insert into member(userid, usernum, userpwd, username, age, gender, nickname, email, disease) 
+		values (#{userid},usernum_sq.nextval, #{userpwd}, #{username}, #{age}, #{gender}, #{nickname}, #{email}, #{disease})
 	</insert>
 	<select id="registerEdit" resultType="com.meal.happy.dto.RegisterDTO">
-		select userid, username, email, hobby from register 
+		select userid, username, nickname, to_char(age, 'yy-MM-DD') age, email, gender, disease from member 
 		where userid=#{param1}
 	</select>
 	<update id="registerEditOk">
-		update register set email=#{email}, hobby=#{hobby} where userid=#{userid} and userpwd=#{userpwd}
+		update member set email=#{email}, disease=#{disease} where userid=#{userid} and userpwd=#{userpwd}
 	</update>
 	<select id="idSearch" resultType="string">
 		select rpad(substr(userid,1,length(userid)/2),
-		length(userid),'*') userid from register 
+		length(userid),'*') userid from member 
 		where username=#{param1} and email=#{param2}
 	</select>
 </mapper>

@@ -111,12 +111,12 @@
 				return false;
 			}
 			//질병 1개이상 반드시 선택
-			var hobbyCount = 0;
-			$("input[name=hobbyArr]").each(function(){
-				if(this.checked==true)  hobbyCount++;
+			var diseaseCount = 0;
+			$("input[name=diseaseArr]").each(function(){
+				if(this.checked==true)  diseaseCount++;
 			});
 			
-			if(hobbyCount<1){
+			if(diseaseCount<1){
 				alert("질병정보는 1개이상 선택하여야 합니다. 없을경우 '해당없음'을 선택하세요.");
 				return false;
 			}
@@ -147,11 +147,11 @@
 			<li>이름</li>
 			<li><input type="text" name="username" id="username" minlength="2" maxlength="10"/></li>
 			<li>생년월일</li>
-			<li><input type="date" name="birthday" id="birthday"/></li>
+			<li><input type="date" name="age" id="age"/></li>
 			<li>성별</li>
 			<li>
-				<input type="radio" name="gender" value="F" checked/>여
-				<input type="radio" name="gender" value="M"/>남
+				<input type="radio" name="gender" id="gender" value="F" checked/>여
+				<input type="radio" name="gender" id="gender" value="M"/>남
 			</li>
 			<li>닉네임</li>
 			<li><input type="text" name="nickname" id="nickname"/></li>
@@ -159,19 +159,19 @@
 			<li>
 				<input type="text" name="email" id="email" value=""/> @
 				<select name="domain" id="domain">
-					<option value="naver.com">naver</option>
-					<option value="gmail.com">gmail</option>
-					<option value="daum.com">daum</option>
-					<option value="nate.com">nate</option>
+					<option value="naver.com">naver.com</option>
+					<option value="gmail.com">gmail.com</option>
+					<option value="daum.com">daum.com</option>
+					<option value="nate.com">nate.com</option>
 				</select>
 			</li>
 			<li>질병정보</li>
 			<li>
-				<input type="checkbox" name="hobbyArr" value="당뇨"/>당뇨
-				<input type="checkbox" name="hobbyArr" value="고혈압"/>고혈압
-				<input type="checkbox" name="hobbyArr" value="통풍"/>통풍
-				<input type="checkbox" name="hobbyArr" value="류마티스"/>류마티스
-				<input type="checkbox" name="hobbyArr" value="해당없음"/>해당없음
+				<input type="checkbox" name="diseaseArr" value="당뇨"/>당뇨
+				<input type="checkbox" name="diseaseArr" value="고혈압"/>고혈압
+				<input type="checkbox" name="diseaseArr" value="통풍"/>통풍
+				<input type="checkbox" name="diseaseArr" value="류마티스"/>류마티스
+				<input type="checkbox" name="diseaseArr" value="해당없음"/>해당없음
 			</li>
 		</ul>
 		<div class="signupBtn">

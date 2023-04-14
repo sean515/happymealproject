@@ -109,11 +109,11 @@
 			<li>닉네임</li>
 			<li><input type="text" name="nickname" id="nickname" minlength="2" maxlength="10" value="${dto.nickname}"/></li>
 			<li>생년월일</li>
-			<li><input type="date" name="birthday" id="birthday"/></li>
+			<li><input type="date" name="age" id="age"/></li>
 			<li>성별</li>
 			<li>
-				<input type="radio" name="genderArr" value="남성" <c:forEach var="h" items="${dto.genderArr}"><c:if test="${h=='남성'}">checked</c:if></c:forEach>/>남성
-				<input type="radio" name="genderArr" value="여성" <c:forEach var="h" items="${dto.genderArr}"><c:if test="${h=='여성'}">checked</c:if></c:forEach>/>여성
+				<input type="radio" name="genderArr" value="남성" <c:forEach var="h" items="${dto.gender}"><c:if test="${h=='남성'}">checked</c:if></c:forEach>/>남성
+				<input type="radio" name="genderArr" value="여성" <c:forEach var="h" items="${dto.gender}"><c:if test="${h=='여성'}">checked</c:if></c:forEach>/>여성
 			</li>
 			<li>이메일</li>
 			<li><input type="text" name="email" id="email" value="${dto.email}"/></li>
