@@ -32,23 +32,8 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public RegisterDTO registerEdit(String userid) {
-		return dao.registerEdit(userid);
-	}
-
-	@Override
-	public int registerEditOk(RegisterDTO dto) {
-		return dao.registerEditOk(dto);
-	}
-
-	@Override
 	public String idSearch(String username, String email) {
 		return dao.idSearch(username, email);
-	}
-
-	@Override
-	public String registerEditPopup(String userpwd) {
-		return null;
 	}
 
 }
