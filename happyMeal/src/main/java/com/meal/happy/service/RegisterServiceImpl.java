@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.RegisterDAO;
 import com.meal.happy.dto.RegisterDTO;
-import com.meal.happy.dto.ZipcodeDTO;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
@@ -25,11 +24,6 @@ public class RegisterServiceImpl implements RegisterService {
 	@Override
 	public int idCheckCount(String userid) {
 		return dao.idCheckCount(userid);
-	}
-
-	@Override
-	public List<ZipcodeDTO> zipSearch(String doroname) {
-		return dao.zipSearch(doroname);
 	}
 
 	@Override
@@ -54,7 +48,6 @@ public class RegisterServiceImpl implements RegisterService {
 
 	@Override
 	public String registerEditPopup(String userpwd) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
