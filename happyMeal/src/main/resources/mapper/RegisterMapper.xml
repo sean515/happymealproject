@@ -19,7 +19,8 @@
 		where userid=#{param1}
 	</select>
 	<update id="registerEditOk">
-		update member set email=#{email}, disease=#{disease} where userid=#{userid} and userpwd=#{userpwd}
+		update member set nickname=#{nickname}, age=#{age}, gender=#{gender}, email=#{email}
+		, disease=#{disease} where userid=#{userid} and userpwd=#{userpwd}
 	</update>
 	<select id="idSearch" resultType="string">
 		select rpad(substr(userid,1,length(userid)/2),
