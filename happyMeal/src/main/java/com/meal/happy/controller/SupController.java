@@ -35,7 +35,7 @@ public class SupController {
 	DataSourceTransactionManager transactionManager;
 	
 	@GetMapping("/supList")
-	public ModelAndView supList(PagingVO vo) {
+	public ModelAndView supList() {
 		ModelAndView mav = new ModelAndView();
 		//총레코드
 		int totalRecord = service.supTotalRecord();
@@ -73,6 +73,7 @@ public class SupController {
 			//글등록
 			String body = "<script> location.href='/happy/sup/supList';</script>";
 			entity = new ResponseEntity<String>(body,headers, HttpStatus.OK);
+			
 		}catch(Exception e) {
 			//글등록실패
 			String body = "<script>";
@@ -80,26 +81,28 @@ public class SupController {
 			body += "history.go(-1);";
 			body += "</script>";
 			entity = new ResponseEntity<String>(body, headers, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+			System.out.println(dto.toString());
 		}
 		return entity;
 	}
 	//글내용보기
 	@GetMapping("/supView")
-	public ModelAndView supView(int no) {
+	public ModelAndView supView(int sup_no) {
 		ModelAndView mav = new ModelAndView();
 		
 		//조회수 증가
-		service.hitCount(no);
+		service.hitCount(sup_no);
 		//해당글 선택
-		SupDTO dto = service.supSelect(no);
+		SupDTO dto = service.supSelect(sup_no);
 		
 		mav.addObject("dto",dto);
 		mav.setViewName("sup/supView");
 		return mav;
 	}
 	//답글쓰기 폼
-	@GetMapping("/supAnswer/{no}")
-	public ModelAndView supAnswer(@PathVariable("no") int no){
+	@GetMapping("/supAnswer/{sup_no}")
+	public ModelAndView supAnswer(@PathVariable("sup_no") int sup_no){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mav",mav);
 		mav.setViewName("sup/supAnswer");
@@ -126,7 +129,7 @@ public class SupController {
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
 		try {
 			//원글(dto.no)의 ref, lvl, step을 선택한다.
-			SupDTO orgDataDTO = service.replyDataSelect(dto.getNo());
+			SupDTO orgDataDTO = service.replyDataSelect(dto.getSup_no());
 			
 			//원글과 같은 ref를 가진 글의 원글의 step보다 크면 1씩 증가한다.
 			int cnt = service.stepUp(orgDataDTO);
@@ -134,9 +137,9 @@ public class SupController {
 			
 			//답글등록 -> dto : 제목, 글내용, 작성자, ip -> ref, lvl, step
 			//			orgDataDTO : ref, lvl, step
-			dto.setRef(orgDataDTO.getRef());
-			dto.setLvl(orgDataDTO.getLvl());
-			dto.setStep(orgDataDTO.getStep());
+			dto.setSup_ref(orgDataDTO.getSup_ref());
+			dto.setSup_lvl(orgDataDTO.getSup_lvl());
+			dto.setSup_step(orgDataDTO.getSup_step());
 			
 			int result = service.replyWrite(dto);
 			
@@ -160,11 +163,11 @@ public class SupController {
 		return entity;
 	}
 	//계층형게시판 글수정(폼)
-	@GetMapping("/supEdit/{no}")
-	public ModelAndView supEdit(@PathVariable("no") int no) {
+	@GetMapping("/supEdit/{sup_no}")
+	public ModelAndView supEdit(@PathVariable("sup_no") int sup_no) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("dto",service.getsupSelect(no));
+		mav.addObject("dto",service.getsupSelect(sup_no));
 		mav.setViewName("sup/supEditForm");
 		return mav;
 	}
@@ -179,11 +182,12 @@ public class SupController {
 		
 		try {
 			int result = service.supUpdate(dto);
-			
+			System.out.println(dto.toString());
+			System.out.println(result);
 			if(result>0) {//수정
 				//글내용보기로 이동
 				String body = "<script>";
-				body += "location.href='/happy/sup/supView?no="+dto.getNo()+"';";
+				body += "location.href='/happy/sup/supView?sup_no="+dto.getSup_no()+"';";
 				body += "</script>";
 				
 				entity = new ResponseEntity<String>(body, headers, HttpStatus.OK);
@@ -205,27 +209,27 @@ public class SupController {
 	}
 	//글이 삭제되면 목록, 삭제 실패하면 글내용보기 이동 
 	@GetMapping("/supDelete")
-	public ModelAndView supDelete(int no, HttpSession session) {
+	public ModelAndView supDelete(int sup_no, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
 		//lvl을 가져와 원글인지 답변글인지 구별처리한다.
-		int lvl = service.getLevel(no);
-		if(lvl==0) {//delete 같은 ref를 가진 글을 삭제
-			int result = service.supDelete(no);
+		int sup_lvl = service.getLevel(sup_no);
+		if(sup_lvl==0) {//delete 같은 ref를 가진 글을 삭제
+			int result = service.supDelete(sup_no);
 			System.out.println("삭제된 레코드 수 : "+result);
 			if(result>0) {//삭제됨
 				mav.setViewName("redirect:supList");
 			}else {//삭제안됨
-				mav.addObject("no", no);
+				mav.addObject("sup_no", sup_no);
 				mav.setViewName("redirect:supView");
 			}
 		}else {//update
-			int result = service.supDeleteUpdate(no);
+			int result = service.supDeleteUpdate(sup_no);
 			System.out.println("삭제(수정)된 레코드 수 : "+result);
 			if(result>0) {
 				mav.setViewName("redirect:supList");
 			}else {
-				mav.addObject("no",no);
+				mav.addObject("sup_no",sup_no);
 				mav.setViewName("redirect:supView");
 			}
 		}
