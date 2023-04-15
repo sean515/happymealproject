@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
+	
 	#sideimg{
 		width:50%;
 		height:95%;
 		float:left;
 	}
 	.joinbox{
-		width:36%;
-		float:left;
-		margin-left:7%;
-		margin-right:7%;
+		width:50%;
+		margin: 100px auto 62px;
 	}
 	#joinForm>h1{
 		text-align:center;
@@ -126,9 +125,9 @@
 		});
 	});
 </script>
-<div class="logContainer">
+<div class="container">
 	
-		<img src="img/loginImg.png" id="sideimg">
+		<!-- <img src="img/loginImg.png" id="sideimg"> -->
 	
 	<div class="joinbox">
 	<form method="post" id="joinForm">
@@ -157,13 +156,13 @@
 			<li><input type="text" name="nickname" id="nickname"/></li>
 			<li>이메일</li>
 			<li>
-				<input type="text" name="email" id="email" value=""/> @
-				<select name="domain" id="domain">
+				<input type="text" name="email" id="email" value=""/>
+				<!-- <select name="domain" id="domain">
 					<option value="naver.com">naver.com</option>
 					<option value="gmail.com">gmail.com</option>
 					<option value="daum.com">daum.com</option>
 					<option value="nate.com">nate.com</option>
-				</select>
+				</select> -->
 			</li>
 			<li>질병정보</li>
 			<li>
