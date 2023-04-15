@@ -8,7 +8,7 @@
 	#supForm li{
 		padding:10px 0px;
 	}
-	#title{
+	#sup_title{
 		width:100%;
 		height:30px;
 	}
@@ -27,7 +27,7 @@
 <!-- 내용디자인폼 -->
 <script>
 	$(function(){
-		 CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
+		 CKEDITOR.ClassicEditor.create(document.getElementById("sup_text"), {
              // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
              toolbar: {
                  items: [
@@ -172,7 +172,7 @@
        
 		 //폼의 유효성검사
 		 $("#supForm").submit(function(){
-			 if($("#title").val()==""){
+			 if($("#sup_title").val()==""){
 				 alert("제목을 입력하세요...");
 				 return false;
 			 }
@@ -190,14 +190,14 @@
 	<hr style="border: solid 2px black;">
 	<br/>
 	<form method="post" action="/happy/sup/supEditOk" id="supForm">
-		<input type="hidden" name="no" value="${dto.no}"/>
+		<input type="hidden" name="sup_no" value="${dto.sup_no}"/>
 		<ul>
 			
-			<li><input type="text" name="title" id="title" value="${dto.title}"/></li>
+			<li><input type="text" name="sup_title" id="sup_title" value="${dto.sup_title}"/></li>
 			
 			<li>
 				<!-- 에디터.... -->
-				<textarea name="content" id="content">${dto.content}</textarea>
+				<textarea name="sup_text" id="sup_text">${dto.sup_text}</textarea>
 			</li>
 			<li>
 			<!-- 수정버튼 -->

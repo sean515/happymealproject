@@ -8,14 +8,14 @@ public interface SupService {
 	public int supTotalRecord();
 	public List<SupDTO> supAllSelect();
 	public int supInsert(SupDTO dto);
-	public int hitCount(int no);
-	public SupDTO supSelect(int no);
-	public SupDTO replyDataSelect(int no);
+	public int hitCount(int sup_no);
+	public SupDTO supSelect(int sup_no);
+	public SupDTO replyDataSelect(int sup_no);
 	public int stepUp(SupDTO orgDataDTO);
 	public int replyWrite(SupDTO dto);
-	public SupDTO getsupSelect(int no);
+	public SupDTO getsupSelect(int sup_no);
 	public int supUpdate(SupDTO dto);
-	public int getLevel(int no);
-	public int supDelete(int no);
-	public int supDeleteUpdate(int no);
+	public int getLevel(int sup_no);
+	public int supDelete(int sup_no);
+	public int supDeleteUpdate(int sup_no);
 }

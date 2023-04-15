@@ -5,6 +5,7 @@
 	.container{
 	padding:30px;
 	overflow:auto;
+	
 	}
 	.board_header{
 		clear:both;
@@ -94,26 +95,26 @@
 			<li>${noNum}</li>
 			<li>
 				<!-- 공백이 있을때 lvl : 0, 1, 2.... -->
-			<c:if test="${supDTO.lvl>0}">
+			<c:if test="${supDTO.sup_lvl>0}">
 				<!-- 공백처리 -->
-				<c:forEach var="i" begin="${1}" end="${supDTO.lvl}">
+				<c:forEach var="i" begin="${1}" end="${supDTO.sup_lvl}">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</c:forEach>
 				<!-- ↳ 표시 -->
 				↳RE: 
 			</c:if>
-			<a href="supView?no=${supDTO.no}">${supDTO.title}</a>
+			<a href="supView?sup_no=${supDTO.sup_no}">${supDTO.sup_title}</a>
 			</li>
 			
 			<li>${supDTO.userid}</li>
-			<li>${supDTO.hit}</li>
-			<li>${supDTO.writedate}</li>
+			<li>${supDTO.sup_hit}</li>
+			<li>${supDTO.sup_date}</li>
 			
 			<c:set var="noNum" value="${noNum-1}"/>
 		</c:forEach>
 	</ul>
 
-	<!-- 페이징 디자인 -->
+	<!-- 페이징 디자인 
 <div class="container mt-3" style="margin:0; padding:0;">
   <ul class="pagination" style="margin:0; padding:0; clear:both; float:right;">
     <li class="page-item"><a class="page-link" href="#">Prev</a></li>
@@ -123,5 +124,6 @@
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
   </div>
+  -->
 </div>
 
