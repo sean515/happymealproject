@@ -77,12 +77,12 @@
 		
 			<div class="input-box">
 	            <input type="text" name="userid" id="userid" placeholder="아이디">
-	            <label for="username">아이디</label>
+	            <label for="userid">아이디</label>
 	        </div>
 	        
 	        <div class="input-box">
 	            <input type="password" name="userpwd" id="userpwd" placeholder="비밀번호">
-	            <label for="password">비밀번호</label>
+	            <label for="userpwd">비밀번호</label>
 	        </div>
 	        
 			<div id="joinGo">
