@@ -63,7 +63,7 @@
 			})
 			// 성별
 			var genderCount = 0;
-			$("input[name=genderArr]").each(function(){
+			$("input[name=gender]").each(function(){
 				if(this.checked==true)  genderCount++;
 			});
 			
@@ -112,8 +112,8 @@
 			<li><input type="date" name="age" id="age"/></li>
 			<li>성별</li>
 			<li>
-				<input type="radio" name="genderArr" value="남성" <c:forEach var="h" items="${dto.gender}"><c:if test="${h=='남성'}">checked</c:if></c:forEach>/>남성
-				<input type="radio" name="genderArr" value="여성" <c:forEach var="h" items="${dto.gender}"><c:if test="${h=='여성'}">checked</c:if></c:forEach>/>여성
+				<input type="radio" name="gender" value="남성" <c:forEach var="h" items="${dto.gender}"><c:if test="${h=='남성'}">checked</c:if></c:forEach>/>남성
+				<input type="radio" name="gender" value="여성" <c:forEach var="h" items="${dto.gender}"><c:if test="${h=='여성'}">checked</c:if></c:forEach>/>여성
 			</li>
 			<li>이메일</li>
 			<li><input type="text" name="email" id="email" value="${dto.email}"/></li>

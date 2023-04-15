@@ -31,10 +31,14 @@
 		width:100%;
 	}
 	#addr{width:80%;}
+	.container{
+		
+	}
 	.hr1{
 		border:0;
 		height:2px;
 		background:black;
+		width:100%;
 	}
 	.hr2{
 		border:0;
@@ -68,7 +72,7 @@
 		<ul>
 			<li>
 				<img src="img/user_icon.png" width="15%" height="15%"/>&emsp;&emsp;&emsp;
-				${dto.username}님 | ${dto.userid}<br/>&emsp;&emsp;&emsp;
+				${dto.username}님 | ${dto.nickname}<br/>&emsp;&emsp;&emsp;
 				${dto.gender}<br/>&emsp;&emsp;&emsp;
 				${dto.age}<br/>&emsp;&emsp;&emsp;
 				${dto.email}<br/>&emsp;&emsp;&emsp;
@@ -80,7 +84,7 @@
 		<ul>
 			<li>
 				<a href="/happy/myPage/registerEditPopup" onclick="window.open(this.href, '_blank', 'width=450, height=430'); return false;">수정</a> / 
-				<a href="/happy/myPage/registerEdit">개인정보 수정</a><br/><br/>
+				<a href="/happy/registerEdit">개인정보 수정</a><br/><br/>
 			</li>
 		</ul>
 	</form>
