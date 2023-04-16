@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.SupDTO;
+import com.meal.happy.dto.SupPagingVO;
 import com.meal.happy.service.SupService;
 
 @RestController
@@ -35,18 +35,21 @@ public class SupController {
 	DataSourceTransactionManager transactionManager;
 	
 	@GetMapping("/supList")
-	public ModelAndView supList() {
-		ModelAndView mav = new ModelAndView();
-		//총레코드
-		int totalRecord = service.supTotalRecord();
+	public ModelAndView supList(SupPagingVO svo) {
 		
+		ModelAndView mav = new ModelAndView();
+		
+		//총레코드
+		int totalRecord = service.supTotalRecord(svo);
+		svo.setSupTotalRecord(service.supTotalRecord(svo));
 		//레코드선택
-		List<SupDTO> list =service.supAllSelect();
+		List<SupDTO> list =(service.supPageSelect(svo));
+		//List<SupDTO> list =(service.supAllSelect());
 		
 		mav.addObject("totalRecord", totalRecord);
-		mav.addObject("list", list);
-		
-		
+		mav.addObject("list", service.supPageSelect(svo));
+		mav.addObject("svo", svo);
+		//mav.addObject("list", list);
 		mav.setViewName("sup/supList");
 		return mav;
 	}
@@ -88,13 +91,17 @@ public class SupController {
 	}
 	//글내용보기
 	@GetMapping("/supView")
-	public ModelAndView supView(int sup_no) {
+	public ModelAndView supView(int sup_no, SupPagingVO svo) {
 		ModelAndView mav = new ModelAndView();
 		
 		//조회수 증가
 		service.hitCount(sup_no);
 		//해당글 선택
 		SupDTO dto = service.supSelect(sup_no);
+		
+		//페이징
+		mav.addObject("svo", svo);
+		//--
 		
 		mav.addObject("dto",dto);
 		mav.setViewName("sup/supView");
@@ -164,8 +171,12 @@ public class SupController {
 	}
 	//계층형게시판 글수정(폼)
 	@GetMapping("/supEdit/{sup_no}")
-	public ModelAndView supEdit(@PathVariable("sup_no") int sup_no) {
+	public ModelAndView supEdit(@PathVariable("sup_no") int sup_no, SupPagingVO svo) {
 		ModelAndView mav = new ModelAndView();
+		
+		//페이징
+		mav.addObject("svo", svo);
+		//--
 		
 		mav.addObject("dto",service.getsupSelect(sup_no));
 		mav.setViewName("sup/supEditForm");
@@ -173,7 +184,7 @@ public class SupController {
 	}
 	//계층형게시판 글수정(DB)
 	@PostMapping("/supEditOk")
-	public ResponseEntity<String> supEditOk(SupDTO dto, HttpSession session){
+	public ResponseEntity<String> supEditOk(SupDTO dto, HttpSession session, SupPagingVO svo){
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "text/html; charset=utf-8");
@@ -187,7 +198,12 @@ public class SupController {
 			if(result>0) {//수정
 				//글내용보기로 이동
 				String body = "<script>";
-				body += "location.href='/happy/sup/supView?sup_no="+dto.getSup_no()+"';";
+				//body += "location.href='/happy/sup/supView?sup_no="+dto.getSup_no()+"';";
+				
+				//페이징
+				body += "location.href='/happy/sup/supView?sup_no="+dto.getSup_no()+"&supNowPage="+svo.getSupNowPage();
+				//--
+				
 				body += "</script>";
 				
 				entity = new ResponseEntity<String>(body, headers, HttpStatus.OK);
@@ -209,8 +225,11 @@ public class SupController {
 	}
 	//글이 삭제되면 목록, 삭제 실패하면 글내용보기 이동 
 	@GetMapping("/supDelete")
-	public ModelAndView supDelete(int sup_no, HttpSession session) {
+	public ModelAndView supDelete(int sup_no, HttpSession session, SupPagingVO svo) {
 		ModelAndView mav = new ModelAndView();
+		
+		//페이징
+		mav.addObject("supNowPage", svo.getSupNowPage());
 		
 		//lvl을 가져와 원글인지 답변글인지 구별처리한다.
 		int sup_lvl = service.getLevel(sup_no);

@@ -3,10 +3,11 @@ package com.meal.happy.dao;
 import java.util.List;
 
 import com.meal.happy.dto.SupDTO;
+import com.meal.happy.dto.SupPagingVO;
 
 public interface SupDAO {
 	//총레코드수
-		public int supTotalRecord();
+		public int supTotalRecord(SupPagingVO svo);
 		//레코드 전체선택
 		public List<SupDTO> supAllSelect();
 		//글등록
@@ -31,4 +32,6 @@ public interface SupDAO {
 		public int supDelete(int sup_no);
 		//삭제하기 - update 답변글일때
 		public int supDeleteUpdate(int sup_no);
+		//해당페이지 선택
+		public List<SupDTO> supPageSelect(SupPagingVO svo);
 }

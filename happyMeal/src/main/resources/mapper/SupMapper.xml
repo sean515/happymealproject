@@ -5,10 +5,41 @@
 <mapper namespace="com.meal.happy.dao.SupDAO">
 	<select id="supTotalRecord" resultType="int">
 		select count(sup_no) from support
+		
 	</select>
 	<select id="supAllSelect" resultType="com.meal.happy.dto.SupDTO">
 		select sup_no, sup_title, userid, sup_hit, sup_date, sup_lvl
 		from support order by sup_ref desc, sup_step asc
+	</select>
+	<!-- 페이징 --> 
+	<select id="supPageSelect" resultType="com.meal.happy.dto.SupDTO">
+		select * from
+		(select * from
+			(select * from
+				(
+					select sup_no, sup_title, userid, sup_hit,to_char(sup_date,'YYYY-MM-DD') sup_date, sup_lvl,sup_ref, sup_step
+		from support order by sup_ref desc, sup_step asc 
+				
+				)
+				<![CDATA[
+				where rownum<=${supOnePageRecord*supNowPage} order by sup_ref asc, sup_step desc 
+				]]>
+				) 			
+			<choose>
+				<when test="supNowPage!=supTotalPage">
+					<![CDATA[
+					where rownum<=${supOnePageRecord}  order by sup_ref asc , sup_step desc
+					]]>
+					)
+				</when>
+				<when test="supNowPage==supTotalPage">
+					<![CDATA[
+					where rownum<=${supLastPageRecord} order by sup_ref asc , sup_step desc
+					]]>
+					)
+				</when>
+			</choose>
+			order by sup_ref desc, sup_step asc 
 	</select>
 	<insert id="supInsert">
 		insert into support(sup_no, sup_title, sup_text, userid, ip, sup_ref)
@@ -50,4 +81,5 @@
 		where sup_no = ${param1}
 		]]>
 	</update>
+	
 </mapper>
