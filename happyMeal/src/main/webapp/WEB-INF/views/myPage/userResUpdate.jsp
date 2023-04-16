@@ -3,7 +3,7 @@
 <style>
 
 </style>
-<div class="container">
+<div class="container"><br/><br/>
 	<h1>식당 업데이트 요청 리스트</h1>
 		<ul>
 			<li><hr class="hr3"/>
