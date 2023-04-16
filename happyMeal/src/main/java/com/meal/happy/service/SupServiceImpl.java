@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.SupDAO;
 import com.meal.happy.dto.SupDTO;
+import com.meal.happy.dto.SupPagingVO;
 
 @Service
 public class SupServiceImpl implements SupService {
@@ -15,8 +16,8 @@ public class SupServiceImpl implements SupService {
 	SupDAO dao;
 	
 	@Override
-	public int supTotalRecord() {
-		return dao.supTotalRecord();
+	public int supTotalRecord(SupPagingVO svo) {
+		return dao.supTotalRecord(svo);
 	}
 
 	
@@ -78,6 +79,12 @@ public class SupServiceImpl implements SupService {
 	@Override
 	public int supDeleteUpdate(int sup_no) {
 		return dao.supDeleteUpdate(sup_no);
+	}
+
+
+	@Override
+	public List<SupDTO> supPageSelect(SupPagingVO svo) {
+		return dao.supPageSelect(svo);
 	}
 	
 

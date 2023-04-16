@@ -3,9 +3,10 @@ package com.meal.happy.service;
 import java.util.List;
 
 import com.meal.happy.dto.SupDTO;
+import com.meal.happy.dto.SupPagingVO;
 
 public interface SupService {
-	public int supTotalRecord();
+	public int supTotalRecord(SupPagingVO svo);
 	public List<SupDTO> supAllSelect();
 	public int supInsert(SupDTO dto);
 	public int hitCount(int sup_no);
@@ -18,4 +19,5 @@ public interface SupService {
 	public int getLevel(int sup_no);
 	public int supDelete(int sup_no);
 	public int supDeleteUpdate(int sup_no);
+	public List<SupDTO> supPageSelect(SupPagingVO svo);
 }
