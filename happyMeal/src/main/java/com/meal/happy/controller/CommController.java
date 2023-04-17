@@ -39,8 +39,11 @@ public class CommController {
 		mav.addObject("list",service.pageSelect(vo));
 
 		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
-		
+
 		mav.setViewName("comm/comm_List");
+		
+		System.out.println(mav);
+		
 		return mav;
 	}
 	
@@ -61,7 +64,7 @@ public class CommController {
 			//글등록 시 에러가 발생하면
 			String htmlTag = "<script>";
 			try {
-				int result = service.boardInsert(dto);
+				int result = service.commInsert(dto);
 				htmlTag += "location.href='comm_List'";
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -83,18 +86,18 @@ public class CommController {
 		//내용 변경이 있으면ResponseEntity 없으면ModelAndView
 		//글 내용 보기
 		@GetMapping("/commView")
-		public ModelAndView commView(int no, PagingVO vo) {
+		public ModelAndView commView(int comm_no, PagingVO vo) {
 			
 			//조회수 증가
-			service.boardHitCount(no);
-			
-			CommDTO dto = service.boardSelect(no);
-			
+			service.commHitCount(comm_no);
+			System.out.println("1"+comm_no);
+			CommDTO dto = service.commSelect(comm_no);
+			System.out.println("2"+dto);
 			ModelAndView mav = new ModelAndView();
-			
+			System.out.println("3"+dto);
 			mav.addObject("dto", dto);	//선택한 레코드
 			mav.addObject("vo", vo);	//페이지번호, 검색어, 검색키
-			
+			System.out.println("4"+dto);
 			mav.setViewName("comm/commView");
 			
 			System.out.println(dto.toString());
@@ -106,7 +109,7 @@ public class CommController {
 		public ModelAndView CommDel(CommDTO dto, PagingVO vo, HttpSession session) {
 			dto.setUserid((String)session.getAttribute("logId"));
 			
-			int result = service.boardDelete(dto);
+			int result = service.commDelete(dto);
 			
 			ModelAndView mav = new ModelAndView();
 			
@@ -119,10 +122,63 @@ public class CommController {
 			if(result>0) {// 삭제시 리스트로 이동
 				mav.setViewName("redirect:comm_List");
 			}else {//삭제 실패 시 글내용 보기로 이동
-				mav.addObject("no", dto.getNo());
+				mav.addObject("no", dto.getComm_no());
 				mav.setViewName("redirect:commView");
 			}
 			return mav;
+		}
+		
+		//수정폼
+		@GetMapping("/commEdit")
+		public ModelAndView commEdit(int comm_no, PagingVO vo) {
+			
+			CommDTO dto = service.commEditSelect(comm_no);
+			
+			// "  " ' '
+			String Comm_text = dto.getComm_title().replaceAll("\"", "&quot;");	//" \"
+			Comm_text.replaceAll("'", "&#39");	//" \"
+			System.out.println(Comm_text);
+			dto.setComm_text(Comm_text);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("dto", dto);	//선택한 레코드
+			mav.addObject("vo", vo);	//페이지번호, 검색어, 검색키
+			
+			mav.setViewName("comm/commEdit");
+				
+			return mav;
+		}
+		//수정(DB update)
+		@PostMapping("/commEditOk")
+		public ResponseEntity<String> commEditOk(CommDTO dto, PagingVO vo, HttpSession session) {
+			//no레코드 번호, 로그인 아이디가 같을 때 업데이트
+			dto.setUserid((String)session.getAttribute("logId"));
+			String bodyTag = "<script>";
+			try {
+				service.commUpdate(dto);
+				// loaction.href='commView?no=12&nowPage=2
+				bodyTag += "location.href='commView?comm_no="+dto.getComm_no() +"&nowPage="+vo.getNowPage();
+				if(vo.getSearchWord()!=null) {//검색어가 있을 때
+					bodyTag += "&searchKey="+vo.getSearchKey()+"&searchWord="+vo.getSearchWord();
+				}
+				bodyTag+="';";
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				//수정실패
+				bodyTag += "alert('게시판 글수정에 실패하였습니다.');";
+				bodyTag += "history.back();";
+			}
+			
+			bodyTag += "</script>";
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+			headers.add("Content-Type", "text/html; charset=UTF-8");
+			
+			ResponseEntity<String> entity = new ResponseEntity<String>(bodyTag, headers, HttpStatus.OK);
+			
+			return entity;
 		}
 		
 }

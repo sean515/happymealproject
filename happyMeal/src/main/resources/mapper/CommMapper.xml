@@ -4,78 +4,79 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.meal.happy.dao.CommDAO">
   
-  	<insert id="boardInsert">
-		insert into board(no, subject, content, userid, ip)
-		values(board_sq.nextval, #{subject}, #{content}, #{userid}, #{ip})
+  	<insert id="commInsert">
+		insert into community(comm_no, userid,comm_bullet_point,  comm_title, comm_text, ip)
+		values(comm_sq.nextval,#{userid},#{comm_bullet_point},#{comm_title},#{comm_text},#{ip})
 	</insert>
 	
-	<select id="totalRecord" resultType="int">
-		select count(b.no) totalRecord from board b join register r on b.userid=r.userid
+<select id="totalRecord" resultType="int">
+		select count(b.comm_no) totalRecord from community b join member r on b.userid=r.userid
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%'
 		</if>
 	</select>
+	
 
 	<select id="pageSelect" resultType="com.meal.happy.dto.CommDTO">
 		select * from
 			(select * from
 				(
-					select b.no, b.subject, b.userid, r.username, b.hit, to_char(b.writedate,'MM-DD HH:MI') writedate 
-					from board b join register r on b.userid=r.userid 
+					select b.comm_no, b.comm_bullet_point, b.comm_title, b.userid, r.username, b.comm_hit, to_char(b.comm_date,'MM-DD HH:MI') comm_date 
+					from community b join member r on b.userid=r.userid 
 					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 						and ${searchKey} like '%${searchWord}%'  
 					</if>
 					
-					order by b.no desc
+					order by b.comm_no desc
 				) 
 				
 				<![CDATA[
-				where rownum<=${onePageRecord*nowPage} order by no asc	
+				where rownum<=${onePageRecord*nowPage} order by comm_no asc	
 				]]>
 				)
 				<choose>
 					<when test="nowPage!=totalPage">
 					<![CDATA[
-					where rownum <=${onePageRecord} order by no desc
+					where rownum <=${onePageRecord} order by comm_no desc
 					]]>
 					</when>
 					<when test="nowPage==totalPage">
 					<![CDATA[
-					where rownum <=${lastPageRecord} order by no desc
+					where rownum <=${lastPageRecord} order by comm_no desc
 					]]>	
 					</when>
 				</choose>
 	</select>
 	
-	<select id="boardSelect" resultType="com.meal.happy.dto.CommDTO">
-		select b.no, b.subject, b.content, r.username,r.userid, b.hit, b.writedate
-		from board b join register r on b.userid= r.userid
-		and b.no=${param1}
+	<select id="commSelect" resultType="com.meal.happy.dto.CommDTO">
+		select b.comm_no,comm_bullet_point, b.comm_title, b.comm_text, r.username,r.userid, b.comm_hit, b.comm_date
+		from community b join member r on b.userid= r.userid
+		and b.comm_no=${param1}
 	</select>
 	
-	<select id="boardEditSelect" resultType="com.meal.happy.dto.CommDTO">
-		select no, subject, content from board where no=${param1}
+	<select id="commEditSelect" resultType="com.meal.happy.dto.CommDTO">
+		select comm_no, comm_title, comm_text from community where comm_no=${param1}
 	</select>
 	
-	<update id="boardUpdate" parameterType="com.meal.happy.dto.CommDTO">
-		update board set subject=#{subject}, content=#{content} where no=${no} and userid=#{userid}
+	<update id="commUpdate" parameterType="com.meal.happy.dto.CommDTO">
+		update community set comm_title=#{comm_title}, comm_text=#{comm_text} where comm_no=${comm_no} and userid=#{userid}
 	</update>
 	
-	<update id ="boardHitCount">
-		update board set hit=hit+1 where no=${param1}
+	<update id ="commHitCount">
+		update community set comm_hit=comm_hit+1 where comm_no=${param1}
 	</update>
 	
-	<delete id="boardDelete">
-		delete from board where no=${no} and userid=#{userid}
+	<delete id="commDelete">
+		delete from community where comm_no=${comm_no} and userid=#{userid}
 	</delete>
 	<select id="dataFilenameList" resultType="String">
-		select filename from datafile where no=${param1}
+		select filename from datafile where comm_no=${param1}
 	</select>
 	
-	<delete id="boardMultiLineDelete">
-	<!-- delete from board where no in (42,46,12,23); -->
-	delete form board
-	<foreach item="item" collection="list" open="where no in (" separator=", " close=")">
+	<delete id="commMultiLineDelete">
+	<!-- delete from community where no in (42,46,12,23); -->
+	delete form community
+	<foreach item="item" collection="list" open="where comm_no in (" separator=", " close=")">
 		#{item}
 	</foreach>
 	</delete>

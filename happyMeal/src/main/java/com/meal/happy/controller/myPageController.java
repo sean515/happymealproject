@@ -33,7 +33,6 @@ public class myPageController {
 		mav.addObject("dto", dto);
 		mav.setViewName("myPage/myPage");
 		
-		
 		return mav;
 	}
 	// 개인정보 수정 폼 - session 로그인 아이디에 해당하는 회원정보 select하여 뷰페이지로 이동
@@ -44,7 +43,7 @@ public class myPageController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("myPage/registerEdit");
-		System.out.println(dto.toString());
+		
 		return mav;
 	}
 	//회원정보 수정(DB) - form의 내용과 session의 로그인 아이디를 구하여 회원정보를 수정한다.

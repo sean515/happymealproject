@@ -15,14 +15,14 @@
 	#commForm li{
 		padding:10px 0px;
 	}
-	#subject{
+	#comm_title{
 		width:99%;
 	}
 	
 	#bulletpoint{
 	
 	}
-	#category{
+	#comm_bullet_point{
 	}
 	/* CKEDITOR */
 	.ck-editor__editable[role="textbox"] {
@@ -38,7 +38,7 @@
 </style>
 <script>
 	$ ( function(){
-		CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
+		CKEDITOR.ClassicEditor.create(document.getElementById("comm_text"), {
             // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
             toolbar: {
                 items: [
@@ -181,7 +181,7 @@
 		
 		//폼의 유효성 검사
 		$("#boardForm").submit(function(){
-			if($("#subject").val()==""){
+			if($("#comm_title").val()==""){
 				alert("제목을 입력하세요...");
 				return false;
 			}
@@ -203,26 +203,26 @@
 		<h1 style="display: inline;">커뮤니티 글쓰기</h1>
 			<hr style="height: 3px; background-color:black;"/>
 			
-			<select name="category" id="category" class="form-select" aria-label="Default select example" style="width:80%; display: inline;">
-				<option value="10">공지사항</option>
-				<option value="15">공지사항 </option>
-				<option value="20">공지사항 </option>
+			<select name="comm_bullet_point" id="comm_bullet_point" class="form-select" aria-label="Default select example" style="width:80%; display: inline;">
+				<option value="공지사항">공지사항</option>
+				<option value="공지사항">공지사항 </option>
+				<option value="공지사항">공지사항 </option>
 			</select>
 			<select name="bulletpoint" id="bulletpoint" class="form-select" aria-label="Default select example" style="float:right; width:19%;line-height: auto;"">
 				<option value="10">말머리 선택</option>
 				<option value="15">말머리 선택 </option>
 				<option value="20">말머리 선택 </option>
 			</select>
-			<li><input type="text" name="subject" id="subject" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="제목"/></li>
+			<li><input type="text" name="comm_title" id="comm_title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="제목"/></li>
 			<li>
 				<!-- 에디터... -->
-				<textarea name="content" id="content" placeholder="글 내용"></textarea>
+				<textarea name="comm_text" id="comm_text" placeholder="글 내용"></textarea>
 			</li>
 			<li >
 			<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px">
-				<button type="button" class="btn btn-outline-dark" onclick="location.href='commWrite'"
+				<button type="submit" class="btn btn-outline-dark"
 					style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 등록</button></div>
-				<input type="submit" value="등록"/>
+				<!-- <input type="submit" value="등록"/> -->
 			</li>
 		</ul>
 	</form>
