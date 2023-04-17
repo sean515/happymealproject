@@ -27,14 +27,31 @@ public class myPageServiceImpl implements myPageService {
 	}
 
 	@Override
-	public String registerEditPopup(String userpwd) {
-		return null;
+	public RegisterDTO registerEditPopup(String userid) {
+		return dao.registerEditPopup(userid, userid);
 	}
 
 	@Override
-	public RegisterDTO myPage(String attribute) {
-		return null;
+	public RegisterDTO myPage(String userid) {
+		return dao.myPage(userid);
 	}
+
+	@Override
+	public int registerEditPopup(RegisterDTO dto) {
+		return 0;
+	}
+
+	@Override
+	public RegisterDTO checkPasswordOk(String userid, String userpwd) {
+		return dao.checkPasswordOk(userid, userpwd);
+	}
+
+	@Override
+	public RegisterDTO checkPassword(String userid, String userpwd) {
+		return dao.checkPassword(userid, userpwd);
+	}
+
+	
 	
 	
 

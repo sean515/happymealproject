@@ -3,7 +3,7 @@
 <style>
 
 </style>
-<div class="container">
+<div class="container"><br/><br/>
 	<h1>즐겨찾기한 레시피 리스트</h1>
 		<ul>
 			<li><img src="../img/recipe_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
