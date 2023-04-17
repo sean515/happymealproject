@@ -8,21 +8,21 @@ import com.meal.happy.dto.PagingVO;
 
 
 public interface CommService {
-	public int boardInsert(CommDTO dto);
+	public int commInsert(CommDTO dto);
 
 	public int totalRecord(PagingVO vo);
 
 	public List<CommDTO> pageSelect(PagingVO vo);
 
-	public CommDTO boardSelect(int no);
+	public CommDTO commSelect(int comm_no);
 
-	public CommDTO boardEditSelect(int no);
+	public CommDTO commEditSelect(int comm_no);
 
-	public int boardUpdate(CommDTO dto);
+	public int commUpdate(CommDTO dto);
 
-	public void boardHitCount(int no);
+	public void commHitCount(int comm_no);
 
-	public int boardDelete(CommDTO dto);
+	public int commDelete(CommDTO dto);
 
-	public int boardMultiLineDelete(List<Integer> noList);
+	public int commMultiLineDelete(List<Integer> noList);
 }

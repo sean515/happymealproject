@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.meal.happy.dao.CommCommentDAO">
+  	<insert id="commcommentInsert">
+  		insert into community_comment(comm_comment_no, comm_no, comm_comment_text, userid, ip)
+  		values(comm_comment_sq.nextval, #{comm_no}, #{comm_comment_text}, #{userid}, #{ip})
+  	</insert>
+  	
+  	<select id="commcommentListSelect" resultType="com.meal.happy.dto.CommCommentDTO">
+  		select comm_comment_no, comm_no, comm_comment_text, userid, comm_comment_date
+  		from community_comment where comm_no=${param1}
+  		order by comm_comment_no desc
+  	</select>
+  
+  	<update id="commcommentUpdate">
+  		update community_comment set comm_comment_text=#{comm_comment_text}
+  		where comm_comment_no=#{comm_comment_no} and userid=#{userid}
+  	</update>
+  	
+  	<delete id="commcommentDelete">
+  		delete from community_comment where comm_comment_no=${param1} and userid=#{param2}
+  		
+  	</delete>
+  	
+  		<select id="totalRecord" resultType="int">
+		select count(b.comm_no) totalRecord from community b join member r on b.userid=r.userid
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	
+	<select id="count_comment_hit" resultType="int">
+		select count(*) comm_comment_hit FROM community_comment where comm_no = #{comm_no}
+	</select>
+
+  </mapper>

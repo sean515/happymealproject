@@ -91,6 +91,7 @@
 
 </style>
 <script>
+	/* 검색어 미입력 상태에서 검색을 진행할 때 발생하는 함수 */
 	$(function(){
 		$("#searchForm").submit(function(){
 			if($("#searchWord").val()==""){
@@ -101,7 +102,7 @@
 		});
 	});
 </script>
-<!-- 배너 -->
+<!-- 배너 이미지 -->
 <div class= "banner">
 	<img src="img/banner.png" width="100%" height="150px"/>
 </div>
@@ -111,12 +112,13 @@
 	<!-- 검색 -->
 	<div class="searchDiv">
 		<form method="get" id="searchForm" action="comm_List">
+		<!-- 기간 select -->
 			<select name="searchDate" class="form-select" aria-label="Default select example" style="width: auto; display: inline; white-space:nowrap;">
 				<option value="">전체기간 </option>
 				<option value="">오늘 </option>
 				<option value="">이번주 </option>
 			</select>
-	
+		<!-- 검색 시 제목 작성자 글내용 선택 -->
 				<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
 				<option value="subject">제목 </option>
 				<option value="username">작성자 </option>
@@ -127,12 +129,17 @@
 		</form>
 	</div>
 	
+	
 	<div class="pFilter">
-	<h1 style="display: inline; font-size: 48px"><b>&nbsp커뮤 123니티&nbsp&nbsp</b></h1>
+	<!-- 소재목 -->
+	<h1 style="display: inline; font-size: 48px"><b>&nbsp커뮤니티&nbsp&nbsp</b></h1>
+	
+	<!-- 좋아요 기반 출력, 글 번호 기반 출력 -->
 	<select name="filter"class="form-select" aria-label="Default select example" style="display: inline; width: 120px; position: relative; bottom: 10px">
 				<option value="popularity">인기순</option>
 				<option value="recent" ">최신순 </option>
 			</select>
+	<!-- 한번에 보여지는 페이지 개수 선택 -->
 	<select name="conuntNo" class="form-select" aria-label="Default select example" style="float:right; width: 120px; position: relative; top: 12px">
 				<option value="10">10개씩</option>
 				<option value="15">15개씩 </option>
@@ -143,9 +150,10 @@
 	<hr style="height: 3px; background: black"/>
 	
 	<div>
+	<!-- 게시글 row 상단 -->
 	<ul class="comm_List" style="overflow: hidden; padding-left: 0;">
-		<li><input type ="checkbox" id="allCheck">전체선택</li>
 		<li>번호</li>
+		<li>글머리</li>
 		<li>제목</li>
 		<li>작성자</li>
 		<li>조회수</li>
@@ -154,22 +162,14 @@
 		<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 		
 		<c:forEach var="bDTO" items="${list}">
-		<li>
-			<!-- 로그인한 회원이 작성한 글일경우 -->
-			<c:if test="${bDTO.userid==logId }">
-				<input type="checkbox" name="noList" value="${bDTO.no }"/>
-			</c:if>
-			<!-- 로그인한 회원이 작성한 글이 아닌 경우 -->
-			<c:if test="${bDTO.userid!=logId }">
-				<input type="checkbox" disabled/> 
-			</c:if>
-		</li>
+		
 		<li>${recordNum }</li><!-- bDTO.no  --> 
+		<li>${bDTO.comm_bullet_point }</li><!-- bDTO.no  --> 
 		<!-- 글 내용 보기 레코드 번호, 현재 페이지, 검색어가 있으면 검색키, 검색어를 가져가야 함. -->
-		<li style="color: black;"><a href="commView?no=${bDTO.no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.subject }</a></li>
+		<li style="color: black;"><a href="commView?comm_no=${bDTO.comm_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.comm_title }</a></li>
 		<li>${bDTO.username }</li>
-		<li>${bDTO.hit }</li>
-		<li>${bDTO.writedate }</li>
+		<li>${bDTO.comm_hit }</li>
+		<li>${bDTO.comm_date }</li>
 		<c:set var="recordNum" value="${recordNum-1 }"></c:set>
 		</c:forEach>
 	</ul>
@@ -216,7 +216,9 @@
 			</c:if>
 		</ul>
 	</div>
-		
+	
+
+  <!-- 인기 카테고리 이동 -->	
   <div class="row">
     <div class="col-sm-4">
 		<img src="img/loginImg.png" width="100%" height="150px"/>

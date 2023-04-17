@@ -27,7 +27,6 @@ public class myPageController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("myPage/myPage");
-		// System.out.println(mav);
 		return mav;
 	}
 
@@ -39,7 +38,6 @@ public class myPageController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("myPage/registerEdit");
-
 		return mav;
 	}
 

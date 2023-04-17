@@ -16,8 +16,8 @@ public class CommServiceImpl implements CommService {
 	CommDAO dao;
 	
 	@Override
-	public int boardInsert(CommDTO dto) {
-		return dao.boardInsert(dto);
+	public int commInsert(CommDTO dto) {
+		return dao.commInsert(dto);
 	}
 
 	@Override
@@ -31,33 +31,33 @@ public class CommServiceImpl implements CommService {
 	}
 
 	@Override
-	public CommDTO boardSelect(int no) {
-		return dao.boardSelect(no);
+	public CommDTO commSelect(int comm_no) {
+		return dao.commSelect(comm_no);
 	}
 
 	@Override
-	public CommDTO boardEditSelect(int no) {
-		return dao.boardEditSelect(no);
+	public CommDTO commEditSelect(int comm_no) {
+		return dao.commEditSelect(comm_no);
 	}
 
 	@Override
-	public int boardUpdate(CommDTO dto) {
-		return dao.boardUpdate(dto);
+	public int commUpdate(CommDTO dto) {
+		return dao.commUpdate(dto);
 	}
 
 	@Override
-	public void boardHitCount(int no) {
-		dao.boardHitCount(no);
+	public void commHitCount(int comm_no) {
+		dao.commHitCount(comm_no);
 	}
 
 	@Override
-	public int boardDelete(CommDTO dto) {
-		return dao.boardDelete(dto);
+	public int commDelete(CommDTO dto) {
+		return dao.commDelete(dto);
 	}
 
 	@Override
-	public int boardMultiLineDelete(List<Integer> noList) {
-		return dao.boardMultiLineDelete(noList);
+	public int commMultiLineDelete(List<Integer> noList) {
+		return dao.commMultiLineDelete(noList);
 	}
 
 }
