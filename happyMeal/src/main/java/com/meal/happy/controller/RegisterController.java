@@ -89,7 +89,7 @@ public class RegisterController {
 		}
 		return mav;
 	}
-	////////
+	//아이디 찾기
 	@GetMapping("/idSearchForm")
 	public String idSearchForm() {
 		return "register/idSearchForm";

@@ -2,9 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 	
-	
+	.container{
+		position:relative;
+	}
 	#joinForm{
-		width:40%;
+		width:55%;
 		margin:0 auto;
 		padding:10px;
 		
@@ -13,9 +15,9 @@
   		text-align: center;
   		margin: 30px;
 	}
-	.input-box{
+	.input-box, .input-box2{
   		position:relative;
-  		margin:10px 0;
+  		margin:20px 0;
 	}
 	.input-box > input{
   		background:transparent;
@@ -25,16 +27,23 @@
   		font-size:14pt;
   		width:100%;
 	}
+	.input-box2 > input{
+		background:transparent;
+		border:none;
+		border-bottom: solid 1px #ccc;
+		padding:20px 0px 5px 0px;
+		width:100%;
+	}
+	.genderCheck > span, .diseaseCheck > span{
+		font-size:19px;
+		color:#aaa;
+		margin-right:50px;
+	}
+	
 	#idBtn{
-		background-color:#8aa1a1;
-		width:50%;
-		height:50px;
-		margin:5px auto;
+		font-size:15px;
 		text-align:center;
 		padding:10px;
-		border:none;
-		border-radius:10px;
-		
 	}
 	input::placeholder{
 		color:transparent;
@@ -63,22 +72,32 @@
 	input[type=submit]{
 		background-color: #8aa1a1;
 		border:none;
-		color:white;
+		color:white; 
 		border-radius: 5px;
 		width:100%;
-		height:35px;
+		height:40px;
 		font-size: 14pt;
 		margin-top:100px;
 	}
-
+	.id-box{
+		display:flex;
+		flex-direction:row;
+	}
+	.id-box :first-child{
+		width:80%;
+	}
+	.id-box :nth-child(3){
+		width:20%;
+	}
+	
 </style>
 <script>
 	$(function(){
 		//아이디 중복검사
-		$("input[value=아이디중복검사]").click(function(){
+		$("button[value=아이디중복검사]").click(function(){
 			if($("#userid").val()!=""){
 				//          주소, 창이름, 옵션
-				window.open("idCheck?userid="+$("#userid").val(),"chk","width=400,height=300");
+				window.open("idCheck?userid="+$("#userid").val(),"chk","width=450,height=300");
 			}else{
 				alert("아이디를 입력후 중복검사하세요.");
 			}
@@ -152,11 +171,11 @@
 <div class="container">	 
 	<form method="post" id="joinForm">
 		<h2>회원가입</h2>
-		<div class="input-box">
+		<div class="input-box id-box">
 			
         	<input type="text" name="userid" id="userid" value="" minlength="5" maxlength="12" placeholder="아이디"/>
 			<label for="userid">아이디</label>
-        	<input type="button" id="idBtn" value="아이디중복검사"/>
+        	<button type="button" class="btn btn-outline-success" id="idBtn" value="아이디중복검사">아이디중복검사</button>
 			<input type="hidden" id="idStatus" value="N"/>
 		</div>
 		
@@ -175,15 +194,18 @@
 		    <label for="username">이름</label>
 		</div>
 		
-	    <div class="input-box">
-	    	생년월일
+	    <div class="input-box2">
 	        <input type="date" name="age" id="age"/>
 	    </div>
 	    
-	    <div>
-	    	성별
-	        <input type="radio" name="gender" id="gender" value="F"/>여
-	        <input type="radio" name="gender" id="gender" value="M"/>남
+	    <div class="input-box2 genderCheck">
+	    	<span>성별</span>
+		    <div class="form-check form-check-inline">
+			  여<input type="radio" class="form-check-input" name="gender" value="F" checked>
+			</div>
+			<div class="form-check form-check-inline">
+			  남<input type="radio" class="form-check-input" name="gender" value="M">
+			</div>
 	    </div>
 	    
 	    <div class="input-box">
@@ -196,9 +218,23 @@
 	        <label for="email">이메일</label>
 	    </div>
 	    
-	    <div class="input-box">
-	    	질병정보
-	        <input type="checkbox" name="diseaseArr" value="해당없음"/>해당없음
+	    <div class="input-box2 diseaseCheck">
+	    	<span>질병정보</span>
+	    	<div class="form-check form-check-inline">
+			  당뇨<input type="checkbox" class="form-check-input" name="diseaseArr" value="당뇨">
+			</div>
+			<div class="form-check form-check-inline">
+			  고혈압<input type="checkbox" class="form-check-input" name="diseaseArr" value="고혈압">
+			</div>
+			<div class="form-check form-check-inline">
+			  통풍<input type="checkbox" class="form-check-input" name="diseaseArr" value="통풍">
+			</div>
+			<div class="form-check form-check-inline">
+			  류마티스<input type="checkbox" class="form-check-input" name="diseaseArr" value="류마티스">
+			</div>
+			<div class="form-check form-check-inline">
+			  해당없음<input type="checkbox" class="form-check-input" name="diseaseArr" value="해당없음">
+			</div>
 	    </div>
 		
 		<input type="submit" class="btn" value="Sign up"/>
