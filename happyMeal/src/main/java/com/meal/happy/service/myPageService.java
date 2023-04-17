@@ -1,12 +1,13 @@
 package com.meal.happy.service;
 
-import java.util.List;
-
 import com.meal.happy.dto.RegisterDTO;
 
 public interface myPageService {
 	public RegisterDTO registerEdit(String userid);
 	public int registerEditOk(RegisterDTO dto);
-	public String registerEditPopup(String userpwd);
-	public RegisterDTO myPage(String attribute);
+	public int registerEditPopup(RegisterDTO dto);
+	public RegisterDTO myPage(String userid);
+	RegisterDTO registerEditPopup(String userpwd);
+	public RegisterDTO checkPasswordOk(String userid, String userpwd);
+	public RegisterDTO checkPassword(String userid, String userpwd);
 }

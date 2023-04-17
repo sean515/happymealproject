@@ -8,7 +8,7 @@
 	#supForm li{
 		padding:10px 0px;
 	}
-	#title{
+	#sup_title{
 		width:100%;
 		height:30px;
 	}
@@ -27,7 +27,7 @@
 <!-- 내용디자인폼 -->
 <script>
 	$(function(){
-		 CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
+		 CKEDITOR.ClassicEditor.create(document.getElementById("sup_text"), {
              // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
              toolbar: {
                  items: [
@@ -170,7 +170,7 @@
          
 		 //폼의 유효성검사
 		 $("#supForm").submit(function(){
-			 if($("#title").val()==""){
+			 if($("#sup_title").val()==""){
 				 alert("제목을 입력하세요...");
 				 return false;
 			 }
@@ -193,13 +193,13 @@
 	<br/>
 	<form method="post" action="/happy/sup/supAnswerOk" id="supForm">
 		<!-- 원글 글번호 -->
-		<input type="hidden" name="no" value="${no}"/>
+		<input type="hidden" name="sup_no" value="${sup_no}"/>
 		<ul>
 			<!-- 제목 -->
-			<li><input type="text" name="title" id="title" placeholder="관리자입니다."/></li>
+			<li><input type="text" name="sup_title" id="sup_title" placeholder="관리자입니다."/></li>
 			<li>
 				<!-- 에디터.... -->
-				<textarea name="content" id="content"></textarea>
+				<textarea name="sup_text" id="sup_text"></textarea>
 			</li>
 			<!-- 답변 버튼 -->
 			<li>

@@ -1,7 +1,5 @@
 package com.meal.happy.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.meal.happy.dto.RegisterDTO;
@@ -96,5 +93,9 @@ public class RegisterController {
 	@GetMapping("/idSearchForm")
 	public String idSearchForm() {
 		return "register/idSearchForm";
+	}
+	@GetMapping("/index.html")
+	public String adminForm() {
+		return "resources/index.html";
 	}
 }

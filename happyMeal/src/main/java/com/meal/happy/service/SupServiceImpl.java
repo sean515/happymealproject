@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.SupDAO;
-import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.SupDTO;
+import com.meal.happy.dto.SupPagingVO;
 
 @Service
 public class SupServiceImpl implements SupService {
@@ -16,8 +16,8 @@ public class SupServiceImpl implements SupService {
 	SupDAO dao;
 	
 	@Override
-	public int supTotalRecord() {
-		return dao.supTotalRecord();
+	public int supTotalRecord(SupPagingVO svo) {
+		return dao.supTotalRecord(svo);
 	}
 
 	
@@ -32,18 +32,18 @@ public class SupServiceImpl implements SupService {
 	}
 
 	@Override
-	public int hitCount(int no) {
-		return dao.hitCount(no);
+	public int hitCount(int sup_no) {
+		return dao.hitCount(sup_no);
 	}
 
 	@Override
-	public SupDTO supSelect(int no) {
-		return dao.supSelect(no);
+	public SupDTO supSelect(int sup_no) {
+		return dao.supSelect(sup_no);
 	}
 
 	@Override
-	public SupDTO replyDataSelect(int no) {
-		return dao.replyDataSelect(no);
+	public SupDTO replyDataSelect(int sup_no) {
+		return dao.replyDataSelect(sup_no);
 	}
 
 	@Override
@@ -57,8 +57,8 @@ public class SupServiceImpl implements SupService {
 	}
 
 	@Override
-	public SupDTO getsupSelect(int no) {
-		return dao.getsupSelect(no);
+	public SupDTO getsupSelect(int sup_no) {
+		return dao.getsupSelect(sup_no);
 	}
 
 	@Override
@@ -67,18 +67,24 @@ public class SupServiceImpl implements SupService {
 	}
 
 	@Override
-	public int getLevel(int no) {
-		return dao.getLevel(no);
+	public int getLevel(int sup_no) {
+		return dao.getLevel(sup_no);
 	}
 
 	@Override
-	public int supDelete(int no) {
-		return dao.supDelete(no);
+	public int supDelete(int sup_no) {
+		return dao.supDelete(sup_no);
 	}
 
 	@Override
-	public int supDeleteUpdate(int no) {
-		return dao.supDeleteUpdate(no);
+	public int supDeleteUpdate(int sup_no) {
+		return dao.supDeleteUpdate(sup_no);
+	}
+
+
+	@Override
+	public List<SupDTO> supPageSelect(SupPagingVO svo) {
+		return dao.supPageSelect(svo);
 	}
 	
 

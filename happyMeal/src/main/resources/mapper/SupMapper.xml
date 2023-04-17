@@ -4,50 +4,82 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.meal.happy.dao.SupDAO">
 	<select id="supTotalRecord" resultType="int">
-		select count(no) from answerboard
+		select count(sup_no) from support
+		
 	</select>
 	<select id="supAllSelect" resultType="com.meal.happy.dto.SupDTO">
-		select no, title, userid, hit, writedate, lvl
-		from answerboard order by ref desc, step asc
+		select sup_no, sup_title, userid, sup_hit, sup_date, sup_lvl
+		from support order by sup_ref desc, sup_step asc
+	</select>
+	<!-- 페이징 --> 
+	<select id="supPageSelect" resultType="com.meal.happy.dto.SupDTO">
+		select * from
+		(select * from
+			(select * from
+				(
+					select sup_no, sup_title, userid, sup_hit,to_char(sup_date,'YYYY-MM-DD') sup_date, sup_lvl,sup_ref, sup_step
+		from support order by sup_ref desc, sup_step asc 
+				
+				)
+				<![CDATA[
+				where rownum<=${supOnePageRecord*supNowPage} order by sup_ref asc, sup_step desc 
+				]]>
+				) 			
+			<choose>
+				<when test="supNowPage!=supTotalPage">
+					<![CDATA[
+					where rownum<=${supOnePageRecord}  order by sup_ref asc , sup_step desc
+					]]>
+					)
+				</when>
+				<when test="supNowPage==supTotalPage">
+					<![CDATA[
+					where rownum<=${supLastPageRecord} order by sup_ref asc , sup_step desc
+					]]>
+					)
+				</when>
+			</choose>
+			order by sup_ref desc, sup_step asc 
 	</select>
 	<insert id="supInsert">
-		insert into answerboard(no, title, content, userid, ip, ref)
-		values(answer_sq.nextval, #{title}, #{content}, #{userid}, #{ip}, answer_sq.currval)
+		insert into support(sup_no, sup_title, sup_text, userid, ip, sup_ref)
+		values(support_sq.nextval, #{sup_title}, #{sup_text}, #{userid}, #{ip}, support_sq.currval)
 	</insert>
 	<update id="hitCount">
-		update answerboard set hit = hit + 1 where no=#{param1}
+		update support set sup_hit = sup_hit + 1 where sup_no=#{param1}
 	</update>
 	<select id="supSelect" resultType="com.meal.happy.dto.SupDTO">
-		select no, title, userid, content, hit, writedate 
-		from answerboard
-		where no=${param1} <!--숫자데이터 #나$ 아무거나 써도 무방함-->
+		select sup_no, sup_title, userid, sup_text, sup_hit, sup_date 
+		from support
+		where sup_no=${param1} <!--숫자데이터 #나$ 아무거나 써도 무방함-->
 	</select>
 	<select id="replyDataSelect" resultType="com.meal.happy.dto.SupDTO">
-		select ref, lvl, step from answerboard where no=${param1}
+		select sup_ref, sup_lvl, sup_step from support where sup_no=${param1}
 	</select>
 	<update id="stepUp">
-		update answerboard set step = step+1 where ref=${ref} and step>${step}
+		update support set sup_step = sup_step+1 where sup_ref=${sup_ref} and sup_step>${sup_step}
 	</update>
 	<insert id="replyWrite">
-		insert into answerboard(no, title, content, userid, ip, ref, lvl, step)
-		values(answer_sq.nextval, #{title}, #{content}, #{userid}, #{ip}, ${ref}, ${lvl+1}, ${step+1})
+		insert into support(sup_no, sup_title, sup_text, userid, ip, sup_ref, sup_lvl, sup_step)
+		values(support_sq.nextval, #{sup_title}, #{sup_text}, #{userid}, #{ip}, ${sup_ref}, ${sup_lvl+1}, ${sup_step+1})
 	</insert>
 	<select id="getsupSelect" resultType="com.meal.happy.dto.SupDTO">
-		select no, title, content from answerboard where no=${param1}
+		select sup_no, sup_title, sup_text from support where sup_no=${param1}
 	</select>
 	<update id="supUpdate">
-		update answerboard set title=#{title}, content=#{content} where no=${no} and userid=#{userid}
+		update support set sup_title=#{sup_title}, sup_text=#{sup_text} where sup_no=${sup_no} and userid=#{userid}
 	</update>
 	<select id="getLevel" resultType="int">
-		select lvl from answerboard where no = ${param1}
+		select sup_lvl from support where sup_no = ${param1}
 	</select>
 	<delete id="supDelete">
-		delete from answerboard where ref=${param1}
+		delete from support where sup_ref=${param1}
 	</delete>
 	<update id="supDeleteUpdate">
 		<![CDATA[
-		update answerboard set title ='삭제된 글입니다.', content='<p>글내용이 삭제되었습니다.</p>', hit=0, writedate=sysdate
-		where no = ${param1}
+		update support set sup_title ='삭제된 글입니다.', sup_text='<p>글내용이 삭제되었습니다.</p>', sup_hit=0, sup_date=sysdate
+		where sup_no = ${param1}
 		]]>
 	</update>
+	
 </mapper>

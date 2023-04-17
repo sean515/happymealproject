@@ -31,7 +31,7 @@
 			
 			<mvc:mapping path="/commentSend"/>
 			<mvc:mapping path="/sup/supWrite"/>
-			<mvc:mapping path="/sup/supAnswer/{no}"/>
+			<mvc:mapping path="/sup/supAnswer/{sup_no}"/>
 			
 			<bean class="com.meal.happy.LoginInterceptor"></bean>
 		</mvc:interceptor>

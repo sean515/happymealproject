@@ -14,12 +14,25 @@
 		insert into member(userid, usernum, userpwd, username, age, gender, nickname, email, disease) 
 		values (#{userid},usernum_sq.nextval, #{userpwd}, #{username}, #{age}, #{gender}, #{nickname}, #{email}, #{disease})
 	</insert>
-	<select id="registerEdit" resultType="com.meal.happy.dto.RegisterDTO">
+	<select id="myPage" resultType="com.meal.happy.dto.RegisterDTO">
 		select userid, username, nickname, to_char(age, 'yy-MM-DD') age, email, gender, disease from member 
 		where userid=#{param1}
 	</select>
+	<select id="checkPasswordOk" resultType="com.meal.happy.dto.RegisterDTO">
+		select userid, username from member
+		where userid = #{param1} and userpwd = #{param2}
+	</select>
+	<select id="checkPassword" resultType="com.meal.happy.dto.RegisterDTO">
+		select userid, userpwd, username, nickname, to_char(age, 'yy-MM-DD') age, email, gender, disease from member 
+		where userid=#{param1}
+	</select>
+	<select id="registerEdit" resultType="com.meal.happy.dto.RegisterDTO">
+		select userid, userpwd, username, nickname, to_char(age, 'yy-MM-DD') age, email, gender, disease from member 
+		where userid=#{param1}
+	</select>
 	<update id="registerEditOk">
-		update member set email=#{email}, disease=#{disease} where userid=#{userid} and userpwd=#{userpwd}
+		update member set userpwd=#{userpwd}, nickname=#{nickname}, age=#{age}, gender=#{gender}, email=#{email}
+		, disease=#{disease} where userid=#{userid}
 	</update>
 	<select id="idSearch" resultType="string">
 		select rpad(substr(userid,1,length(userid)/2),

@@ -77,7 +77,7 @@ public class RegisterDTO {
 		//[당뇨, 통풍]
 		String diseaseStr = Arrays.toString(diseaseArr);
 		diseaseStr = diseaseStr.substring(1,diseaseStr.length()-1);
-		diseaseStr = diseaseStr.replace(", ", "/");	//바이크/영화감상/자전거
+		diseaseStr = diseaseStr.replace(", ", "/");	
 		disease = diseaseStr;
 		return disease;
 	}

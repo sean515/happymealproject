@@ -10,7 +10,7 @@
 <script>
 	var supDelCheck = ()=>{
 		if(confirm('삭제하시겠습니까?')){
-			location.href = "/happy/sup/supDelete?no=${dto.no}";
+			location.href = "/happy/sup/supDelete?sup_no=${dto.sup_no}";
 		}
 	}
 </script>
@@ -28,23 +28,23 @@
 	<br/>
 	<!-- 내역목록 -->
 	<ul id="view">
-		<li>글번호 : ${dto.no}</li>
+		<li>문의글번호 : ${dto.sup_no}</li>
 		<li>작성자 : ${dto.userid}</li>
-		<li>작성일 : ${dto.writedate}</li>
-		<li>조회수 : ${dto.hit}</li>
-		<li>제목 : <b>${dto.title}</b></li>
-		<li>내용 : ${dto.content}</li>
+		<li>작성일 : ${dto.sup_date}</li>
+		<li>조회수 : ${dto.sup_hit}</li>
+		<li>제목 : <b>${dto.sup_title}</b></li>
+		<li>내용 : ${dto.sup_text}</li>
 	</ul>
 	<br/>
 	<p id="s">
 		<!-- 로그인이 된경우 답변글쓰기 가능 -->
 		<c:if test="${logStatus=='Y'}">
-		<button type="button" class="btn btn-outline-info"><a href="supAnswer/${dto.no}">답변작성</a></button>
+		<button type="button" class="btn btn-outline-info"><a href="supAnswer/${dto.sup_no}">답변작성</a></button>
 		</c:if>
 		<!-- 본인이 쓴 글일때 -->
 		<c:if test="${dto.userid==logId}">
 		<!-- 수정,삭제버튼 -->
-			 <button type="button" class="btn btn-outline-warning"><a href="supEdit/${dto.no}">수정</a></button>
+			 <button type="button" class="btn btn-outline-warning"><a href="supEdit/${dto.sup_no}">수정</a></button>
 			<button type="button" class="btn btn-outline-danger"><a href="javascript:supDelCheck()">삭제</a></button>
 		</c:if>
 	</p>

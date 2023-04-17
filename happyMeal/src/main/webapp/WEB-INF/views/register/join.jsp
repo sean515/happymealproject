@@ -1,53 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-	#sideimg{
-		width:50%;
-		height:95%;
-		float:left;
-	}
-	.joinbox{
-		width:36%;
-		float:left;
-		margin-left:7%;
-		margin-right:7%;
-	}
-	#joinForm>h1{
-		text-align:center;
-	}
-	#joinForm ul{
-		overflow:auto;
-		margin:auto;
-	}
-	#joinForm li{
-		float:left;
-		width:20%;
-		padding:10px 0;
-		border-bottom:1px solid #ddd;
-		line-height:40px;
-		
-	}
-	#joinForm li:nth-child(2n){
-		width:80%;
-	}
-	#joinForm li:last-child{
-		width:100%;
-	}
 	
-	.signupBtn{
-		width:100%;
-		text-align:center;
-		margin-top:20px;
-	}
-	#signupBtn{
+	
+	#joinForm{
 		width:40%;
-		height:60px;
-		font-size:1.2em;
-		background-color:#F7CE46;
-		border:none;
-		border-radius:30px;
+		margin:0 auto;
+		padding:10px;
 		
 	}
+	#joinForm h2 {
+  		text-align: center;
+  		margin: 30px;
+	}
+	.input-box{
+  		position:relative;
+  		margin:10px 0;
+	}
+	.input-box > input{
+  		background:transparent;
+  		border:none;
+  		border-bottom: solid 1px #ccc;
+  		padding:20px 0px 5px 0px;
+  		font-size:14pt;
+  		width:100%;
+	}
+	#idBtn{
+		background-color:#8aa1a1;
+		width:50%;
+		height:50px;
+		margin:5px auto;
+		text-align:center;
+		padding:10px;
+		border:none;
+		border-radius:10px;
+		
+	}
+	input::placeholder{
+		color:transparent;
+	}
+	input:placeholder-shown + label{
+  		color:#aaa;
+  		font-size:14pt;
+  		top:15px;
+	}
+	input:focus + label, label{
+	  color:#8aa1a1;
+	  font-size:10pt;
+	  pointer-events: none;
+	  position: absolute;
+	  left:0px;
+	  top:0px;
+	  transition: all 0.2s ease ;
+	  -webkit-transition: all 0.2s ease;
+	  -moz-transition: all 0.2s ease;
+	  -o-transition: all 0.2s ease;
+	}
+	input:focus, input:not(:placeholder-shown){
+	  border-bottom: solid 1px #8aa1a1;
+	  outline:none;
+	}
+	input[type=submit]{
+		background-color: #8aa1a1;
+		border:none;
+		color:white;
+		border-radius: 5px;
+		width:100%;
+		height:35px;
+		font-size: 14pt;
+		margin-top:100px;
+	}
+
 </style>
 <script>
 	$(function(){
@@ -126,57 +149,59 @@
 		});
 	});
 </script>
-<div class="logContainer">
-	
-		<img src="img/loginImg.png" id="sideimg">
-	
-	<div class="joinbox">
+<div class="container">	 
 	<form method="post" id="joinForm">
-		<h1>회원가입</h1>
-		<ul>
-			<li>아이디</li>
-			<li>
-				<input type="text" name="userid" id="userid" minlength="5" maxlength="12" value="" placeholder="5~12자의 영문,숫자만 사용가능"/>
-				<input type="button" value="아이디중복검사"/>
-				<input type="hidden" id="idStatus" value="N"/>
-			</li>
-			<li>비밀번호</li>
-			<li><input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15"/></li>
-			<li>비밀번호확인</li>
-			<li><input type="password" name="userpwd2" id="userpwd2"/></li>
-			<li>이름</li>
-			<li><input type="text" name="username" id="username" minlength="2" maxlength="10"/></li>
-			<li>생년월일</li>
-			<li><input type="date" name="age" id="age"/></li>
-			<li>성별</li>
-			<li>
-				<input type="radio" name="gender" id="gender" value="F" checked/>여
-				<input type="radio" name="gender" id="gender" value="M"/>남
-			</li>
-			<li>닉네임</li>
-			<li><input type="text" name="nickname" id="nickname"/></li>
-			<li>이메일</li>
-			<li>
-				<input type="text" name="email" id="email" value=""/> @
-				<select name="domain" id="domain">
-					<option value="naver.com">naver.com</option>
-					<option value="gmail.com">gmail.com</option>
-					<option value="daum.com">daum.com</option>
-					<option value="nate.com">nate.com</option>
-				</select>
-			</li>
-			<li>질병정보</li>
-			<li>
-				<input type="checkbox" name="diseaseArr" value="당뇨"/>당뇨
-				<input type="checkbox" name="diseaseArr" value="고혈압"/>고혈압
-				<input type="checkbox" name="diseaseArr" value="통풍"/>통풍
-				<input type="checkbox" name="diseaseArr" value="류마티스"/>류마티스
-				<input type="checkbox" name="diseaseArr" value="해당없음"/>해당없음
-			</li>
-		</ul>
-		<div class="signupBtn">
-			<input type="submit" value="Sign up" id="signupBtn"/>
+		<h2>회원가입</h2>
+		<div class="input-box">
+			
+        	<input type="text" name="userid" id="userid" value="" minlength="5" maxlength="12" placeholder="아이디"/>
+			<label for="userid">아이디</label>
+        	<input type="button" id="idBtn" value="아이디중복검사"/>
+			<input type="hidden" id="idStatus" value="N"/>
 		</div>
+		
+        <div class="input-box">
+		    <input type="password" name="userpwd" id="userpwd" minlength="8" maxlength="15" placeholder="비밀번호"/>
+		    <label for="userpwd">비밀번호</label>
+		</div>
+		
+		<div class="input-box">
+		    <input type="password" name="userpwd2" id="userpwd2" placeholder="비밀번호 확인"/>
+		    <label for="userpwd2">비밀번호 확인</label>
+		</div>
+		
+		<div class="input-box">
+		    <input type="text" name="username" id="username" minlength="2" maxlength="10" placeholder="이름"/>
+		    <label for="username">이름</label>
+		</div>
+		
+	    <div class="input-box">
+	    	생년월일
+	        <input type="date" name="age" id="age"/>
+	    </div>
+	    
+	    <div>
+	    	성별
+	        <input type="radio" name="gender" id="gender" value="F"/>여
+	        <input type="radio" name="gender" id="gender" value="M"/>남
+	    </div>
+	    
+	    <div class="input-box">
+	        <input type="text" name="nickname" id="nickname" placeholder="닉네임"/>
+	        <label for="nickname">닉네임</label>
+	    </div>
+	    
+	    <div class="input-box">
+	        <input type="text" name="email" id="email" value="" placeholder="이메일"/>
+	        <label for="email">이메일</label>
+	    </div>
+	    
+	    <div class="input-box">
+	    	질병정보
+	        <input type="checkbox" name="diseaseArr" value="해당없음"/>해당없음
+	    </div>
+		
+		<input type="submit" class="btn" value="Sign up"/>
+	
 	</form>
-	</div>
 </div>
