@@ -4,6 +4,10 @@
 	header,footer{
 		display:none;
 	}
+	.idCheckbox{
+		width:450px;
+		height:300px;
+	}
 </style>
 <script>
 	function setUserid(id){
@@ -14,12 +18,12 @@
 		window.close();
 	}
 </script>
-<div class="container">
+<div class="idCheckbox">
 	<div>
 		<!-- 사용가능한 경우 -->
 		<c:if test="${result==0}">
 			<b>${userid }</b>는 사용가능한 아이디입니다.
-			<input type="button" value="사용하기" onclick="setUserid('${userid}')"/>
+			<input type="button" class="btn btn-primary" value="사용하기" onclick="setUserid('${userid}')"/>
 		</c:if>
 		
 		<!-- 사용불가능할 경우 -->
@@ -33,7 +37,7 @@
 	<div>
 		<form>
 			아이디 입력: <input type="text" name="userid" id="userid"/>
-			<input type="submit" value="중복검사하기"/>
+			<input type="submit" class="btn btn-secondary" value="중복검사하기"/>
 		</form>
 	</div>
 </div>

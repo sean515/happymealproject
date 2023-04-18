@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 	.logindiv{
-		width:40%;
+		width:30%;
 		margin: 100px auto 62px;
 		
 	}
@@ -88,7 +88,7 @@
 			<div id="joinGo">
 				<a href="join">회원가입</a>
 				<a href="idSearchForm">아이디찾기</a>
-				<a href="">비밀번호찾기</a>
+				<a href="pwdSearchForm">비밀번호찾기</a>
 			</div>
 	        <input type="submit" value="LOGIN">
 	        

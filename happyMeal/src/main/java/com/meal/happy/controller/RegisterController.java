@@ -5,11 +5,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.meal.happy.dto.RegisterDTO;
@@ -60,17 +61,11 @@ public class RegisterController {
 		return "register/join";
 	}
 	//아이디 중복검사
-	@GetMapping("/idCheck")
-	public String idCheck(String userid, Model model) {
-		//조회
-		//아이디의 갯수 구하기 - 0, 1
-		int result = service.idCheckCount(userid);
-		
-		//뷰에서 사용하기위해 모델에 셋팅
-		model.addAttribute("userid", userid);
-		model.addAttribute("result", result);
-		
-		return "register/idCheck";
+	@PostMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(@RequestParam("userid") String userid) {
+		int cnt = service.idCheck(userid);
+		return cnt;
 	}
 	
 	@RequestMapping(value="/joinOk", method=RequestMethod.POST)
@@ -89,11 +84,27 @@ public class RegisterController {
 		}
 		return mav;
 	}
-	////////
+	//아이디 찾기 폼
 	@GetMapping("/idSearchForm")
 	public String idSearchForm() {
 		return "register/idSearchForm";
 	}
+	//아이디 찾기
+	
+	@RequestMapping(value="/idSearch", method=RequestMethod.POST)
+	 
+	@ResponseBody public String idSearch(@RequestParam("username") String
+	username,@RequestParam("email") String email) { String result =
+	service.idSearch(username, email);
+	 
+	return result;
+	 
+	}
+	 
+	
+	
+	
+	
 	@GetMapping("/index.html")
 	public String adminForm() {
 		return "resources/index.html";

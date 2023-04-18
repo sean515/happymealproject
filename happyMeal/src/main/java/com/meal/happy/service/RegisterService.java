@@ -6,8 +6,7 @@ import com.meal.happy.dto.RegisterDTO;
 
 public interface RegisterService {
 	public RegisterDTO loginOk(String userid, String userpwd);
-	public int idCheckCount(String userid);
+	public int idCheck(String userid);
 	public int registerInsert(RegisterDTO dto);
-	
 	public String idSearch(String username, String email);
 }

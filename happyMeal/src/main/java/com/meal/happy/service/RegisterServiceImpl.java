@@ -22,8 +22,8 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public int idCheckCount(String userid) {
-		return dao.idCheckCount(userid);
+	public int idCheck(String userid) {
+		return dao.idCheck(userid);
 	}
 
 	@Override
