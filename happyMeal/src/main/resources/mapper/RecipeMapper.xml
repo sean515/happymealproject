@@ -15,7 +15,7 @@
 		select * from
 			(select * from
 				(
-					select b.recipe_no, b.recipe_name, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
+					select b.recipe_no, b.recipe_name, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
 					from recipe b join member r on b.userid=r.userid 
 					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 						and ${searchKey} like '%${searchWord}%'  
@@ -41,6 +41,16 @@
 					</when>
 				</choose>
 	</select>
+	
+	<select id="recipeSelect" resultType="com.meal.happy.dto.RecipeDTO">
+		select b.recipe_no, b.recipe_name, b.recipe_manual01, b.recipe_manual_img01, r.username, r.userid, b.recipe_hit, b.recipe_date
+		from recipe b join member r on b.userid= r.userid
+		and b.recipe_no=${param1}
+	</select>
+	
+	<update id ="recipeHitCount">
+		update recipe set recipe_hit=recipe_hit+1 where recipe_no=${param1}
+	</update>
       
         
   </mapper>
