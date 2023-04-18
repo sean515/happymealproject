@@ -33,8 +33,10 @@ public class RegisterController {
 		//매개변수로 HttpSession session
 		
 		RegisterDTO dto = service.loginOk(userid, userpwd);
+		
 		//dto -> null인 경우 선택레코드가 없다. - 로그인 실패
 		//       null이 아닌 경우 선택레코드 있다. - 로그인 성공
+		
 		ModelAndView mav = new ModelAndView();
 		if(dto!=null) {//로그인 성공
 			session.setAttribute("logId", dto.getUserid());
