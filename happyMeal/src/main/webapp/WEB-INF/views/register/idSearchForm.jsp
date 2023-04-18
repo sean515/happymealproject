@@ -60,13 +60,14 @@
 		font-size: 14pt;
 		margin-top:100px;
 	}
-	#searchGo{
+
+	/* #searchGo{
 		text-align: center;
 		font-size:12pt;
 		color:rgb(164, 164, 164);
 		margin:10px 0px;
 		
-	}
+	} */
 </style>
 <script>
 	$(function(){
@@ -82,26 +83,37 @@
 				return false;
 			}
 			
-			var url = 'idSearchEmailSend';
-			var params = $("#idSearch").serialize();
+			/* var username = $("#username").val();
+			var email = $("#email").val();
 			
 			$.ajax({
-				url : url,
-				data : params,
+				url : "./idSearch",
 				type : 'POST',
-				success:function(result){
-					if(result=='Y'){
-						alert("이메일로 아이디를 전송하였습니다.");
-						location.href="/campus/loginForm";
+				data : {"username":username, "email":email},
+				success:function(data){
+					if(data==null){
+						$('#id_value').text("존재하지 않는 정보입니다.");
+						$('#username').val('');
+						$('#email').val('');
 					}else{
-						alert("존재하지 않는 정보입니다.");
+						$('#id_value').text(data);
+						$('#username').val('');
+						$('#email').val('');
 					}
 				},error:function(){
+					alert("error!!!");
 					console.log(e.responseText);	
 				}
-			});
+			}); */
 		});
 	});
+	
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	})
 </script>
 <div class="container">
 	
@@ -122,10 +134,29 @@
 	            <label for="email">이메일</label>
 	        </div>
 		        
-			<div id="searchGo">
-	        	<input type="submit" value="아이디찾기"/>
-			</div>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			  아이디 찾기
+			</button>
 		        
 		</form>
 	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">아이디 조회 결과</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="content" id="id_value"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='loginForm'">로그인</button>
+      </div>
+    </div>
+  </div>
 </div>

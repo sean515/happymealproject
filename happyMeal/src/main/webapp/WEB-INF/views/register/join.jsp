@@ -6,7 +6,7 @@
 		position:relative;
 	}
 	#joinForm{
-		width:55%;
+		width:600px;
 		margin:0 auto;
 		padding:10px;
 		
@@ -40,11 +40,6 @@
 		margin-right:50px;
 	}
 	
-	#idBtn{
-		font-size:15px;
-		text-align:center;
-		padding:10px;
-	}
 	input::placeholder{
 		color:transparent;
 	}
@@ -79,35 +74,43 @@
 		font-size: 14pt;
 		margin-top:100px;
 	}
-	.id-box{
-		display:flex;
-		flex-direction:row;
+	.id-ok{
+		color:#6A82FB;
+		font-size:0.9em;
+		display:none;
 	}
-	.id-box :first-child{
-		width:80%;
-	}
-	.id-box :nth-child(3){
-		width:20%;
+	.id-already{
+		color:red;
+		font-size:0.9em;		
+		display:none;
 	}
 	
 </style>
 <script>
-	$(function(){
-		//아이디 중복검사
-		$("button[value=아이디중복검사]").click(function(){
-			if($("#userid").val()!=""){
-				//          주소, 창이름, 옵션
-				window.open("idCheck?userid="+$("#userid").val(),"chk","width=450,height=300");
-			}else{
-				alert("아이디를 입력후 중복검사하세요.");
+	function checkId(){
+		var userid = $("#userid").val(); //id값이 "userid"인 입력란의 값을 저장
+			
+		$.ajax({
+			url: './idCheck', // Controller에서 요청받을 주소
+			type:'POST', //POST 방식으로 전달
+			data:{userid:userid},
+			success:function(cnt){//컨트롤러에서 넘어온 cnt값을 받는다.
+				if(cnt==0){//cnt가 0이면 -> 사용 가능한 아이디
+					$('.id-ok').css("display","inline-block");
+					$('.id-already').css("display","none");
+				} else{//cnt가 1일 경우 -> 이미 존재하는 아이디
+					$('.id-already').css("display","inline-block");
+					$('.id-ok').css("display","none");
+					
+				}
+				
+			},error:function(){
+				alert("error!!!")
 			}
 		});
+	}
+	$(function(){
 		
-		//아이디 입력란에 키보드를 입력하면 아이디중복검사 초기화
-		$("#userid").keyup(function(){
-			$("#idStatus").val("N");
-		});
-
 		//유효성검사
 		$("#joinForm").submit(function(){
 			//아이디검사
@@ -171,12 +174,11 @@
 <div class="container">	 
 	<form method="post" id="joinForm">
 		<h2>회원가입</h2>
-		<div class="input-box id-box">
-			
-        	<input type="text" name="userid" id="userid" value="" minlength="5" maxlength="12" placeholder="아이디"/>
+		<div class="input-box">
+        	<input type="text" name="userid" id="userid" value="" minlength="5" maxlength="12" placeholder="아이디" oninput="checkId()"/>
 			<label for="userid">아이디</label>
-        	<button type="button" class="btn btn-outline-success" id="idBtn" value="아이디중복검사">아이디중복검사</button>
-			<input type="hidden" id="idStatus" value="N"/>
+			<span class="id-ok">사용 가능한 아이디입니다.</span>
+			<span class="id-already">사용 불가능한 아이디입니다.</span>
 		</div>
 		
         <div class="input-box">

@@ -8,7 +8,7 @@ public interface RegisterDAO {
 	//추상메소드
 	public RegisterDTO loginOk(String userid, String userpwd);
 	//아이디중복검사 - 아이디의 갯수를 구한다.
-	public int idCheckCount(String userid);
+	public int idCheck(String userid);
 	//회원가입
 	public int registerInsert(RegisterDTO dto);
 	//회원정보수정폼
@@ -17,6 +17,7 @@ public interface RegisterDAO {
 	public int registerEditOk(RegisterDTO dto);
 	//이름과 이메일로 아이디 검색
 	public String idSearch(String username, String email);
+	
 	public RegisterDTO myPage(String userid);
 	public RegisterDTO registerEditPopup(String userid, String userpwd);
 	public RegisterDTO checkPassword(String userid, String userpwd);

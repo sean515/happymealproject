@@ -7,8 +7,8 @@
 		select userid, username from member
 		where userid = #{param1} and userpwd = #{param2}
 	</select>
-	<select id="idCheckCount" resultType="int">
-		select count(userid) cnt from member where userid=#{param1}
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(userid) cnt from member where userid=#{userid}
 	</select>
 	<insert id="registerInsert">
 		insert into member(userid, usernum, userpwd, username, age, gender, nickname, email, disease) 
@@ -34,9 +34,7 @@
 		update member set userpwd=#{userpwd}, nickname=#{nickname}, age=#{age}, gender=#{gender}, email=#{email}
 		, disease=#{disease} where userid=#{userid}
 	</update>
-	<select id="idSearch" resultType="string">
-		select rpad(substr(userid,1,length(userid)/2),
-		length(userid),'*') userid from member 
-		where username=#{param1} and email=#{param2}
+	<select id="idSearch" parameterType="com.meal.happy.dto.RegisterDTO" resultType="com.meal.happy.dto.RegisterDTO">
+		select userid from member where username=#{param1} and email=#{param2}
 	</select>
 </mapper>
