@@ -2,16 +2,21 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.meal.happy.dao.RecipeDAO">
+<mapper namespace="com.meal.happy.dao.RecipeDAO">
       
-      <select id="recipeTotalRecord" resultType="int">
+	<insert id="recipeInsert">
+		insert into recipe(recipe_no, userid, recipe_name, ip, recipe_manual01)
+		values(recipe_sq.nextval, #{userid}, #{recipe_name}, #{ip}, #{recipe_manual01})
+	</insert>
+      
+	<select id="recipeTotalRecord" resultType="int">
 		select count(b.recipe_no) totalRecord from recipe b join member r on b.userid=r.userid
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%'
 		</if>
-	  </select>
+	</select>
 	  
-	  <select id="pageSelect" resultType="com.meal.happy.dto.RecipeDTO">
+	<select id="pageSelect" resultType="com.meal.happy.dto.RecipeDTO">
 		select * from
 			(select * from
 				(
@@ -51,6 +56,17 @@
 	<update id ="recipeHitCount">
 		update recipe set recipe_hit=recipe_hit+1 where recipe_no=${param1}
 	</update>
-      
+    
+    <select id="recipeEditSelect" resultType="com.meal.happy.dto.RecipeDTO">
+		select recipe_no, recipe_name, recipe_manual01 from recipe where recipe_no=${param1}
+	</select>
+	
+	<update id="recipeUpdate" parameterType="com.meal.happy.dto.RecipeDTO">
+		update recipe set recipe_name=#{recipe_name}, recipe_manual01=#{recipe_manual01} where recipe_no=${recipe_no} and userid=#{userid}
+	</update>
+    
+    <delete id="recipeDelete">
+		delete from recipe where recipe_no=${recipe_no} and userid=#{userid}
+	</delete>
         
   </mapper>
