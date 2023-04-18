@@ -30,7 +30,7 @@
 	
 	<!-- 검색 -->
 	<div class="searchDiv">
-		<form method="get" id="searchForm" action="comm_List">
+		<form method="get" id="searchForm" action="recipe">
 		<!-- 기간 select -->
 			<select name="searchDate" class="form-select" aria-label="Default select example" style="width: auto; display: inline; white-space:nowrap;">
 				<option value="">전체기간 </option>
@@ -57,7 +57,7 @@
 	
 	<div>
 	<!-- 게시글 row 상단 -->
-	<ul class="comm_List" style="overflow: hidden; padding-left: 0;">
+	<ul class="recipe" style="overflow: hidden; padding-left: 0;">
 		<li>번호</li>
 		<li>제목</li>
 		<li>작성자</li>
@@ -69,20 +69,21 @@
 		
 		<c:forEach var="bDTO" items="${list}">
 		
-		<li>${recordNum }</li><!-- bDTO.no  --> 
-		<!-- 글 내용 보기 레코드 번호, 현재 페이지, 검색어가 있으면 검색키, 검색어를 가져가야 함. -->
-		<li style="color: black;"><a href="recipeView?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.recipe_name }</a></li>
-		<li>${bDTO.username }</li>
-		<li>${bDTO.recipe_hit }</li>
-		<li>${bDTO.recipe_date }</li>
-		<c:set var="recordNum" value="${recordNum-1 }"></c:set>
+			<li>${recordNum }</li><!-- bDTO.no  --> 
+			<!-- 글 내용 보기 레코드 번호, 현재 페이지, 검색어가 있으면 검색키, 검색어를 가져가야 함. -->
+			<li style="color: black;"><a href="recipeView?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.recipe_name }</a></li>
+			<li><img src="${bDTO.recipe_thumbnail }"/></li>
+			<li>${bDTO.username }</li>
+			<li>${bDTO.recipe_hit }</li>
+			<li>${bDTO.recipe_date }</li>
+			<c:set var="recordNum" value="${recordNum-1 }"></c:set>
 		</c:forEach>
 		
 	</ul>
 	</div>
 	
 	
-	<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px">
+	<div class="recipeHeader" style="margin-bottom: 20px; margin-top: 10px">
 	<!-- <a href="recipeWrite">글쓰기</a> -->
 	<button type="button" class="btn btn-outline-dark" onclick="location.href='recipeWrite'"
 	style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button></div>
