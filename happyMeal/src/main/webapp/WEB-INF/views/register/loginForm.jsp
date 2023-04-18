@@ -3,6 +3,7 @@
 <style>
 	.logindiv{
 		width:30%;
+		min-width:330px;
 		margin: 100px auto 62px;
 		
 	}
