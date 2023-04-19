@@ -23,19 +23,19 @@ import com.meal.happy.service.RecipeCommentService;
 public class RecipeCommentController {
 	@Autowired
 	RecipeCommentService service;
-	
-	//글쓰기 form		
-	
+
+	//글쓰기 form
+
 	@PostMapping("/recipecommentSend")
 	public String commconnentSend(RecipeCommentDTO dto, HttpServletRequest request) {
 		dto.setIp(request.getRemoteAddr());//ip
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
-		
+
 		int result = service.recipecommentInsert(dto);
-		
+
 		return result+"";
 	}
-	
+
 
 	//댓글 수 조회
 	@GetMapping("/recipe_count_comment_hit")
@@ -50,7 +50,7 @@ public class RecipeCommentController {
 		System.out.println("dto:"+dto);
 		return dto;
 	}
-	
+
 	//댓글목록
 	@GetMapping("/recipecommentList")//원글 글번호
 	public List<RecipeCommentDTO> recipecommentList(int recipe_no) {
@@ -61,15 +61,15 @@ public class RecipeCommentController {
 		System.out.println("댓글 목록"+service.recipecommentListSelect(recipe_no));
 		return service.recipecommentListSelect(recipe_no);
 	}
-	
-	
+
+
 	//댓글수정
 	@PostMapping("/recipecommentEdit")
 	public String commcommentEdit(RecipeCommentDTO dto, HttpSession session) {
 		dto.setUserid((String)session.getAttribute("logId"));
 		int result = service.recipecommentUpdate(dto);
 		System.out.println("123"+String.valueOf(result));
-		return String.valueOf(result); 
+		return String.valueOf(result);
 	}
 	//댓글삭제
 	@GetMapping("/recipecommentDelete")
