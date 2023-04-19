@@ -70,6 +70,13 @@
 	} */
 </style>
 <script>
+	/* const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+	
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	}) */
+
 	$(function(){
 		$("#idSearch").submit(function(){
 			event.preventDefault();
@@ -83,37 +90,33 @@
 				return false;
 			}
 			
-			/* var username = $("#username").val();
-			var email = $("#email").val();
+			var url = 'idSearch';
+			var params = $("idSearch").serialize();
 			
 			$.ajax({
-				url : "./idSearch",
+				url : url,
+				data : params,
 				type : 'POST',
-				data : {"username":username, "email":email},
-				success:function(data){
-					if(data==null){
+				success:function(result){
+					if(result=='N'){
 						$('#id_value').text("존재하지 않는 정보입니다.");
 						$('#username').val('');
 						$('#email').val('');
 					}else{
-						$('#id_value').text(data);
+						$('#id_value').text(result);
 						$('#username').val('');
 						$('#email').val('');
+						console.log(result);
 					}
 				},error:function(){
 					alert("error!!!");
 					console.log(e.responseText);	
 				}
-			}); */
+			});
 		});
 	});
 	
-	const myModal = document.getElementById('myModal')
-	const myInput = document.getElementById('myInput')
-
-	myModal.addEventListener('shown.bs.modal', () => {
-	  myInput.focus()
-	})
+	
 </script>
 <div class="container">
 	
@@ -133,17 +136,18 @@
 	            <input type="text" name="email" id="email" placeholder="이메일"/>
 	            <label for="email">이메일</label>
 	        </div>
-		        
+	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		    <input type="submit" value="아이디찾기"/>    
 			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 			  아이디 찾기
-			</button>
+			</button> -->
 		        
 		</form>
 	</div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -159,4 +163,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

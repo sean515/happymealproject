@@ -69,7 +69,7 @@ public class RegisterController {
 		int cnt = service.idCheck(userid);
 		return cnt;
 	}
-	
+	//회원가입 ok
 	@RequestMapping(value="/joinOk", method=RequestMethod.POST)
 	public ModelAndView joinOk(RegisterDTO dto) {
 		System.out.println(dto.toString());
@@ -92,14 +92,16 @@ public class RegisterController {
 		return "register/idSearchForm";
 	}
 	//아이디 찾기
-	
-	@RequestMapping(value="/idSearch", method=RequestMethod.POST)
-	 
-	@ResponseBody public String idSearch(@RequestParam("username") String
-	username,@RequestParam("email") String email) { String result =
-	service.idSearch(username, email);
-	 
-	return result;
+	@PostMapping("idSearch")
+	@ResponseBody
+	public String idSearch(RegisterDTO dto) {
+		//이름과 이메일 일치하는 회원의 아이디
+		String userid = service.idSearch(dto.getUsername(), dto.getEmail());
+		if(userid==null || userid.equals("")) {//아이디 없으면 존재하지 않는 정보
+			return "N";
+		}else {//아이디가 있으면
+			return userid;
+		}
 	 
 	}
 	 
