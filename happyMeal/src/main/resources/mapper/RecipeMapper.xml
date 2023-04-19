@@ -48,7 +48,10 @@
 	</select>
 	
 	<select id="recipeSelect" resultType="com.meal.happy.dto.RecipeDTO">
-		select b.recipe_no, b.recipe_name, b.recipe_manual01, b.recipe_manual_img01, r.username, r.userid, b.recipe_hit, b.recipe_date
+		select b.recipe_no, b.recipe_name,  
+		b.recipe_manual_img01, b.recipe_manual_img02, b.recipe_manual_img03, b.recipe_manual_img04, b.recipe_manual_img05, b.recipe_manual_img06, 
+		b.recipe_manual01, b.recipe_manual02, b.recipe_manual03, b.recipe_manual04, b.recipe_manual05, b.recipe_manual06,  
+		r.username, r.userid, b.recipe_hit, b.recipe_date, b.recipe_parts 
 		from recipe b join member r on b.userid= r.userid
 		and b.recipe_no=${param1}
 	</select>

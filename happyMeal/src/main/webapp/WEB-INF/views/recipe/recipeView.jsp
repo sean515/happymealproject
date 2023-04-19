@@ -5,14 +5,50 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
 <style>
+	.topBtns{
+		height:50px;
+		padding:10px 0;
+	}
+	#listBtn{
+		width:45px;
+		height:30px;
+		font-size:14px;
+		float:right;
+		margin:0;
+	}
+	.articleBox{
+		padding:30px 30px 0;
+		border: 0.8px solid #ddd;
+		border-radius:10px;
+		position:relative;
+		display:flex;
+		flex-direction:column;
+	}
+	#ingredients{
+		margin:20px 10px 50px;
+	}
+	.articleWriter{
+		margin-top:40px;
+	}
 	ul{
 	margin-bottom:0;
 	}
-	.boardSubMenu{
-		background:gray;
-		padding:50px 0;
+	#manual ul{
+		overflow:auto;
 	}
-	#comm_comment_text{
+	#manual li{
+		float:left;
+		width:60%;
+	}
+	#manual li:nth-child(2n){
+		width:40%;
+		font-size:24px;
+	}
+	#manualImage{
+		max-width:350px;
+		max-height:300px;
+	}
+	#recipe_comment_text{
 		width:100%;
 		height:auto;
 		border: none;
@@ -23,21 +59,10 @@
 		padding:10px 0;
 		border-bottom:1px solid #ddd;
 	}
-	#menu > li > ul {
-		display:none;
-		position: absolute;
-		font-size:14px;
-		float: left;
+	a:link{
+		text-decoration:none;
 	}
-	#menu > li:hover > ul {
-		display:block;
-	}
-	#menu > li > ul > li {
-		float:left;
-		display:block;
-		width: 305px; 
-		white-space:nowrap;
-	}	
+	
 </style>
 <script>
 	function recipeDel(){
@@ -213,95 +238,133 @@
 	
 </script>
 
+
+
 <div class="container">
-
-	<ul id="view"  style="margin-top: 30px; padding:0;">
-		<li><a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" style="float:right; color: black;">전체 글 보기</a></li>
-		
-		<!-- 제목 -->
-		<li style="margin: 30px 0"><h1>${dto.recipe_name }</h1></li>
-		
-		<li style="display: inline;float :left; font-size: 1.2em"><img src="img/loginImg.png" width="60px" height="60px"/></li>
-		<li style="display: inline; font-size: 24px; position: relative; left:10px;">${dto.username}</li>
-
-		<br/>
-		<div style= "width: 30%; float: left;">
-			<li style="display: inline; position: relative; left:10px;">${dto.recipe_date }</li>
-			<li style="display: inline; position: relative; left:10px;">조회 </li>
-			<li style="display: inline; position: relative; left:10px;">${dto.recipe_hit } </li>
-		</div>
-		<div id="menu" style="clear:right;text-align:right; width: 30%; float: right;">
-		
-		
-		<c:if test="${logId==dto.userid }">
-		<li style=" display: inline;width: auto; white-space:nowrap;"><a href="#">...</a>
-			<ul>	
-				<li><a href="recipeEdit?recipe_no=${dto.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a></li>
-				<li><a href="javascript:recipeDel()">삭제</a></li>
-			</ul>
-		</c:if>		
-		</div>
-		<div>
-			<br/>
-		
-			<hr style="height: 3px; background: black"/>	
-			<ul>
-				
-					<li>${dto.recipe_manual01 }</li>
-					<li><img src="${dto.recipe_manual_img01 }"/></li>
-				
-			</ul>
-			<div style="overflow: hidden; margin-top: 50px;">
-				<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
-				<li style="display: inline; font-size: 24px; position: relative; left:10px;">${dto.username} 님의 게시글 더보기</li>
+	
+	<!-- 배너 -->
+	<div class= "banner">
+		<img src="img/banner.png" width="100%" height="150px"/>
+	</div>
+	
+	<div class="topBtns">
+		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+	</div>
+	
+	<div class="articleBox">
+		<div class="articleHeader">
+			<div class="articleTitle">
+				<!-- 제목 -->
+				<h1>${dto.recipe_name }</h1>
 			</div>
+			
+			<div class="articleInfo row">
+				<div class="col-8">
+					<img src="img/loginImg.png" width="60px" height="60px"/>
+					<span style="font-size:24px">${dto.username}</span>
+					<br/>
+					<span>${dto.recipe_date }&nbsp;&nbsp;&nbsp;조회&nbsp;&nbsp;${dto.recipe_hit }</span>
+			
+				</div>
+				<div class="col-4">
+					<c:if test="${logId==dto.userid }">
+						<a href="recipeEdit?recipe_no=${dto.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-secondary">수정</a>
+						<a href="javascript:recipeDel()" class="btn btn-secondary">삭제</a>
+					</c:if>		
+				</div>
+			</div>
+		</div>	
+	
+		<hr style="height: 3px; background: black"/>
+			
+		<div class="articleContentBox">
+			
+			<div id="ingredients">
+				<h2>재료</h2>
+				<pre>${dto.recipe_parts }</pre>
+			</div>
+			
+			<div id="manual">
+				<ul >
+					<li><img src="${dto.recipe_manual_img01 }" id="manualImage"/></li>
+					<li>${dto.recipe_manual01 }</li>
+					<li><img src="${dto.recipe_manual_img02 }" id="manualImage"/></li>
+					<li>${dto.recipe_manual02 }</li>
+					<li><img src="${dto.recipe_manual_img03 }" id="manualImage"/></li>
+					<li>${dto.recipe_manual03 }</li>
+					<li><img src="${dto.recipe_manual_img04 }" id="manualImage"/></li>
+					<li>${dto.recipe_manual04 }</li>
+					<li><img src="${dto.recipe_manual_img05 }" id="manualImage"/></li>
+					<li>${dto.recipe_manual05 }</li>
+					<li><img src="${dto.recipe_manual_img06 }" id="manualImage"/></li>
+					<li>${dto.recipe_manual06 }</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="articleWriter">
+			<div>
+				<ul>
+					<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
+					<li style="display: inline; font-size: 15px; position: relative; left:10px;"><a href="recipe?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b> 님의 게시글 더보기</a></li>
+				</ul>
+			</div>
+		
 			<div style= "overflow: hidden">
 				<div style= "width: 30%; float: left; overflow: hidden">
-					<li style="display: inline;">좋아요</li>
-					<li style="display: inline;">0</li>
-					<li style="display: inline;">댓글</li>
-
-					<li style="display: inline;" id="count_comment_hit"></li>
+					<ul>
+						<li style="display: inline;">좋아요</li>
+						<li style="display: inline;">0</li>
+						<li style="display: inline;">댓글</li>
+						<li style="display: inline;" id="count_comment_hit"></li>
+					</ul>
 				</div>
+		
 				<div style="clear:right;text-align:right; width: 30%; float: right;">
 					<a href="test">신고</a>
 				</div>
 			</div>
 		</div>
-	</ul>
-	<hr style = "height: 1px; background-color: black;"/>
-	
-	
-	<!-- 댓글 -->
-	<h4>댓글</h4>
-	<div>
-	<c:if test="${logStatus=='Y'}"><!-- 로그인한 경우 댓글쓰기 폼 보여주기 -->
-	<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px;
-		margin-bottom: 30px; "><!-- 댓글 입력 테두리 -->
-			<form method="post" id="recipecommentForm">
-				<p>		${dto.username }님</p>
-				<input type="hidden" name="recipe_no" value="${dto.recipe_no}"/><!-- 원글 글번호 -->
-				<textarea name="recipe_comment_text" id="recipe_comment_text"  placeholder="댓글을 남겨보세요"
-					style="padding: 10px;
-					width: 100%;
-					box-sizing: border-box;
-					border: none;
-					border-radius: 5px;
-					font-size: 16px;
-					resize : none;"
-			></textarea>
-				<!-- 댓글 등록 버튼 -->
-					<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px; overflow: hidden;">
-					<button type="submit" class="btn btn-outline-dark"
-					style=" float: right"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 댓글등록</button>
-					</div>
-			</form>
-	</div>
-		</c:if>
-
-		<ul id ="recipecommentList">
-
-		</ul>
+		
+		<hr style = "height: 1px; background-color: black;"/>
+		
+		
+		<!-- 댓글 -->
+		<h4>댓글</h4>
+		<div>
+			<c:if test="${logStatus=='Y'}"><!-- 로그인한 경우 댓글쓰기 폼 보여주기 -->
+				<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px; margin-bottom: 30px; "><!-- 댓글 입력 테두리 -->
+					<form method="post" id="recipecommentForm">
+						<p>		${dto.username }님</p>
+						<input type="hidden" name="recipe_no" value="${dto.recipe_no}"/><!-- 원글 글번호 -->
+						<textarea name="recipe_comment_text" id="recipe_comment_text"  placeholder="댓글을 남겨보세요"
+							style="padding: 10px;
+							width: 100%;
+							box-sizing: border-box;
+							border: none;
+							border-radius: 5px;
+							font-size: 16px;
+							resize : none;"></textarea>
+						<!-- 댓글 등록 버튼 -->
+						<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px; overflow: hidden;">
+							<button type="submit" class="btn btn-outline-dark" style=" float: right">
+								<img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px">
+								댓글등록
+							</button>
+						</div>
+					</form>
+				</div>
+			</c:if>
+			<!-- 댓글리스트 -->
+			<ul id ="recipecommentList">
+		
+			</ul>
+		</div>
 		
 	</div>
+	
+	<div class="topBtns">
+		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+	</div>
+	
 </div>
