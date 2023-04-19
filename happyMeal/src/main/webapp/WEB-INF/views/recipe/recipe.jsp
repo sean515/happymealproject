@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<meta charset="utf-8">
 
 <style>
+
+
+.justify-content-center {
+    justify-content: center!important;
+}
 
 .page-link {
   color: #8BC34A; 
@@ -123,6 +122,7 @@
 	
 	<!-- 페이지네이션 부트스트랩 -->
 	<div>
+	<center>
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination justify-content-center">
 	  <!-- 이전페이지       : nowPage를 기준으로 -->	
@@ -164,5 +164,7 @@
 		</c:if>
 	  </ul>
 	</nav>
+	</center>
 	</div>
-  <br>	
+	
+  <br>
