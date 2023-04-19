@@ -34,7 +34,7 @@
 		update member set userpwd=#{userpwd}, nickname=#{nickname}, age=#{age}, gender=#{gender}, email=#{email}
 		, disease=#{disease} where userid=#{userid}
 	</update>
-	<select id="idSearch" parameterType="com.meal.happy.dto.RegisterDTO" resultType="com.meal.happy.dto.RegisterDTO">
+	<select id="idSearch" resultType="string">
 		select userid from member where username=#{param1} and email=#{param2}
 	</select>
 </mapper>

@@ -47,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public void recipeHitCount(int recipe_no) {
-		
+		dao.recipeHitCount(recipe_no);
 	}
 
 	@Override
