@@ -77,7 +77,7 @@
 						</a>
 						<div class="desc">
 							<h3><a href="#">인기 식단</a></h3>
-							<p>건강 식단을 추천 받고 몸에 좋은 식단을 계획해 보세요!</p>
+							<p>건강 식단을 추천 받고 몸에 좋은 식단을 계획해 보세요!</p><br/>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Take A Course</a></span>
 						</div>
 					</div>

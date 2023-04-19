@@ -59,11 +59,11 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="index.jsp"><i class="icon-study"></i>Educ<span>.</span></a></div>
+						<div id="fh5co-logo"><a href="/happy"><i class="icon-study"></i><span>행복한끼</span></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li class="active"><a href="index.jsp">Home</a></li>
+							<li class="active"><a href="/happy">Home</a></li>
 							<li><a href="/happy/res">식당검색</a></li>
 							<li><a href="/happy/menu">식단</a></li>
 							<li><a href="/happy/recipe">레시피</a></li>
@@ -71,8 +71,8 @@
 							<li class="has-dropdown">
 								<a href="/happy/sup/supList">고객센터</a>
 								<ul class="dropdown">
-									<li><a href="#">자주하는 질문</a></li>
-									<li><a href="#">1:1 문의하기</a></li>
+									<li><a href="/happy/sup/commonSupList">자주하는 질문</a></li>
+									<li><a href="/happy/sup/supList">1:1 문의하기</a></li>
 								</ul>
 							</li>
 							<c:if test="${logStatus=='Y'}">	
