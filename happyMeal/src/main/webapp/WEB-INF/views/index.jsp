@@ -77,7 +77,7 @@
 						</a>
 						<div class="desc">
 							<h3><a href="#">인기 식단</a></h3>
-							<p>건강 식단을 추천 받고 몸에 좋은 식단을 계획해 보세요!</p><br/>
+							<p>건강 식단을 추천 받고 몸에 좋은 식단을 계획해 보세요!</p>
 							<span><a href="#" class="btn btn-primary btn-sm btn-course">Take A Course</a></span>
 						</div>
 					</div>
@@ -173,6 +173,8 @@
 	
 	<!-- 인기레시피 -->
 	
+	<div id="fh5co-blog">
+	<div class="container">	
 	<div class="row">
 				<div class="row animate-box">
 					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
@@ -217,11 +219,13 @@
 		</div>
 	</div>
 	<!-- 인기식당 -->
+	<div id="fh5co-blog">
+	<div class="container">	
 	<div class="row">
 				<div class="row animate-box">
 					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-						<h2>인기식당</h2>
-						<p>지금 가장 인기 있는 식당</p>
+						<h2>인기 레시피</h2>
+						<p>지금 가장 인기 있는 레시피를 만나보세요.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4">
