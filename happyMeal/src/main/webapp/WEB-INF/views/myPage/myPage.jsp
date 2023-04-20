@@ -89,6 +89,24 @@
 
 <div class="container"><br/><br/>
 	<h2>마이페이지</h2><br/><br/><br/>
+	
+	<h3>BMI 계산기</h3>
+	<form class="row row-cols-lg-auto g-3 align-items-center">
+	 	<div class="form-floating mb-3">
+  			<input type="text" class="form-control" id="floatingInput">
+  			<label for="floatingInput">키를 입력하세요</label>
+		</div>
+		<div class="form-floating">
+  			<input type="text" class="form-control" id="floatingPassword">
+  			<label for="floatingPassword">몸무게를 입력하세요</label>
+		</div>
+	  	<div class="col-12">
+	    	<button type="submit" class="btn btn-primary">Submit</button>
+	  	</div>
+	</form>
+	
+	
+	
 	<h3>개인정보</h3><hr class="hr1"/>
 	<form method="post" id="joinEditForm1">
 		<ul>
