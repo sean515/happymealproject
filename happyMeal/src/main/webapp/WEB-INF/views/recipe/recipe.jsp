@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <style>
 
+
+.accordion-button {
+    font-size: 15px;
+    }
+
+.btn {
+    border-radius: 0;
+    }
 
 .justify-content-center {
     justify-content: center!important;
@@ -56,7 +65,10 @@
 	});
 </script>
 
-
+ <!-- banner -->
+ <div class= "banner">
+	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
+</div>
 <div class="container">
 	<div style="padding-top: 80px;">
 	<!-- 검색 -->
@@ -76,16 +88,76 @@
 			</select>
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
+			
+
 		</form>
 	</div>
 
 	<!-- 소재목 -->
 	<div class="row animate-box">
-	<h1 class="title" style="display: inline; font-size: 48px"><b>&nbsp레시피&nbsp&nbsp</b></h1>
+	<h1 class="title" style="display: inline; font-size: 40px">&nbsp레시피&nbsp&nbsp</h1>
 	</div>
 	<hr style="height: 1px; background: black"/>
 	</div>
 	<div>
+	
+	<!-- 아코디언 추가 -->
+			
+	<div class="accordion accordion-flush" id="accordionFlushExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingOne">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+			 	개인 맞춤 레시피 찾기
+				</button>
+			</h2>
+			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+				<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary">
+				<input type="checkbox" checked data-toggle="toggle" data-onstyle="success">
+				<input type="checkbox" checked data-toggle="toggle" data-onstyle="info">
+				<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning">
+				<input type="checkbox" checked data-toggle="toggle" data-onstyle="danger">
+				<input type="checkbox" checked data-toggle="toggle" data-onstyle="default">
+				
+			<!-- 체크박스 -->
+			<div class="list-group">
+				<label class="list-group-item">
+				    <input class="form-check-input me-1" type="checkbox" value="">
+				    당뇨식
+				</label>
+				<label class="list-group-item">
+				    <input class="form-check-input me-1" type="checkbox" value="">
+				    고혈압
+				</label>
+				<label class="list-group-item">
+				    <input class="form-check-input me-1" type="checkbox" value="">
+				    채식
+				</label>
+				<label class="list-group-item">
+				    <input class="form-check-input me-1" type="checkbox" value="">
+				    저염식
+				</label>
+				<label class="list-group-item">
+				    <input class="form-check-input me-1" type="checkbox" value="">
+				    글루텐프리
+				</label>
+				<!-- 체크박스 가로 -->
+				<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+					  <label class="form-check-label" for="inlineCheckbox1">당뇨식</label>
+				</div>
+				<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+					  <label class="form-check-label" for="inlineCheckbox2">저염식</label>
+				</div>
+				<div class="form-check form-check-inline">
+					  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+					  <label class="form-check-label" for="inlineCheckbox3">채식 (disabled)</label>
+				</div>
+			</div>
+				
+			 <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+			 </div>
+		</div>
 	<!-- 게시글 row 상단 -->
 	<ul class="recipe" style="overflow: hidden; padding-left: 0;">
 		<div id="fh5co-staff">

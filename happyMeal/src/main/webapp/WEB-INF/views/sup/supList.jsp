@@ -91,7 +91,7 @@
 	<!-- 소재목 -->
 	<div class="pFilter">
 	<div class="row animate-box">
-	<h1 class="title" style="display: inline; font-size: 48px"><b>&nbsp고객센터&nbsp&nbsp</b></h1>
+	<h1 class="title" style="display: inline; font-size: 40px">&nbsp고객센터&nbsp&nbsp<</h1>
 	</div>
 	<hr style="height: 1px; background: black"/>
 	
