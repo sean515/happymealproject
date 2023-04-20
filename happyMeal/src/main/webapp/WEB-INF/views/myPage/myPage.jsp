@@ -37,7 +37,6 @@
 	}
 	#addr{width:80%;}
 	.container{
-		width:1000px;
 	}
 	.hr1{
 		border:0;
@@ -81,6 +80,7 @@
 	.il_box { padding:20px; font-size:1; }
 	.il_box > div { display:inline-block; width:33.333%; margin:0 auto; }
 	.il_box > div > p { height:200px; border:1px solid #bbb; margin:0 auto; }
+	
 </style>
 
 <script>
@@ -169,9 +169,11 @@
 	<br/><br/>
 	<div class="fl fbox" >
 		<p>내가 작성한 글<hr class="hr1"/><br/>
-		   커뮤니티 | &nbsp;관리자님 힘내세요.<hr class="hr3"/>
-		   식단&emsp;&ensp;&nbsp; | &nbsp;봄 당뇨 식단<hr class="hr3"/>
-		   레시피&ensp;&nbsp; | &nbsp;누룽지 두부 계란죽
+		   커뮤니티 | &nbsp;<a href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a></li>
+		   <hr class="hr3"/>
+		   식단&emsp;&ensp;&nbsp; | &nbsp;봄 당뇨 식단
+		   <hr class="hr3"/>
+		   레시피&ensp;&nbsp; | &nbsp;<a href="recipeView?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
 		</p>
 		<ul>
 			<li>
@@ -181,7 +183,9 @@
 	</div>
 	<div class="fr fbox">
 		<p>내가 작성한 댓글<hr class="hr1"/><br/>
-		   커뮤니티 | &nbsp;이거 먹고 건강해졌어요.<hr class="hr3"/>
+		   커뮤니티 | &nbsp;<a href="commView?comm_no=${co_codto.comm_no }">${co_codto.comm_title }</a>
+		   &emsp;&emsp;&ensp;&nbsp; | &nbsp;${co_codto.comm_comment_text }
+		   <hr class="hr3"/>
 		   식단&emsp;&ensp;&nbsp; | &nbsp;고혈압 환자도 먹어도 되나요?<hr class="hr3"/>
 		   레시피&emsp; | &nbsp;오늘은 이거 먹어야겠어요.
 		</p>
@@ -207,7 +211,8 @@
 	</div>
 	<div class="fr fbox">
 		<p>문의사항<hr class="hr1"/><br/>
-		   커뮤니티 | &nbsp;질문 있습니다.<hr class="hr3"/>
+		   커뮤니티 | &nbsp;<a href="sup/supView?sup_no=${sdto.sup_no}">${sdto.sup_title}</a>
+		   <hr class="hr3"/>
 		   레시피&emsp; | &nbsp;이 정보 확실한가요?
 		</p>
 		<ul>
