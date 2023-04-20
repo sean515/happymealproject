@@ -143,14 +143,16 @@ public class RegisterController {
 			emailContent += "임시비밀번호 : <b>"+tempPw+"</b>";
 			emailContent += "</div>";
 			
+			
+			String email = dto.getEmail();
 			try {
 				//mimeMessage -> mimeMessageHelper
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 				
 				//보내는 메일주소
-				messageHelper.setFrom("tlgjs4169@naver.com");
-				messageHelper.setTo("tlgjs4169@gmail.com");
+				messageHelper.setFrom("tlgjs4169@naver.com");//본인 네이버 이메일 입력
+				messageHelper.setTo(email);
 				messageHelper.setSubject(emailSubject);
 				messageHelper.setText("text/html; charset=UTF-8", emailContent);
 				
