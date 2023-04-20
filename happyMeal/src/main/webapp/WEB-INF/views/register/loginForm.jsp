@@ -58,7 +58,7 @@
 		width:100%;
 		height:35px;
 		font-size: 14pt;
-		margin-top:100px;
+		margin-top:50px;
 	}
 	#joinGo{
 		text-align: center;
@@ -89,7 +89,7 @@
 			<div id="joinGo">
 				<a href="join">회원가입</a>
 				<a href="idSearchForm">아이디찾기</a>
-				<a href="pwdSearchForm">비밀번호찾기</a>
+				<a href="pwSearchForm">비밀번호찾기</a>
 			</div>
 	        <input type="submit" value="LOGIN">
 	        
