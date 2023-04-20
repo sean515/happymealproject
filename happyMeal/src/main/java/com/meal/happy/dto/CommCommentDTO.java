@@ -8,14 +8,15 @@ public class CommCommentDTO {
 	private String comm_comment_date;
 	private String ip;
 	private int comm_comment_hit; 
-
+	private String comm_title;
 	
 	@Override
 	public String toString() {
 		return "CommCommentDTO [comm_comment_no=" + comm_comment_no + ", comm_no=" + comm_no + ", comm_comment_text="
 				+ comm_comment_text + ", userid=" + userid + ", comm_comment_date=" + comm_comment_date + ", ip=" + ip
-				+ ", comm_comment_hit=" + comm_comment_hit + "]";
+				+ ", comm_comment_hit=" + comm_comment_hit + ", comm_title=" + comm_title + "]";
 	}
+	
 	
 	
 	public int getComm_comment_no() {
@@ -64,6 +65,19 @@ public class CommCommentDTO {
 	public void setComm_comment_hit(int comm_comment_hit) {
 		this.comm_comment_hit = comm_comment_hit;
 	}
+
+
+
+	public String getComm_title() {
+		return comm_title;
+	}
+
+
+
+	public void setComm_title(String comm_title) {
+		this.comm_title = comm_title;
+	}
+	
 	
 	
 }

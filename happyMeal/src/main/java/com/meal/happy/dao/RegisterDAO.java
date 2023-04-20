@@ -2,7 +2,12 @@ package com.meal.happy.dao;
 
 import java.util.List;
 
+import com.meal.happy.dto.CommCommentDTO;
+import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.RecipeCommentDTO;
+import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.SupDTO;
 
 public interface RegisterDAO {
 	//추상메소드
@@ -26,4 +31,11 @@ public interface RegisterDAO {
 	public RegisterDTO registerEditPopup(String userid, String userpwd);
 	public RegisterDTO checkPassword(String userid, String userpwd);
 	public RegisterDTO checkPasswordOk(String userid, String userpwd);
+	
+	//마이페이지 게시글 댓글 정보 불러오기
+	public CommDTO selectComm(String userid);
+	public RecipeDTO selectRecipe (String userid);
+	public CommCommentDTO selectCommComment (String userid);
+	//public RecipeCommentDTO selectRecipeComment  (String userid);
+	public SupDTO selectSup (String userid);
 }

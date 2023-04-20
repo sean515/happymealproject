@@ -37,6 +37,27 @@
 	<select id="idSearch" resultType="string">
 		select userid from member where username=#{param1} and email=#{param2}
 	</select>
+
+	<select id="selectComm" resultType="com.meal.happy.dto.CommDTO">
+		select comm_no, comm_title from (select * from community order by rownum desc) where userid = #{param1} and rownum =1
+	</select>
+	
+	<select id="selectRecipe" resultType="com.meal.happy.dto.RecipeDTO">
+		select recipe_no, recipe_name from (select * from recipe order by rownum desc) where userid = #{param1} and rownum =1
+	</select>
+	
+	<select id="selectSup" resultType="com.meal.happy.dto.SupDTO">
+		select sup_no, sup_title from (select * from support order by rownum desc) where userid = #{param1} and rownum =1
+	</select>
+	
+	<select id="selectCommComment" resultType="com.meal.happy.dto.CommCommentDTO">
+		SELECT cc.comm_comment_no, cc.comm_no, c.comm_title, cc.comm_comment_text
+		FROM community_comment cc
+		INNER JOIN community c ON cc.comm_no = c.comm_no
+		WHERE cc.userid = #{param1} and rownum =1
+		ORDER BY cc.comm_comment_no DESC
+	</select>
+
 	<select id="pwSearch" resultType="string">
 		select userpwd from member 
 		where userid=#{param1} and email=#{param2}
@@ -44,5 +65,6 @@
 	<update id="updateTempPw">
 		update member set userpwd=#{userpwd} where userid=#{userid}
 	</update>
+
 	
 </mapper>

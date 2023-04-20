@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meal.happy.dto.CommCommentDTO;
+import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.RecipeCommentDTO;
+import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.SupDTO;
 import com.meal.happy.service.myPageService;
 
 @Controller
@@ -23,9 +28,19 @@ public class myPageController {
 	@GetMapping("/myPage")
 	public ModelAndView myPage(HttpSession session) {
 		RegisterDTO dto = service.myPage((String) session.getAttribute("logId"));
-
+		CommDTO cdto = service.selectComm((String) session.getAttribute("logId"));
+		RecipeDTO rdto = service.selectRecipe((String) session.getAttribute("logId"));
+		CommCommentDTO co_codto = service.selectCommComment((String) session.getAttribute("logId"));
+		//RecipeCommentDTO re_codto = service.selectRecipeComment((String) session.getAttribute("logId"));
+		SupDTO sdto = service.selectSup((String) session.getAttribute("logId"));
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
+		mav.addObject("cdto", cdto);
+		mav.addObject("rdto", rdto);
+		mav.addObject("sdto", sdto);
+		mav.addObject("co_codto", co_codto);
+		
+		System.out.println(mav);
 		mav.setViewName("myPage/myPage");
 		return mav;
 	}

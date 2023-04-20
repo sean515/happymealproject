@@ -7,7 +7,12 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.RegisterDAO;
+import com.meal.happy.dto.CommCommentDTO;
+import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.RecipeCommentDTO;
+import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.SupDTO;
 
 @Service
 public class myPageServiceImpl implements myPageService {
@@ -49,6 +54,29 @@ public class myPageServiceImpl implements myPageService {
 	@Override
 	public RegisterDTO checkPassword(String userid, String userpwd) {
 		return dao.checkPassword(userid, userpwd);
+	}
+
+	@Override
+	public CommDTO selectComm(String userid) {
+		return dao.selectComm(userid);
+	}
+
+	@Override
+	public RecipeDTO selectRecipe(String userid) {
+		return dao.selectRecipe(userid);
+	}
+
+	
+	 @Override public CommCommentDTO selectCommComment(String userid) { return
+	 dao.selectCommComment(userid); }
+	  
+	 /* @Override public RecipeCommentDTO selectRecipeComment(String userid) { return
+	 * dao.selectRecipeComment(userid); }
+	 */
+
+	@Override
+	public SupDTO selectSup(String userid) {
+		return dao.selectSup(userid);
 	}
 
 	
