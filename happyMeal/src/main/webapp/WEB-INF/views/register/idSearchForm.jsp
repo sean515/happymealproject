@@ -36,20 +36,20 @@
   		top:15px;
 	}
 	input:focus + label, label{
-	  color:#8aa1a1;
-	  font-size:10pt;
-	  pointer-events: none;
-	  position: absolute;
-	  left:0px;
-	  top:0px;
-	  transition: all 0.2s ease ;
-	  -webkit-transition: all 0.2s ease;
-	  -moz-transition: all 0.2s ease;
-	  -o-transition: all 0.2s ease;
+	    color:#8aa1a1;
+	    font-size:10pt;
+	    pointer-events: none;
+	    position: absolute;
+	    left:0px;
+	    top:0px;
+	    transition: all 0.2s ease ;
+	    -webkit-transition: all 0.2s ease;
+	    -moz-transition: all 0.2s ease;
+	    -o-transition: all 0.2s ease;
 	}
 	input:focus, input:not(:placeholder-shown){
-	  border-bottom: solid 1px #8aa1a1;
-	  outline:none;
+	    border-bottom: solid 1px #8aa1a1;
+	    outline:none;
 	}
 	input[type=submit]{
 		background-color: #8aa1a1;
@@ -62,14 +62,51 @@
 		margin-top:100px;
 	}
 
-	/* #searchGo{
-		text-align: center;
-		font-size:12pt;
-		color:rgb(164, 164, 164);
-		margin:10px 0px;
-		
-	} */
-	
+	.btn-open-popup{
+		background-color: #8aa1a1;
+		border:none;
+		color:white;
+		border-radius: 5px;
+		width:100%;
+		height:35px;
+		font-size: 14pt;
+		margin-top:80px;
+	}
+	.modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal.show {
+        display: block;
+    }
+
+    .modal_body {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+
+        width: 400px;
+        height: 250px;
+
+        padding: 40px;
+
+        text-align: center;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+        transform: translateX(-50%) translateY(-50%);
+    }
 	
 	
 </style>
@@ -123,7 +160,7 @@
 			</div>
 			
 			<div class="input-box">
-	        	<input type="text" name="username" id="username" placeholder="아이디"/>
+	        	<input type="text" name="username" id="username" placeholder="이름"/>
 	            <label for="username">이름</label>
 	        </div>
 		        
@@ -131,10 +168,61 @@
 	            <input type="text" name="email" id="email" placeholder="이메일"/>
 	            <label for="email">이메일</label>
 	        </div>
-		    <input type="submit" value="아이디찾기"/>   
-			<div id="id_value"></div>
-		        
+
+			<div class="modal">
+		    	<div class="modal-content modal_body">
+				    <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="exampleModalLabel">아이디 찾기</h1>
+				        <button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+				    </div>
+				    <div class="modal-body" id="id_value">
+				    	
+				    </div>
+				    <div class="modal-footer">
+				        <button type="button" class="btn btn-primary" onclick="location.href='loginForm'">로그인</button>
+				    </div>
+				</div>
+		    </div>
+			<button class="btn-open-popup">아이디찾기</button>
+			        
 		</form>
 	</div>
 </div>
+<script>
+    const body = document.querySelector('body');
+    const modal = document.querySelector('.modal');
+    const closeModal = document.querySelector('.closeModal');
+    const btnOpenPopup = document.querySelector('.btn-open-popup');
 
+    btnOpenPopup.addEventListener('click', () => {
+        
+    	if($("#username").val()!="" && $("#email").val()!=""){
+	    	modal.classList.toggle('show');
+    	}
+
+        if (modal.classList.contains('show')) {
+    		body.style.overflow = 'hidden';
+        }
+    });
+
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+        	modal.classList.toggle('show');
+
+        	if (!modal.classList.contains('show')) {
+            	body.style.overflow = 'auto';
+        	}
+    	}
+    });
+    
+    closeModal.addEventListener('click', (event) => {
+        if (event.target === modal || event.target === closeModal) {
+        	modal.classList.toggle('show');
+
+        	if (!modal.classList.contains('show')) {
+            	body.style.overflow = 'auto';
+        	}
+    	}
+    });
+    
+</script>
