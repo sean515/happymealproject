@@ -103,7 +103,7 @@
 	<!-- 소재목 -->
 	<div class="pFilter">
 	<div class="row animate-box">
-	<h1 class="title" style="display: inline; font-size: 48px"><b>&nbsp커뮤니티&nbsp&nbsp</b></h1>
+	<h1 class="title" style="display: inline; font-size: 40px">&nbsp커뮤니티&nbsp&nbsp</h1>
 	</div>
 	
 	<!-- 한번에 보여지는 페이지 개수 선택 -->

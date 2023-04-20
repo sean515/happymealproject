@@ -9,4 +9,6 @@ public interface RegisterService {
 	public int idCheck(String userid);
 	public int registerInsert(RegisterDTO dto);
 	public String idSearch(String username, String email);
+	public String pwSearch(String userid, String email);
+	public int updateTempPw(RegisterDTO dto);
 }

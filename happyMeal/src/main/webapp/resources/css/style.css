@@ -5,14 +5,17 @@
   font-weight: normal;
   font-style: normal;
 }
+
+
 /* =======================================================
 *
 * 	Template Style 
 *
 * ======================================================= */
 body {
-  font-family: "Source Sans Pro", Arial, sans-serif;
-  font-weight: 400;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
   color: #828282;
@@ -64,7 +67,8 @@ p {
 
 h1, h2, h3, h4, h5, h6, figure {
   color: #000;
-  font-family: "Roboto Slab", serif;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
 }
@@ -361,7 +365,8 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 30px;
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 a {
   color: #8BC34A;
@@ -403,7 +408,6 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-register,
 #fh5co-pricing,
 #fh5co-testimonial,
-#fh5co-blog,
 #fh5co-about,
 #fh5co-staff,
 #fh5co-contact,
@@ -504,7 +508,8 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 44px;
   display: block;
   color: white;
-  font-family: "Roboto Slab", serif;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
   width: 100%;
   font-weight: 400;
   margin-bottom: .1em;
@@ -514,7 +519,8 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 16px;
   margin-bottom: 2em;
   display: block;
-  font-family: "Roboto Slab", serif;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .fh5co-counters .icon i {
   font-size: 45px;
@@ -637,7 +643,8 @@ h1, h2, h3, h4, h5, h6, figure {
   position: absolute;
   left: 0;
   top: .05em;
-  font-family: 'icomoon';
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1256,7 +1263,8 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-offcanvas ul li.offcanvas-has-dropdown > a:after {
   position: absolute;
   right: 0px;
-  font-family: 'icomoon';
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-family: 'Noto Sans KR', sans-serif;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1679,6 +1687,10 @@ ul{
     border: 0.5px solid #8BC34A;
     margin-left: -1px;
     font-size: 12px;
+}
+/*수정*/
+#fh5co-blog{
+	padding: 3em 0;
 }
 
 /*# sourceMappingURL=style.css.map */

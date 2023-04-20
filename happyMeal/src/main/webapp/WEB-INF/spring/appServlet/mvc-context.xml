@@ -25,9 +25,18 @@
 			<mvc:mapping path="/joinEdit" />
 			<mvc:mapping path="/joinEditOk" />
 			
-			<mvc:mapping path="/data/dataWrite" />
-			<mvc:mapping path="/data/dataWriteOk" />
-			<mvc:mapping path="/data/dataEdit"/>
+			<mvc:mapping path="/commWrite"/>
+			<mvc:mapping path="/commWriteOk"/>
+			<mvc:mapping path="/commDel"/>
+			<mvc:mapping path="/commEdit"/>
+			<mvc:mapping path="/commEditOk"/>
+			
+			<mvc:mapping path="/recipeWrite"/>
+			<mvc:mapping path="/recipeWriteOk"/>
+			<mvc:mapping path="/recipeEdit"/>
+			<mvc:mapping path="/recipeEditOk"/>
+			<mvc:mapping path="/recipeDel"/>
+
 			
 			<mvc:mapping path="/commentSend"/>
 			<mvc:mapping path="/sup/supWrite"/>

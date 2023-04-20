@@ -36,4 +36,14 @@ public class RegisterServiceImpl implements RegisterService {
 		return dao.idSearch(username, email);
 	}
 
+	@Override
+	public String pwSearch(String userid, String email) {
+		return dao.pwSearch(userid, email);
+	}
+
+	@Override
+	public int updateTempPw(RegisterDTO dto) {
+		return dao.updateTempPw(dto);
+	}
+
 }
