@@ -261,19 +261,6 @@
 				    <input class="form-check-input me-1" type="checkbox" value="">
 				    글루텐프리
 				</label>
-				<!-- 체크박스 가로 -->
-				<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-					  <label class="form-check-label" for="inlineCheckbox1">당뇨식</label>
-				</div>
-				<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-					  <label class="form-check-label" for="inlineCheckbox2">저염식</label>
-				</div>
-				<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
-					  <label class="form-check-label" for="inlineCheckbox3">채식 (disabled)</label>
-				</div>
 			</div>
 				
 
@@ -298,19 +285,19 @@
 			  <br/>
 		  
 			  <div id="del1Container" class="del-container" style="display:none;">
-    			<input type="text" class="form-control del-field" id="input1" name="delparts1">
+    			<input type="text" class="form-control del-field" id="del1" name="delparts1">
 			  </div>
 			  <div id="del2Container" class="del-container" style="display:none;">
-			    <input type="text" class="form-control del-field" id="input2" name="delparts2">
+			    <input type="text" class="form-control del-field" id="del2" name="delparts2">
 			  </div>
 			  <div id="del3Container" class="del-container" style="display:none;">
-			    <input type="text" class="form-control del-field" id="input3" name="delparts3">
+			    <input type="text" class="form-control del-field" id="del3" name="delparts3">
 			  </div>
 			  <div id="del4Container" class="del-container" style="display:none;">
-			    <input type="text" class="form-control del-field" id="input4" name="delparts4">
+			    <input type="text" class="form-control del-field" id="del4" name="delparts4">
 			   </div>
 			  <div id="del5Container" class="del-container" style="display:none;">
-			    <input type="text" class="form-control del-field" id="input5" name="delparts5">
+			    <input type="text" class="form-control del-field" id="del5" name="delparts5">
 			  </div>
 			  <button id="addDelButton" class="add-del-button">재료 선택 추가</button>
 			  <input type="submit" value="검색"/>

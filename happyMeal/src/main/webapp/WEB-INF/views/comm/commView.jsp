@@ -41,7 +41,7 @@
 </style>
 <script>
 	function commDel(){
-		if(confirm("정말 삭제하시겠습니다?")){
+		if(confirm("정말 삭제하시겠습니까?")){
 			location.href= "commDel?comm_no=${dto.comm_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>";
 		}
 	}
@@ -186,7 +186,7 @@
 		});
 			//댓글 삭제
 			$(document).on('click','#commcommentList input[value=Del]',function(){
-				if(confirm("댓글을 삭제할까요?")){
+				if(confirm("댓글을 삭제하시겠습니까?")){
 					var params = "comm_comment_no=" +$(this).attr("title");
 					console.log(params);
 					var url ="/happy/commcommentDelete";

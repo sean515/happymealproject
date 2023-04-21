@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.meal.happy.dao.MenuDAO">
+  
+  	
+	
+<select id="menuTotalRecord" resultType="int">
+		select count(a.amenu_no) totalRecord from amenu_type t, amenu a where t.amenu_type_no=a.amenu_type_no
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	
+
+	<select id="pageSelect" resultType="com.meal.happy.dto.MenuDTO">
+		select * from
+			(select * from
+				(
+					select a.amenu_no, t.amenu_type_name, a.amenu_name, a.amenu_time , a.amenu_text
+					from amenu_type t, amenu a where t.amenu_type_no=a.amenu_type_no 
+					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
+						and ${searchKey} like '%${searchWord}%'  
+					</if>
+					
+					order by a.amenu_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by amenu_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by amenu_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by amenu_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
+	
+	
+	</mapper>

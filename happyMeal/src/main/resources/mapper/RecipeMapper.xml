@@ -69,6 +69,7 @@
 					select b.recipe_no, b.recipe_name,b.recipe_cal,b.recipe_car,b.recipe_pro,b.recipe_fat,b.recipe_na, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
 					from recipe b join member r on b.userid=r.userid 
 					
+
 					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 						and ${searchKey} like '%${searchWord}%'  
 					</if>
@@ -86,6 +87,21 @@
 					</if>
 					<if test="parts5!=null"><!-- 검색어가 있을 경우 -->
 						and recipe_parts like '%${parts5}%'  
+					</if>
+					<if test="delparts1 != null and !delparts1.isEmpty()">
+					    and recipe_parts not like '%${delparts1}%' 
+					</if>
+					<if test="delparts2 != null and !delparts2.isEmpty()">
+					    and recipe_parts not like '%${delparts2}%' 
+					</if>
+					<if test="delparts3 != null and !delparts3.isEmpty()">
+					    and recipe_parts not like '%${delparts3}%' 
+					</if>
+					<if test="delparts4 != null and !delparts4.isEmpty()">
+					    and recipe_parts not like '%${delparts4}%' 
+					</if>
+					<if test="delparts5 != null and !delparts5.isEmpty()">
+					    and recipe_parts not like '%${delparts5}%' 
 					</if>
 					
 					where r.admin = 1
@@ -124,7 +140,7 @@
 	</update>
     
     <select id="recipeEditSelect" resultType="com.meal.happy.dto.RecipeDTO">
-		select recipe_no, recipe_name, recipe_manual01 from recipe where recipe_no=${param1}
+		select recipe_no, recipe_name, recipe_manual01, recipe_parts,recipe_thumbnail from recipe where recipe_no=${param1}
 	</select>
 	
 	<update id="recipeUpdate" parameterType="com.meal.happy.dto.RecipeDTO">

@@ -241,7 +241,7 @@
 				<input type="file"  id="file" onchange="readURL(this);">
 				<img id="preview"/>
 			</li>
-			<input type="text" name="recipe_thumbnail" id="recipe_thumbnail" />
+			<li><input type="text" name="recipe_thumbnail" id="recipe_thumbnail" /></li>
 			<li><input type="text" name="recipe_parts" id="recipe_parts" placeholder="재료를 입력하세요"/></li>
 			<li><input type="text" name="recipe_name" id="subject" placeholder="제목을 입력하세요"/></li>
 			<li>
