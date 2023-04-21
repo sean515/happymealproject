@@ -10,8 +10,10 @@ public interface RecipeDAO {
 	public int recipeInsert(RecipeDTO dto);
 	//총레코드 수
 	public int recipeTotalRecord(PagingVO vo);
+	public int recipeTotalRecord_user(PagingVO vo);
 	//해당 페이지 선택
 	public List<RecipeDTO> pageSelect(PagingVO vo);
+	public List<RecipeDTO> pageSelect_user(PagingVO vo);
 	//글 선택(no)
 	public RecipeDTO recipeSelect(int recipe_no);
 	//글 선택 수정

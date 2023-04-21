@@ -22,6 +22,27 @@ import com.meal.happy.service.RecipeService;
 @Controller
 public class RecipeController {
 	@Autowired RecipeService service;
+
+	//레시피 유저 리스트
+	@GetMapping("/recipe_user")
+	public ModelAndView recipeList_user(PagingVO vo) {
+		System.out.println(vo);
+		ModelAndView mav = new ModelAndView();
+		vo.setTotalRecord(service.recipeTotalRecord_user(vo));
+
+		System.out.println(vo.toString());
+		//DB 조회
+		//해당 페이지 조회하기
+		mav.addObject("list",service.pageSelect_user(vo));
+
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+
+		mav.setViewName("recipe/recipe_user");
+		System.out.println(vo);
+		System.out.println(mav);
+		System.out.println(vo);
+		return mav;
+	}
 	
 	//레시피 글 리스트
 	@GetMapping("/recipe")
@@ -61,7 +82,7 @@ public class RecipeController {
 		String htmlTag = "<script>";
 		try {
 			int result = service.recipeInsert(dto);
-			htmlTag += "location.href='recipe'";
+			htmlTag += "location.href='recipe_user'";
 			
 		}catch(Exception e) {
 			
@@ -77,6 +98,23 @@ public class RecipeController {
 		
 		return new ResponseEntity<String>(htmlTag, headers, HttpStatus.OK);
 		
+	}
+	//글 내용 보기_user
+	@GetMapping("/recipeView_user")
+	public ModelAndView recipeView_user(int recipe_no, PagingVO vo) {
+		
+		//조회수 증가
+		service.recipeHitCount(recipe_no);
+		//글 선택
+		RecipeDTO dto = service.recipeSelect(recipe_no);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", dto);	//선택한 레코드
+		mav.addObject("vo", vo);	//페이지번호, 검색어, 검색키
+		mav.setViewName("recipe/recipeView_user");
+		
+		System.out.println(dto.toString());
+
+		return mav;
 	}
 	
 	//글 내용 보기

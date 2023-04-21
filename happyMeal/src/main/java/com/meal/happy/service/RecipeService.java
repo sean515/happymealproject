@@ -11,6 +11,9 @@ public interface RecipeService {
 	
 	public int recipeInsert(RecipeDTO dto);
 	public int recipeTotalRecord(PagingVO vo);
+	public int recipeTotalRecord_user(PagingVO vo);
+	public List<RecipeDTO> pageSelect_user(PagingVO vo);
+
 	public List<RecipeDTO> pageSelect(PagingVO vo);
 	public RecipeDTO recipeSelect(int recipe_no);
 	public RecipeDTO recipeEditSelect(int recipe_no);
