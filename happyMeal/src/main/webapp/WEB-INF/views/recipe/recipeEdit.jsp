@@ -2,6 +2,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
+
+	.btn-upload {
+	margin-right:100px;
+	  width: 250px;
+	  height: 200px;
+	  background: #fff;
+	  border: 1px solid rgb(77,77,77);
+	  border-radius: 10px;
+	  font-weight: 500;
+	  cursor: pointer;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  &:hover {
+	    background: rgb(77,77,77);
+	    color: #fff;
+	  }
+	}
+	
+	#file {
+	  display: none;
+	}
+	#recipe_thumbnail	{
+	  display: none;
+	  visibility:hidden
+	}
+	
+	#preview{
+		width :300px;
+		height :200px;
+		float :right;
+		border: none;
+	}
+	
 	#recipeForm{
 		margin-top:100px;
 	}
@@ -179,12 +213,37 @@
 			return true;
 		});
 	});
+	function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		      document.getElementById('recipe_thumbnail').value = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = "";
+		    document.getElementById('recipe_thumbnail').value = "";
+		  }
+		}
 </script>
 <div class="container">
 	<h1>게시판 글수정 폼</h1>
 	<form method="post" action="recipeEditOk" id="recipeForm">
 		<input type="hidden" name="recipe_no" value="${dto.recipe_no }"/>
 		<ul>
+			<h1 style="display: inline;">레시피 등록</h1>
+				<hr style="height: 3px; background-color:black;"/>
+				<li>
+					<label for="file" style="width:250px">
+		  				<div class="btn-upload">메인 이미지 등록하기</div>
+					</label>
+					<input type="file"  id="file" onchange="readURL(this);">
+					<img id="preview" src="${dto.recipe_thumbnail }"/>
+				</li>
+			<li><input type="text" name="recipe_thumbnail" id="recipe_thumbnail" value="${dto.recipe_thumbnail }"/></li>
+			<li><input type="text" name="recipe_parts" id="recipe_parts" value="${dto.recipe_parts}" /></li>
+			
 			<!-- 제목 -->
 			<li><input type="text" name="recipe_name" id="subject" value="${dto.recipe_name }"/></li>
 			<!-- 글내용 -->
