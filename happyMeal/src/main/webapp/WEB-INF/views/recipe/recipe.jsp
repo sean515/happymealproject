@@ -4,7 +4,35 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <style>
+  .input-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .input-field {
+    padding-right: 32px;
+  }
 
+  .add-input-button {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .del-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .del-field {
+    padding-right: 32px;
+  }
+
+  .add-del-button {
+    display: block;
+    margin-top: 10px;
+  }
 
 .accordion-button {
     font-size: 15px;
@@ -63,6 +91,96 @@
 			return true;
 		});
 	});
+	
+	$(document).ready(function(){
+		  var currentInput = 0; // 현재까지 추가된 input 개수
+		  
+		  // Add Input 버튼 클릭 시
+		  $("#addInputButton").click(function(e){
+		    e.preventDefault();
+		    currentInput++;
+		    
+		    // 추가된 input 개수에 따라 input 보이기/숨기기
+		    $("#input"+currentInput+"Container").show();
+		    
+		    // input이 5개 모두 보일 경우 Add Input 버튼 숨기기
+		    if (currentInput == 5) {
+		      $("#addInputButton").hide();
+		    }
+		    
+		    // input에 버튼 추가하기
+		    var inputContainer = $("#input"+currentInput+"Container");
+		    var input = inputContainer.find("input");
+		    var button = $("<button type='button' class='removeInputButton' data-input='input"+currentInput+"'>x</button>");
+		    inputContainer.append(button);
+		    button.css({
+		      "position": "absolute",
+		      "right": "5px",
+		      "top": "5px"
+		    });
+		    input.css("padding-right", "25px"); // input의 오른쪽 padding 값 조정
+		  });
+		  
+		  // Remove Input 버튼 클릭 시
+		  $(document).on("click", ".removeInputButton", function(){
+		    var inputId = $(this).data("input");
+		    $("#"+inputId).val(""); // 해당 input의 값을 지우기
+		    $("#"+inputId+"Container").hide(); // 해당 input 숨기기
+		    
+		    currentInput--; // 현재까지 추가된 input 개수 감소
+		    
+		    // Add Input 버튼 보이기
+		    $("#addInputButton").show();
+		  });
+		  
+		  // input 1 숨기기
+		  $("#input1Container").hide();
+		});
+	
+	$(document).ready(function(){
+		  var currentDel = 0; // 현재까지 추가된 input 개수
+		  
+		  // Add Input 버튼 클릭 시
+		  $("#addDelButton").click(function(e){
+		    e.preventDefault();
+		    currentDel++;
+		    
+		    // 추가된 input 개수에 따라 input 보이기/숨기기
+		    $("#del"+currentDel+"Container").show();
+		    
+		    // input이 5개 모두 보일 경우 Add Input 버튼 숨기기
+		    if (currentDel == 5) {
+		      $("#addDelButton").hide();
+		    }
+		    
+		    // input에 버튼 추가하기
+		    var delContainer = $("#del"+currentDel+"Container");
+		    var del = delContainer.find("del");
+		    var button = $("<button type='button' class='removeDelButton' data-del='del"+currentDel+"'>x</button>");
+		    delContainer.append(button);
+		    button.css({
+		      "position": "absolute",
+		      "right": "5px",
+		      "top": "5px"
+		    });
+		    del.css("padding-right", "25px"); // input의 오른쪽 padding 값 조정
+		  });
+		  
+		  // Remove Input 버튼 클릭 시
+		  $(document).on("click", ".removeDelButton", function(){
+		    var delId = $(this).data("del");
+		    $("#"+delId).val(""); // 해당 input의 값을 지우기
+		    $("#"+delId+"Container").hide(); // 해당 input 숨기기
+		    
+		    currentInput--; // 현재까지 추가된 input 개수 감소
+		    
+		    // Add Input 버튼 보이기
+		    $("#addDelButton").show();
+		  });
+		  
+		  // input 1 숨기기
+		  $("#del1Container").hide();
+		});
 </script>
 
  <!-- banner -->
@@ -82,15 +200,15 @@
 			</select>
 		<!-- 검색 시 제목 작성자 글내용 선택 -->
 				<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
-				<option value="subject">제목 </option>
-				<option value="username">작성자 </option>
-				<option value="content">글내용 </option>
+				<option value="recipe_name">제목 </option>
+				<option value="recipe_date">글내용 </option>
 			</select>
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 			
 
 		</form>
+		<a href="/happy/recipe_user">recipe_user 페이지로 이동</a>
 	</div>
 
 	<!-- 소재목 -->
@@ -109,6 +227,9 @@
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
 			 	개인 맞춤 레시피 찾기
 				</button>
+				
+			
+				
 			</h2>
 			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 				<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary">
@@ -155,6 +276,47 @@
 				</div>
 			</div>
 				
+
+			<form method="get" id="partsForm" action="recipe">
+			 <div id="input1Container" class="input-container" style="display:none;">
+    			<input type="text" class="form-control input-field" id="input1" name="parts1">
+			  </div>
+			  <div id="input2Container" class="input-container" style="display:none;">
+			    <input type="text" class="form-control input-field" id="input2" name="parts2">
+			  </div>
+			  <div id="input3Container" class="input-container" style="display:none;">
+			    <input type="text" class="form-control input-field" id="input3" name="parts3">
+			  </div>
+			  <div id="input4Container" class="input-container" style="display:none;">
+			    <input type="text" class="form-control input-field" id="input4" name="parts4">
+			   </div>
+			  <div id="input5Container" class="input-container" style="display:none;">
+			    <input type="text" class="form-control input-field" id="input5" name="parts5">
+			  </div>
+			  <button id="addInputButton" class="add-input-button">재료 선택 추가</button>
+			  
+			  <br/>
+		  
+			  <div id="del1Container" class="del-container" style="display:none;">
+    			<input type="text" class="form-control del-field" id="input1" name="delparts1">
+			  </div>
+			  <div id="del2Container" class="del-container" style="display:none;">
+			    <input type="text" class="form-control del-field" id="input2" name="delparts2">
+			  </div>
+			  <div id="del3Container" class="del-container" style="display:none;">
+			    <input type="text" class="form-control del-field" id="input3" name="delparts3">
+			  </div>
+			  <div id="del4Container" class="del-container" style="display:none;">
+			    <input type="text" class="form-control del-field" id="input4" name="delparts4">
+			   </div>
+			  <div id="del5Container" class="del-container" style="display:none;">
+			    <input type="text" class="form-control del-field" id="input5" name="delparts5">
+			  </div>
+			  <button id="addDelButton" class="add-del-button">재료 선택 추가</button>
+			  <input type="submit" value="검색"/>
+			</form>
+
+
 			 <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
 			 </div>
 		</div>
@@ -172,8 +334,11 @@
 					</div>
 					<h3><a href="recipeView?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.recipe_name }</a></h3>
 					<p> </p>
-					<p>${bDTO.recipe_date }</p>
-					<p>${bDTO.username }</p>		
+					<p>칼로리${bDTO.recipe_cal } </p>	
+					<p>탄수화물${bDTO.recipe_car } </p>	
+					<p>단백질${bDTO.recipe_pro } </p>	
+					<p>지방${bDTO.recipe_fat } </p>	
+					<p>나트륨${bDTO.recipe_na } </p>	
 				</div>
 			</div>
 		<c:set var="recordNum" value="${recordNum-1 }"></c:set>	
@@ -187,8 +352,8 @@
 	
 	<div class="recipeHeader" style="float: right; margin-top: -50px; " >
 	<!-- <a href="recipeWrite">글쓰기</a> -->
-	<button type="button" class="btn btn-outline-dark" onclick="location.href='recipeWrite'"
-	style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button>
+	<!-- <button type="button" class="btn btn-outline-dark" onclick="location.href='recipeWrite'"
+	style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button> -->
 	</div>
 	</div>
 	

@@ -14,18 +14,32 @@ public class PagingVO {
 	//검색에 필요한 변수들
 	private String searchKey;
 	private String searchWord;
+	private String parts1;
+	private String parts2;
+	private String parts3;
+	private String parts4;
+	private String parts5;
+	private String delparts1;
+	private String delparts2;
+	private String delparts3;
+	private String delparts4;
+	private String delparts5;
+	
 	
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
 				+ ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
 				+ onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
-				+ searchWord + "]";
+				+ searchWord + ", parts1=" + parts1 + ", parts2=" + parts2 + ", parts3=" + parts3 + ", parts4=" + parts4
+				+ ", parts5=" + parts5 + ", delparts1=" + delparts1 + ", delparts2=" + delparts2 + ", delparts3="
+				+ delparts3 + ", delparts4=" + delparts4 + ", delparts5=" + delparts5 + "]";
 	}
 	
 	public int getNowPage() {
 		return nowPage;
 	}
+	
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
 		
@@ -103,5 +117,87 @@ public class PagingVO {
 
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
+	}
+
+	public String getParts1() {
+		return parts1;
+	}
+
+	public void setParts1(String parts1) {
+		this.parts1 = parts1;
+	}
+
+	public String getParts2() {
+		return parts2;
+	}
+
+	public void setParts2(String parts2) {
+		this.parts2 = parts2;
+	}
+
+	public String getParts3() {
+		return parts3;
+	}
+
+	public void setParts3(String parts3) {
+		this.parts3 = parts3;
+	}
+
+	public String getParts4() {
+		return parts4;
+	}
+
+	public void setParts4(String parts4) {
+		this.parts4 = parts4;
+	}
+
+	public String getParts5() {
+		return parts5;
+	}
+
+	public void setParts5(String parts5) {
+		this.parts5 = parts5;
+	}
+
+	public String getDelparts1() {
+		return delparts1;
+	}
+
+	public void setDelparts1(String delparts1) {
+		this.delparts1 = delparts1;
+	}
+
+	public String getDelparts2() {
+		return delparts2;
+	}
+
+	public void setDelparts2(String delparts2) {
+		this.delparts2 = delparts2;
+	}
+
+	public String getDelparts3() {
+		return delparts3;
+	}
+
+	public void setDelparts3(String delparts3) {
+		this.delparts3 = delparts3;
+	}
+
+	public String getDelparts4() {
+		return delparts4;
+	}
+
+	public void setDelparts4(String delparts4) {
+		this.delparts4 = delparts4;
+	}
+
+	public String getDelparts5() {
+		return delparts5;
+	}
+
+	public void setDelparts5(String delparts5) {
+		this.delparts5 = delparts5;
 	}	
+	
+	
 }

@@ -2,6 +2,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
+
+	.btn-upload {
+	margin-right:100px;
+	  width: 250px;
+	  height: 200px;
+	  background: #fff;
+	  border: 1px solid rgb(77,77,77);
+	  border-radius: 10px;
+	  font-weight: 500;
+	  cursor: pointer;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  &:hover {
+	    background: rgb(77,77,77);
+	    color: #fff;
+	  }
+	}
+	
+	#file {
+	  display: none;
+	}
+	#recipe_thumbnail	{
+	  display: none;
+	  visibility:hidden
+	}
+	
+	#preview{
+		width :300px;
+		height :200px;
+		float :right;
+		border: none;
+	}
+	
 	#recipeForm{
 		margin-top:100px;
 	}
@@ -180,10 +214,35 @@
 			return true;
 		});
 	});
+	
+	function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.getElementById('preview').src = e.target.result;
+		      document.getElementById('recipe_thumbnail').value = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.getElementById('preview').src = "";
+		    document.getElementById('recipe_thumbnail').value = "";
+		  }
+		}
 </script>
 <div class="container">
 	<form method="post" action="recipeWriteOk" id="recipeForm">
 		<ul>
+			<h1 style="display: inline;">레시피 등록</h1>
+			<hr style="height: 3px; background-color:black;"/>
+			<li>
+				<label for="file" style="width:250px">
+	  				<div class="btn-upload">메인 이미지 등록하기</div>
+				</label>
+				<input type="file"  id="file" onchange="readURL(this);">
+				<img id="preview"/>
+			</li>
+			<input type="text" name="recipe_thumbnail" id="recipe_thumbnail" />
+			<li><input type="text" name="recipe_parts" id="recipe_parts" placeholder="재료를 입력하세요"/></li>
 			<li><input type="text" name="recipe_name" id="subject" placeholder="제목을 입력하세요"/></li>
 			<li>
 				<textarea name="recipe_manual01" id="content"></textarea>

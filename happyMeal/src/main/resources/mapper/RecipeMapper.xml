@@ -5,27 +5,90 @@
 <mapper namespace="com.meal.happy.dao.RecipeDAO">
       
 	<insert id="recipeInsert">
-		insert into recipe(recipe_no, userid, recipe_name, ip, recipe_manual01)
-		values(recipe_sq.nextval, #{userid}, #{recipe_name}, #{ip}, #{recipe_manual01})
+		insert into recipe(recipe_no, recipe_thumbnail,recipe_parts, userid, recipe_name, ip, recipe_manual01)
+		values(recipe_sq.nextval,#{recipe_thumbnail},#{recipe_parts}, #{userid}, #{recipe_name}, #{ip}, #{recipe_manual01})
 	</insert>
-      
+	<select id="recipeTotalRecord_user" resultType="int">
+		select count(b.recipe_no) totalRecord from recipe b join member r on b.userid=r.userid
+		
+		    where r.admin = 0   
+
+		<if test="searchWord!=null">
+			and ${searchKey} like '%${searchWord}%'
+		</if>
+	</select> 	 
+	   
 	<select id="recipeTotalRecord" resultType="int">
 		select count(b.recipe_no) totalRecord from recipe b join member r on b.userid=r.userid
+		
+		    where r.admin = 1
+
 		<if test="searchWord!=null">
-			where ${searchKey} like '%${searchWord}%'
+			and ${searchKey} like '%${searchWord}%'
 		</if>
+	</select>
+	
+	
+	<select id="pageSelect_user" resultType="com.meal.happy.dto.RecipeDTO">
+		select * from
+			(select * from
+				(
+					select b.recipe_no, b.recipe_name, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
+					from recipe b join member r on b.userid=r.userid 
+					
+					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
+						and ${searchKey} like '%${searchWord}%'  
+					</if>
+
+					where r.admin = 0
+					order by b.recipe_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by recipe_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by recipe_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by recipe_no desc
+					]]>	
+					</when>
+				</choose>
 	</select>
 	  
 	<select id="pageSelect" resultType="com.meal.happy.dto.RecipeDTO">
 		select * from
 			(select * from
 				(
-					select b.recipe_no, b.recipe_name, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
+					select b.recipe_no, b.recipe_name,b.recipe_cal,b.recipe_car,b.recipe_pro,b.recipe_fat,b.recipe_na, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
 					from recipe b join member r on b.userid=r.userid 
+					
 					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 						and ${searchKey} like '%${searchWord}%'  
 					</if>
+					<if test="parts1!=null"><!-- 검색어가 있을 경우 -->
+						and recipe_parts like '%${parts1}%'  
+					</if>
+					<if test="parts2!=null"><!-- 검색어가 있을 경우 -->
+						and recipe_parts like '%${parts2}%'  
+					</if>
+					<if test="parts3!=null"><!-- 검색어가 있을 경우 -->
+						and recipe_parts like '%${parts3}%'  
+					</if>
+					<if test="parts4!=null"><!-- 검색어가 있을 경우 -->
+						and recipe_parts like '%${parts4}%'  
+					</if>
+					<if test="parts5!=null"><!-- 검색어가 있을 경우 -->
+						and recipe_parts like '%${parts5}%'  
+					</if>
 					
+					where r.admin = 1
 					order by b.recipe_no desc
 				) 
 				

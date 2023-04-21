@@ -55,6 +55,16 @@ public class RecipeServiceImpl implements RecipeService {
 		return dao.recipeDelete(dto);
 	}
 
+	@Override
+	public int recipeTotalRecord_user(PagingVO vo) {
+		return dao.recipeTotalRecord_user(vo);
+	}
+
+	@Override
+	public List<RecipeDTO> pageSelect_user(PagingVO vo) {
+		return dao.pageSelect_user(vo);
+	}
+
 
 	
 	
