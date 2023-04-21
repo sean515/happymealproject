@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -149,6 +151,27 @@ public class myPageController {
 	public String userSupViewForm() {
 		return "myPage/userSupView";
 	}
-
 	
+	//bmi계산하러가기
+	@GetMapping("/myPage/checkBmi")
+	public String checkBmi() {
+		return "myPage/checkBmi";
+	}
+	
+	//bmi 계산기
+	@RequestMapping(value="/myPage/bmicheck", method=RequestMethod.POST)
+	public String calculateBMI(int height, int weight, HttpSession session) {
+		System.out.println(1234);
+	    if (height <= 0 || weight <= 0) { // 키나 몸무게가 0 이하일 경우
+	        return "N";
+	    }
+	    String userid = (String) session.getAttribute("logId"); // 세션에서 사용자 아이디 가져오기
+	    System.out.println(5678);
+	    System.out.println(height+weight);
+	    double bmi = weight / ((height / 100.0) * (height / 100.0)); // BMI 계산
+	    System.out.println(userid+bmi);
+	    service.updateBMI(userid, bmi); // 사용자 정보 업데이트
+	    System.out.println(userid+"bmi2"+bmi);
+	    return String.format("%.2f", bmi); // 소수점 이하 둘째 자리까지 출력
+	}
 }

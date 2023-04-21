@@ -67,8 +67,9 @@ public class myPageServiceImpl implements myPageService {
 	}
 
 	
-	 @Override public CommCommentDTO selectCommComment(String userid) { return
-	 dao.selectCommComment(userid); }
+	 @Override public CommCommentDTO selectCommComment(String userid) { 
+		 return dao.selectCommComment(userid);
+	 }
 	  
 	 /* @Override public RecipeCommentDTO selectRecipeComment(String userid) { return
 	 * dao.selectRecipeComment(userid); }
@@ -78,6 +79,17 @@ public class myPageServiceImpl implements myPageService {
 	public SupDTO selectSup(String userid) {
 		return dao.selectSup(userid);
 	}
+
+	@Override
+	public void updateBMI(String userid, double bmi) {
+		dao.updateBMI(userid, bmi);
+	}
+
+	
+
+	
+
+	
 
 	
 	

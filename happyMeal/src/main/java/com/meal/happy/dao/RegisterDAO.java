@@ -38,4 +38,7 @@ public interface RegisterDAO {
 	public CommCommentDTO selectCommComment (String userid);
 	//public RecipeCommentDTO selectRecipeComment  (String userid);
 	public SupDTO selectSup (String userid);
+	
+	//bmi 계산 후 DB update
+	public void updateBMI(String userid, double bmi);
 }

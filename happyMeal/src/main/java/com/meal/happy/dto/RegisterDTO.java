@@ -15,7 +15,7 @@ public class RegisterDTO {
 	private String diseaseArr[];
 	private String joindate;
 	private int admin;
-	
+	private double bmi;
 	
 	@Override
 	public String toString() {
@@ -103,8 +103,12 @@ public class RegisterDTO {
 	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
-	
-	
+	public double getBmi() {
+		return bmi;
+	}
+	public void setBmi(double bmi) {
+		this.bmi = bmi;
+	}
 	
 }
 	
