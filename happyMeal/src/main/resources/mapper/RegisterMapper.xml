@@ -65,6 +65,10 @@
 	<update id="updateTempPw">
 		update member set userpwd=#{userpwd} where userid=#{userid}
 	</update>
-
+	
+	<update id="updateBMI">
+	    UPDATE member SET bmi = #{param2}
+	    WHERE userid = #{param1} AND bmi != #{param2}
+	</update>
 	
 </mapper>

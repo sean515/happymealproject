@@ -21,4 +21,7 @@ public interface myPageService {
 	public CommCommentDTO selectCommComment (String userid);
 	//public RecipeCommentDTO selectRecipeComment  (String userid);
 	public SupDTO selectSup (String userid);
+	
+	//bmi
+	public void updateBMI(String userid, double bmi);
 }
