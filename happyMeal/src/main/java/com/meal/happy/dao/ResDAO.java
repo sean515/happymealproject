@@ -11,4 +11,8 @@ public interface ResDAO {
 	public int resTotalRecord(PagingVO vo);
 	//해당 페이지 선택
 	public List<ResDTO> resPageSelect(PagingVO vo);
+	//식당 선택
+	public ResDTO resSelect (int res_no);
+	//조회수 증가
+	public void resHitCount(int res_no);
 }

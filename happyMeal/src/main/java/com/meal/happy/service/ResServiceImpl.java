@@ -25,5 +25,15 @@ public class ResServiceImpl implements ResService {
 		return dao.resPageSelect(vo);
 	}
 
+	@Override
+	public void resHitCount(int res_no) {
+		dao.resHitCount(res_no);
+	}
+
+	@Override
+	public ResDTO resSelect(int res_no) {
+		return dao.resSelect(res_no);
+	}
+
 	
 }

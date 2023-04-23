@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.ResDTO;
 import com.meal.happy.service.ResService;
 
 @Controller
@@ -13,6 +14,7 @@ public class ResController {
 	@Autowired
 	ResService service;
 	
+	//식당페이지
 	@GetMapping("/res")
 	public ModelAndView resList(PagingVO vo) {
 		ModelAndView mav = new ModelAndView();
@@ -26,6 +28,22 @@ public class ResController {
 		mav.addObject("list", service.resPageSelect(vo));
 		mav.addObject("vo", vo);
 		mav.setViewName("res/res");
+		
+		return mav;
+	}
+	
+	//식당 상세페이지
+	@GetMapping("/resView")
+	public ModelAndView resView(int res_no, PagingVO vo) {
+		
+		//조회수 증가
+		service.resHitCount(res_no);
+		//식당 선택
+		ResDTO dto = service.resSelect(res_no);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", dto); //선택한 레코드
+		mav.addObject("vo", vo);
+		mav.setViewName("res/resView");
 		
 		return mav;
 	}
