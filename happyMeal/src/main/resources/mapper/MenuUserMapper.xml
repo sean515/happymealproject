@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.meal.happy.dao.MenuUserDAO">
+  
+  <insert id="menuInsert">
+		insert into menu(menu_no, menu_thumbnail, userid, menu_title,menu_text, ip,amenu_type_no)
+		values(menu_sq.nextval,#{menu_thumbnail}, #{userid},#{menu_title}, #{menu_text}, #{ip}, #{amenu_type_no})
+	</insert>
+	
+  	<select id="menuTotalRecord_user" resultType="int">
+		select count(m.menu_no) totalRecord from menu m join member r on m.userid=r.userid
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+  	
+	<select id="pageSelect_user" resultType="com.meal.happy.dto.MenuUserDTO">
+		select * from
+			(select * from
+				(
+					select r.username,b.menu_thumbnail, b.menu_no, b.amenu_type_no, b.userid, b.menu_title, b.menu_text, b.menu_hit, to_char(b.menu_date,'MM-DD HH:MI') menu_date 
+					from menu b join member r on b.userid=r.userid 
+					
+					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
+						and ${searchKey} like '%${searchWord}%'  
+					</if>
+
+					order by b.menu_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by menu_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by menu_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by menu_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
+	
+	
+	<select id="menuSelect" resultType="com.meal.happy.dto.MenuUserDTO">
+		select b.menu_no, b.menu_title,  
+		b.menu_text,
+		r.username, r.userid, r.nickname , b.menu_hit, b.menu_date
+		from menu b join member r on b.userid= r.userid
+		and b.menu_no=${param1}
+	</select>
+	
+	<update id ="menuHitCount">
+		update menu set menu_hit=menu_hit+1 where menu_no=${param1}
+	</update>
+	</mapper>

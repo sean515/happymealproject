@@ -81,5 +81,16 @@
 	</foreach>
 	</delete>
 	
+	<select id="findLike" resultType="int">
+		select count(*)result from comm_like where comm_no = ${comm_no} and userid = #{userid}
+	</select>
 	
+	<delete id="delCommLike" >
+		delete from comm_like where comm_no = ${comm_no} and userid = #{userid}
+	</delete>
+	
+	<insert id="commLikeUp" >
+		insert into comm_like(like_no, comm_no, userid)
+  		values(commlike_num_sq.nextval, #{comm_no}, #{userid})
+	</insert>
 	</mapper>

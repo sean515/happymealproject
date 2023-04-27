@@ -111,7 +111,7 @@
 		<c:forEach var="bDTO" items="${list}">	
 			<div class="col-md-3 animate-box text-center">
 				<div class="staff">
-					<div class="staff-img" style="background-image: url('${bDTO.recipe_thumbnail }');">
+					<div class="staff-img" style="background-image: url('/happy/uploadfile/${fileDto.filename }${bDTO.recipe_thumbnail }');">
 					</div>
 					<h3><a href="recipeView_user?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.recipe_name }</a></h3>
 					<p> </p>
@@ -144,7 +144,7 @@
 		</c:if>
 		<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 첫번째 페이지가 아닐때 -->
 		    <li class="page-item">
-		      <a class="page-link" href="recipe?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Previous">
+		      <a class="page-link" href="recipe_user?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
@@ -160,14 +160,14 @@
 				<c:if test="${p!=vo.nowPage}">
 				<li class="page-item">
 				</c:if>
-				<a class="page-link" href="recipe?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
+				<a class="page-link" href="recipe_user?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
 				</c:if>
 			</c:forEach>
 	   
 	   	<!-- 다음페이지 -->
 	   	<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 다음페이지가 있다 -->
 	    <li class="page-item">
-	      <a class="page-link" href="recipe?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Next">
+	      <a class="page-link" href="recipe_user?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>

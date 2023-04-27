@@ -2,10 +2,15 @@ package com.meal.happy.dto;
 
 import java.sql.Blob;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MenuUserDTO {
 	private Integer menu_no;
 	private int amenu_type_no;
 	private String userid;
+	private MultipartFile menu_thumbnail2;
+	private String menu_thumbnail;
+	private String username;
 	private String menu_title;
 	private String menu_text;
 	private Blob menu_file;
@@ -46,6 +51,26 @@ public class MenuUserDTO {
 	}
 
 
+	public MultipartFile getMenu_thumbnail2() {
+		return menu_thumbnail2;
+	}
+
+
+	public void setMenu_thumbnail2(MultipartFile menu_thumbnail2) {
+		this.menu_thumbnail2 = menu_thumbnail2;
+	}
+
+
+	public String getMenu_thumbnail() {
+		return menu_thumbnail;
+	}
+
+
+	public void setMenu_thumbnail(String menu_thumbnail) {
+		this.menu_thumbnail = menu_thumbnail;
+	}
+
+
 	public String getUserid() {
 		return userid;
 	}
@@ -53,6 +78,16 @@ public class MenuUserDTO {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+
+	
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 

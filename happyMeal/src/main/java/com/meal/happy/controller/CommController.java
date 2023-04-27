@@ -12,11 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.service.CommService;
 
@@ -25,11 +25,11 @@ import com.meal.happy.service.CommService;
 public class CommController {
 	@Autowired
 	CommService service;
-	
+
 	@GetMapping("/comm_List")
 	public ModelAndView commList(PagingVO vo) {
 		System.out.println(vo.toString());
-		
+
 		ModelAndView mav = new ModelAndView();
 		vo.setTotalRecord(service.totalRecord(vo));
 
@@ -41,12 +41,12 @@ public class CommController {
 		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
 
 		mav.setViewName("comm/comm_List");
-		
+
 		System.out.println(mav);
-		
+
 		return mav;
 	}
-	
+
 	//글쓰기 form
 		@GetMapping("/commWrite")
 		public ModelAndView commWrite()	{
@@ -70,7 +70,7 @@ public class CommController {
 				e.printStackTrace();
 				htmlTag += "alert('글이 등록되지 않았습니다.')";
 				htmlTag += "history.back();";
-				
+
 			}
 			htmlTag += "</script>";
 
@@ -82,12 +82,12 @@ public class CommController {
 			//결과
 
 		}
-		
+
 		//내용 변경이 있으면ResponseEntity 없으면ModelAndView
 		//글 내용 보기
 		@GetMapping("/commView")
 		public ModelAndView commView(int comm_no, PagingVO vo) {
-			
+
 			//조회수 증가
 			service.commHitCount(comm_no);
 			System.out.println("1"+comm_no);
@@ -99,7 +99,7 @@ public class CommController {
 			mav.addObject("vo", vo);	//페이지번호, 검색어, 검색키
 			System.out.println("4"+dto);
 			mav.setViewName("comm/commView");
-			
+
 			System.out.println(dto.toString());
 
 			return mav;
@@ -108,17 +108,17 @@ public class CommController {
 		@GetMapping("/commDel")
 		public ModelAndView CommDel(CommDTO dto, PagingVO vo, HttpSession session) {
 			dto.setUserid((String)session.getAttribute("logId"));
-			
+
 			int result = service.commDelete(dto);
-			
+
 			ModelAndView mav = new ModelAndView();
-			
+
 			mav.addObject("nowPage", vo.getNowPage());
 			if(vo.getSearchWord()!=null) {
 				mav.addObject("searchKey", vo.getSearchKey());
 				mav.addObject("searchWord", vo.getSearchWord());
 			}
-			
+
 			if(result>0) {// 삭제시 리스트로 이동
 				mav.setViewName("redirect:comm_List");
 			}else {//삭제 실패 시 글내용 보기로 이동
@@ -127,25 +127,25 @@ public class CommController {
 			}
 			return mav;
 		}
-		
+
 		//수정폼
 		@GetMapping("/commEdit")
 		public ModelAndView commEdit(int comm_no, PagingVO vo) {
-			
+
 			CommDTO dto = service.commEditSelect(comm_no);
-			
+
 			// "  " ' '
 			String Comm_text = dto.getComm_title().replaceAll("\"", "&quot;");	//" \"
 			Comm_text.replaceAll("'", "&#39");	//" \"
 			System.out.println(Comm_text);
 			dto.setComm_text(Comm_text);
-			
+
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("dto", dto);	//선택한 레코드
 			mav.addObject("vo", vo);	//페이지번호, 검색어, 검색키
-			
+
 			mav.setViewName("comm/commEdit");
-				
+
 			return mav;
 		}
 		//수정(DB update)
@@ -162,23 +162,59 @@ public class CommController {
 					bodyTag += "&searchKey="+vo.getSearchKey()+"&searchWord="+vo.getSearchWord();
 				}
 				bodyTag+="';";
-				
+
 			}catch(Exception e) {
 				e.printStackTrace();
 				//수정실패
 				bodyTag += "alert('게시판 글수정에 실패하였습니다.');";
 				bodyTag += "history.back();";
 			}
-			
+
 			bodyTag += "</script>";
-			
+
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 			headers.add("Content-Type", "text/html; charset=UTF-8");
-			
+
 			ResponseEntity<String> entity = new ResponseEntity<String>(bodyTag, headers, HttpStatus.OK);
-			
+
 			return entity;
 		}
 		
+		//현재 좋아요 상태
+				@GetMapping("/commlike")
+					public LikeVO commlike(int comm_no, HttpSession session ,LikeVO like) {
+					
+					like.setUserid((String)session.getAttribute("logId"));
+					like.setComm_no(comm_no);
+					System.out.println("like"+like);
+					int result = service.findLike(like);
+					
+					like.setResult(result);
+					return like;
+				}
+		//현재 좋아요 취소
+				@GetMapping("/delcommlike")
+					public LikeVO delcommlike(int comm_no, HttpSession session ,LikeVO like) {
+					
+					like.setUserid((String)session.getAttribute("logId"));
+					like.setComm_no(comm_no);
+					System.out.println("like"+like);
+					int result = service.delCommLike(like);
+					
+					like.setResult(result);
+					return like;
+				}
+				//현재 좋아요 등록
+				@GetMapping("/commlikeup")
+					public LikeVO commlikeup(int comm_no, HttpSession session ,LikeVO like) {
+					
+					like.setUserid((String)session.getAttribute("logId"));
+					like.setComm_no(comm_no);
+					System.out.println("like"+like);
+					int result = service.commLikeUp(like);
+					
+					like.setResult(result);
+					return like;
+				}
 }

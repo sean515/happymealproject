@@ -48,7 +48,7 @@
 
 
 			</form>
-			<a href="/happy/menu_user">menu_user 페이지로 이동</a>
+			<a href="/happy/menu">menu 페이지로 이동</a>
 		</div>
 		<div class="row animate-box">
 			<h1 class="title" style="display: inline; font-size: 40px">&nbsp식단&nbsp&nbsp</h1>
@@ -61,20 +61,7 @@
 
 		<div class="accordion accordion-flush" id="accordionFlushExample">
 			<form action="/happy/menu" method="get">
-				<div id="btn-group">
-					<button type="submit" id="btn1" class="btn" name="amenu_type_no1"
-						value="1">당뇨식</button>
-					<button type="submit" id="btn2" class="btn" name="amenu_type_no2"
-						value="2">연식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no3"
-						value="3">일반식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no4"
-						value="4">저염식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no5"
-						value="5">저요오드식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no6"
-						value="6">항암식</button>
-				</div>
+
 			</form>
 
 			<!-- 게시글 row 상단 -->
@@ -87,40 +74,22 @@
 					<div class="container">
 
 						<div class="row">
-							<c:set var="counter" value="-1" />
-							<c:forEach var="MenuDTO" items="${list}">
-								<c:if test="${counter == -1}">
-									<h1>${MenuDTO.amenu_type_name }${1}</h1>
-								</c:if>
-								<c:set var="counter" value="${counter + 1}" />
+							<c:forEach var="MenuUserDTO" items="${list}">
 
-								<c:if test="${counter % 3 == 0 and counter != 0}">
-									<c:set var="pageNo" value="${(counter/ 3)+1}" />
-									<c:set var="pageNo" value="${pageNo.intValue()}" />
-									<h1>${MenuDTO.amenu_type_name}${pageNo}</h1>
-								</c:if>
 								<div class="col-lg-4 col-md-4">
 									<div class="fh5co-blog animate-box">
-										<a href="menuView?amenu_type_no=${MenuDTO.amenu_type_no }&amenu_name=${MenuDTO.amenu_name }" class="blog-img-holder"
-											style="background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>
+										<a href="menuView_user?menu_no=${MenuUserDTO.menu_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" class="blog-img-holder"
+											style="background-image: url('/happy/uploadfile/${fileDto.filename }${MenuUserDTO.menu_thumbnail }');"></a>
+					
+
 										<div class="blog-text">
 											<p></p>
-											<p>${MenuDTO.amenu_no }</p>
-											<p>${MenuDTO.amenu_type_name }${MenuDTO.amenu_name }</p>
-											<c:if test="${MenuDTO.amenu_time==1}">
-												<p>조식</p>
-											</c:if>
-											<c:if test="${MenuDTO.amenu_time==2}">
-												<p>중식</p>
-											</c:if>
-											<c:if test="${MenuDTO.amenu_time==3}">
-												<p>석식</p>
-											</c:if>
-											<p>${MenuDTO.amenu_text }</p>
+											<p>${MenuUserDTO.menu_title}</p>
+											<p>${MenuUserDTO.menu_text}</p>
+											<p>${MenuUserDTO.menu_thumbnail}</p>
 										</div>
 									</div>
 								</div>
-								<c:set var="recordNum" value="${recordNum-1 }"></c:set>
 							</c:forEach>
 						</div>
 
@@ -132,10 +101,55 @@
 
 		<div class="recipeHeader" style="float: right; margin-top: -50px;">
 			<!-- <a href="recipeWrite">글쓰기</a> -->
-			<!-- <button type="button" class="btn btn-outline-dark" onclick="location.href='recipeWrite'"
-	style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button> -->
+			<button type="button" class="btn btn-outline-dark" onclick="location.href='menuWrite_user'"
+		style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button> 
 		</div>
 
+	<!-- 페이지네이션 부트스트랩 -->
+	<div>
+	<center>
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination justify-content-center">
+	  <!-- 이전페이지       : nowPage를 기준으로 -->	
+		<c:if test="${vo.nowPage==1}"> <!-- 현재페이지가 첫번쨰 페이지일때 -->
+			<li></li>
+		</c:if>
+		<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 첫번째 페이지가 아닐때 -->
+		    <li class="page-item">
+		      <a class="page-link" href="menu_user?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+	    </c:if>
+	   <!-- 이전페이지 끝 -->
+	   <!-- 페이지 번호 -->
+	   <c:forEach var="p" begin="${vo.startPageNum}" end="${vo.startPageNum+vo.onePageNumCount-1}">
+				<c:if test="${p<=vo.totalPage}"> <!-- 표시할 페이지번호 총페이지수보다 작거나 같을때 페이지번호를 출력한다. -->
+				<!-- 현재페이지 표시하기 -->
+				<c:if test="${p==vo.nowPage}">
+				<li class="page-item active" style="background-color: #8BC34A;">
+				</c:if>
+				<c:if test="${p!=vo.nowPage}">
+				<li class="page-item">
+				</c:if>
+				<a class="page-link" href="menu_user?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
+				</c:if>
+			</c:forEach>
+	   
+	   	<!-- 다음페이지 -->
+	   	<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 다음페이지가 있다 -->
+	    <li class="page-item">
+	      <a class="page-link" href="menu_user?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	    </c:if>
+	    <c:if test="${vo.nowPage==vo.totalPage}"><!-- 현재페이지가 마지막일때 -->
+			<li></li>
+		</c:if>
+	  </ul>
+	</nav>
+	</center>
 	</div>
-
 </div>
+  <br>

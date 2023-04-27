@@ -3,6 +3,7 @@ package com.meal.happy.dao;
 import java.util.List;
 
 import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 
 public interface CommDAO {
@@ -24,4 +25,8 @@ public interface CommDAO {
 	public int commDelete(CommDTO dto);
 	//여러 글 한번에 삭제
 	public int commMultiLineDelete(List<Integer> noList);
+	//좋아요 상태
+	public int findLike(LikeVO like);
+	public int delCommLike(LikeVO like);
+	public int commLikeUp(LikeVO like);
 }

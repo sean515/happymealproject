@@ -3,6 +3,7 @@ package com.meal.happy.service;
 import java.util.List;
 
 import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 
 
@@ -25,4 +26,11 @@ public interface CommService {
 	public int commDelete(CommDTO dto);
 
 	public int commMultiLineDelete(List<Integer> noList);
+	
+	public int findLike(LikeVO like);
+	
+	public int delCommLike(LikeVO like);
+
+	public int commLikeUp(LikeVO like);
+
 }

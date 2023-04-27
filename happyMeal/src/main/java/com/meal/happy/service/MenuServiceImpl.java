@@ -26,5 +26,16 @@ public class MenuServiceImpl implements MenuService {
 		return dao.pageSelect(vo);
 	}
 
+	@Override
+	public void menuHitCount(int amenu_type_no, int amenu_name) {
+		dao.menuHitCount(amenu_type_no, amenu_name);
+	}
+
+	@Override
+	public List<MenuDTO> menuSelect(int amenu_type_no, int amenu_name) {
+		return dao.menuSelect(amenu_type_no, amenu_name);
+	}
+
+
 
 }

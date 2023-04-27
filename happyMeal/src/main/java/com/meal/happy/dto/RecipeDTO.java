@@ -1,10 +1,13 @@
 package com.meal.happy.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class RecipeDTO {
 	private int recipe_no;
 	private String userid;
 	private String username;
-	private String recipe_thumbnail;
+	private String  recipe_thumbnail;
+	private MultipartFile  recipe_thumbnail2;
 	private String recipe_name;
 	private String recipe_date;
 	private int recipe_like;
@@ -33,7 +36,7 @@ public class RecipeDTO {
 	private String recipe_parts;
 	private String recipe_type;
 	private String recipe_way;
-	
+
 	@Override
 	public String toString() {
 		return "RecipeDTO [recipe_no=" + recipe_no + ", userid=" + userid + ", username=" + username
@@ -50,7 +53,7 @@ public class RecipeDTO {
 				+ ", recipe_manual_tip=" + recipe_manual_tip + ", recipe_parts=" + recipe_parts + ", recipe_type="
 				+ recipe_type + ", recipe_way=" + recipe_way + "]";
 	}
-	
+
 	public int getRecipe_no() {
 		return recipe_no;
 	}
@@ -69,12 +72,24 @@ public class RecipeDTO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+
 	public String getRecipe_thumbnail() {
 		return recipe_thumbnail;
 	}
+
 	public void setRecipe_thumbnail(String recipe_thumbnail) {
 		this.recipe_thumbnail = recipe_thumbnail;
 	}
+
+	public MultipartFile getRecipe_thumbnail2() {
+		return recipe_thumbnail2;
+	}
+
+	public void setRecipe_thumbnail2(MultipartFile recipe_thumbnail2) {
+		this.recipe_thumbnail2 = recipe_thumbnail2;
+	}
+
 	public String getRecipe_name() {
 		return recipe_name;
 	}
@@ -244,4 +259,6 @@ public class RecipeDTO {
 		this.recipe_way = recipe_way;
 	}
 	
+	
+
 }
