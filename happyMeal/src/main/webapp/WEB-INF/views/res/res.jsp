@@ -14,6 +14,10 @@
 		width:30%;
 		background-color:#E3F8FF;
 	}
+	.searchDiv{
+		float:right;
+		padding-top:20px;
+	}
 
 	.justify-content-center {
 	    justify-content: center!important;
@@ -52,8 +56,26 @@
 	    font-size: 12px;
 	}
 	
+	.thumbnail{
+		width:320px;
+		height:180px;
+	}
+	
+	
 	
 </style>
+<script>
+	/* 검색어 미입력 상태에서 검색을 진행할 때 발생하는 함수 */
+	$(function(){
+		$("#searchForm").submit(function(){
+			if($("#searchWord").val()==""){
+				alert("검색에를 입력하세요...");
+				return false;
+			}
+			return true;
+		});
+	});
+</script>
 
 <!-- banner -->
 <div class= "banner">
@@ -61,13 +83,33 @@
 </div>
 
 <div class="resContainer">
-	<!-- 식당리스트 -->
 	<div class="resList">
-		<!-- 소제목 -->
-		<div class="row animate-box">
-			<h1 class="title" style="display: inline; font-size: 40px">&nbsp식당&nbsp&nbsp</h1>
+		<div class="titleWrap">
+			<div class="searchDiv">
+				<form method="get" id="searchForm" action="res">
+					<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
+						<option value="res_name">식당이름 </option>
+						<option value="res_addr">주소 </option>
+					</select>
+				
+					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
+					<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
+				</form>
+				
+			</div>
+			<!-- 소제목 -->
+			<div class="row animate-box">
+				<h1 class="title" style="display: inline; font-size: 40px">&nbsp식당&nbsp&nbsp</h1>
+			</div>
 		</div>
+			<div class="btn-group" role="group" aria-label="Basic outlined example">
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res'">전체</button>
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=채식음식점'">채식</button>
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=채식가능음식점'">채식가능</button>
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=저염실천음식점'">저염</button>
+			</div>
 		
+		<!-- 식당리스트 -->
 		<div>
 			<ul class="res" style="overflow: hidden; padding-left: 0;">
 				<div id="fh5co-staff">
@@ -91,6 +133,10 @@
 					</div>
 				</div>
 			</ul>
+		</div>
+		
+		<div class="updateRequest">
+			<button class="btn btn-primary" onclick="location.href='resUpdateReq'">업데이트요청</button>
 		</div>
 		
 		<!-- 페이지네이션 부트스트랩 -->
@@ -148,10 +194,43 @@
 		<div id="map" style="width:100%;height:450px;"></div>
 		<!-- 베스트 맛집 -->
 		<div class="resBest">
-			<ul>
+			<ul>		
 				<li>
-					
+					<a href="res?searchKey=res_type&searchWord=채식음식점">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
+						<span>채식 맛집 TOP10</span>
+					</a>
 				</li>
+				<li>	
+					<a href="res?searchKey=res_type&searchWord=저염실천음식점">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
+						<span>저염식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>
+					<a href="res?searchKey=res_type&searchWord=채식음식점">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
+						<span>채식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>	
+					<a href="res?searchKey=res_type&searchWord=저염실천음식점">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
+						<span>저염식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>
+					<a href="res?searchKey=res_type&searchWord=채식음식점">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
+						<span>채식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>	
+					<a href="res?searchKey=res_type&searchWord=저염실천음식점">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
+						<span>저염식 맛집 TOP10</span>
+					</a>
+				</li>	
 			</ul>
 		</div>
 	</div>

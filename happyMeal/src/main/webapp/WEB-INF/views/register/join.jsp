@@ -203,10 +203,10 @@
 	    <div class="input-box2 genderCheck">
 	    	<span>성별</span>
 		    <div class="form-check form-check-inline">
-			  여<input type="radio" class="form-check-input" name="gender" value="F" checked>
+			  여<input type="radio" class="form-check-input" name="gender" value="여성" checked>
 			</div>
 			<div class="form-check form-check-inline">
-			  남<input type="radio" class="form-check-input" name="gender" value="M">
+			  남<input type="radio" class="form-check-input" name="gender" value="남성">
 			</div>
 	    </div>
 	    

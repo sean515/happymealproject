@@ -18,6 +18,8 @@ public class ResDTO {
 	private String res_date;
 	private String res_category;
 	private int res_status;
+	private String userid;
+	private String username;
 	
 	@Override
 	public String toString() {
@@ -25,7 +27,7 @@ public class ResDTO {
 				+ res_latitude + ", res_longitude=" + res_longitude + ", res_tel=" + res_tel + ", res_type=" + res_type
 				+ ", res_time=" + res_time + ", res_note=" + res_note + ", res_like=" + res_like + ", res_hit="
 				+ res_hit + ", res_image=" + res_image + ", ip=" + ip + ", res_date=" + res_date + ", res_category="
-				+ res_category + ", res_status=" + res_status + "]";
+				+ res_category + ", res_status=" + res_status + ", userid=" + userid + ", username=" + username + "]";
 	}
 
 	public int getRes_no() {
@@ -154,6 +156,22 @@ public class ResDTO {
 
 	public void setRes_status(int res_status) {
 		this.res_status = res_status;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

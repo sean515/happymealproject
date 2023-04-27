@@ -13,6 +13,7 @@
 			(select * from
 				(select res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time,  
 				res_note, res_like, res_hit, res_image, res_date, res_category, res_status from restaurant
+				where res_status=1
 		 		<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 		 			and ${searchKey} like '%${searchWord}%' 
 		 		</if>
@@ -39,12 +40,23 @@
 	
 	<select id="resSelect" resultType="com.meal.happy.dto.ResDTO">
 		select res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time, res_note,  
-		res_like, res_hit, res_image, to_char(res_date, 'yy-MM-DD') res_date, res_category, res_status from restaurant where res_no=${param1}
+		res_like, res_hit, res_image, to_char(res_date, 'yy-MM-DD') res_date, res_category, res_status  
+		from restaurant where res_no=${param1}
 	</select>
 	
 	<update id="resHitCount">
 		update restaurant set res_hit=res_hit+1 where res_no=${param1}
 	</update>
+	
+	<insert id="resEditInsert">
+		insert into res_edit(res_edit_no, res_no, userid, res_edit_type, res_edit_text)  
+		values(res_edit_sq.nextval, #{res_no}, #{userid}, #{res_edit_type}, #{res_edit_text})
+	</insert>
+	
+	<insert id="resReqInsert">
+		insert into restaurant(res_no, res_name, res_addr, res_latitude, res_longitude, res_type, res_note, ip, res_status, userid) 
+		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_type}, #{res_note}, #{ip}, #{res_status}, #{userid})
+	</insert>
 
 </mapper>
   

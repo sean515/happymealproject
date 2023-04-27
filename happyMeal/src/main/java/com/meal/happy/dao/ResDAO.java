@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.ResDTO;
+import com.meal.happy.dto.ResEditDTO;
 
 public interface ResDAO {
 	
@@ -15,4 +16,8 @@ public interface ResDAO {
 	public ResDTO resSelect (int res_no);
 	//조회수 증가
 	public void resHitCount(int res_no);
+	//정보수정 요청
+	public int resEditInsert(ResEditDTO dto);
+	//식당추가 요청
+	public int resReqInsert(ResDTO dto);
 }
