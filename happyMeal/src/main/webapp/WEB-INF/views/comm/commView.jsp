@@ -47,6 +47,84 @@
 	}
 	
 	$(function(){
+		//ajax로 좋아요 상태 확인
+		function count_comment_hit(){
+			$.ajax({
+				url:"/happy/commlike",
+				data:{userid:'${dto.userid}',
+					comm_no:${dto.comm_no}
+					},
+				type:"GET",
+				dataType:"json",
+
+				success:function(comment){	
+
+					$(comment).each(function(i, lDTO){
+						if(lDTO.result>0){
+							console.log("112345");
+							$('.LikeBtn').attr('src', 'img/heart.PNG');
+
+						}
+						else{
+							$('.LikeBtn').attr('src', 'img/grayheart.PNG');
+						}
+						
+					});
+				
+			},error:function(e){
+				console.log(e.responseText)
+				console.log("test")
+			}
+		});
+	}
+	
+		$('.LikeBtn').click(function() {
+			  // 버튼의 현재 값이 "좋아요"인 경우
+			  if ($(this).attr('src') === "img/heart.PNG") {
+			    // AJAX 요청을 보내서 서버에 좋아요를 추가하는 로직 구현
+			    $.ajax({
+			      method: "GET",
+			      url: "/happy/delcommlike", // 좋아요 취소
+			      data: { 
+			    	  userid:'${dto.userid}',
+					comm_no:'${dto.comm_no}' 
+					},
+					type:"GET",
+					dataType:"json",
+			      success: function(response) {
+			        // 요청이 성공하면 버튼의 텍스트를 "좋아요 취소"로 변경
+			        $('.LikeBtn').attr('src', 'img/grayheart.PNG');
+			        alert('좋아요를 취소하였습니다.');
+			      },
+			      error: function(xhr, status, error) {
+			        // 요청이 실패한 경우 에러 핸들링 로직 구현
+			      }
+			    });
+			  } else { // 버튼의 현재 값이 "좋아요인 경우
+			    $.ajax({
+			      method: "GET",
+			      url: "/happy/commlikeup", 
+			      data: { userid:'${dto.userid}',
+						comm_no:'${dto.comm_no}'
+						}, 
+						type:"GET",
+						dataType:"json",
+			      success: function(response) {
+			    	  $('.LikeBtn').attr('src', 'img/heart.PNG');
+			        alert('좋아요를 선택하셨습니다');
+
+			      },
+			      error: function(xhr, status, error) {
+			        // 요청이 실패한 경우 에러 핸들링 로직 구현
+			      }
+			    });
+			  }
+		});
+	
+	count_comment_hit();
+	});//jquery
+	
+	$(function(){
 		//ajax로 전체 댓글 수 표시
 		function count_comment_hit(){
 			$.ajax({
@@ -262,6 +340,7 @@
 		</div>
 			<div style= "overflow: hidden">
 				<div style= "width: 30%; float: left; overflow: hidden">
+					<img src="" class="LikeBtn" style="width:12px"></img>
 					<li style="display: inline;">좋아요</li>
 					<li style="display: inline;">0</li>
 					<li style="display: inline;">댓글</li>

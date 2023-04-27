@@ -144,9 +144,9 @@
 	</select>
 	
 	<update id="recipeUpdate" parameterType="com.meal.happy.dto.RecipeDTO">
-		update recipe set recipe_name=#{recipe_name}, recipe_manual01=#{recipe_manual01} where recipe_no=${recipe_no} and userid=#{userid}
+		update recipe set recipe_parts=#{recipe_parts}, recipe_thumbnail=#{recipe_thumbnail}, recipe_name=#{recipe_name}, recipe_manual01=#{recipe_manual01} 
+		where recipe_no=${recipe_no} and userid=#{userid}
 	</update>
-    
     <delete id="recipeDelete">
 		delete from recipe where recipe_no=${recipe_no} and userid=#{userid}
 	</delete>

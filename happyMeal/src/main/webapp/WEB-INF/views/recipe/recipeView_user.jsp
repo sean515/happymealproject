@@ -248,7 +248,7 @@
 	</div>
 	
 	<div class="topBtns">
-		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+		<a href="recipe_user?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
 	</div>
 	
 	<div class="articleBox">
@@ -295,7 +295,7 @@
 			<div>
 				<ul>
 					<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
-					<li style="display: inline; font-size: 15px; position: relative; left:10px;"><a href="recipe?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b> 님의 게시글 더보기</a></li>
+					<li style="display: inline; font-size: 15px; position: relative; left:10px;"><a href="recipe_user?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b> 님의 게시글 더보기</a></li>
 				</ul>
 			</div>
 		
@@ -353,7 +353,7 @@
 	</div>
 	
 	<div class="topBtns">
-		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+		<a href="recipe_user?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
 	</div>
 	
 </div>

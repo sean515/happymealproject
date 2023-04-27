@@ -14,36 +14,52 @@
 	</select>
 	
 
-	<select id="pageSelect" resultType="com.meal.happy.dto.MenuDTO">
-		select * from
-			(select * from
-				(
-					select a.amenu_no, t.amenu_type_name, a.amenu_name, a.amenu_time , a.amenu_text
-					from amenu_type t, amenu a where t.amenu_type_no=a.amenu_type_no 
-					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
-						and ${searchKey} like '%${searchWord}%'  
-					</if>
-					
-					order by a.amenu_no desc
-				) 
-				
-				<![CDATA[
-				where rownum<=${onePageRecord*nowPage} order by amenu_no asc	
-				]]>
-				)
-				<choose>
-					<when test="nowPage!=totalPage">
-					<![CDATA[
-					where rownum <=${onePageRecord} order by amenu_no desc
-					]]>
-					</when>
-					<when test="nowPage==totalPage">
-					<![CDATA[
-					where rownum <=${lastPageRecord} order by amenu_no desc
-					]]>	
-					</when>
-				</choose>
+<select id="pageSelect" resultType="com.meal.happy.dto.MenuDTO">
+  select a.amenu_no,a.amenu_thumbnail , a.amenu_type_no, t.amenu_type_name, a.amenu_name, a.amenu_time , a.amenu_text
+  from amenu_type t, amenu a
+  where t.amenu_type_no=a.amenu_type_no 
+
+  <choose>
+    <when test="(amenu_type_no1 == null or amenu_type_no1.isEmpty())
+                 and (amenu_type_no2 == null or amenu_type_no2.isEmpty())
+                 and (amenu_type_no3 == null or amenu_type_no3.isEmpty())
+                 and (amenu_type_no4 == null or amenu_type_no4.isEmpty())
+                 and (amenu_type_no5 == null or amenu_type_no5.isEmpty())
+                 and (amenu_type_no6 == null or amenu_type_no6.isEmpty())">
+      and a.amenu_type_no like 1
+    </when>
+    <otherwise>
+      <if test="amenu_type_no1!=null and !amenu_type_no1.isEmpty()">
+        and a.amenu_type_no like '%${amenu_type_no1}%' 
+      </if>
+      <if test="amenu_type_no2!=null and !amenu_type_no2.isEmpty()">
+        and a.amenu_type_no like '%${amenu_type_no2}%'
+      </if>
+      <if test="amenu_type_no3!=null and !amenu_type_no3.isEmpty()">
+        and a.amenu_type_no like '%${amenu_type_no3}%'
+      </if>
+      <if test="amenu_type_no4!=null and !amenu_type_no4.isEmpty()">
+        and a.amenu_type_no like '%${amenu_type_no4}%'
+      </if>
+      <if test="amenu_type_no5!=null and !amenu_type_no5.isEmpty()">
+        and a.amenu_type_no like '%${amenu_type_no5}%'
+      </if>
+      <if test="amenu_type_no6!=null and !amenu_type_no6.isEmpty()">
+        and a.amenu_type_no like '%${amenu_type_no6}%'
+      </if>
+    </otherwise>
+  </choose>
+
+  order by a.amenu_name asc, a.amenu_time asc
+</select>
+	
+	<select id="menuSelect" resultType="com.meal.happy.dto.MenuDTO">
+		select amenu_no, amenu_type_no, amenu_name, amenu_time , amenu_text, amenu_hit
+		from amenu where amenu_type_no=${param1} and amenu_name=${param2}
 	</select>
 	
+	<update id ="menuHitCount">
+		update amenu set amenu_hit=amenu_hit+1 where amenu_type_no=${param1} and amenu_name=${param2}
+	</update>
 	
 	</mapper>

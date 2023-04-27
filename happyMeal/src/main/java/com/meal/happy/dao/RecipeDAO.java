@@ -2,8 +2,8 @@ package com.meal.happy.dao;
 
 import java.util.List;
 
-import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.RecipeDTO;
 
 public interface RecipeDAO {
 	//글등록

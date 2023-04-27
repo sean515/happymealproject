@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.CommDAO;
 import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 
 @Service
 public class CommServiceImpl implements CommService {
 	@Inject
 	CommDAO dao;
-	
+
 	@Override
 	public int commInsert(CommDTO dto) {
 		return dao.commInsert(dto);
@@ -58,6 +59,21 @@ public class CommServiceImpl implements CommService {
 	@Override
 	public int commMultiLineDelete(List<Integer> noList) {
 		return dao.commMultiLineDelete(noList);
+	}
+
+	@Override
+	public int findLike(LikeVO like) {
+		return dao.findLike(like);
+	}
+
+	@Override
+	public int delCommLike(LikeVO like) {
+		return dao.delCommLike(like);
+	}
+
+	@Override
+	public int commLikeUp(LikeVO like) {
+		return dao.commLikeUp(like);
 	}
 
 }

@@ -6,16 +6,21 @@ public class MenuDTO {
 	private Integer amenu_no;
 	private int amenu_type_no;
 	private int amenu_name;
+	private int amenu_hit;
 	private Integer amenu_time;
 	private String amenu_text;
 	private String amenu_textArr[];
 	private String amenu_type_name;
+	private String amenu_thumbnail;
 	
+
+
 	@Override
 	public String toString() {
 		return "MenuDTO [amenu_no=" + amenu_no + ", amenu_type_no=" + amenu_type_no + ", amenu_name=" + amenu_name
-				+ ", amenu_time=" + amenu_time + ", amenu_text=" + amenu_text + ", amenu_textArr="
-				+ Arrays.toString(amenu_textArr) + ", amenu_type_name=" + amenu_type_name + "]";
+				+ ", amenu_hit=" + amenu_hit + ", amenu_time=" + amenu_time + ", amenu_text=" + amenu_text
+				+ ", amenu_textArr=" + Arrays.toString(amenu_textArr) + ", amenu_type_name=" + amenu_type_name
+				+ ", amenu_thumbnail=" + amenu_thumbnail + "]";
 	}
 
 	public Integer getAmenu_no() {
@@ -73,14 +78,21 @@ public class MenuDTO {
 	public void setAmenu_type_name(String amenu_type_name) {
 		this.amenu_type_name = amenu_type_name;
 	}
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
+	public int getAmenu_hit() {
+		return amenu_hit;
+	}
+
+	public void setAmenu_hit(int amenu_hit) {
+		this.amenu_hit = amenu_hit;
+	}
+
+	public String getAmenu_thumbnail() {
+		return amenu_thumbnail;
+	}
+
+	public void setAmenu_thumbnail(String amenu_thumbnail) {
+		this.amenu_thumbnail = amenu_thumbnail;
+	}
+
 }

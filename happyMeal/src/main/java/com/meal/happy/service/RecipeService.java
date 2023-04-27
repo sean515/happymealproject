@@ -2,13 +2,13 @@ package com.meal.happy.service;
 
 import java.util.List;
 
-import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.RecipeDTO;
 
 
 
 public interface RecipeService {
-	
+
 	public int recipeInsert(RecipeDTO dto);
 	public int recipeTotalRecord(PagingVO vo);
 	public int recipeTotalRecord_user(PagingVO vo);

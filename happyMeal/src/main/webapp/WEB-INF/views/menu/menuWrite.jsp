@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+6<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
@@ -24,7 +24,7 @@
 	#file {
 	  display: none;
 	}
-	#recipe_thumbnail	{
+	#menu_thumbnail	{
 	  display: none;
 	  visibility:hidden
 	}
@@ -36,10 +36,10 @@
 		border: none;
 	}
 	
-	#recipeForm{
+	#menuForm{
 		margin-top:100px;
 	}
-	#recipeForm li{
+	#menuForm li{
 		padding:10px 0px;
 	}
 	#subject{
@@ -200,7 +200,7 @@
         });
 		
 		//폼의 유효성검사
-		$("#recipeForm").submit(function(){
+		$("#menuForm").submit(function(){
 			//제목 유효성
 			if($("#subject").val()==""){
 				alert("제목을 입력하세요");
@@ -220,17 +220,17 @@
 		    var reader = new FileReader();
 		    reader.onload = function(e) {
 		      document.getElementById('preview').src = e.target.result;
-		      document.getElementById('recipe_thumbnail').value = e.target.result;
+		      document.getElementById('menu_thumbnail').value = e.target.result;
 		    };
 		    reader.readAsDataURL(input.files[0]);
 		  } else {
 		    document.getElementById('preview').src = "";
-		    document.getElementById('recipe_thumbnail').value = "";
+		    document.getElementById('menu_thumbnail').value = "";
 		  }
 		}
 </script>
 <div class="container">
-	<form method="post" action="recipeWriteOk" id="recipeForm" enctype="multipart/form-data">  
+	<form method="post" action="menuWriteOk" id="menuForm" enctype="multipart/form-data">  
 		<ul>
 			<h1 style="display: inline;">레시피 등록</h1>
 			<hr style="height: 3px; background-color:black;"/>
@@ -238,15 +238,37 @@
 				<label for="file" style="width:250px">
 	  				<div class="btn-upload">메인 이미지 등록하기</div>
 				</label>
-				<input type="file" name="recipe_thumbnail2" id="file" onchange="readURL(this);">
+				<input type="file" name="menu_thumbnail2" id="file" onchange="readURL(this);">
 				<img id="preview"/>
 			</li>
 			<!-- <li><input type="text" name="recipe_thumbnail" id="recipe_thumbnail" /></li> -->
-			<li><input type="text" name="recipe_thumbnail" id="recipe_thumbnail" value="${dto.recipe_thumbnail }"/></li>
-			<li><input type="text" name="recipe_parts" id="recipe_parts" placeholder="재료를 입력하세요"/></li>
-			<li><input type="text" name="recipe_name" id="subject" placeholder="제목을 입력하세요"/></li>
+			<li><input type="text" name="menu_thumbnail" id="menu_thumbnail" value="${dto.menu_thumbnail }"/></li>
+			<li><input type="text" name="menu_title" id="subject" placeholder="제목을 입력하세요"/></li>
+			<div class="input-box2 genderCheck">
+	    	<span>항목</span>
+		    <div class="form-check form-check-inline">
+			  일반식<input type="radio" class="form-check-input" name="gender" value="일반식" checked>
+			</div>
+			<div class="form-check form-check-inline">
+			  당뇨식<input type="radio" class="form-check-input" name="gender" value="당뇨식">
+			</div>
+			<div class="form-check form-check-inline">
+			  연식<input type="radio" class="form-check-input" name="gender" value="연식">
+			</div>
+			<div class="form-check form-check-inline">
+			  저염식<input type="radio" class="form-check-input" name="gender" value="저염식">
+			</div>
+			<div class="form-check form-check-inline">
+			  저요오드식<input type="radio" class="form-check-input" name="gender" value="저요오드식">
+			</div>
+			<div class="form-check form-check-inline">
+			  항암식<input type="radio" class="form-check-input" name="gender" value="항암식">
+			</div>
+			
+			
+	    </div>
 			<li>
-				<textarea name="recipe_manual01" id="content"></textarea>
+				<textarea name="menu_text" id="content"></textarea>
 			</li>
 			<li>
 				<input type="submit" value="등록"/>
