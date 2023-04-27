@@ -3,14 +3,14 @@ package com.meal.happy.dto;
 public class PagingVO {
 	//페이징처리시 필요한 변수들
 	private int nowPage = 1; //현재페이지
-	private int onePageRecord = 12; //한페이지에 표시할 레코드 수 
-	private int totalRecord; //총레코드 수 
+	private int onePageRecord = 12; //한페이지에 표시할 레코드 수
+	private int totalRecord; //총레코드 수
 	private int totalPage; //총페이지수
-	private int lastPageRecord; //마지막 페이지에 남아있는 레코드 수 
-	
+	private int lastPageRecord; //마지막 페이지에 남아있는 레코드 수
+
 	private int onePageNumCount=5; //한페이지당 페이지 갯수
 	private int startPageNum=1;
-	
+
 	//검색에 필요한 변수들
 	private String searchKey;
 	private String searchWord;
@@ -24,8 +24,14 @@ public class PagingVO {
 	private String delparts3;
 	private String delparts4;
 	private String delparts5;
-	
-	
+	private String amenu_type_no1;
+	private String amenu_type_no2;
+	private String amenu_type_no3;
+	private String amenu_type_no4;
+	private String amenu_type_no5;
+	private String amenu_type_no6;
+
+
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
@@ -35,14 +41,14 @@ public class PagingVO {
 				+ ", parts5=" + parts5 + ", delparts1=" + delparts1 + ", delparts2=" + delparts2 + ", delparts3="
 				+ delparts3 + ", delparts4=" + delparts4 + ", delparts5=" + delparts5 + "]";
 	}
-	
+
 	public int getNowPage() {
 		return nowPage;
 	}
-	
+
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
-		
+
 		//출력할 페이지 시작번호를 계산
 		//((현재페이지-1)/표시할 페이지수)*표시할 페이지수+1
 		startPageNum =((nowPage-1)/onePageNumCount)*onePageNumCount+1;
@@ -58,10 +64,10 @@ public class PagingVO {
 	}
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
-		
+
 		//총레코드수를 이용하여 총페이지 수를 구하기
 		totalPage = (int)Math.ceil((double)totalRecord/onePageRecord);
-		
+
 		//마지막페이지에 남아 있는 레코드 수
 		lastPageRecord = onePageRecord;
 		if(nowPage==totalPage) {
@@ -70,7 +76,7 @@ public class PagingVO {
 			}else{//나머지가 있을 경우 남아있는 레코드수를 lastPageRecord
 					lastPageRecord = totalRecord%onePageRecord;
 			}
-		}	
+		}
 	}
 	public int getTotalPage() {
 		return totalPage;
@@ -197,7 +203,58 @@ public class PagingVO {
 
 	public void setDelparts5(String delparts5) {
 		this.delparts5 = delparts5;
-	}	
-	
+	}
+
+	public String getAmenu_type_no1() {
+		return amenu_type_no1;
+	}
+
+	public void setAmenu_type_no1(String amenu_type_no1) {
+		this.amenu_type_no1 = amenu_type_no1;
+	}
+
+	public String getAmenu_type_no2() {
+		return amenu_type_no2;
+	}
+
+	public void setAmenu_type_no2(String amenu_type_no2) {
+		this.amenu_type_no2 = amenu_type_no2;
+	}
+
+	public String getAmenu_type_no3() {
+		return amenu_type_no3;
+	}
+
+	public void setAmenu_type_no3(String amenu_type_no3) {
+		this.amenu_type_no3 = amenu_type_no3;
+	}
+
+	public String getAmenu_type_no4() {
+		return amenu_type_no4;
+	}
+
+	public void setAmenu_type_no4(String amenu_type_no4) {
+		this.amenu_type_no4 = amenu_type_no4;
+	}
+
+	public String getAmenu_type_no5() {
+		return amenu_type_no5;
+	}
+
+	public void setAmenu_type_no5(String amenu_type_no5) {
+		this.amenu_type_no5 = amenu_type_no5;
+	}
+
+	public String getAmenu_type_no6() {
+		return amenu_type_no6;
+	}
+
+	public void setAmenu_type_no6(String amenu_type_no6) {
+		this.amenu_type_no6 = amenu_type_no6;
+	}
+
+
+
+
 	
 }
