@@ -1,11 +1,13 @@
 package com.meal.happy.dto;
 
+
 public class ResDTO {
 	private int res_no;
 	private String res_name;
 	private String res_addr;
+	private double res_latitude;
+	private double res_longitude;
 	private String res_tel;
-	private String res_category;
 	private String res_type;
 	private String res_time;
 	private String res_note;
@@ -14,14 +16,18 @@ public class ResDTO {
 	private String res_image;
 	private String ip;
 	private String res_date;
+	private String res_category;
 	private int res_status;
+	private String userid;
+	private String username;
 	
 	@Override
 	public String toString() {
-		return "ResDTO [res_no=" + res_no + ", res_name=" + res_name + ", res_addr=" + res_addr + ", res_tel=" + res_tel
-				+ ", res_category=" + res_category + ", res_type=" + res_type + ", res_time=" + res_time + ", res_note="
-				+ res_note + ", res_like=" + res_like + ", res_hit=" + res_hit + ", res_image=" + res_image + ", ip="
-				+ ip + ", res_date=" + res_date + ", res_status=" + res_status + "]";
+		return "ResDTO [res_no=" + res_no + ", res_name=" + res_name + ", res_addr=" + res_addr + ", res_latitude="
+				+ res_latitude + ", res_longitude=" + res_longitude + ", res_tel=" + res_tel + ", res_type=" + res_type
+				+ ", res_time=" + res_time + ", res_note=" + res_note + ", res_like=" + res_like + ", res_hit="
+				+ res_hit + ", res_image=" + res_image + ", ip=" + ip + ", res_date=" + res_date + ", res_category="
+				+ res_category + ", res_status=" + res_status + ", userid=" + userid + ", username=" + username + "]";
 	}
 
 	public int getRes_no() {
@@ -48,20 +54,28 @@ public class ResDTO {
 		this.res_addr = res_addr;
 	}
 
+	public double getRes_latitude() {
+		return res_latitude;
+	}
+
+	public void setRes_latitude(double res_latitude) {
+		this.res_latitude = res_latitude;
+	}
+
+	public double getRes_longitude() {
+		return res_longitude;
+	}
+
+	public void setRes_longitude(double res_longitude) {
+		this.res_longitude = res_longitude;
+	}
+
 	public String getRes_tel() {
 		return res_tel;
 	}
 
 	public void setRes_tel(String res_tel) {
 		this.res_tel = res_tel;
-	}
-
-	public String getRes_category() {
-		return res_category;
-	}
-
-	public void setRes_category(String res_category) {
-		this.res_category = res_category;
 	}
 
 	public String getRes_type() {
@@ -128,12 +142,36 @@ public class ResDTO {
 		this.res_date = res_date;
 	}
 
+	public String getRes_category() {
+		return res_category;
+	}
+
+	public void setRes_category(String res_category) {
+		this.res_category = res_category;
+	}
+
 	public int getRes_status() {
 		return res_status;
 	}
 
 	public void setRes_status(int res_status) {
 		this.res_status = res_status;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

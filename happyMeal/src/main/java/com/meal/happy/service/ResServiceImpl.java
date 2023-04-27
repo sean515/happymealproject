@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.meal.happy.dao.ResDAO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.ResDTO;
+import com.meal.happy.dto.ResEditDTO;
 
 @Service
 public class ResServiceImpl implements ResService {
@@ -24,6 +25,28 @@ public class ResServiceImpl implements ResService {
 	public List<ResDTO> resPageSelect(PagingVO vo) {
 		return dao.resPageSelect(vo);
 	}
+
+	@Override
+	public void resHitCount(int res_no) {
+		dao.resHitCount(res_no);
+	}
+
+	@Override
+	public ResDTO resSelect(int res_no) {
+		return dao.resSelect(res_no);
+	}
+
+	@Override
+	public int resEditInsert(ResEditDTO dto) {
+		return dao.resEditInsert(dto);
+	}
+
+	@Override
+	public int resReqInsert(ResDTO dto) {
+		return dao.resReqInsert(dto);
+	}
+
+
 
 	
 }

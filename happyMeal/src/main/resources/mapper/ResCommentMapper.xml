@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meal.happy.dao.ResCommentDAO">
+	
+	<insert id="resCommentInsert">
+		insert into res_comment(res_comment_no, res_no, userid, res_comment_text, res_star, ip) 
+		values(res_comment_sq.nextval, #{res_no}, #{userid}, #{res_comment_text}, #{res_star}, #{ip}) 
+	</insert>
+	
+	<select id="resCommentListSelect" resultType="com.meal.happy.dto.ResCommentDTO">
+  		select res_comment_no, res_no, userid, res_comment_text, res_star, res_comment_date 
+  		from res_comment where res_no=${param1} 
+  		order by res_comment_no desc
+  	</select>
+	
+	<update id="resCommentUpdate">
+		update res_comment set res_comment_text=#{res_comment_text}, res_star=#{res_star} 
+		where res_comment_no=#{res_comment_no} and userid=#{userid}
+	</update>
+	
+	<delete id="resCommentDel">
+		delete from res_comment where res_comment_no=${param1} and userid=#{param2}
+	</delete>
+	
+	<select id="resCommentCount" resultType="int">
+		select count(*) resCommentCount from res_comment where res_no=${res_no}
+	</select>
+	
+</mapper>
