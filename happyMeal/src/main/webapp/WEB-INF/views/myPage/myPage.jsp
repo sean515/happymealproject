@@ -102,7 +102,6 @@
 				이메일: ${dto.email}<br/>&emsp;&emsp;&emsp;
 				질병: ${dto.disease}<br/><br/>&emsp;&emsp;&emsp;
 				<div class="ft tbox">
-					<a href="/happy/myPage/checkBmi">BMI 계산하러 가기</a>
 					<a href="/happy/myPage/checkPassword" >개인정보 수정</a><br/><br/>
 				</div>
 			</li>
@@ -110,6 +109,22 @@
 		</ul>
 	</form>
 </div>
+
+	<div>
+	<ul>
+		<c:if test="${dto.bmi ne 0.0}">
+			<li>BMI: ${dto.bmi}</li>
+			<li>비만도: ${dto.standardBmi}</li>
+			<li>하루 권장 섭취 칼로리: ${dto.kal}</li>
+			<li><a href="/happy/myPage/checkBmi">BMI 수정하기</a></li>
+		</c:if>
+		<c:if test="${dto.bmi eq 0.0}">
+			<li><a href="/happy/myPage/checkBmi">BMI 계산하러 가기</a></li>
+		</c:if>
+	</ul>
+</div>
+
+
 
 <div class="container">
 	<br/><br/><h3>즐겨찾기</h3><hr class="hr1">

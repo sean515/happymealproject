@@ -40,5 +40,5 @@ public interface RegisterDAO {
 	public SupDTO selectSup (String userid);
 	
 	//bmi 계산 후 DB update
-	public void updateBMI(String userid, double bmi);
+	public void updateBMIAndKal(String userid, double bmi, double kal, String standardBmi);
 }

@@ -1,9 +1,16 @@
 package com.meal.happy.controller;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sound.sampled.AudioSystem;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +48,7 @@ public class myPageController {
 		mav.addObject("rdto", rdto);
 		mav.addObject("sdto", sdto);
 		mav.addObject("co_codto", co_codto);
-		
+	    
 		System.out.println(mav);
 		mav.setViewName("myPage/myPage");
 		return mav;
@@ -55,6 +62,7 @@ public class myPageController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("myPage/registerEdit");
+		
 		return mav;
 	}
 
@@ -158,20 +166,96 @@ public class myPageController {
 		return "myPage/checkBmi";
 	}
 	
-	//bmi 계산기
-	@RequestMapping(value="/myPage/bmicheck", method=RequestMethod.POST)
-	public String calculateBMI(int height, int weight, HttpSession session) {
-		System.out.println(1234);
+	@RequestMapping(value="/myPage/bmicheck", method={RequestMethod.POST, RequestMethod.GET} )
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> calculateBMI(int height, int weight, double exercise, HttpSession session) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		RegisterDTO dto = service.myPage((String) session.getAttribute("logId")); //세션에서 유저 아이디가져오기
+		String userid = dto.getUserid();
+		String username = dto.getUsername();
+		String gender = dto.getGender();
+		String Age = dto.getAge();
+
+		String birthYear = Age.substring(0, 2); // 생년 (97)
+		String birthMonth = Age.substring(3, 5); // 생월 (02)
+		String birthDay = Age.substring(6, 8); // 생일 (14)
+
+		int currentYear = LocalDate.now().getYear(); // 현재년도 (2023)
+		int currentMonth = LocalDate.now().getMonthValue(); // 현재월 (4)
+		int currentDay = LocalDate.now().getDayOfMonth(); // 현재일 (22)
+
+		int age = currentYear - (Integer.parseInt(birthYear) + 1900) - 1;
+		if (currentMonth > Integer.parseInt(birthMonth)) {
+		    age++;
+		} else if (currentMonth == Integer.parseInt(birthMonth) && currentDay >= Integer.parseInt(birthDay)) {
+		    age++;
+		}
+
+		System.out.println("age="+age);
+		
+		
+		System.out.println(exercise);
 	    if (height <= 0 || weight <= 0) { // 키나 몸무게가 0 이하일 경우
-	        return "N";
+	    	resultMap.put("error", "N");
+
+	    	return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.BAD_REQUEST);
 	    }
-	    String userid = (String) session.getAttribute("logId"); // 세션에서 사용자 아이디 가져오기
-	    System.out.println(5678);
-	    System.out.println(height+weight);
 	    double bmi = weight / ((height / 100.0) * (height / 100.0)); // BMI 계산
-	    System.out.println(userid+bmi);
-	    service.updateBMI(userid, bmi); // 사용자 정보 업데이트
-	    System.out.println(userid+"bmi2"+bmi);
-	    return String.format("%.2f", bmi); // 소수점 이하 둘째 자리까지 출력
+	    
+	    String standardBmi;
+	    if (bmi < 18.5) {
+	    	standardBmi = "저체중";
+	    } else if (bmi < 23) {
+	    	standardBmi = "정상체중";
+	    } else if (bmi < 25) {
+	    	standardBmi = "과체중";
+	    } else if (bmi < 30) {
+	    	standardBmi = "경도비만";
+	    } else if (bmi < 35) {
+	    	standardBmi = "중등도비만";
+	    } else {
+	    	standardBmi = "고도비만";
+	    }
+
+	    double kal = 0.0;
+	    System.out.println("gender"+gender);
+	    if(gender.equals("여성")) {
+	        kal = (665.1 + (9.56 * weight) + (1.85 * height) - (4.68 * age))*exercise;
+	    } else if(gender.equals("남성")) {
+	        kal = (66.47 + (13.75 * weight) + (5 * height) - (6.76 * age))*exercise;
+	    } else {    
+	        resultMap.put("error", "N");
+
+	        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.BAD_REQUEST);
+	    }
+	    
+	    service.updateBMIAndKal(userid, bmi, kal, standardBmi);
+	    
+	    resultMap.put("username", username);
+	    System.out.println(username);
+	    resultMap.put("bmi", String.format("%.2f", bmi));
+	    resultMap.put("standardBmi", standardBmi);
+	    resultMap.put("kal", String.format("%.2f", kal));
+	    
+	    // myPage 컨트롤러에서 다시 해당 사용자 정보를 조회하여 dto 객체에 반영
+	    dto = service.myPage((String) session.getAttribute("logId"));
+
+	    // dto 객체를 ModelAndView에 추가하여 myPage 뷰에서 사용할 수 있도록 함
+	    ModelAndView mav=new ModelAndView();
+	    mav.addObject("dto", dto);
+	    
+	    dto.setKal(kal);
+	    dto.setBmi(bmi);
+	    dto.setStandardBmi(standardBmi);
+	    
+	    
+	    
+	    System.out.println(dto.toString());
+	    myPage(session);
+	    
+	    return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 	}
+	
 }

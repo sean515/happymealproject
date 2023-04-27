@@ -81,18 +81,10 @@ public class myPageServiceImpl implements myPageService {
 	}
 
 	@Override
-	public void updateBMI(String userid, double bmi) {
-		dao.updateBMI(userid, bmi);
+	public void updateBMIAndKal(String userid, double bmi, double kal, String standardBmi) {
+		dao.updateBMIAndKal(userid, bmi, kal, standardBmi);
 	}
 
-	
 
-	
-
-	
-
-	
-	
-	
 
 }

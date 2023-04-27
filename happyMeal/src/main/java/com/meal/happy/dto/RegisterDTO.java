@@ -16,14 +16,17 @@ public class RegisterDTO {
 	private String joindate;
 	private int admin;
 	private double bmi;
+	private double kal;
+	private String standardBmi;
 	
 	@Override
 	public String toString() {
 		return "RegisterDTO [userid=" + userid + ", usernum=" + usernum + ", userpwd=" + userpwd + ", username="
 				+ username + ", nickname=" + nickname + ", age=" + age + ", email=" + email + ", gender=" + gender
 				+ ", disease=" + disease + ", diseaseArr=" + Arrays.toString(diseaseArr) + ", joindate=" + joindate
-				+ ", admin=" + admin + "]";
+				+ ", admin=" + admin + ", bmi=" + bmi + ", kal=" + kal + ", standardBmi=" + standardBmi + "]";
 	}
+	
 	public String getUserid() {
 		return userid;
 	}
@@ -109,6 +112,22 @@ public class RegisterDTO {
 	public void setBmi(double bmi) {
 		this.bmi = bmi;
 	}
+	public double getKal() {
+		return kal;
+	}
+	public void setKal(double kal) {
+		this.kal = kal;
+	}
+
+	public String getStandardBmi() {
+		return standardBmi;
+	}
+
+	public void setStandardBmi(String standardBmi) {
+		this.standardBmi = standardBmi;
+	}
+	
+	
 	
 }
 	

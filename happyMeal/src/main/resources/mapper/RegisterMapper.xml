@@ -15,7 +15,7 @@
 		values (#{userid},usernum_sq.nextval, #{userpwd}, #{username}, #{age}, #{gender}, #{nickname}, #{email}, #{disease})
 	</insert>
 	<select id="myPage" resultType="com.meal.happy.dto.RegisterDTO">
-		select userid, username, nickname, to_char(age, 'yy-MM-DD') age, email, gender, disease from member 
+		select userid, username, nickname, to_char(age, 'yy-MM-DD') age, email, gender, disease, bmi, kal, standardBmi from member 
 		where userid=#{param1}
 	</select>
 	<select id="checkPasswordOk" resultType="com.meal.happy.dto.RegisterDTO">
@@ -66,9 +66,9 @@
 		update member set userpwd=#{userpwd} where userid=#{userid}
 	</update>
 	
-	<update id="updateBMI">
-	    UPDATE member SET bmi = #{param2}
-	    WHERE userid = #{param1} AND bmi != #{param2}
+	<update id="updateBMIAndKal">
+    UPDATE member SET bmi = #{param2}, kal = #{param3}, standardBmi=#{param4}
+    WHERE userid = #{param1} AND (bmi != #{param2} OR kal != #{param3})
 	</update>
 	
 </mapper>

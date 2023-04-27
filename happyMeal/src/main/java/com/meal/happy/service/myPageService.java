@@ -23,5 +23,5 @@ public interface myPageService {
 	public SupDTO selectSup (String userid);
 	
 	//bmi
-	public void updateBMI(String userid, double bmi);
+	public void updateBMIAndKal(String userid, double bmi, double kal, String standardBmi);
 }

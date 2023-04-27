@@ -36,7 +36,8 @@
   		font-size:14pt;
   		top:15px;
 	}
-	input:focus + label, label{
+	
+	.input-box > input:focus + label,.input-box > label{
 	    color:#8aa1a1;
 	    font-size:10pt;
 	    pointer-events: none;
@@ -96,7 +97,7 @@
         left: 50%;
 
         width: 400px;
-        height: 250px;
+        height: 300px;
 
         padding: 40px;
 
@@ -124,29 +125,40 @@ $(function(){
             alert("몸무게를 입력하세요..");
             return false;
         }
+        if(!$("input[name='exercise']:checked").val()) {
+            alert('운동량을 선택해주세요.');
+            return false;
+        }
         
         
         var url = 'bmicheck';
-        var height=$("#userheight").val()
-        var weight=$("#userweight").val()
+        var height=$("#userheight").val();
+        var weight=$("#userweight").val();
+        var exercise = $('input[name="exercise"]:checked').val();
 
         
         
         $.ajax({
             url: url,
-            data:{"height":height, "weight":weight},
+            data:{"height":height, "weight":weight, "exercise": exercise},
             type: 'POST',
+            dataType: 'json',
             success: function(result){
-                if(result=='N'){
+                if(result.error){
                     alert("존재하지 않는 정보입니다.");
-                }else{
-                    alert("계산된 BMI 값: " + result);
+                    console.log(result.error);
+                } else {
+                    var data = result;
+                    $("#bmi_value").html(data.username+"님의 BMI지수는 "+data.bmi+" 으로 <br>"+data.standardBmi+" 입니다.<br>하루 권장 섭취 칼로리는 "+data.kal+" 입니다.");
+                    console.log("BMI: "+data.bmi);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown){
                 alert("Error: " + errorThrown);
             }
         });
+        
+        
     });
 });
 	
@@ -162,13 +174,34 @@ $(function(){
 			
 			<div class="input-box">
 	        	<input type="text" name="userheight" id="userheight" placeholder="키"/>
-	            <label for="userheight">키</label>
+	            <label id="userheightlabel"for="userheight">키</label>
 	        </div>
 		        
 	        <div class="input-box">
 	            <input type="text" name="userweight" id="userweight" placeholder="몸무게"/>
-	            <label for="userweight">몸무게</label>
+	            <label id="userweightlabel" for="userweight">몸무게</label>
 	        </div>
+	        
+	        <div class="form-check form">
+			  <input class="form-check-input" type="radio" name="exercise" id="exercise1" value=1.2>
+			  <label class="form-check-label" for="exercise1">거의 운동하지 않음</label>
+			</div>
+			<div class="form-check form">
+			  <input class="form-check-input" type="radio" name="exercise" id="exercise2" value=1.375>
+			  <label class="form-check-label" for="exercise2">가벼운 운동(주 1~3일)</label>
+			</div>
+			<div class="form-check form">
+			  <input class="form-check-input" type="radio" name="exercise" id="exercise3" value=1.55>
+			  <label class="form-check-label" for="exercise3">보통(주 3~5일)</label>
+			</div>	
+			<div class="form-check form">
+			  <input class="form-check-input" type="radio" name="exercise" id="exercise4" value=1.725>
+			  <label class="form-check-label" for="exercise4">적극적으로 운동(주 6~7일)</label>
+			</div>	
+			<div class="form-check form">
+			  <input class="form-check-input" type="radio" name="exercise" id="exercise5" value=1.9>
+			  <label class="form-check-label" for="exercise5">매우 적극적으로 운동(매일)</label>
+			</div>
 
 			<div class="modal">
 		    	<div class="modal-content modal_body">
@@ -180,7 +213,7 @@ $(function(){
 				    	
 				    </div>
 				    <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" onclick="location.href=''">BMI 계산하기</button>
+				        <button type="button" class="btn btn-primary" onclick="location.href=''">BMI 다시 계산하기</button>
 				    </div>
 				</div>
 		    </div>
