@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.meal.happy.dto.MenuUserDTO;
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.RecipeDTO;
 
 
 public interface MenuUserDAO {
@@ -17,5 +18,8 @@ public interface MenuUserDAO {
 	public MenuUserDTO menuSelect(int menu_no);
 	//조회수 증가
 	public void menuHitCount(int menu_no);
+	//글 삭제
+	public int menuDelete(MenuUserDTO dto);
+
 }
 

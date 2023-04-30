@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -107,4 +108,28 @@ public class MenuUserController {
 
 		return mav;
 	}
+	
+	//삭제
+		@GetMapping("/menuDel")
+		public ModelAndView menuDel(MenuUserDTO dto, PagingVO vo, HttpSession session) {
+			dto.setUserid((String)session.getAttribute("logId"));
+
+			int result = service.menuDelete(dto);
+
+			ModelAndView mav = new ModelAndView();
+
+			mav.addObject("nowPage", vo.getNowPage());
+			if(vo.getSearchWord()!=null) {//검색어 있을때
+				mav.addObject("searchKey", vo.getSearchKey());
+				mav.addObject("searchWord", vo.getSearchWord());
+			}
+			if(result>0) {//삭제시 리스트로 이동
+				mav.setViewName("redirect:menu_user");
+			}else {//삭제실패시 글내용보기로 이동
+				mav.addObject("recipe_no", dto.getMenu_no());
+				mav.setViewName("redirect:menuView_user");
+
+			}
+			return mav;
+		}
 }

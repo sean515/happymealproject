@@ -2,8 +2,11 @@ package com.meal.happy.dao;
 
 import java.util.List;
 
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
+import com.meal.happy.dto.RegisterDTO;
 
 public interface RecipeDAO {
 	//글등록
@@ -24,4 +27,11 @@ public interface RecipeDAO {
 	public void recipeHitCount(int recipe_no);
 	//글 삭제
 	public int recipeDelete(RecipeDTO dto);
+	
+	public RegisterDTO myInfo(String userid);
+	//좋아요 상태
+	public int findLike(LikeVO like);
+	public int delRecipeLike(LikeVO like);
+	public int recipeLikeUp(LikeVO like);
+	public int count_like_hit(LikeVO dto);
 }

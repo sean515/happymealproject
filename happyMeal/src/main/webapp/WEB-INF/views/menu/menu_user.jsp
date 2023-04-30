@@ -86,7 +86,6 @@
 											<p></p>
 											<p>${MenuUserDTO.menu_title}</p>
 											<p>${MenuUserDTO.menu_text}</p>
-											<p>${MenuUserDTO.menu_thumbnail}</p>
 										</div>
 									</div>
 								</div>

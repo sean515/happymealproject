@@ -4,11 +4,106 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <style>
+
+</style>
+
+<style>
+.input-box{
+  		position:relative;
+  		margin:10px 0;
+  		display: inline-block;
+  		
+	}
+.input-box > input{
+  		background:transparent;
+  		border:none;
+  		border-bottom: solid 1px #ccc;
+  		padding:20px 0px 5px 0px;
+  		font-size:14pt;
+  		width:40%;
+	}
+ input::placeholder{
+		color:transparent;
+	}
+
+/* input.test:placeholder-shown + label{
+  		color:#aaa;
+  		font-size:14pt;
+  		top:15px;
+	}
+
+input.test:focus+ label{
+	  color:#8aa1a1;
+	  font-size:10pt;
+	  pointer-events: none;
+	  position: absolute;
+	  left:0px;
+	  top:0px;
+	  transition: all 0.2s ease ;
+	  -webkit-transition: all 0.2s ease;
+	  -moz-transition: all 0.2s ease;
+	  -o-transition: all 0.2s ease;
+
+	}
+
+input.test:focus, input:not(:placeholder-shown){
+	  border-bottom: solid 1px #8aa1a1;
+	  outline:none;
+	} */
+	
+	input.test[type=submit]{
+		background-color: #8aa1a1;
+		border:none;
+		color:white;
+		border-radius: 5px;
+		width:100%;
+		height:35px;
+		font-size: 14pt;
+		margin-top:50px;
+	}
+	
+	
+		
+.form_radio_btn {
+			width: 47%;
+			height : 45px;
+    		border: 1px solid #EAE7E7;
+    		border-radius: 10px;
+		}
+		.form_radio_btn input[type=radio] {
+			display: none;
+		}
+		.form_radio_btn label {
+			display: block;
+    		border-radius: 10px;
+   			margin: 0 auto;
+    		text-align: center;
+    		height: -webkit-fill-available;
+    		line-height: 45px;
+		}
+		 
+		/* Checked */
+		.form_radio_btn input[type=radio]:checked + label {
+			background: #184DA0;
+			color: #fff;
+		}
+		 
+		/* Hover */
+		.form_radio_btn label:hover {
+			color: #666;
+		}
+		 
+		/* Disabled */
+		.form_radio_btn input[type=radio] + label {
+			background: #F9FAFC;
+			color: #666;
+		}
   .input-container {
     position: relative;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
+    width:18%;
   }
   .input-field {
     padding-right: 32px;
@@ -24,6 +119,7 @@
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
+    width:18%;
   }
   .del-field {
     padding-right: 32px;
@@ -81,6 +177,9 @@
 
 </style>
 <script>
+	
+	
+	
 	/* 검색어 미입력 상태에서 검색을 진행할 때 발생하는 함수 */
 	$(function(){
 		$("#searchForm").submit(function(){
@@ -111,7 +210,7 @@
 		    // input에 버튼 추가하기
 		    var inputContainer = $("#input"+currentInput+"Container");
 		    var input = inputContainer.find("input");
-		    var button = $("<button type='button' class='removeInputButton' data-input='input"+currentInput+"'>x</button>");
+		    var button = $("<button type='button' class='removeInputButton' data-input='input"+currentInput+"' style='border: antiquewhite; background-color: white;'>x</button>");
 		    inputContainer.append(button);
 		    button.css({
 		      "position": "absolute",
@@ -156,7 +255,7 @@
 		    // input에 버튼 추가하기
 		    var delContainer = $("#del"+currentDel+"Container");
 		    var del = delContainer.find("del");
-		    var button = $("<button type='button' class='removeDelButton' data-del='del"+currentDel+"'>x</button>");
+		    var button = $("<button type='button' class='removeDelButton' data-del='del"+currentDel+"'style='border: antiquewhite; background-color: white;'>x</button>");
 		    delContainer.append(button);
 		    button.css({
 		      "position": "absolute",
@@ -172,7 +271,7 @@
 		    $("#"+delId).val(""); // 해당 input의 값을 지우기
 		    $("#"+delId+"Container").hide(); // 해당 input 숨기기
 		    
-		    currentInput--; // 현재까지 추가된 input 개수 감소
+		    currentDel--; // 현재까지 추가된 input 개수 감소
 		    
 		    // Add Input 버튼 보이기
 		    $("#addDelButton").show();
@@ -193,16 +292,7 @@
 	<div class="searchDiv" style="padding-top:20px; float: right;">
 		<form method="get" id="searchForm" action="recipe">
 		<!-- 기간 select -->
-			<select name="searchDate" class="form-select" aria-label="Default select example" style="width: auto; display: inline; white-space:nowrap;">
-				<option value="">전체기간 </option>
-				<option value="">오늘 </option>
-				<option value="">이번주 </option>
-			</select>
-		<!-- 검색 시 제목 작성자 글내용 선택 -->
-				<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
-				<option value="recipe_name">제목 </option>
-				<option value="recipe_date">글내용 </option>
-			</select>
+			
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 			
@@ -231,40 +321,57 @@
 			
 				
 			</h2>
-			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-				<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary">
-				<input type="checkbox" checked data-toggle="toggle" data-onstyle="success">
-				<input type="checkbox" checked data-toggle="toggle" data-onstyle="info">
-				<input type="checkbox" checked data-toggle="toggle" data-onstyle="warning">
-				<input type="checkbox" checked data-toggle="toggle" data-onstyle="danger">
-				<input type="checkbox" checked data-toggle="toggle" data-onstyle="default">
-				
-			<!-- 체크박스 -->
-			<div class="list-group">
-				<label class="list-group-item">
-				    <input class="form-check-input me-1" type="checkbox" value="">
-				    당뇨식
-				</label>
-				<label class="list-group-item">
-				    <input class="form-check-input me-1" type="checkbox" value="">
-				    고혈압
-				</label>
-				<label class="list-group-item">
-				    <input class="form-check-input me-1" type="checkbox" value="">
-				    채식
-				</label>
-				<label class="list-group-item">
-				    <input class="form-check-input me-1" type="checkbox" value="">
-				    저염식
-				</label>
-				<label class="list-group-item">
-				    <input class="form-check-input me-1" type="checkbox" value="">
-				    글루텐프리
-				</label>
-			</div>
-				
 
+			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 			<form method="get" id="partsForm" action="recipe">
+			<br/>
+			<c:if test="${dto.kal != null and dto.kal !=0.0}">
+			<h3>하루 권장 섭취 칼로리: ${dto.kal}</h3>
+				
+			<div class="mb-3">
+				<label for="userSex" class="form-label">식사 시간</label>
+				<div class="form_toggle row-vh d-flex flex-row justify-content-between" >
+					<div class="form_radio_btn radio_male">
+						<input id="radio-1" type="radio" name="time" value=" ${dto.kal * 0.4}">
+						<label for="radio-1"> 아침 : ${dto.kal * 0.4} 칼로리 </label>
+					</div>
+												 
+					<div class="form_radio_btn">
+						<input id="radio-2" type="radio" name="time" value=" ${dto.kal * 0.3}">
+						<label for="radio-2">점심 : ${dto.kal * 0.3} 칼로리</label>
+					</div>
+					<div class="form_radio_btn">
+						<input id="radio-3" type="radio" name="time" value=" ${dto.kal * 0.2}">
+						<label for="radio-3">저녁 : ${dto.kal * 0.2} 칼로리</label>
+					</div>
+					<div class="form_radio_btn">
+						<input id="radio-4" type="radio" name="time" value=" ${dto.kal * 0.1}">
+						<label for="radio-4">간식 : ${dto.kal * 0.1} 칼로리</label>
+					</div>
+				</div>
+			</div>
+			
+			</c:if>
+			<c:if test="${dto.kal == null or dto.kal == 0.0}">
+				bmi를 체크하고 맞춤형 칼로리 정보를 확인해보세요!<br/>
+				<a href="/happy/myPage/checkBmi">BMI 계산하러 가기</a><br/> <br/>
+				<hr/>
+			</c:if>
+			<label for="userSex" class="form-label">직접 입력하기</label>
+			<br/>
+			
+			<div class="input-box">
+			<input class="test" type="text" id="min_cal" name="min_cal">
+				<label for="min_cal">최소 칼로리</label>
+
+			</div>
+			<div class="input-box">
+			<input type="text" max_cal" name="max_cal" >
+				<label for="max_cal">최대 칼로리</label>
+			</div>
+			<br/>
+			<label for="userSex" class="form-label">레시피 재료 추가</label>	
+			<br/>
 			 <div id="input1Container" class="input-container" style="display:none;">
     			<input type="text" class="form-control input-field" id="input1" name="parts1">
 			  </div>
@@ -280,10 +387,11 @@
 			  <div id="input5Container" class="input-container" style="display:none;">
 			    <input type="text" class="form-control input-field" id="input5" name="parts5">
 			  </div>
-			  <button id="addInputButton" class="add-input-button">재료 선택 추가</button>
+			  <button id="addInputButton" class="add-input-button" style="background-color: #8BC34A; color: white; border: navajowhite;">재료 선택 추가</button>
 			  
 			  <br/>
-		  
+		  <label for="userSex" class="form-label">레시피 재료 제외</label>
+		  <br/>	
 			  <div id="del1Container" class="del-container" style="display:none;">
     			<input type="text" class="form-control del-field" id="del1" name="delparts1">
 			  </div>
@@ -299,8 +407,9 @@
 			  <div id="del5Container" class="del-container" style="display:none;">
 			    <input type="text" class="form-control del-field" id="del5" name="delparts5">
 			  </div>
-			  <button id="addDelButton" class="add-del-button">재료 선택 추가</button>
-			  <input type="submit" value="검색"/>
+			  <button id="addDelButton" class="add-del-button" style="background-color: #8BC34A; color: white; border: navajowhite;">재료 선택 추가</button>
+			  <br/>
+			  <input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="background-color: #8BC34A; color: white; border: navajowhite;"/>
 			</form>
 
 

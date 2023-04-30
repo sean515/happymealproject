@@ -24,7 +24,7 @@ public class RecipeCommentController {
 	@Autowired
 	RecipeCommentService service;
 
-	//글쓰기 form
+	//댓글쓰기 form
 
 	@PostMapping("/recipecommentSend")
 	public String commconnentSend(RecipeCommentDTO dto, HttpServletRequest request) {

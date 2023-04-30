@@ -20,14 +20,24 @@ public class MenuUserDTO {
 	private String ip;
 	private String nickname;
 	private String amenu_type_name;
-	
-	
+	private String menu_img1;
+	private String menu_img2;
+	private String menu_img3;
+	private String menu_img4;
+	private String menu_img5;
+	private String menu_img6;
+
+
+
 	@Override
 	public String toString() {
 		return "MenuUserDTO [menu_no=" + menu_no + ", amenu_type_no=" + amenu_type_no + ", userid=" + userid
-				+ ", menu_title=" + menu_title + ", menu_text=" + menu_text + ", menu_file=" + menu_file
+				+ ", menu_thumbnail2=" + menu_thumbnail2 + ", menu_thumbnail=" + menu_thumbnail + ", username="
+				+ username + ", menu_title=" + menu_title + ", menu_text=" + menu_text + ", menu_file=" + menu_file
 				+ ", menu_date=" + menu_date + ", menu_like=" + menu_like + ", menu_hit=" + menu_hit + ", ip=" + ip
-				+ ", nickname=" + nickname + ", amenu_type_name=" + amenu_type_name + "]";
+				+ ", nickname=" + nickname + ", amenu_type_name=" + amenu_type_name + ", menu_img1=" + menu_img1
+				+ ", menu_img2=" + menu_img2 + ", menu_img3=" + menu_img3 + ", menu_img4=" + menu_img4 + ", menu_img5="
+				+ menu_img5 + ", menu_img6=" + menu_img6 + "]";
 	}
 
 
@@ -180,5 +190,66 @@ public class MenuUserDTO {
 		this.amenu_type_name = amenu_type_name;
 	}
 
+
+	public String getMenu_img1() {
+		return menu_img1;
+	}
+
+
+	public void setMenu_img1(String menu_img1) {
+		this.menu_img1 = menu_img1;
+	}
+
+
+	public String getMenu_img2() {
+		return menu_img2;
+	}
+
+
+	public void setMenu_img2(String menu_img2) {
+		this.menu_img2 = menu_img2;
+	}
+
+
+	public String getMenu_img3() {
+		return menu_img3;
+	}
+
+
+	public void setMenu_img3(String menu_img3) {
+		this.menu_img3 = menu_img3;
+	}
+
+
+	public String getMenu_img4() {
+		return menu_img4;
+	}
+
+
+	public void setMenu_img4(String menu_img4) {
+		this.menu_img4 = menu_img4;
+	}
+
+
+	public String getMenu_img5() {
+		return menu_img5;
+	}
+
+
+	public void setMenu_img5(String menu_img5) {
+		this.menu_img5 = menu_img5;
+	}
+
+
+	public String getMenu_img6() {
+		return menu_img6;
+	}
+
+
+	public void setMenu_img6(String menu_img6) {
+		this.menu_img6 = menu_img6;
+	}
+
+	
 	
 }
