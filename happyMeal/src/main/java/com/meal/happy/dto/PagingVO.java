@@ -30,6 +30,11 @@ public class PagingVO {
 	private String amenu_type_no4;
 	private String amenu_type_no5;
 	private String amenu_type_no6;
+	private String amenu_type_no;
+	private Double time;
+	private Double max_cal;
+	private Double min_cal;
+	private String amenu_time;
 
 
 	@Override
@@ -39,8 +44,23 @@ public class PagingVO {
 				+ onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
 				+ searchWord + ", parts1=" + parts1 + ", parts2=" + parts2 + ", parts3=" + parts3 + ", parts4=" + parts4
 				+ ", parts5=" + parts5 + ", delparts1=" + delparts1 + ", delparts2=" + delparts2 + ", delparts3="
-				+ delparts3 + ", delparts4=" + delparts4 + ", delparts5=" + delparts5 + "]";
+				+ delparts3 + ", delparts4=" + delparts4 + ", delparts5=" + delparts5 + ", amenu_type_no1="
+				+ amenu_type_no1 + ", amenu_type_no2=" + amenu_type_no2 + ", amenu_type_no3=" + amenu_type_no3
+				+ ", amenu_type_no4=" + amenu_type_no4 + ", amenu_type_no5=" + amenu_type_no5 + ", amenu_type_no6="
+				+ amenu_type_no6 + ", amenu_type_no=" + amenu_type_no + ", time=" + time + ", max_cal=" + max_cal
+				+ ", min_cal=" + min_cal + ", amenu_time=" + amenu_time + "]";
 	}
+
+
+	public String getAmenu_type_no() {
+		return amenu_type_no;
+	}
+
+
+	public void setAmenu_type_no(String amenu_type_no) {
+		this.amenu_type_no = amenu_type_no;
+	}
+
 
 	public int getNowPage() {
 		return nowPage;
@@ -253,8 +273,43 @@ public class PagingVO {
 		this.amenu_type_no6 = amenu_type_no6;
 	}
 
+	public Double getTime() {
+		return time;
+	}
+
+	public void setTime(Double time) {
+		this.time = time;
+	}
+
+	public Double getMax_cal() {
+		return max_cal;
+	}
 
 
+	public void setMax_cal(Double max_cal) {
+		this.max_cal = max_cal;
+	}
 
+
+	public Double getMin_cal() {
+		return min_cal;
+	}
+
+
+	public void setMin_cal(Double min_cal) {
+		this.min_cal = min_cal;
+	}
+
+
+	public String getAmenu_time() {
+		return amenu_time;
+	}
+
+	public void setAmenu_time(String amenu_time) {
+		this.amenu_time = amenu_time;
+	}
+
+
+	
 	
 }

@@ -17,13 +17,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.meal.happy.dto.DataFileDTO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
+import com.meal.happy.dto.RegisterDTO;
 import com.meal.happy.service.RecipeService;
 
 @Controller
@@ -53,10 +58,12 @@ public class RecipeController {
 
 	//레시피 글 리스트
 	@GetMapping("/recipe")
-	public ModelAndView recipeList(PagingVO vo) {
+	public ModelAndView recipeList(PagingVO vo, HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
 		vo.setTotalRecord(service.recipeTotalRecord(vo));
+		
+		RegisterDTO dto = service.myInfo((String) session.getAttribute("logId"));
 
 		System.out.println(vo.toString());
 		//DB 조회
@@ -64,7 +71,7 @@ public class RecipeController {
 		mav.addObject("list",service.pageSelect(vo));
 
 		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
-
+		mav.addObject("dto", dto);
 		mav.setViewName("recipe/recipe");
 
 		System.out.println(mav);
@@ -239,5 +246,60 @@ public class RecipeController {
 
 		}
 		return mav;
+	}
+	//현재 좋아요 상태
+	@GetMapping("/recipelike")
+	@ResponseBody
+		public LikeVO recipelike(int recipe_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRecipe_no(recipe_no);
+		System.out.println("like"+like);
+		int result = service.findLike(like);
+		
+		like.setResult(result);
+		System.out.println("tt"+result);
+		System.out.println("like2"+like);
+		return like;
+	}
+//현재 좋아요 취소
+	@GetMapping("/delrecipelike")
+	@ResponseBody
+		public LikeVO delcommlike(int recipe_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRecipe_no(recipe_no);
+		System.out.println("like"+like);
+		int result = service.delRecipeLike(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	//현재 좋아요 등록
+	@GetMapping("/recipelikeup")
+	@ResponseBody
+		public LikeVO commlikeup(int recipe_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRecipe_no(recipe_no);
+		System.out.println("like"+like);
+		int result = service.recipeLikeUp(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	//댓글 수 조회
+	@GetMapping("/recipe_count_like_hit")
+	@ResponseBody
+	public LikeVO count_comment_hit(LikeVO dto) {
+		System.out.println(dto.toString());
+		ModelAndView mav = new ModelAndView();
+		dto.setRecipe_like_hit(service.count_like_hit(dto));
+		System.out.println(dto.toString());
+		System.out.println("123");
+		mav.addObject("dto",dto);
+		System.out.println(mav);
+		System.out.println("dto:"+dto);
+		return dto;
 	}
 }

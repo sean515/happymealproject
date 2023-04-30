@@ -65,7 +65,11 @@
 	
 </style>
 <script>
-
+	function menuDel(){
+		if(confirm("정말 삭제하시겠습니까?")){
+			location.href= "menuDel?menu_no=${dto.menu_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>";
+		}
+	}
 	
 </script>
 
@@ -100,7 +104,7 @@
 				<div class="col-4">
 					<c:if test="${logId==dto.userid }">
 						<a href="menuEdit?recipe_no=${dto.menu_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-secondary">수정</a>
-						<a href="javascript:recipeDel()" class="btn btn-secondary">삭제</a>
+						<a href="javascript:menuDel()" class="btn btn-secondary">삭제</a>
 					</c:if>		
 				</div>
 			</div>
@@ -119,6 +123,13 @@
 				<ul >			
 					<li>${dto.menu_text }</li>
 				</ul>
+				<img src="${dto.menu_img1 }"/>
+				<img src="${dto.menu_img2 }"/>
+				<img src="${dto.menu_img3 }"/>
+				<img src="${dto.menu_img4 }"/>
+				<img src="${dto.menu_img5 }"/>
+				<img src="${dto.menu_img6 }"/>
+
 			</div>
 		</div>
 		
