@@ -5,6 +5,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
 <style>
+	a{
+	text-decoration: none;
+	color: black;
+	}
 	ul{
 	margin-bottom:0;
 	}
@@ -159,11 +163,11 @@
 				success:function(comment1){	
 					var tag = "";
 					$(comment1).each(function(i, cDTO){
-						tag += "<li><div><b>"+cDTO.userid+" ("+cDTO.comm_comment_date+")</b>";
+						tag += "<li><div style='font-size: 12px;''><b>"+cDTO.userid+" ("+cDTO.comm_comment_date+")</b>";
 						//본인이 쓴 댓글 일때
 						if(cDTO.userid == '${logId}'){ //cDTO.userid(클라이언트 실행 ) = 'goguma' ${logId}(서버에서 실행)goguma
-							tag +="<input type='button' value='Edit'/>";
-							tag +="<input type='button' value='Del' title='"+cDTO.comm_comment_no+"'/>";
+							tag +="<input type='button' value='수정'style='background-color:white; border:none; color:#8BC34A;'/>";
+							tag +="<input type='button' value='삭제' style='background-color:white; border:none; color:#8BC34A;' title='"+cDTO.comm_comment_no+"'/>";
 							
 							tag += "<p style='white-space: pre-line'>"+cDTO.comm_comment_text+"</p></div>";
 							
@@ -228,7 +232,7 @@
 			return false; //form의 기본 이벤트 때문 다음 실행이
 		});
 		//댓글 수정폼 보여주기 : 본인이 쓴 글일 때 Edit버튼을 클릭하면 글 내용은 숨기고, 폼을 보여준다.
-		$(document).on('click','#commcommentList input[value=Edit]',function(){
+		$(document).on('click','#commcommentList input[value=수정]',function(){
 			
 			//var dom = $(document).cjildren("li");
 			//기존의 열어놓은 폼이나, 숨겨놓은 댓글내용을 처리하고
@@ -263,7 +267,7 @@
 			return false;
 		});
 			//댓글 삭제
-			$(document).on('click','#commcommentList input[value=Del]',function(){
+			$(document).on('click','#commcommentList input[value=삭제]',function(){
 				if(confirm("댓글을 삭제하시겠습니까?")){
 					var params = "comm_comment_no=" +$(this).attr("title");
 					console.log(params);
@@ -291,64 +295,52 @@
 </script>
 
 <!-- 배너 -->
-<div class= "banner">
-	<img src="img/banner.png" width="100%" height="150px"/>
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 
 <div class="container">
 
 	<ul id="view"  style="margin-top: 30px; padding:0;">
-		<li style="display: inline;"> ${dto.comm_bullet_point}</li>
-		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" style="float:right; color: black;">전체 글 보기</a>
+		<li style="padding-left:10px;display: inline;font-size: 12px;"> [ ${dto.comm_bullet_point} ]</li>
+		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" style="float:right; color: black; font-size: 12px;">전체 글 보기</a>
 		
 		<!-- 제목 -->
-		<li style="margin: 30px 0"><h1>${dto.comm_title }</h1></li>
-		
-		<li style="display: inline;float :left; font-size: 1.2em"><img src="img/loginImg.png" width="60px" height="60px"/></li>
-		<li style="display: inline; font-size: 24px; position: relative; left:10px;">
-		${dto.username}</li>
-
-		<br/>
-		<div style= "width: 30%; float: left;">
-		<li style="display: inline; position: relative; left:10px;">${dto.comm_date }</li>
-		<li style="display: inline; position: relative; left:10px;">조회 </li>
-		<li style="display: inline; position: relative; left:10px;">${dto.comm_hit } </li>
+		<div style="border-bottom: 1px solid gray;">
+		<li style="margin: 15px 0px 15px 10px; width: 80%; display:inline-block;"><h2 style="width: 80%; display:inline-block;">${dto.comm_title }</h2></li>
+		<c:if test="${logId==dto.userid }">
+		<div class="searchDiv" style="padding-top:20px; float: right;">	
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="commEdit?comm_no=${dto.comm_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a></div></button>
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="javascript:commDel()">삭제</a></div></button>
 		</div>
-		<div id="menu" style="clear:right;text-align:right; width: 30%; float: right;">
+	
+		
+		</c:if>	
+		</div>
+		
 	
 		
 
 		
 		
-		<c:if test="${logId==dto.userid }">
-		<li style=" display: inline;width: auto; white-space:nowrap;"><a href="#">...</a>
-			<ul>	
-			<li><a href="commEdit?comm_no=${dto.comm_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a></li>
-			<li><a href="javascript:commDel()">삭제</a></li>
-			</ul>
-		</c:if>		
+			
+		
+		<div>
+		
+		<li style="font-size: 14px; padding-top: 50px; padding-bottom: 100px; padding-left: 20px; padding-right: 20px;">${dto.comm_text }</li>
+		<div style="overflow: hidden; margin-top: 50px;">
+		<li style="display: inline; font-size: 14px; position: relative; left:10px;">
+		<b>${dto.username}</b>님의 게시글 더보기</li>
 		</div>
 		<div>
-		<br/><br/>
-		
-		<hr style="height: 3px; background: black"/>	
-		<li>${dto.comm_text }</li>
-		<div style="overflow: hidden; margin-top: 50px;">
-		<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
-		<li style="display: inline; font-size: 24px; position: relative; left:10px;">
-		${dto.username} 님의 게시글 더보기</li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.comm_date }</li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">조회 </li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.comm_hit } </li>
+		<li style="display: inline; position: relative;  font-size: 12px; float: right;"><a href="test">신고</a></li>
 		</div>
-			<div style= "overflow: hidden">
-				<div style= "width: 30%; float: left; overflow: hidden">
-					<img src="" class="LikeBtn" style="width:12px"></img>
-					<li style="display: inline;">좋아요</li>
-					<li style="display: inline;">0</li>
-					<li style="display: inline;">댓글</li>
-
-					<li style="display: inline;" id="count_comment_hit"></li>
-				</div>
-				<div style="clear:right;text-align:right; width: 30%; float: right;">
-					<li><a href="test">신고</a></li>
+			<div style= "overflow: hidden">	
+				<div style="clear:right;text-align:right; width: 30%;  font-size: 14px;">
+					
 				</div>
 			</div>
 		</div>
@@ -357,21 +349,32 @@
 	
 	
 	<!-- 댓글 -->
-	<h4>댓글</h4>
+	<div style="padding-top:10px; padding-bottom:40px;">
+		<div style="width: 5%;  display: inline-block; float: left;">
+			<h4 style="padding-left:10px;">댓글</h4>
+		</div>
+		<div style= "padding-left:10px; width: 30%; float: left; overflow: hidden">
+			<img src="" class="LikeBtn" style="width:18px; margin-top:-5px;"></img>
+			<li style="display: inline;  font-size: 12px;"> 좋아요</li>
+			<li style="display: inline;  font-size: 12px;">0</li>
+			<li style="display: inline;  font-size: 12px;"> 댓글</li>
+			<li style="display: inline;  font-size: 12px;" id="count_comment_hit"></li>
+		</div>
+	</div>
 	<div>
 	<c:if test="${logStatus=='Y'}"><!-- 로그인한 경우 댓글쓰기 폼 보여주기 -->
 	<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px;
 		margin-bottom: 30px; "><!-- 댓글 입력 테두리 -->
 			<form method="post" id="commcommentForm">
-				<p>		${dto.username }님</p>
+				<p style="padding-left: 10px; font-size: 12px;">		${dto.username }님</p>
 				<input type="hidden" name="comm_no" value="${dto.comm_no}"/><!-- 원글 글번호 -->
 				<textarea name="comm_comment_text" id="comm_comment_text"  placeholder="댓글을 남겨보세요"
-					style="padding: 10px;
+					style="padding: 10px 0px 0px 10px;
 					width: 100%;
 					box-sizing: border-box;
 					border: none;
-					border-radius: 5px;
-					font-size: 16px;
+					border-radius: 3px;
+					font-size: 12px;
 					resize : none;"
 			></textarea>
 				<!-- 댓글 등록 버튼 -->
@@ -389,3 +392,4 @@
 		
 	</div>
 </div>
+<div style="padding-bottom:100px;"></div>

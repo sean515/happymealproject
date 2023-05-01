@@ -73,9 +73,9 @@
 	
 	});
 </script>
- <!-- banner -->
- <div class= "banner">
-	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
+<!-- 배너 -->
+<div class= "banner">
+	<img src="../img/bannerimg2.png" width="100%" height="300px;">
 </div>
  <!-- 고객센터 1:1 문의 페이지 -->
 <div class="container">
@@ -91,7 +91,7 @@
 	<!-- 소재목 -->
 	<div class="pFilter">
 	<div class="row animate-box">
-	<h1 class="title" style="display: inline; font-size: 40px">&nbsp고객센터&nbsp&nbsp<</h1>
+	<h1 class="title" style="display: inline; font-size: 40px">&nbsp고객센터&nbsp&nbsp</h1>
 	</div>
 	<hr style="height: 1px; background: black"/>
 	
@@ -184,4 +184,6 @@
     </center>
     </div>
   <br>
-
+  </div>
+</div>
+</div>

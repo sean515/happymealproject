@@ -11,7 +11,7 @@
 		padding:10px 0px;
 	}
 	#comm_title{
-		width:99%;
+		width:100%;
 	}
 	
 	#bulletpoint{
@@ -187,9 +187,9 @@
 </script>
 
 <!-- 배너 -->
-	<div class= "banner" style="height:150px;">
-	<img src="img/banner.png" width="100%" height="150px"/>
-	</div>
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
+</div>
 	
 <div class="container">
 

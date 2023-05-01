@@ -65,11 +65,10 @@
 		});
 	});
 </script>
-<!-- 배너 이미지 -->
 
-
-<div class= "banner">
-	<img src="img/banner.png" width="100%" height="300px"/>
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 
 <div class="container">
@@ -114,18 +113,18 @@
 			</select>
 	</div>
 	<br/>
-	<hr style="height: 1px; background: black"/>
+	<hr style="height: 1px; background: black; margin-bottom:0;"/>
 	</div>
 	
 	<div>
 	<!-- 게시글 row 상단 -->
 	<ul class="comm_List" style="overflow: hidden; padding-left: 0;">
-		<li>번호</li>
-		<li>글머리</li>
-		<li>제목</li>
-		<li>작성자</li>
-		<li>조회수</li>
-		<li>등록일</li>
+		<li style="background-color: #dddddd45;">번호</li>
+		<li style="background-color: #dddddd45;">글머리</li>
+		<li style="background-color: #dddddd45;">제목</li>
+		<li style="background-color: #dddddd45;">작성자</li>
+		<li style="background-color: #dddddd45;">조회수</li>
+		<li style="background-color: #dddddd45;">등록일</li>
 		<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
 		<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 		

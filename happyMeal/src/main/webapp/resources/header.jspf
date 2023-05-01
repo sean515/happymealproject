@@ -62,9 +62,23 @@
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li class="active"><a href="/happy">Home</a></li>
+							<li></li>
+							<li class="has-dropdown">
+								<a href="/happy/menu?amenu_type_no=3">식단</a>
+								<ul class="dropdown">
+									<li><a href="/happy/menu">전문 식단</a></li>
+									<li><a href="/happy/menu">사용자 식단</a></li>
+								</ul>
+							</li>
+							
+							<li class="has-dropdown">
+								<a href="/happy/recipe">레시피</a>
+								<ul class="dropdown">
+									<li><a href="/happy/recipe">전문 레시피</a></li>
+									<li><a href="/happy/recipe">사용자 레시피</a></li>
+								</ul>
+							</li>
 							<li><a href="/happy/res">식당검색</a></li>
-							<li><a href="/happy/menu">식단</a></li>
-							<li><a href="/happy/recipe">레시피</a></li>
 							<li><a href="/happy/comm_List">커뮤니티</a></li>
 							<li class="has-dropdown">
 								<a href="/happy/sup/supList">고객센터</a>
