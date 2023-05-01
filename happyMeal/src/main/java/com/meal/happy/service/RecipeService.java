@@ -29,5 +29,6 @@ public interface RecipeService {
 	public int delRecipeLike(LikeVO like);
 	public int recipeLikeUp(LikeVO like);
 	public int count_like_hit(LikeVO dto);
+	
 
 }
