@@ -130,9 +130,32 @@
 	
 </style>
 <script>
+	//좋아요
 	$(function(){
-		//ajax로 좋아요 상태 확인
+		//좋아요 수
 		function res_like_hit(){
+			$.ajax({
+				url:"/happy/res_count_like_hit",
+				data:{res_no:${dto.res_no}},
+				type:"GET",
+				dataType:"json",
+
+				success:function(comment){	
+					var tag = "";
+
+					$(comment).each(function(i, rDTO){
+						tag += rDTO.res_like_hit;
+					});
+					
+					$("#res_like_hit").html(tag);
+				},error:function(e){
+					console.log(e.responseText)
+				}
+			});
+		}
+		
+		//ajax로 좋아요 상태 확인
+		function res_like_status(){
 			$.ajax({
 				url:"/happy/resLike",
 				data:{userid:'${dto.userid}',
@@ -140,79 +163,72 @@
 					},
 				type:"GET",
 				dataType:"json",
-	
 				success:function(comment){	
-	
 					$(comment).each(function(i, lDTO){
 						if(lDTO.result>0){
-							console.log("112345");
 							$('.LikeBtn').attr('src', 'img/heart.PNG');
-	
 						}
 						else{
 							$('.LikeBtn').attr('src', 'img/grayheart.PNG');
 						}
-						
 					});
-				
-			},error:function(e){
-				console.log(e.responseText)
-				console.log("test")
-			}
-		});
-	}
+				},error:function(e){
+					console.log(e.responseText)
+				}
+			});
+		}
 	
 		$('.LikeBtn').click(function() {
-			  // 버튼의 현재 값이 "좋아요"인 경우
-			  if ($(this).attr('src') === "img/heart.PNG") {
-			    // AJAX 요청을 보내서 서버에 좋아요를 추가하는 로직 구현
+			//로그인상태 확인  
+			if(${logStatus!='Y'}){
+				alert("로그인후 이용가능합니다");
+				return false;
+			}
+			// 버튼의 현재 값이 "좋아요"인 경우
+			if ($(this).attr('src') === "img/heart.PNG") {
+			  	// AJAX 요청을 보내서 서버에 좋아요를 추가하는 로직 구현
 			    $.ajax({
-			      method: "GET",
-			      url: "/happy/delResLike", // 좋아요 취소
-			      data: { 
-			    	  userid:'${dto.userid}',
-					res_no:'${dto.res_no}' 
+			        method: "GET",
+			        url: "/happy/delResLike", // 좋아요 취소
+			        data: { 
+			    	    userid:'${dto.userid}',
+					    res_no:'${dto.res_no}' 
 					},
 					type:"GET",
 					dataType:"json",
-			      success: function(response) {
-			        // 요청이 성공하면 버튼의 텍스트를 "좋아요 취소"로 변경
-			        $('.LikeBtn').attr('src', 'img/grayheart.PNG');
-			        alert('좋아요를 취소하였습니다.');
-			      },
-			      error: function(xhr, status, error) {
-			        // 요청이 실패한 경우 에러 핸들링 로직 구현
-			      }
+			        success: function(response) {
+			        	res_like_hit();
+			            // 요청이 성공하면 버튼의 텍스트를 "좋아요 취소"로 변경
+			            $('.LikeBtn').attr('src', 'img/grayheart.PNG');
+			        },
+			        error: function(xhr, status, error) {
+			            // 요청이 실패한 경우 에러 핸들링 로직 구현
+			        }
 			    });
-			  } else { // 버튼의 현재 값이 "좋아요인 경우
+			} else { // 버튼의 현재 값이 "좋아요인 경우
 			    $.ajax({
-			      method: "GET",
-			      url: "/happy/resLikeup", 
-			      data: { userid:'${dto.userid}',
-						comm_no:'${dto.comm_no}'
-						}, 
-						type:"GET",
-						dataType:"json",
-			      success: function(response) {
-			    	  $('.LikeBtn').attr('src', 'img/heart.PNG');
-			        alert('좋아요를 선택하셨습니다');
+			        method: "GET",
+			        url: "/happy/resLikeup", 
+			        data: { userid:'${dto.userid}',
+						  res_no:'${dto.res_no}'
+					}, 
+					type:"GET",
+					dataType:"json",
+			      	success: function(response) {
+			      		res_like_hit();
+			      		$('.LikeBtn').attr('src', 'img/heart.PNG');
+			        	alert('좋아요를 선택하셨습니다');
 	
-			      },
-			      error: function(xhr, status, error) {
-			        // 요청이 실패한 경우 에러 핸들링 로직 구현
-			      }
+			        },
+			        error: function(xhr, status, error) {
+			            // 요청이 실패한 경우 에러 핸들링 로직 구현
+			        }
 			    });
-			  }
+			}
 		});
-	
-	count_comment_hit();
+		res_like_hit()
+		res_like_status();
 	});//jquery
-
-
-
-
-
-
 
 
 	//정보수정제안
@@ -496,8 +512,11 @@
 					</div>
 					<div class="Status">
 						<span>조회수 ${dto.res_hit }</span>
-						<span>좋아요 ${dto.res_like }</span>
+						<span>좋아요</span>
+						<img src="" class="LikeBtn" style="width:18px"></img>
+						<span id="res_like_hit"></span>
 						<span>리뷰</span>
+						<span id="resCommentCount"></span>
 					</div>
 				</header>
 				<hr style="height: 1px; background: black"/>

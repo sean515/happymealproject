@@ -96,11 +96,11 @@ public class ResController {
 	
 	//현재 좋아요 상태
 	@GetMapping("/resLike")
+	@ResponseBody
 	public LikeVO resLike(int res_no, HttpSession session ,LikeVO like) {
 		
 		like.setUserid((String)session.getAttribute("logId"));
 		like.setRes_no(res_no);
-		System.out.println("like"+like);
 		int result = service.findLike(like);
 		
 		like.setResult(result);
@@ -109,11 +109,11 @@ public class ResController {
 	
 	//현재 좋아요 취소
 	@GetMapping("/delResLike")
+	@ResponseBody
 	public LikeVO delResLike(int res_no, HttpSession session ,LikeVO like) {
 		
 		like.setUserid((String)session.getAttribute("logId"));
 		like.setRes_no(res_no);
-		System.out.println("like"+like);
 		int result = service.delResLike(like);
 		
 		like.setResult(result);
@@ -122,17 +122,26 @@ public class ResController {
 	
 	//현재 좋아요 등록
 	@GetMapping("/resLikeup")
+	@ResponseBody
 	public LikeVO resLikeup(int res_no, HttpSession session ,LikeVO like) {
 		
 		like.setUserid((String)session.getAttribute("logId"));
 		like.setRes_no(res_no);
-		System.out.println("like"+like);
 		int result = service.resLikeUp(like);
 		
 		like.setResult(result);
 		return like;
 	}
-	
+
+	//좋아요 수 조회
+	@GetMapping("/res_count_like_hit")
+	@ResponseBody
+	public LikeVO count_like_hit(LikeVO vo) {
+		ModelAndView mav = new ModelAndView();
+		vo.setRes_like_hit(service.count_like_hit(vo));
+		mav.addObject("vo",vo);
+		return vo;
+	}	
 	
 	
 }

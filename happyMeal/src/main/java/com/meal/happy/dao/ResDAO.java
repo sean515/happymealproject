@@ -26,4 +26,5 @@ public interface ResDAO {
 	public int findLike(LikeVO like);
 	public int delResLike(LikeVO like);
 	public int resLikeUp(LikeVO like);
+	public int count_like_hit(LikeVO vo);
 }

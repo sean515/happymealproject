@@ -55,8 +55,8 @@
 	</insert>
 	
 	<insert id="resReqInsert">
-		insert into restaurant(res_no, res_name, res_addr, res_latitude, res_longitude, res_type, res_time, res_note, ip, res_status, userid) 
-		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_type}, #{res_time}, #{res_note}, #{ip}, #{res_status}, #{userid})
+		insert into restaurant(res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time, res_note, ip, res_category, res_status, userid) 
+		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_tel}, #{res_type}, #{res_time}, #{res_note}, #{ip}, #{res_category}, #{res_status}, #{userid})
 	</insert>
 	
 	<select id="findLike" resultType="int">
@@ -71,6 +71,10 @@
 		insert into res_like(like_no, res_no, userid)
   		values(res_like_sq.nextval, #{res_no}, #{userid})
 	</insert>
+	
+	<select id="count_like_hit" resultType="int">
+		select count(*) res_like_hit FROM res_like where res_no = #{res_no}
+	</select>
 
 </mapper>
   

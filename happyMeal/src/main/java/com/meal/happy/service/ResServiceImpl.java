@@ -62,6 +62,11 @@ public class ResServiceImpl implements ResService {
 		return dao.resLikeUp(like);
 	}
 
+	@Override
+	public int count_like_hit(LikeVO vo) {
+		return dao.count_like_hit(vo);
+	}
+
 
 
 	
