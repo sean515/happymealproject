@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.meal.happy.dao.MenuUserCommentDAO">
+  	
+  	<insert id="menucommentInsert">
+  		insert into menu_comment(menu_comment_no, menu_no, menu_comment_text, userid, ip)
+  		values(menu_comment_sq.nextval, #{menu_no}, #{menu_comment_text}, #{userid}, #{ip})
+  	</insert>
+  	
+  	<select id="menucommentListSelect" resultType="com.meal.happy.dto.MenuUserCommentDTO">
+  		select menu_comment_no, menu_no, menu_comment_text, userid, menu_comment_date
+  		from menu_comment where menu_no=${param1}
+  		order by menu_comment_no desc
+  	</select>
+  
+  	<update id="menucommentUpdate">
+  		update menu_comment set menu_comment_text=#{menu_comment_text}
+  		where menu_comment_no=#{menu_comment_no} and userid=#{userid}
+  	</update>
+  	
+  	<delete id="menucommentDelete">
+  		delete from menu_comment where menu_comment_no=${param1} and userid=#{param2}
+  		
+  	</delete>
+  	
+  			
+	<select id="count_comment_hit" resultType="int">
+		select count(*) menu_comment_hit FROM menu_comment where menu_no = #{menu_no}
+	</select>
+
+  </mapper>

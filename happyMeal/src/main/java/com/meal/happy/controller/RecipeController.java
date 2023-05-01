@@ -288,7 +288,7 @@ public class RecipeController {
 		like.setResult(result);
 		return like;
 	}
-	//댓글 수 조회
+	//좋아요 수 조회
 	@GetMapping("/recipe_count_like_hit")
 	@ResponseBody
 	public LikeVO count_comment_hit(LikeVO dto) {
