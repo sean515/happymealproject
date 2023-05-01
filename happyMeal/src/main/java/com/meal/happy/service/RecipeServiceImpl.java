@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.RecipeDAO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeDTO;
+import com.meal.happy.dto.RegisterDTO;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -63,6 +65,31 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public List<RecipeDTO> pageSelect_user(PagingVO vo) {
 		return dao.pageSelect_user(vo);
+	}
+
+	@Override
+	public RegisterDTO myInfo(String userid) {
+		return dao.myInfo(userid);
+	}
+
+	@Override
+	public int findLike(LikeVO like) {
+		return dao.findLike(like);
+	}
+
+	@Override
+	public int delRecipeLike(LikeVO like) {
+		return dao.delRecipeLike(like);
+	}
+
+	@Override
+	public int recipeLikeUp(LikeVO like) {
+		return dao.recipeLikeUp(like);
+	}
+
+	@Override
+	public int count_like_hit(LikeVO dto) {
+		return dao.count_like_hit(dto);
 	}
 
 

@@ -5,8 +5,8 @@
   <mapper namespace="com.meal.happy.dao.MenuUserDAO">
   
   <insert id="menuInsert">
-		insert into menu(menu_no, menu_thumbnail, userid, menu_title,menu_text, ip,amenu_type_no)
-		values(menu_sq.nextval,#{menu_thumbnail}, #{userid},#{menu_title}, #{menu_text}, #{ip}, #{amenu_type_no})
+		insert into menu(menu_no, menu_thumbnail,menu_img1, menu_img2,menu_img3,menu_img4,menu_img5,menu_img6, userid, menu_title,menu_text, ip,amenu_type_no)
+		values(menu_sq.nextval,#{menu_thumbnail},#{menu_img1},#{menu_img2},#{menu_img3},#{menu_img4},#{menu_img5},#{menu_img6}, #{userid},#{menu_title}, #{menu_text}, #{ip}, #{amenu_type_no})
 	</insert>
 	
   	<select id="menuTotalRecord_user" resultType="int">
@@ -51,7 +51,7 @@
 	
 	<select id="menuSelect" resultType="com.meal.happy.dto.MenuUserDTO">
 		select b.menu_no, b.menu_title,  
-		b.menu_text,
+		b.menu_text, b.menu_img1, b.menu_img2, b.menu_img3, b.menu_img4, b.menu_img5, b.menu_img6,
 		r.username, r.userid, r.nickname , b.menu_hit, b.menu_date
 		from menu b join member r on b.userid= r.userid
 		and b.menu_no=${param1}
@@ -60,4 +60,8 @@
 	<update id ="menuHitCount">
 		update menu set menu_hit=menu_hit+1 where menu_no=${param1}
 	</update>
+	
+	<delete id="menuDelete">
+		delete from menu where menu_no=${menu_no} and userid=#{userid}
+	</delete>
 	</mapper>

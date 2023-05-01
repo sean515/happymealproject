@@ -11,38 +11,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meal.happy.dto.MenuUserCommentDTO;
 import com.meal.happy.dto.RecipeCommentDTO;
-import com.meal.happy.service.RecipeCommentService;
-
-
-
+import com.meal.happy.service.MenuUserCommentService;
 
 
 
 @RestController
-public class RecipeCommentController {
+public class MenuUserCommentController {
 	@Autowired
-	RecipeCommentService service;
+	MenuUserCommentService service;
 
 	//댓글쓰기 form
 
-	@PostMapping("/recipecommentSend")
-	public String commconnentSend(RecipeCommentDTO dto, HttpServletRequest request) {
+	@PostMapping("/menucommentSend")
+	public String menuconnentSend(MenuUserCommentDTO dto, HttpServletRequest request) {
+		
 		dto.setIp(request.getRemoteAddr());//ip
 		dto.setUserid((String)request.getSession().getAttribute("logId"));
-
-		int result = service.recipecommentInsert(dto);
+		int result = service.menucommentInsert(dto);
 
 		return result+"";
 	}
 
 
 	//댓글 수 조회
-	@GetMapping("/recipe_count_comment_hit")
-	public RecipeCommentDTO count_comment_hit(RecipeCommentDTO dto) {
+	@GetMapping("/menu_count_comment_hit")
+	public MenuUserCommentDTO count_comment_hit(MenuUserCommentDTO dto) {
 		System.out.println(dto.toString());
 		ModelAndView mav = new ModelAndView();
-		dto.setRecipe_comment_hit(service.count_comment_hit(dto));
+		dto.setMenu_comment_hit(service.count_comment_hit(dto));
 		System.out.println(dto.toString());
 		System.out.println("123");
 		mav.addObject("dto",dto);
@@ -51,30 +49,31 @@ public class RecipeCommentController {
 		return dto;
 	}
 
+
 	//댓글목록
-	@GetMapping("/recipecommentList")//원글 글번호
-	public List<RecipeCommentDTO> recipecommentList(int recipe_no) {
-		System.out.println("no->"+recipe_no);
+	@GetMapping("/menucommentList")//원글 글번호
+	public List<MenuUserCommentDTO> menucommentList(int menu_no) {
+		System.out.println("no->"+menu_no);
 		//List<CommentDTO> list = service.commentListSelect(no);
 		//System.out.println("size="+ list.size());
 		//return list;
-		System.out.println("댓글 목록"+service.recipecommentListSelect(recipe_no));
-		return service.recipecommentListSelect(recipe_no);
+		System.out.println("댓글 목록"+service.menucommentListSelect(menu_no));
+		return service.menucommentListSelect(menu_no);
 	}
 
 
 	//댓글수정
-	@PostMapping("/recipecommentEdit")
-	public String commcommentEdit(RecipeCommentDTO dto, HttpSession session) {
+	@PostMapping("/menucommentEdit")
+	public String commcommentEdit(MenuUserCommentDTO dto, HttpSession session) {
 		dto.setUserid((String)session.getAttribute("logId"));
-		int result = service.recipecommentUpdate(dto);
+		int result = service.menucommentUpdate(dto);
 		System.out.println("123"+String.valueOf(result));
 		return String.valueOf(result);
 	}
 	//댓글삭제
-	@GetMapping("/recipecommentDelete")
-	public String recipecommentDelete(int recipe_comment_no, HttpSession session) {
+	@GetMapping("/menucommentDelete")
+	public String menucommentDelete(int menu_comment_no, HttpSession session) {
 		String userid = (String)session.getAttribute("logId");
-		return String.valueOf(service.recipecommentDelete(recipe_comment_no, userid));
+		return String.valueOf(service.menucommentDelete(menu_comment_no, userid));
 	}
 }

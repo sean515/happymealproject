@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.meal.happy.dao.MenuUserDAO;
 import com.meal.happy.dto.MenuUserDTO;
 import com.meal.happy.dto.PagingVO;
+import com.meal.happy.dto.RecipeDTO;
 
 @Service
 public class MenuUserServiceImpl implements MenuUserService {
@@ -40,10 +41,12 @@ public class MenuUserServiceImpl implements MenuUserService {
 		return dao.menuInsert(dto);
 	}
 
+	@Override
+	public int menuDelete(MenuUserDTO dto) {
+		return dao.menuDelete(dto);
+	}
 
-	
-	
-	
+
 	
 	
 }

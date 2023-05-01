@@ -2,7 +2,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
-
+	#rec1,
+	#rec2,
+	#rec3,
+	#rec4,
+	#rec5,
+	#rec6{
+	margin:5px 0;
+	}
+	#menu_img1,
+	#menu_img2,
+	#menu_img3,
+	#menu_img4,
+	#menu_img5,
+	#menu_img6	{
+	  display: none;
+	  visibility:hidden
+	}
+	input[type=file]::file-selector-button {
+	  width: 100px;
+	  height: 30px;
+	  background: #lightgray;
+	  border: 1px solid rgb(77,77,77);
+	  border-radius: 10px;
+	  cursor: pointer;
+	  &:hover {
+	    background: rgb(77,77,77);
+	    color: #fff;
+	  }
+	}
 	.btn-upload {
 	margin-right:100px;
 	  width: 250px;
@@ -243,26 +271,26 @@
 			</li>
 			<!-- <li><input type="text" name="recipe_thumbnail" id="recipe_thumbnail" /></li> -->
 			<li><input type="text" name="menu_thumbnail" id="menu_thumbnail" value="${dto.menu_thumbnail }"/></li>
-			<li><input type="text" name="menu_title" id="subject" placeholder="제목을 입력하세요"/></li>
+			<li><input type="text" name="menu_title" id="subject" placeholder="식단 메뉴"/></li>
 			<div class="input-box2 genderCheck">
-	    	<span>항목</span>
+	    	<span>식이구분</span>
 		    <div class="form-check form-check-inline">
-			  일반식<input type="radio" class="form-check-input" name="gender" value="일반식" checked>
+			  일반식<input type="radio" class="form-check-input" name="amenu_type_no" value="3" checked>
 			</div>
 			<div class="form-check form-check-inline">
-			  당뇨식<input type="radio" class="form-check-input" name="gender" value="당뇨식">
+			  당뇨식<input type="radio" class="form-check-input" name="amenu_type_no" value="1">
 			</div>
 			<div class="form-check form-check-inline">
-			  연식<input type="radio" class="form-check-input" name="gender" value="연식">
+			  연식<input type="radio" class="form-check-input" name="amenu_type_no" value="2">
 			</div>
 			<div class="form-check form-check-inline">
-			  저염식<input type="radio" class="form-check-input" name="gender" value="저염식">
+			  저염식<input type="radio" class="form-check-input" name="amenu_type_no" value="4">
 			</div>
 			<div class="form-check form-check-inline">
-			  저요오드식<input type="radio" class="form-check-input" name="gender" value="저요오드식">
+			  저요오드식<input type="radio" class="form-check-input" name="amenu_type_no" value="5">
 			</div>
 			<div class="form-check form-check-inline">
-			  항암식<input type="radio" class="form-check-input" name="gender" value="항암식">
+			  항암식<input type="radio" class="form-check-input" name="amenu_type_no" value="6">
 			</div>
 			
 			
@@ -270,9 +298,136 @@
 			<li>
 				<textarea name="menu_text" id="content"></textarea>
 			</li>
+			<!--글 작성 폼-->
+				<!-- 사진 1 -->
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec1">사진 1</button>
+				 <div id="rec1" class="collapse" >
+				 <b>식단사진 1 :&emsp;</b>
+				<input type="file"  id="img1" onchange="readURL1(this);" style="padding:10px;"/>
+				 <input type="text" name="menu_img1" id="menu_img1" /><br/>
+				 </div>
+				 
+				<!-- 사진 2 -->
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec2">사진 2</button>
+				  <div id="rec2" class="collapse" >
+				  <b>식단사진 2 :&emsp;</b>
+				<input type="file"  id="img2" onchange="readURL2(this);"style="padding:10px;"/>
+				  <input type="text" name="menu_img2" id="menu_img2" />
+				  </div>
+				 
+				<!-- 사진 3 -->
+				  <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec3">사진 3</button>
+				  <div id="rec3" class="collapse">
+				  <b>식단사진 3 :&emsp;</b>
+				<input type="file"  id="img3" onchange="readURL3(this);"style="padding:10px;"/>
+				  <input type="text" name="menu_img3" id="menu_img3" />
+				  </div>
+				  
+				 <!-- 사진 4 -->
+				  <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec4">사진 4</button>
+				  <div id="rec4" class="collapse">
+				  <b>식단사진 4 :&emsp;</b>
+				<input type="file"  id="img4" onchange="readURL4(this);"style="padding:10px;"/>
+				  <input type="text" name="menu_img4" id="menu_img4" />
+				  </div>
+				  
+				<!-- 사진 5 -->
+				  <button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#rec5">사진 5</button>
+				  <div id="rec5" class="collapse">
+				  <b>식단사진 5 :&emsp;</b>
+				<input type="file"  id="img5" onchange="readURL5(this);"style="padding:10px;"/>
+				  <input type="text" name="menu_img5" id="menu_img5" />
+				  </div>
+				  
+				  <!-- 사진 6 -->
+				   <button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#rec6">사진 6</button>
+				  <div id="rec6" class="collapse">
+				  <b>식단사진 6 :&emsp;</b>
+				<input type="file"  id="img6" onchange="readURL6(this);"style="padding:10px;"/>
+				  <input type="text" name="menu_img6" id="menu_img6" />
+				  </div>
 			<li>
 				<input type="submit" value="등록"/>
 			</li>
 		</ul>
 	</form>
 </div>
+<script>
+//사진 1
+function readURL1(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('menu_img1').value = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('menu_img1').value = "";
+	  }
+	}
+
+//사진 2
+function readURL2(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('menu_img2').value = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('menu_img2').value = "";
+	  }
+	}
+
+//사진 3
+function readURL3(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('menu_img3').value = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('menu_img3').value = "";
+	  }
+	}
+
+//사진 4
+function readURL4(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('menu_img4').value = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('menu_img4').value = "";
+	  }
+	}
+
+//사진 5
+function readURL5(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('menu_img5').value = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('menu_img5').value = "";
+	  }
+	}
+
+//사진 6
+function readURL6(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('menu_img6').value = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('menu_img6').value = "";
+	  }
+	}
+</script>

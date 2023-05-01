@@ -3,14 +3,34 @@ package com.meal.happy.dto;
 public class LikeVO {
 	//페이징처리시 필요한 변수들
 	private int like_no;
+	private int recipe_like_no;
 	private int comm_no;
+	private int recipe_no;
+	private int menu_no;
 	private String userid;
 	private int result;
+	private int recipe_like_hit;
+	private int menu_like_hit;
+	
+	
 
 	@Override
 	public String toString() {
-		return "LikeVO [like_no=" + like_no + ", comm_no=" + comm_no + ", userid=" + userid + ", result=" + result
-				+ "]";
+		return "LikeVO [like_no=" + like_no + ", recipe_like_no=" + recipe_like_no + ", comm_no=" + comm_no
+				+ ", recipe_no=" + recipe_no + ", menu_no=" + menu_no + ", userid=" + userid + ", result=" + result
+				+ ", recipe_like_hit=" + recipe_like_hit + ", menu_like_hit=" + menu_like_hit + "]";
+	}
+	public int getRecipe_like_no() {
+		return recipe_like_no;
+	}
+	public void setRecipe_like_no(int recipe_like_no) {
+		this.recipe_like_no = recipe_like_no;
+	}
+	public int getRecipe_no() {
+		return recipe_no;
+	}
+	public void setRecipe_no(int recipe_no) {
+		this.recipe_no = recipe_no;
 	}
 	public int getLike_no() {
 		return like_no;
@@ -36,5 +56,24 @@ public class LikeVO {
 	public void setResult(int result) {
 		this.result = result;
 	}
+	public int getRecipe_like_hit() {
+		return recipe_like_hit;
+	}
+	public void setRecipe_like_hit(int recipe_like_hit) {
+		this.recipe_like_hit = recipe_like_hit;
+	}
+	public int getMenu_no() {
+		return menu_no;
+	}
+	public void setMenu_no(int menu_no) {
+		this.menu_no = menu_no;
+	}
+	public int getMenu_like_hit() {
+		return menu_like_hit;
+	}
+	public void setMenu_like_hit(int menu_like_hit) {
+		this.menu_like_hit = menu_like_hit;
+	}
+	
 	
 }
