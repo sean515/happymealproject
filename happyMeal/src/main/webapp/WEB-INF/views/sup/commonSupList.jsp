@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
- <!-- banner -->
- <div class="banner">
- 	<img src="../img/banner.png" width="100%" height="150px"/>
- </div>
+<!-- 배너 -->
+<div class= "banner" >
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
+</div>
 	<div class="container mt-3" style="padding:30px" >
 	<!-- 고객센터 자주하는질문 -->
   <h1>자주하는 질문</h1>

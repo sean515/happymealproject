@@ -182,9 +182,9 @@
 <!------------------------------------------------------------------------------->	
 
  <!-- banner -->
- <div class="banner">
- 	<img src="../../img/banner.png" width="100%" height="150px"/>
- </div>
+<div class= "banner" >
+	<img src="../img/bannerimg2.png" width="100%" height="300px;">
+</div>
  
  <!-- 문의글 답변 페이지 -->
 <div class="container">

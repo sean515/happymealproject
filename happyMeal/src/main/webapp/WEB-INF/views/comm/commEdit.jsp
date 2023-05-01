@@ -3,10 +3,15 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 
 <style>
-	#commForm{
+
+	#commForm {
+	margin-top: 100px;
+	}
+	
+	#commForm li{
 		padding:10px 0px;
 	}
-	#comm_text{
+	#comm_title{
 		width:100%;
 	}
 	/*CKEDITOR*/
@@ -174,11 +179,20 @@
 		 });
 	});
 </script>
+
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
+</div>
+	
 <div class="container">
-	<h1>게시판 글수정 폼</h1>
+	
 	<form method="post" action="commEditOk" id="commForm">
+	
 		<input type="hidden" name="comm_no" value="${dto.comm_no}">
 		<ul>
+			<h1 style="display: inline;">커뮤니티 글 수정</h1>
+				<hr style="height: 3px; background-color:black;"/>
 			<li>제목</li>
 			<li><input type="text" name="comm_title" id="comm_title" value="${dto.comm_title}"/></li>
 			<li>글내용</li>
@@ -197,7 +211,7 @@
 			<input type="hidden" name="searchWord" value="${vo.searchWord}"/>
 		</c:if>
 	</form>
-	<p style="background-color:olive; padding:30px;">
-		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">리스트</a>
+	<p style="padding:30px;">
+		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">글 목록</a>
 	</p>
 </div>
