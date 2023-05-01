@@ -15,5 +15,9 @@ public interface MenuUserService {
 	public MenuUserDTO menuSelect(int menu_no);
 	public void menuHitCount(int menu_no);
 	public int menuDelete(MenuUserDTO dto);
-
+	//글 선택 수정
+	public MenuUserDTO menuEditSelect(int menu_no);
+	//글 수정(DB update)
+	public int menuUpdate(MenuUserDTO dto);
+	
 }

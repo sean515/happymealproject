@@ -96,14 +96,27 @@
 				<div class="col-4">
 				</div>
 			</div>
+
+	<style>
+		.img1{
+		width: 25%;
+		height:150px;
+		margin: 5px;
+		}
+	</style>
 			<c:forEach var="nDTO" items="${list}">
-				<p>글 번호 ${nDTO.amenu_no }</p>
-				<p>식단 타입 ${nDTO.amenu_type_no }</p>
-				<p>식단 명 ${nDTO.amenu_name }</p>
-				<p>식단 시간 ${nDTO.amenu_time }</p>
-				<p>식단 시간 ${nDTO.amenu_text }</p>
-				<hr/>
+
+				<p><h5>식단:</h5> ${nDTO.amenu_text }</p>
+				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img1 }" <c:if test="${nDTO.amenu_img1 == null}"> style="visibility: hidden;"</c:if>>
+				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img2 }" <c:if test="${nDTO.amenu_img2 == null}"> style="visibility: hidden;"</c:if>>
+				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img3 }" <c:if test="${nDTO.amenu_img3 == null}"> style="visibility: hidden;"</c:if>>
+				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img4 }" <c:if test="${nDTO.amenu_img4 == null}"> style="visibility: hidden;"</c:if>>
+				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img5 }" <c:if test="${nDTO.amenu_img5 == null}"> style="visibility: hidden;"</c:if>>
+				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img6 }" <c:if test="${nDTO.amenu_img6 == null}"> style="visibility: hidden;"</c:if>>
 				
+				
+				<hr/>
+				<br/>
 			</c:forEach>
 		</div>		
 		<hr style="height: 3px; background: black"/>		
@@ -114,21 +127,9 @@
 		</div>
 		
 		<div class="articleWriter">
-			<div>
-				<ul>
-					<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
-				</ul>
-			</div>
+
 		
-			<div style= "overflow: hidden">
-				<div style= "width: 30%; float: left; overflow: hidden">
-					<ul>
-						<li style="display: inline;">좋아요</li>
-						<li style="display: inline;">0</li>
-						<li style="display: inline;">댓글</li>
-						<li style="display: inline;" id="count_comment_hit"></li>
-					</ul>
-				</div>
+
 		
 				<div style="clear:right;text-align:right; width: 30%; float: right;">
 					<a href="test">신고</a>
@@ -140,7 +141,7 @@
 		
 		
 		<!-- 댓글 -->
-		<h4>댓글</h4>
+		
 	</div>
 	
 	<div class="topBtns">

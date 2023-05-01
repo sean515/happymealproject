@@ -20,7 +20,7 @@
 		select * from
 			(select * from
 				(
-					select r.username,b.menu_thumbnail, b.menu_no, b.amenu_type_no, b.userid, b.menu_title, b.menu_text, b.menu_hit, to_char(b.menu_date,'MM-DD HH:MI') menu_date 
+					select r.username,r.nickname,b.menu_thumbnail, b.menu_no, b.amenu_type_no, b.userid, b.menu_title, b.menu_text, b.menu_hit, to_char(b.menu_date,'MM-DD HH:MI') menu_date 
 					from menu b join member r on b.userid=r.userid 
 					
 					<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
@@ -60,7 +60,9 @@
 	<update id ="menuHitCount">
 		update menu set menu_hit=menu_hit+1 where menu_no=${param1}
 	</update>
-	
+	<select id="menuEditSelect" resultType="com.meal.happy.dto.MenuUserDTO">
+		select * from menu where menu_no=${param1}
+	</select>
 	<delete id="menuDelete">
 		delete from menu where menu_no=${menu_no} and userid=#{userid}
 	</delete>

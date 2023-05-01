@@ -2,6 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
+	#preview_img1,
+	#preview_img2,
+	#preview_img3,
+	#preview_img4,
+	#preview_img5,
+	#preview_img6{
+	width: 30%;
+	margin-left: 5px;
+	margin-bottom: 3px;
+	}
 	#rec1,
 	#rec2,
 	#rec3,
@@ -301,14 +311,18 @@
 			<!--글 작성 폼-->
 				<!-- 사진 1 -->
 				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec1">사진 1</button>
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec2">사진 2</button>
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec3">사진 3</button>
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec4">사진 4</button>
+				<button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#rec5">사진 5</button>
+				<button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#rec6">사진 6</button>
 				 <div id="rec1" class="collapse" >
 				 <b>식단사진 1 :&emsp;</b>
 				<input type="file"  id="img1" onchange="readURL1(this);" style="padding:10px;"/>
-				 <input type="text" name="menu_img1" id="menu_img1" /><br/>
+				 <input type="text" name="menu_img1" id="menu_img1" />
 				 </div>
 				 
 				<!-- 사진 2 -->
-				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec2">사진 2</button>
 				  <div id="rec2" class="collapse" >
 				  <b>식단사진 2 :&emsp;</b>
 				<input type="file"  id="img2" onchange="readURL2(this);"style="padding:10px;"/>
@@ -316,7 +330,6 @@
 				  </div>
 				 
 				<!-- 사진 3 -->
-				  <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec3">사진 3</button>
 				  <div id="rec3" class="collapse">
 				  <b>식단사진 3 :&emsp;</b>
 				<input type="file"  id="img3" onchange="readURL3(this);"style="padding:10px;"/>
@@ -324,7 +337,6 @@
 				  </div>
 				  
 				 <!-- 사진 4 -->
-				  <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec4">사진 4</button>
 				  <div id="rec4" class="collapse">
 				  <b>식단사진 4 :&emsp;</b>
 				<input type="file"  id="img4" onchange="readURL4(this);"style="padding:10px;"/>
@@ -332,7 +344,6 @@
 				  </div>
 				  
 				<!-- 사진 5 -->
-				  <button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#rec5">사진 5</button>
 				  <div id="rec5" class="collapse">
 				  <b>식단사진 5 :&emsp;</b>
 				<input type="file"  id="img5" onchange="readURL5(this);"style="padding:10px;"/>
@@ -340,11 +351,19 @@
 				  </div>
 				  
 				  <!-- 사진 6 -->
-				   <button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#rec6">사진 6</button>
+				   
 				  <div id="rec6" class="collapse">
 				  <b>식단사진 6 :&emsp;</b>
 				<input type="file"  id="img6" onchange="readURL6(this);"style="padding:10px;"/>
 				  <input type="text" name="menu_img6" id="menu_img6" />
+				  </div>
+				  <div>
+				  <img id="preview_img1"/>
+				  <img id="preview_img2"/>
+				  <img id="preview_img3"/>
+				  <img id="preview_img4"/>
+				  <img id="preview_img5"/>
+				  <img id="preview_img6"/>
 				  </div>
 			<li>
 				<input type="submit" value="등록"/>
@@ -358,10 +377,12 @@ function readURL1(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.getElementById('preview_img1').src = e.target.result;
 	      document.getElementById('menu_img1').value = e.target.result;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
+		  document.getElementById('preview_img1').src = "";
 	    document.getElementById('menu_img1').value = "";
 	  }
 	}
@@ -371,10 +392,12 @@ function readURL2(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.getElementById('preview_img2').src = e.target.result;
 	      document.getElementById('menu_img2').value = e.target.result;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
+		  document.getElementById('preview_img2').src = "";
 	    document.getElementById('menu_img2').value = "";
 	  }
 	}
@@ -384,10 +407,12 @@ function readURL3(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.getElementById('preview_img3').src = e.target.result;
 	      document.getElementById('menu_img3').value = e.target.result;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
+		  document.getElementById('preview_img3').src = "";
 	    document.getElementById('menu_img3').value = "";
 	  }
 	}
@@ -397,10 +422,12 @@ function readURL4(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.getElementById('preview_img4').src = e.target.result;
 	      document.getElementById('menu_img4').value = e.target.result;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
+		  document.getElementById('preview_img4').src = "";
 	    document.getElementById('menu_img4').value = "";
 	  }
 	}
@@ -410,10 +437,12 @@ function readURL5(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.getElementById('preview_img5').src = e.target.result;
 	      document.getElementById('menu_img5').value = e.target.result;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
+		  document.getElementById('preview_img5').src = "";
 	    document.getElementById('menu_img5').value = "";
 	  }
 	}
@@ -423,10 +452,12 @@ function readURL6(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.getElementById('preview_img6').src = e.target.result;
 	      document.getElementById('menu_img6').value = e.target.result;
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
+		  document.getElementById('preview_img6').src = "";
 	    document.getElementById('menu_img6').value = "";
 	  }
 	}

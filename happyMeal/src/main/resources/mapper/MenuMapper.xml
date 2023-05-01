@@ -60,8 +60,8 @@
 </select>
 	
 	<select id="menuSelect" resultType="com.meal.happy.dto.MenuDTO">
-		select amenu_no, amenu_type_no, amenu_name, amenu_time , amenu_text, amenu_hit
-		from amenu where amenu_type_no=${param1} and amenu_name=${param2}
+		select * from amenu where amenu_type_no=${param1} and amenu_name=${param2}
+		order by amenu_time
 	</select>
 	
 	<update id ="menuHitCount">
