@@ -1,6 +1,7 @@
 package com.meal.happy.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -90,5 +92,47 @@ public class ResController {
 		}
 		return mav;
 	}
+	
+	
+	//현재 좋아요 상태
+	@GetMapping("/resLike")
+	public LikeVO resLike(int res_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRes_no(res_no);
+		System.out.println("like"+like);
+		int result = service.findLike(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	
+	//현재 좋아요 취소
+	@GetMapping("/delResLike")
+	public LikeVO delResLike(int res_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRes_no(res_no);
+		System.out.println("like"+like);
+		int result = service.delResLike(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	
+	//현재 좋아요 등록
+	@GetMapping("/resLikeup")
+	public LikeVO resLikeup(int res_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRes_no(res_no);
+		System.out.println("like"+like);
+		int result = service.resLikeUp(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	
+	
 	
 }

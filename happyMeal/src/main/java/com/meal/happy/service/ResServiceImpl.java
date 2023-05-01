@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.ResDAO;
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -44,6 +45,21 @@ public class ResServiceImpl implements ResService {
 	@Override
 	public int resReqInsert(ResDTO dto) {
 		return dao.resReqInsert(dto);
+	}
+
+	@Override
+	public int findLike(LikeVO like) {
+		return dao.findLike(like);
+	}
+
+	@Override
+	public int delResLike(LikeVO like) {
+		return dao.delResLike(like);
+	}
+
+	@Override
+	public int resLikeUp(LikeVO like) {
+		return dao.resLikeUp(like);
 	}
 
 

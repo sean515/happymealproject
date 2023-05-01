@@ -2,6 +2,7 @@ package com.meal.happy.dao;
 
 import java.util.List;
 
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -20,4 +21,9 @@ public interface ResDAO {
 	public int resEditInsert(ResEditDTO dto);
 	//식당추가 요청
 	public int resReqInsert(ResDTO dto);
+	
+	//좋아요
+	public int findLike(LikeVO like);
+	public int delResLike(LikeVO like);
+	public int resLikeUp(LikeVO like);
 }

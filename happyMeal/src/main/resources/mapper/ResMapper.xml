@@ -58,6 +58,19 @@
 		insert into restaurant(res_no, res_name, res_addr, res_latitude, res_longitude, res_type, res_time, res_note, ip, res_status, userid) 
 		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_type}, #{res_time}, #{res_note}, #{ip}, #{res_status}, #{userid})
 	</insert>
+	
+	<select id="findLike" resultType="int">
+		select count(*)result from res_like where res_no = ${res_no} and userid = #{userid}
+	</select>
+	
+	<delete id="delResLike" >
+		delete from res_like where res_no = ${res_no} and userid = #{userid}
+	</delete>
+	
+	<insert id="resLikeUp" >
+		insert into res_like(like_no, res_no, userid)
+  		values(res_like_sq.nextval, #{res_no}, #{userid})
+	</insert>
 
 </mapper>
   
