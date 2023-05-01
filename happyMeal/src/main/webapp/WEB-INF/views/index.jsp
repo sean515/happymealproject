@@ -165,6 +165,32 @@
 		</div>
 	</div>
 	
+	<!-- 인기레시피 테스트 -->
+	<!-- 게시글 row 상단 -->
+	<ul class="recipe" style="overflow: hidden; padding-left: 0;">
+		<div id="fh5co-staff">
+		<div class="container">
+		<div class="row">
+		<c:forEach var="rdto" items="${list}">	
+			<div class="col-md-3 animate-box text-center">
+				<div class="staff">
+					<div class="staff-img" style="background-image: url('${rdto.recipe_thumbnail }');">
+					</div>
+					<h3>${rdto.recipe_name }</h3>
+					<p> </p>
+					<p>칼로리${rdto.recipe_cal } </p>	
+					<p>탄수화물${rdto.recipe_car } </p>	
+					<p>단백질${rdto.recipe_pro } </p>	
+					<p>지방${rdto.recipe_fat } </p>	
+					<p>나트륨${rdto.recipe_na } </p>	
+				</div>
+			</div>
+		</c:forEach>
+		</div>
+		</div>
+		</div>
+		</ul>
+	
 	<!-- 인기레시피 -->
 	
 	<div id="fh5co-blog">
@@ -176,39 +202,19 @@
 						<p>지금 가장 인기 있는 레시피를 만나보세요.</p>
 					</div>
 				</div>
+				<c:forEach var="rdto" items="${list}">
 				<div class="col-lg-4 col-md-4">
 					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-img-holder" style="background-image: url(${pageContext.request.contextPath}/resources/images/recipe1.PNG);"></a>
+						<a href="/happy/recipeView?recipe_no=${rdto.recipe_no}" class="blog-img-holder" style="background-size: cover; background-position: center; background-image: url('${rdto.recipe_thumbnail }')"></a>
 						<div class="blog-text">
-							<h3><a href="#">식물성 미트볼 그라탕</a></h3>
-							<span class="posted_on">2022.06.20</span>
-							<span class="comment"><a href="">21<i class="icon-heart4"></i></a></span>
-							<p>#채식 #식물성 #스파게티소스 #지구식단</p>
+							<h3><a href="/happy/recipeView?recipe_no=${rdto.recipe_no}">${rdto.recipe_name }</a></h3>
+							<span class="posted_on">${rdto.recipe_date }</span>
+							<span class="comment"><a href="/happy/recipeView?recipe_no=${rdto.recipe_no}">조회수 ${rdto.recipe_hit }</i></a></span>
+							<p># ${rdto.recipe_hashtag }</p>
 						</div> 
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-img-holder" style="background-image: url(${pageContext.request.contextPath}/resources/images/recipe1.PNG);"></a>
-						<div class="blog-text">
-							<h3><a href="#">식물성 미트볼 그라탕</a></h3>
-							<span class="posted_on">2022.06.20</span>
-							<span class="comment"><a href="">21<i class="icon-heart4"></i></a></span>
-							<p>#채식 #식물성 #스파게티소스 #지구식단</p>
-						</div> 
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-img-holder" style="background-image: url(${pageContext.request.contextPath}/resources/images/recipe1.PNG);"></a>
-						<div class="blog-text">
-							<h3><a href="#">식물성 미트볼 그라탕</a></h3>
-							<span class="posted_on">2022.06.20</span>
-							<span class="comment"><a href="">21<i class="icon-heart4"></i></a></span>
-							<p>#채식 #식물성 #스파게티소스 #지구식단</p>
-						</div> 
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

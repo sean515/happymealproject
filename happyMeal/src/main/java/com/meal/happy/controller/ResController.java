@@ -25,6 +25,7 @@ public class ResController {
 	public ModelAndView resList(PagingVO vo) {
 		ModelAndView mav = new ModelAndView();
 		vo.setTotalRecord(service.resTotalRecord(vo));
+		System.out.print(vo.toString());
 		
 		//DB조회
 		//해당 페이지 조회하기

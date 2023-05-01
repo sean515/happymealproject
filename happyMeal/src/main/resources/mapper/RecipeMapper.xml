@@ -185,4 +185,19 @@
 	<select id="count_like_hit" resultType="int">
 		select count(*) recipe_like_hit FROM recipe_like where recipe_no = #{recipe_no}
 	</select>
+	
+	<select id="hotRecipe" resultType="com.meal.happy.dto.RecipeDTO">
+	select * from
+		(
+			select b.recipe_no, b.recipe_name, b.recipe_hashtag, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'YYYY-MM-DD') recipe_date 
+			from recipe b join member r on b.userid=r.userid 
+
+			where r.admin = 1
+			order by b.recipe_hit DESC
+		)
+	where rownum &lt; 4
+				
+	</select>
+	
   </mapper>
+ 
