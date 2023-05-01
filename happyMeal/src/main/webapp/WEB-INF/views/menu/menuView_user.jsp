@@ -383,14 +383,26 @@
 		<div class="articleContentBox">
 			
 			<div id="ingredients">
-				<h2>타이틀</h2>
-				<pre>${dto.amenu_type_no }</pre>
 			</div>
 			
+<style>
+	#manual > img{
+		width: 30%;
+		margin-left: 5px;
+		margin-bottom: 5px;
+	}
+</style>
+
+
 			<div id="manual">
 				<ul >			
 					<li>${dto.menu_text }</li>
 				</ul>
+				<br/>
+	<hr style="height: 3px; background: black"/>
+	<br/>
+	<h2>식단 메뉴</h2>
+	<br/>
 				<img src="${dto.menu_img1 }"/>
 				<img src="${dto.menu_img2 }"/>
 				<img src="${dto.menu_img3 }"/>

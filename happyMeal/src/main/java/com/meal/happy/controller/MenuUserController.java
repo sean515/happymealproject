@@ -108,7 +108,26 @@ public class MenuUserController {
 
 		return mav;
 	}
-	
+	//수정폼
+		@GetMapping("/menuEdit")
+		public ModelAndView recipeEdit(int menu_no, PagingVO vo) {
+
+			MenuUserDTO dto = service.menuEditSelect(menu_no);
+
+			String menu_title = dto.getMenu_title().replaceAll("\"", "&quot;"); //"
+			menu_title.replaceAll("'", "&#39;"); //'
+			dto.setMenu_title(menu_title);
+
+
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("dto", dto);
+			mav.addObject("vo", vo);
+
+			mav.setViewName("menu/menuEdit");
+
+			return mav;
+		}
+
 	//삭제
 		@GetMapping("/menuDel")
 		public ModelAndView menuDel(MenuUserDTO dto, PagingVO vo, HttpSession session) {

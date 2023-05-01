@@ -82,10 +82,10 @@
 											style="background-image: url('/happy/uploadfile/${fileDto.filename }${MenuUserDTO.menu_thumbnail }');"></a>
 					
 
-										<div class="blog-text">
-											<p></p>
-											<p>${MenuUserDTO.menu_title}</p>
-											<p>${MenuUserDTO.menu_text}</p>
+										<div class="blog-text" style="padding:20px 15px;">
+											<h5>${MenuUserDTO.menu_title}</h5>
+											<p style="margin-bottom: 5px; display: inline-block;">${MenuUserDTO.nickname}</p>
+											<p style="margin-bottom: 5px; display: inline-block; float: right;"> 조회수 : ${MenuUserDTO.menu_hit} </p>
 										</div>
 									</div>
 								</div>

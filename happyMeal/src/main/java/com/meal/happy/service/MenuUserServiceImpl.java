@@ -46,6 +46,16 @@ public class MenuUserServiceImpl implements MenuUserService {
 		return dao.menuDelete(dto);
 	}
 
+	@Override
+	public MenuUserDTO menuEditSelect(int menu_no) {
+		return dao.menuEditSelect(menu_no);
+	}
+
+	@Override
+	public int menuUpdate(MenuUserDTO dto) {
+		return dao.menuUpdate(dto);
+	}
+
 
 	
 	

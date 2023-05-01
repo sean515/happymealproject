@@ -12,7 +12,12 @@ public class MenuDTO {
 	private String amenu_textArr[];
 	private String amenu_type_name;
 	private String amenu_thumbnail;
-	
+	private String amenu_img1;
+	private String amenu_img2;
+	private String amenu_img3;
+	private String amenu_img4;
+	private String amenu_img5;
+	private String amenu_img6;
 
 
 	@Override
@@ -94,5 +99,51 @@ public class MenuDTO {
 	public void setAmenu_thumbnail(String amenu_thumbnail) {
 		this.amenu_thumbnail = amenu_thumbnail;
 	}
+	public String getAmenu_img1() {
+		return amenu_img1;
+	}
 
+	public void setAmenu_img1(String amenu_img1) {
+		this.amenu_img1 = amenu_img1;
+	}
+
+	public String getAmenu_img2() {
+		return amenu_img2;
+	}
+
+	public void setAmenu_img2(String amenu_img2) {
+		this.amenu_img2 = amenu_img2;
+	}
+
+	public String getAmenu_img3() {
+		return amenu_img3;
+	}
+
+	public void setAmenu_img3(String amenu_img3) {
+		this.amenu_img3 = amenu_img3;
+	}
+
+	public String getAmenu_img4() {
+		return amenu_img4;
+	}
+
+	public void setAmenu_img4(String amenu_img4) {
+		this.amenu_img4 = amenu_img4;
+	}
+
+	public String getAmenu_img5() {
+		return amenu_img5;
+	}
+
+	public void setAmenu_img5(String amenu_img5) {
+		this.amenu_img5 = amenu_img5;
+	}
+
+	public String getAmenu_img6() {
+		return amenu_img6;
+	}
+
+	public void setAmenu_img6(String amenu_img6) {
+		this.amenu_img6 = amenu_img6;
+	}
 }

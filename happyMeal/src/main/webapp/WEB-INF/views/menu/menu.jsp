@@ -111,16 +111,16 @@
 												style="background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>
 											<div class="blog-text">
 												<p></p>
-												<p>${MenuDTO.amenu_no }</p>
-												<p>${MenuDTO.amenu_type_name }${MenuDTO.amenu_name }</p>
+												<%-- <p>${MenuDTO.amenu_no }</p> --%>
+												<%-- <p>${MenuDTO.amenu_type_name }${MenuDTO.amenu_name }</p> --%>
 												<c:if test="${MenuDTO.amenu_time==1}">
-													<p>조식</p>
+													<p>아침</p>
 												</c:if>
 												<c:if test="${MenuDTO.amenu_time==2}">
-													<p>중식</p>
+													<p>점심</p>
 												</c:if>
 												<c:if test="${MenuDTO.amenu_time==3}">
-													<p>석식</p>
+													<p>저녁</p>
 												</c:if>
 												<p>${MenuDTO.amenu_text }</p>
 											</div>
@@ -146,32 +146,22 @@
 							<div class="row">
 								<c:set var="counter" value="-1" />
 								<c:forEach var="MenuDTO" items="${list}">
-									<c:if test="${counter == -1}">
-										<h1>${MenuDTO.amenu_type_name }${1}</h1>
-									</c:if>
-									<c:set var="counter" value="${counter + 1}" />
-	
-									<c:if test="${counter % 3 == 0 and counter != 0}">
-										<c:set var="pageNo" value="${(counter/ 3)+1}" />
-										<c:set var="pageNo" value="${pageNo.intValue()}" />
-										<h1>${MenuDTO.amenu_type_name}${pageNo}</h1>
-									</c:if>
 									<div class="col-lg-4 col-md-4">
 										<div class="fh5co-blog animate-box">
 											<a href="menuView?amenu_type_no=${MenuDTO.amenu_type_no }&amenu_name=${MenuDTO.amenu_name }" class="blog-img-holder"
 												style="background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>
 											<div class="blog-text">
 												<p></p>
-												<p>${MenuDTO.amenu_no }</p>
-												<p>${MenuDTO.amenu_type_name }${MenuDTO.amenu_name }</p>
+												<%-- <p>${MenuDTO.amenu_no }</p> --%>
+												<p>${MenuDTO.amenu_type_name }</p>
 												<c:if test="${MenuDTO.amenu_time==1}">
-													<p>조식</p>
+													<p>아침</p>
 												</c:if>
 												<c:if test="${MenuDTO.amenu_time==2}">
-													<p>중식</p>
+													<p>점심</p>
 												</c:if>
 												<c:if test="${MenuDTO.amenu_time==3}">
-													<p>석식</p>
+													<p>저녁</p>
 												</c:if>
 												<p>${MenuDTO.amenu_text }</p>
 											</div>
