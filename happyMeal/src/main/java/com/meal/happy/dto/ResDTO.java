@@ -20,14 +20,16 @@ public class ResDTO {
 	private int res_status;
 	private String userid;
 	private String username;
-	
+	private double res_star;
+
 	@Override
 	public String toString() {
 		return "ResDTO [res_no=" + res_no + ", res_name=" + res_name + ", res_addr=" + res_addr + ", res_latitude="
 				+ res_latitude + ", res_longitude=" + res_longitude + ", res_tel=" + res_tel + ", res_type=" + res_type
 				+ ", res_time=" + res_time + ", res_note=" + res_note + ", res_like=" + res_like + ", res_hit="
 				+ res_hit + ", res_image=" + res_image + ", ip=" + ip + ", res_date=" + res_date + ", res_category="
-				+ res_category + ", res_status=" + res_status + ", userid=" + userid + ", username=" + username + "]";
+				+ res_category + ", res_status=" + res_status + ", userid=" + userid + ", username=" + username
+				+ ", res_star=" + res_star + "]";
 	}
 
 	public int getRes_no() {
@@ -172,6 +174,14 @@ public class ResDTO {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public double getRes_star() {
+		return res_star;
+	}
+
+	public void setRes_star(double res_star) {
+		this.res_star = res_star;
 	}
 	
 }

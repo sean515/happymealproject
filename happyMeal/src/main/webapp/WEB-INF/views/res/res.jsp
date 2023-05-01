@@ -4,15 +4,19 @@
 <style>
 	.resContainer{
 		display:flex;
+		justify-content:flex-end;
 		flex-direction:row;
 		height:2000px;
 	}
 	.resList{
-		width:70%;
+		width:1300px;
+		padding:0 15px;
 	}
 	.resSide{
-		width:30%;
-		background-color:#E3F8FF;
+		width:450px;
+	}
+	.titleWrap{
+		padding:80px 60px 0;
 	}
 	.searchDiv{
 		float:right;
@@ -60,7 +64,13 @@
 		width:320px;
 		height:180px;
 	}
-	
+	.wrap{
+		width:200px;
+		height:100px;
+	}
+	.desc{
+		font-size:0.9em;
+	}
 	
 	
 </style>
@@ -101,13 +111,14 @@
 			<div class="row animate-box">
 				<h1 class="title" style="display: inline; font-size: 40px">&nbsp식당&nbsp&nbsp</h1>
 			</div>
-		</div>
+			<hr style="height: 1px; background: black"/>
 			<div class="btn-group" role="group" aria-label="Basic outlined example">
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res'">전체</button>
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=채식음식점'">채식</button>
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=채식가능음식점'">채식가능</button>
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=저염실천음식점'">저염</button>
 			</div>
+		</div>
 		
 		<!-- 식당리스트 -->
 		<div>
@@ -191,7 +202,7 @@
 	<!-- 사이드페이지 -->
 	<div class="resSide">
 		<!-- 지도 -->
-		<div id="map" style="width:100%;height:450px;"></div>
+		<div id="map" style="width:100%;height:350px;"></div>
 		<!-- 베스트 맛집 -->
 		<div class="resBest">
 			<ul>		
@@ -257,7 +268,20 @@
 		<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>    
 			<c:forEach var="resDTO" items="${list}" varStatus="status">
 	        	{
-	            	content: '<div>${resDTO.res_name}</div>', 
+	            	content: '<div class="wrap">'+
+	            			 '    <div class="info">'+
+	            			 '	      <div class="title" style="font-size:1.2em">'+
+	            			 '            <a href="resView?res_no=${resDTO.res_no}&nowPage=${vo.nowPage}"><b>${resDTO.res_name}</b></a>'+
+	            			 '        </div>'+
+	            			 '        <div class="infobody">'+
+	            			 '            <div class="desc">'+
+	            			 '                <div class="info_restype">${resDTO.res_type}</div>'+
+	            			 '                <div class="info_rescategory">${resDTO.res_category}</div>'+
+	            			 '            </div>'+
+	            			 '        </div>'+
+	            			 '    </div>'+
+	            			 '</div>',
+	            			 
 	            	latlng: new kakao.maps.LatLng(${resDTO.res_latitude}, ${resDTO.res_longitude})
 	        	}${not status.last ? ',' : ''}
 	    	<c:set var="recordNum" value="${recordNum-1 }"></c:set>
@@ -286,6 +310,7 @@
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+	    
 	    
 	    setBounds();
 	}

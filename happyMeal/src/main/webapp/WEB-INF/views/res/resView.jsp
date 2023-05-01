@@ -4,22 +4,22 @@
 <style>
 	.resContainer {
 		display: flex;
+		justify-content:flex-end;
 		flex-direction: row;
 		height: 2000px;
 	}
 	
 	.resContent {
-		width: 70%;
-		padding: 0 20px;
+		width: 1200px;
+		padding: 0 15px;
 	}
 	
 	.resSide {
-		width: 30%;
-		background-color: #E3F8FF;
+		width: 366.5px;
 	}
 	
 	.resInfo, .resReview {
-		width: 800px;
+		width: 100%;
 		margin: 20px auto 0;
 	}
 	
@@ -78,20 +78,59 @@
 		height:35px;
 		font-size: 14pt;
 	}
-	#recipe_comment_text{
+	#res_comment_text{
 		width:100%;
 		height:auto;
 		border: none;
 		outline: none;
 		
 	}
-	#recipecommentList>li{
+	#resCommentList>li{
 		padding:10px 0;
 		border-bottom:1px solid #ddd;
-	}	
+	}
+	#res_Comment_text{
+		padding: 10px;
+		width: 100%;
+		box-sizing: border-box;
+		border: none;
+		border-radius: 5px;
+		font-size: 16px;
+		resize : none;
+	}
+	#resCommentForm fieldset{
+	    display: inline-block;
+	    direction: rtl;
+	    border:0;
+	}
+	#resCommentForm fieldset legend{
+	    text-align: right;
+	}
+	#resCommentForm input[type=radio]{
+	    display: none;
+	}
+	#resCommentForm label{
+	    font-size: 2em;
+	    color: transparent;
+	    text-shadow: 0 0 0 #f0f0f0;
+	}
+	#resCommentForm label:hover{
+	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	#resCommentForm label:hover ~ label{
+	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	#resCommentForm input[type=radio]:checked ~ label{
+	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	#commentStar > span{
+		color: transparent;
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
 	
 </style>
 <script>
+	//정보수정제안
 	$(function(){
 		$("#resEditReq").submit(function(){
 			event.preventDefault();
@@ -152,7 +191,6 @@
 					$("#resCommentCount").html(tag);
 				},error:function(e){
 					console.log(e.responseText)
-					console.log("test")
 				}
 			});
 		}
@@ -160,6 +198,7 @@
 
 		//리뷰 목록 --- ajax로 해당 게시물에 대한 모든 리뷰를 선택하여 뷰에 표시하는 함수 -------------
 		function resCommentList(){
+			
 			$.ajax({
 				url:"resCommentList",
 				data:{res_no:${dto.res_no}},
@@ -168,22 +207,33 @@
 				success:function(comment1){	
 					var tag = "";
 					$(comment1).each(function(i, DTO){
-						tag += "<li><div><b>"+DTO.userid+" ("+DTO.res_comment_date+")</b>";
+						
+						tag += "<li><div style='display:block'><b>"+DTO.nickname+" ("+DTO.res_comment_date+")</b>";
+						tag +="<div id='commentStar'>";
+						for(let i=0; i<DTO.res_star; i++){
+							tag += "<span>★</sapn>";
+						}
+						tag +="</div>";
 						//본인이 쓴 리뷰 일때
-						if(DTO.userid == '${logId}'){ //cDTO.userid(클라이언트 실행 ) = 'goguma' ${logId}(서버에서 실행)goguma
+						if(DTO.userid == '${logId}'){ //DTO.userid(클라이언트 실행 ) = 'goguma' ${logId}(서버에서 실행)goguma
 							tag +="<input type='button' value='Edit'/>";
 							tag +="<input type='button' value='Del' title='"+DTO.res_comment_no+"'/>";
 							
-							tag += "<p style='white-space: pre-line'>"+cDTO.res_comment_text+"</p></div>";
+							tag += "<p style='white-space: pre-line'>"+DTO.res_comment_text+"</p></div>";
 							
-							//리뷰 수정폼을 만들기 - 기존리뷰와, 리뷰번호(c_no)가 폼에 있어야 한다.
+							
+							//리뷰 수정폼을 만들기 - 기존리뷰와, 리뷰번호(res_no)가 폼에 있어야 한다.
 							tag += "<div style='display:none'>"
-							tag += "<form method='post'>"
-							tag += "<input type='hidden' name='recipe_comment_no' value='"+DTO.res_comment_no+"'/>";//리뷰일련번호
+							tag += "<form method='post' id='resCommentEditForm'>"
+							tag += "<input type='hidden' name='res_comment_no' value='"+DTO.res_comment_no+"'/>";//리뷰일련번호
 							tag += "<textarea name='res_comment_text' style='width:400px; height:80px;'>"+DTO.res_comment_text+"</textarea>";
-							tag += "<input type='submit' value='리뷰수정하기'>"
+							tag += "<input type='submit' value='리뷰수정하기'/>"
+							tag += "<input type='button' name='editCancel' value='취소'/>"
 							tag += "</form>"
 							tag += "</div>"
+							
+							
+							
 							
 						}else{
 							tag += "<p>"+DTO.res_comment_text+"</p></div>";
@@ -196,7 +246,6 @@
 					resCommentCount();
 				},error:function(e){
 					console.log(e.responseText)
-					console.log("test")
 				}
 			});
 		}
@@ -204,6 +253,11 @@
 		//리뷰쓰기---------------------------------------------------------------------------------
 		$("#resCommentForm").submit(function(){
 			//코멘트가 있을 때 ajax실행
+			if(${logStatus!='Y'}){
+				alert("로그인후 이용가능합니다");
+				return false;
+			}
+			
 			if($("#res_comment_text").val()==""){
 				alert("리뷰 내용을  입력 후 등록하세요.");
 				return false;
@@ -221,8 +275,7 @@
 				data: query,
 				type: "POST",
 				success:function(result){
-					console.log(result);
-					console.log("test2");
+					//console.log(result);
 					
 					//기존에 입력한 리뷰 지우기
 					$("#res_comment_text").val("");
@@ -245,23 +298,26 @@
 			//$("#commentList>li>div:nth-last").css('display','none');
 			$(this).parent().css("display","none");	//리뷰 숨기고
 			$(this).parent().next().css("display","block");//폼 보여주고
-			
 		});
+		//리뷰 수정 취소(수정폼 가리기)
+		$(document).on('click','#resCommentEditForm input[name=editCancel]',function(){
+			
+			$(this).parent().css("display","none");	//폼 숨기고
+			$(this).parent().prev().css("display","block");//리뷰 보여주고
+		});
+		
 		//리뷰 수정 - DB
-		$(document).on('click','#resCommentEdit input[value=리뷰수정하기]',function(){
+		$(document).on('click','#resCommentList input[value=리뷰수정하기]',function(){
 			//데이터 준비
-			console.log("test1");
 			var params = $(this).parent().serialize();// c_no=34&coment=test
-			//console.log("params",params);
 			var url = "resCommentEdit";
-			console.log("test2");
 			
 			$.ajax({
 				url:url,
 				data:params,
 				type:"POST",
 				success:function(result){
-					console.log(result);
+					//console.log(result);
 					//리뷰목록을 다시 뿌려주기
 					resCommentList();
 				},error:function(e){
@@ -347,9 +403,6 @@
 					<div class="resTitle">
 						<span class="title">
 							<h1>${dto.res_name }</h1>
-							<strong>
-								<span>4.6</span>
-							</strong>
 							<p>${dto.res_type }</p>
 						</span>
 					</div>
@@ -362,7 +415,7 @@
 						<span>리뷰</span>
 					</div>
 				</header>
-				<hr style="height: 3px; background: black"/>
+				<hr style="height: 1px; background: black"/>
 				<table class="resDetail">
 					<tbody>
 						<tr>
@@ -402,14 +455,21 @@
 							<form method="post" id="resCommentForm">
 								<p>		${dto.username }님</p>
 								<input type="hidden" name="res_no" value="${dto.res_no}"/><!-- 원글 글번호 -->
+								<fieldset>
+									<span class="text-bold">별점을 선택해주세요</span>
+									<input type="radio" name="res_star" value="5" id="rate1"><label
+										for="rate1">★</label>
+									<input type="radio" name="res_star" value="4" id="rate2"><label
+										for="rate2">★</label>
+									<input type="radio" name="res_star" value="3" id="rate3"><label
+										for="rate3">★</label>
+									<input type="radio" name="res_star" value="2" id="rate4"><label
+										for="rate4">★</label>
+									<input type="radio" name="res_star" value="1" id="rate5"><label
+										for="rate5">★</label>
+								</fieldset>
 								<textarea name="res_comment_text" id="res_comment_text"  placeholder="리뷰를 작성해주세요"
-									style="padding: 10px;
-									width: 100%;
-									box-sizing: border-box;
-									border: none;
-									border-radius: 5px;
-									font-size: 16px;
-									resize : none;"></textarea>
+								></textarea>
 								<!-- 댓글 등록 버튼 -->
 								<div class="resHeader" style="margin-bottom: 20px; margin-top: 10px; overflow: hidden;">
 									<button type="submit" class="btn btn-outline-dark" style=" float: right">

@@ -25,9 +25,11 @@
 		margin-top:100px;
 	}
 	
+	
 </style>
 <script>
 	$(function(){
+		
 		$("#resUpdateForm").submit(function(){
 			if($("#res_type").val()==""){
 				alert('식당유형을 선택하세요');
@@ -48,6 +50,19 @@
 			$("#resUpdateForm").attr("action", "resUpdateOk");
 		});
 	});
+	
+	function addOpeningHours() {
+		var dayOfWeek = document.getElementById("dayOfWeek").value;
+		var openingTime = document.getElementById("openingTime").value;
+		var closingTime = document.getElementById("closingTime").value;
+
+		// 요일, 영업 시작 시간, 종료 시간을 출력
+		document.getElementById("openingHours").innerHTML += dayOfWeek + ": " + openingTime + " - " + closingTime + "<br>";
+
+		// 추가된 영업시간 값을 res_time 요소에 저장
+		var resTimeElement = document.getElementById("res_time");
+		resTimeElement.value += dayOfWeek + ": " + openingTime + " - " + closingTime + ";";
+	}
 	
 </script>
 
@@ -82,7 +97,29 @@
 			<input type="hidden" name="res_latitude" id="res_latitude" value="">
 			<input type="hidden" name="res_longitude" id="res_longitude" value="">
 		</div>
-		
+		<div class="res_time mb-3">
+			<span>영업시간</span>
+			<br>
+			<label for="dayOfWeek">요일:</label>
+			<select id="dayOfWeek" name="dayOfWeek">
+				<option value="월">월요일</option>
+				<option value="화">화요일</option>
+				<option value="수">수요일</option>
+				<option value="목">목요일</option>
+				<option value="금">금요일</option>
+				<option value="토">토요일</option>
+				<option value="일">일요일</option>
+			</select>
+			<label for="openingTime">영업 시작 :</label>
+			<input type="time" id="openingTime" name="openingTime">
+			<label for="closingTime">영업 종료 :</label>
+			<input type="time" id="closingTime" name="closingTime">
+			<input type="button" value="추가" onclick="addOpeningHours()">
+			<div id="openingHours">
+				<p>입력된 영업시간:</p>
+			</div>
+			<input type="hidden" name="res_time" id="res_time">
+		</div>
 		
 			    
 	    <div class="res_note mb-3">
@@ -98,6 +135,23 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=46d3750493a46ebe690cd8ac9d3be958&libraries=services"></script>
 <script>
+    
+	//res_time 요소에 저장된 값을 출력
+	var resTimeElement = document.getElementById("res_time");
+	resTimeElement.addEventListener("change", function() {
+	    document.getElementById("openingHours").innerHTML = "";
+	    var openingHours = this.value.split(";");
+	    for (var i = 0; i < openingHours.length; i++) {
+	        if (openingHours[i] === "") {
+	            continue;
+	        }
+	        var openingHour = openingHours[i].split(": ");
+	        document.getElementById("openingHours").innerHTML += openingHour[0] + ": " + openingHour[1] + "<br>";
+	    }
+	});
+    
+    
+    
     function res_addrSearch() {
         new daum.Postcode({
             oncomplete: function(data) {
