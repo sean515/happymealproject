@@ -68,4 +68,21 @@
 		update amenu set amenu_hit=amenu_hit+1 where amenu_type_no=${param1} and amenu_name=${param2}
 	</update>
 	
+	<select id="findLike" resultType="int">
+		select count(*)result from menu_like where menu_no = ${menu_no} and userid = #{userid}
+	</select>
+	
+	<delete id="delMenuLike" >
+		delete from menu_like where menu_no = ${menu_no} and userid = #{userid}
+	</delete>
+	
+	<insert id="menuLikeUp" >
+		insert into menu_like(menu_no, userid)
+  		values(#{menu_no}, #{userid})
+	</insert>
+	
+	<select id="count_like_hit" resultType="int">
+		select count(*) menu_like_hit FROM menu_like where menu_no = #{menu_no}
+	</select>
+	
 	</mapper>
