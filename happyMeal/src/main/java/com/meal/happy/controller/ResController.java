@@ -1,13 +1,18 @@
 package com.meal.happy.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -92,6 +97,25 @@ public class ResController {
 		}
 		return mav;
 	}
+	
+	//베스트 식당 페이지
+	@GetMapping("resBestTop")
+	public ModelAndView resBestTop(String res_type, String res_category) {
+		ModelAndView mav = new ModelAndView();
+		
+		List<ResDTO> list = null;
+		if(res_type != null) {
+			list = service.resBestTypeSelect(res_type);
+		} else if(res_category != null) {
+			list = service.resBestCategorySelect(res_category);
+		}
+		
+		mav.addObject("list", list);
+		mav.setViewName("res/resBestTop");
+		
+		return mav;
+	}
+
 	
 	
 	//현재 좋아요 상태

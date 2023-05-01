@@ -246,8 +246,7 @@
 						
                         document.getElementById("res_latitude").value = res_lat;
                         document.getElementById("res_longitude").value = res_lng;
-                        console.log(res_lat);
-                        console.log(res_lng);
+                        
                     } 
                 });
             }

@@ -67,7 +67,17 @@ public class ResServiceImpl implements ResService {
 		return dao.count_like_hit(vo);
 	}
 
+	@Override
+	public List<ResDTO> resBestTypeSelect(String res_type) {
+		return dao.resBestTypeSelect(res_type);
+	}
 
+	@Override
+	public List<ResDTO> resBestCategorySelect(String res_category) {
+		return dao.resBestCategorySelect(res_category);
+	}
+
+	
 
 	
 }

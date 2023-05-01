@@ -22,6 +22,10 @@ public interface ResDAO {
 	//식당추가 요청
 	public int resReqInsert(ResDTO dto);
 	
+	//베스트식당
+	public List<ResDTO> resBestTypeSelect(String res_type);
+	public List<ResDTO> resBestCategorySelect(String res_category);
+	
 	//좋아요
 	public int findLike(LikeVO like);
 	public int delResLike(LikeVO like);

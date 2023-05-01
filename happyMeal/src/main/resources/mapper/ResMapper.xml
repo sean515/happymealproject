@@ -59,6 +59,15 @@
 		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_tel}, #{res_type}, #{res_time}, #{res_note}, #{ip}, #{res_category}, #{res_status}, #{userid})
 	</insert>
 	
+	<select id="resBestTypeSelect" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant where res_type = #{res_type} order by res_hit desc 
+	</select>
+	
+	<select id="resBestCategorySelect" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant where res_category = #{res_category} order by res_hit desc 
+	</select>
+	
+	
 	<select id="findLike" resultType="int">
 		select count(*)result from res_like where res_no = ${res_no} and userid = #{userid}
 	</select>

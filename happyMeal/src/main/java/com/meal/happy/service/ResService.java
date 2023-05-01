@@ -16,6 +16,9 @@ public interface ResService {
 	public int resEditInsert(ResEditDTO dto);
 	public int resReqInsert(ResDTO dto);
 	
+	public List<ResDTO> resBestTypeSelect(String res_type);
+	public List<ResDTO> resBestCategorySelect(String res_category);
+	
 	public int findLike(LikeVO like);
 	public int delResLike(LikeVO like);
 	public int resLikeUp(LikeVO like);

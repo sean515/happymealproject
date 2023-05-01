@@ -207,39 +207,39 @@
 		<div class="resBest">
 			<ul>		
 				<li>
-					<a href="res?searchKey=res_type&searchWord=채식음식점">
+					<a href="resBestTop?res_type=채식음식점">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
 						<span>채식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>	
-					<a href="res?searchKey=res_type&searchWord=저염실천음식점">
+					<a href="resBestTop?res_type=채식가능음식점">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
-						<span>저염식 맛집 TOP10</span>
+						<span>채식가능 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>
-					<a href="res?searchKey=res_type&searchWord=채식음식점">
+					<a href="resBestTop?res_type=저염실천음식점">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
-						<span>채식 맛집 TOP10</span>
+						<span>저염식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>	
-					<a href="res?searchKey=res_type&searchWord=저염실천음식점">
+					<a href="resBestTop?res_category=한식">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
-						<span>저염식 맛집 TOP10</span>
+						<span>한식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>
-					<a href="res?searchKey=res_type&searchWord=채식음식점">
+					<a href="resBestTop?res_category=중국식">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
-						<span>채식 맛집 TOP10</span>
+						<span>중국식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>	
-					<a href="res?searchKey=res_type&searchWord=저염실천음식점">
+					<a href="resBestTop?res_category=일식">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
-						<span>저염식 맛집 TOP10</span>
+						<span>일식 맛집 TOP10</span>
 					</a>
 				</li>	
 			</ul>
