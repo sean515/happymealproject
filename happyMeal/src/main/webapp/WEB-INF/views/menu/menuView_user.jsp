@@ -341,15 +341,13 @@
 	});//jquery
 </script>
 
-
+<!-- 배너 -->
+	<div class= "banner" style="overflow: hidden;">
+		<img src="img/bannerimg2.png" width="100%" height="300px;">
+	</div>
 
 <div class="container">
-	
-	<!-- 배너 -->
-	<div class= "banner">
-		<img src="img/banner.png" width="100%" height="150px"/>
-	</div>
-	
+
 	<div class="topBtns">
 		<a href="menu_user?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
 	</div>

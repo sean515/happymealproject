@@ -21,7 +21,7 @@
 		margin:0;
 	}
 	.articleBox{
-		padding:20px 20px 100px 20px;
+		padding:20px 20px 50px 20px;
 		border: 0.8px solid #ddd;
 		border-radius:10px;
 		position:relative;
@@ -348,14 +348,13 @@
 </script>
 
 
-
-<div class="container">
-	
 	<!-- 배너 -->
 	<div class= "banner" style="overflow: hidden;">
 		<img src="img/bannerimg2.png" width="100%" height="300px;">
 	</div>
 	
+<div class="container">
+
 	<div class="topBtns">
 		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
 	</div>
@@ -404,7 +403,7 @@
 				</ul>
 			</div>
 		</div>
-		</div>
+		
 		<!-- 작성자시작 -->
 		<ul>
 		<div style="padding-top:20px;">
@@ -474,12 +473,13 @@
 		
 			</ul>
 		</div>
-		
+		<div class="topBtns">
+		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+		</div>
+		</div>
 	</div>
 	
-	<div class="topBtns">
-		<a href="recipe?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
-	</div>
+	
 	
 </div>
 <div style="padding-bottom:100px;"></div>

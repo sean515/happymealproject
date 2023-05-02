@@ -42,12 +42,10 @@ public class MenuController {
 		//글 선택
 		//MenuDTO dto = service.menuSelect(amenu_type_no ,amenu_name);
 		ModelAndView mav = new ModelAndView();
-		System.out.println("123");
+		
 		mav.addObject("list", service.menuSelect(amenu_type_no ,amenu_name));	//선택한 레코드
-		System.out.println("456");
+		System.out.println(mav);
 		mav.setViewName("menu/menuView");
-
-		System.out.println("1233"+mav);
 
 		return mav;
 	}

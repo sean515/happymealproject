@@ -265,6 +265,11 @@
 		  }
 		}
 </script>
+
+<!-- 배너 -->
+	<div class= "banner" style="overflow: hidden;">
+		<img src="img/bannerimg2.png" width="100%" height="300px;">
+	</div>
 <div class="container">
 	<h1>게시판 글수정 폼</h1>
 	<form method="post" action="menuEditOk" id="menuForm" enctype="multipart/form-data">  

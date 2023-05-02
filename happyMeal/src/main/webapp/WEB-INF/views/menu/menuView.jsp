@@ -5,6 +5,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
 <style>
+
+	a{
+	 color:black;
+	}
+
 	.topBtns{
 		height:50px;
 		padding:10px 0;
@@ -17,7 +22,7 @@
 		margin:0;
 	}
 	.articleBox{
-		padding:30px 30px 0;
+		padding:20px 20px 50px 20px;
 		border: 0.8px solid #ddd;
 		border-radius:10px;
 		position:relative;
@@ -44,10 +49,6 @@
 		width:40%;
 		font-size:24px;
 	}
-	#manualImage{
-		max-width:350px;
-		max-height:300px;
-	}
 	#recipe_comment_text{
 		width:100%;
 		height:auto;
@@ -70,17 +71,18 @@
 	
 </script>
 
-
+	<!-- 배너 -->
+	<div class= "banner" style="overflow: hidden;">
+		<img src="img/bannerimg2.png" width="100%" height="300px;">
+	</div>
+	
 
 <div class="container">
 	
-	<!-- 배너 -->
-	<div class= "banner">
-		<img src="img/banner.png" width="100%" height="150px"/>
-	</div>
+	
 	
 	<div class="topBtns">
-		<a href="menu">목록</a>
+		<a href="/happy/menu?amenu_type_no=3"  class="btn btn-light" id="listBtn">목록</a>
 	</div>
 	
 	<div class="articleBox">
@@ -99,14 +101,15 @@
 
 	<style>
 		.img1{
-		width: 25%;
-		height:150px;
+		width: 40%;
+		height:300px;
 		margin: 5px;
 		}
 	</style>
 			<c:forEach var="nDTO" items="${list}">
-
-				<p><h5>식단:</h5> ${nDTO.amenu_text }</p>
+				<div id="ingredients" style="padding-top:10px;border-bottom: 1px solid #ddd;">
+					<h3>식단</h3> <p style=" line-height:30px; font-size:14px; font-family: 'Noto Sans KR', sans-serif;"> ${nDTO.amenu_text }</p>
+				</div>
 				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img1 }" <c:if test="${nDTO.amenu_img1 == null}"> style="visibility: hidden;"</c:if>>
 				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img2 }" <c:if test="${nDTO.amenu_img2 == null}"> style="visibility: hidden;"</c:if>>
 				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img3 }" <c:if test="${nDTO.amenu_img3 == null}"> style="visibility: hidden;"</c:if>>
@@ -119,7 +122,7 @@
 				<br/>
 			</c:forEach>
 		</div>		
-		<hr style="height: 3px; background: black"/>		
+	
 		<div class="articleContentBox">		
 			<div id="manual">
 
@@ -132,20 +135,22 @@
 
 		
 				<div style="clear:right;text-align:right; width: 30%; float: right;">
-					<a href="test">신고</a>
+					<a  style="font-size: 12px; float: right;" href="test">신고</a>
 				</div>
 			</div>
+			
+			
+		<!-- 댓글 -->
+		<div class="topBtns">
+		<a href="/happy/menu?amenu_type_no=3"  class="btn btn-light" id="listBtn">목록</a>
 		</div>
 		
-		<hr style = "height: 1px; background-color: black;"/>
-		
-		
-		<!-- 댓글 -->
+		</div>
+
 		
 	</div>
 	
-	<div class="topBtns">
-		<a href="menu">목록</a>
-	</div>
 	
 </div>
+
+<div style="padding-bottom:100px;"></div>

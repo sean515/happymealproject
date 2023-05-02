@@ -36,11 +36,8 @@
 		border: none;
 	}
 	
-	#recipeForm{
-		margin-top:100px;
-	}
 	#recipeForm li{
-		padding:10px 0px;
+		padding-bottom:10px;
 	}
 	#subject{
 		width:100%;
@@ -227,13 +224,21 @@
 		  }
 		}
 </script>
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
+</div>
 <div class="container">
-	<h1>게시판 글수정 폼</h1>
+<!-- 소재목 -->
+	<div style="padding-top: 80px;">
+	<div class="row animate-box">
+	<h1 class="title" style="display: inline; font-size: 40px">&nbsp레시피 수정&nbsp&nbsp</h1>
+	</div>
+	<hr style="height: 1px; background: black"/>
+	</div>
 	<form method="post" action="recipeEditOk" id="recipeForm" enctype="multipart/form-data">
 		<input type="hidden" name="recipe_no" value="${dto.recipe_no }"/>
 		<ul>
-			<h1 style="display: inline;">레시피 등록</h1>
-				<hr style="height: 3px; background-color:black;"/>
 				<li>
 					<label for="file" style="width:250px">
 		  				<div class="btn-upload">메인 이미지 등록하기</div>
@@ -242,9 +247,11 @@
 					<img id="preview" src="/happy/uploadfile/${fileDto.filename }${dto.recipe_thumbnail }"/>
 				</li>
 			<li><input type="text" name="recipe_thumbnail" id="recipe_thumbnail" value="${dto.recipe_thumbnail }"/></li>
-			<li><input type="text" name="recipe_parts" id="recipe_parts" value="${dto.recipe_parts}" /></li>
+			<li>재료</li>
+			<li><input style="width: 100%;" type="text" name="recipe_parts" id="recipe_parts" value="${dto.recipe_parts}" /></li>
 			
 			<!-- 제목 -->
+			<li>레시피 제목</li>
 			<li><input type="text" name="recipe_name" id="subject" value="${dto.recipe_name }"/></li>
 			<!-- 글내용 -->
 			<li>
