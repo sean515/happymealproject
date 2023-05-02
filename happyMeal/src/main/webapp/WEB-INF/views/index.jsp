@@ -120,10 +120,10 @@
 				<div class="col-md-3 col-sm-6 text-center animate-box">
 					<div class="services">
 						<span class="icon">
-							<img src="${pageContext.request.contextPath}/resources/images/menuimg1.PNG">
+							<img style="width:200px; height:200px; position: center;" src="${pageContext.request.contextPath}/img/menu1.jpg">
 						</span>
 						<div class="desc">
-							<h3><a href="#">저당 식단</a></h3>
+							<h3><a href="/happy/menu?amenu_type_no=1">당뇨 식단</a></h3>
 							<p>당 섭취를 줄이는 식사 습관</p>
 						</div>
 					</div>
@@ -131,10 +131,10 @@
 				<div class="col-md-3 col-sm-6 text-center animate-box">
 					<div class="services">
 						<span class="icon">
-							<img src="${pageContext.request.contextPath}/resources/images/menuimg1.PNG">
+							<img style="width:200px; height:200px; position: center;" src="${pageContext.request.contextPath}/img/menu2.jpg">
 						</span>
 						<div class="desc">
-							<h3><a href="#">저염 식단</a></h3>
+							<h3><a href="/happy/menu?amenu_type_no=4">저염 식단</a></h3>
 							<p>나트륨 섭취를 줄이는 저염 식사 습관</p>
 						</div>
 					</div>
@@ -142,54 +142,54 @@
 				<div class="col-md-3 col-sm-6 text-center animate-box">
 					<div class="services">
 						<span class="icon">
-							<img src="${pageContext.request.contextPath}/resources/images/menuimg1.PNG">
+							<img style="width:200px; height:200px; position: center;" src="${pageContext.request.contextPath}/img/menu3.jpg">
 						</span>
 						<div class="desc">
-							<h3><a href="#">고단백 식단</a></h3>
-							<p>맛있는 단백질 보충을 위한 식사 습관</p>
+							<h3><a href="/happy/menu?amenu_type_no=6">항암 식단</a></h3>
+							<p>항암 식사 습관</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 text-center animate-box">
 					<div class="services">
 						<span class="icon">
-							<img src="${pageContext.request.contextPath}/resources/images/menuimg1.PNG">
+							<img style="width:200px; height:200px; position: center;" src="${pageContext.request.contextPath}/img/menu4.jpg">
 						</span>
 						<div class="desc">
-							<h3><a href="#">칼슘 식단</a></h3>
-							<p>골다골증에 좋은 칼슘식단</p>
+							<h3><a href="/happy/menu?amenu_type_no=5">저요오드식</a></h3>
+							<p>방사성 요오드를 통한 치료의 효과를 극대화 시키기 위한 식단</p>
 						</div>
 					</div>
 				</div>				
 			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-3 col-sm-6 text-center animate-box">
+					<div class="services">
+						<span class="icon">
+							<img style="border-radius:10px; width:200px; height:200px; position: center;" src="${pageContext.request.contextPath}/img/menu5.jpg">
+						</span>
+						<div class="desc">
+							<h3><a href="/happy/menu?amenu_type_no=2">연식</a></h3>
+							<p>부드럽게 소화를 도와주는 연식</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 text-center animate-box">
+					<div class="services">
+						<span class="icon">
+							<img style="width:200px; height:200px; position: center;" src="${pageContext.request.contextPath}/img/menu6.jpg">
+						</span>
+						<div class="desc">
+							<h3><a href="/happy/menu?amenu_type_no=4">일반식</a></h3>
+							<p>건강하고 맛있는 식단</p>
+						</div>
+					</div>
+				</div>
+			
+								
+			</div>
 		</div>
 	</div>
-	
-	<!-- 인기레시피 테스트 -->
-	<!-- 게시글 row 상단 -->
-	<ul class="recipe" style="overflow: hidden; padding-left: 0;">
-		<div id="fh5co-staff">
-		<div class="container">
-		<div class="row">
-		<c:forEach var="rdto" items="${list}">	
-			<div class="col-md-3 animate-box text-center">
-				<div class="staff">
-					<div class="staff-img" style="background-image: url('${rdto.recipe_thumbnail }');">
-					</div>
-					<h3>${rdto.recipe_name }</h3>
-					<p> </p>
-					<p>칼로리${rdto.recipe_cal } </p>	
-					<p>탄수화물${rdto.recipe_car } </p>	
-					<p>단백질${rdto.recipe_pro } </p>	
-					<p>지방${rdto.recipe_fat } </p>	
-					<p>나트륨${rdto.recipe_na } </p>	
-				</div>
-			</div>
-		</c:forEach>
-		</div>
-		</div>
-		</div>
-		</ul>
 	
 	<!-- 인기레시피 -->
 	
