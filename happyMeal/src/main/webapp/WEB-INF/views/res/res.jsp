@@ -135,7 +135,7 @@
 											</div>
 											<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
 											<p> </p>
-											<p>${rDTO.res_type } </p>	
+											<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
 										</div>
 									</div>
 								</c:forEach>
