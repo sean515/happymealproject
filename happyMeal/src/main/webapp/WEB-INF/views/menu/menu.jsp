@@ -12,9 +12,14 @@
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
-<div class="banner">
-	<img src="${pageContext.request.contextPath}/img/banner.png"
-		width="100%" height="300px" />
+<style>
+	.accordion-button {
+    font-size: 15px;
+    }
+</style>
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 
 <div class="container">
@@ -22,15 +27,7 @@
 		<!-- 검색 -->
 		<div class="searchDiv" style="padding-top: 20px; float: right;">
 			<form method="get" id="searchForm" action="recipe">
-				<!-- 기간 select -->
-				</select>
-				<!-- 검색 시 제목 작성자 글내용 선택 -->
-				<select name="searchKey" class="form-select"
-					aria-label="Default select example"
-					style="display: inline; width: auto">
-					<option value="recipe_name">제목</option>
-					<option value="recipe_date">글내용</option>
-				</select> <input type="text" name="searchWord" id="searchWord"
+				<input type="text" name="searchWord" id="searchWord"
 					class="form-control" placeholder="검색어를 입력해주세요"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-default"
@@ -40,38 +37,61 @@
 					aria-describedby="inputGroup-sizing-default"
 					style="width: 70px; height: 30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 
-
 			</form>
-			<a href="/happy/menu_user">menu_user 페이지로 이동</a>
 		</div>
+		<!-- 소제목 -->
 		<div class="row animate-box">
-			<h1 class="title" style="display: inline; font-size: 40px">&nbsp식단&nbsp&nbsp</h1>
+			<h1 class="title" style="display: inline; font-size: 40px">&nbsp전문 식단&nbsp&nbsp</h1>
 		</div>
 		<hr style="height: 1px; background: black" />
 	</div>
+	<!-- usermenu 버튼 -->
+	<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="menu_user">사용자 식단</a></div></button>
+	</div>
+	
+	
 	<div>
 
 		<!-- 아코디언 추가 -->
-
+		<div>
 		<div class="accordion accordion-flush" id="accordionFlushExample">
-			<form action="/happy/menu" method="get">
-				<div id="btn-group">
-					<button type="submit" id="btn1" class="btn" name="amenu_type_no"
-						value="1">당뇨식</button>
-					<button type="submit" id="btn2" class="btn" name="amenu_type_no"
-						value="2">연식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no"
-						value="3">일반식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no"
-						value="4">저염식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no"
-						value="5">저요오드식</button>
-					<button type="submit" id="btn3" class="btn" name="amenu_type_no"
-						value="6">항암식</button>	
-					
-				</div>			
-			</form>
-			<form action="/happy/menu" method="get">
+			<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingOne">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+			 	맞춤 식단 보기
+				</button>	
+			</h2>
+			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+				<form action="/happy/menu" method="get">
+					<div id="btn-group">
+						<button type="submit" id="btn1" class="btn" name="amenu_type_no"
+							value="1">당뇨식</button>
+						<button type="submit" id="btn2" class="btn" name="amenu_type_no"
+							value="2">연식</button>
+						<button type="submit" id="btn3" class="btn" name="amenu_type_no"
+							value="3">일반식</button>
+						<button type="submit" id="btn3" class="btn" name="amenu_type_no"
+							value="4">저염식</button>
+						<button type="submit" id="btn3" class="btn" name="amenu_type_no"
+							value="5">저요오드식</button>
+						<button type="submit" id="btn3" class="btn" name="amenu_type_no"
+							value="6">항암식</button>	
+					</div>			
+				</form>
+			</div>
+			</div>
+		</div>
+		
+		<div  class="accordion accordion-flush" id="accordionFlushExample">
+			<div class="accordion-item">
+			<h2 class="accordion-header" id="flush-headingOne">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+			 	시간별 식단 보기
+				</button>	
+			</h2>
+			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+				<form action="/happy/menu" method="get">
 				<div id="btn-group">
 					<input type="hidden" name="amenu_type_no" value="${vo.amenu_type_no}">
 					<button type="submit" id="btn1" class="btn" name="amenu_time"
@@ -82,6 +102,11 @@
 						value="3">저녁</button>
 				</div>
 			</form>
+			</div>
+			</div>
+		</div>
+		</div>
+			
 			<c:choose>
 			<c:when  test="${vo.amenu_time==null}">
 				<ul class="recipe" style="overflow: hidden; padding-left: 0;">
@@ -89,21 +114,21 @@
 					<c:set var="recordNum"
 						value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 	
-					<div id="fh5co-blog">
+					<div "id="fh5co-blog">
 						<div class="container">
 	
 							<div class="row">
 								<c:set var="counter" value="-1" />
 								<c:forEach var="MenuDTO" items="${list}">
 									<c:if test="${counter == -1}">
-										<h1>${MenuDTO.amenu_type_name }${1}</h1>
+										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name }${1}</h3>
 									</c:if>
 									<c:set var="counter" value="${counter + 1}" />
 	
 									<c:if test="${counter % 3 == 0 and counter != 0}">
 										<c:set var="pageNo" value="${(counter/ 3)+1}" />
 										<c:set var="pageNo" value="${pageNo.intValue()}" />
-										<h1>${MenuDTO.amenu_type_name}${pageNo}</h1>
+										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name}${pageNo}</h3>
 									</c:if>
 									<div class="col-lg-4 col-md-4">
 										<div class="fh5co-blog animate-box">

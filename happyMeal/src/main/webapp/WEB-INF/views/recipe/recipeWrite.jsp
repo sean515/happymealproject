@@ -229,6 +229,10 @@
 		  }
 		}
 </script>
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
+</div>
 <div class="container">
 	<form method="post" action="recipeWriteOk" id="recipeForm" enctype="multipart/form-data">  
 		<ul>

@@ -282,17 +282,15 @@ input.test:focus, input:not(:placeholder-shown){
 		});
 </script>
 
- <!-- banner -->
- <div class= "banner">
-	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 <div class="container">
 	<div style="padding-top: 80px;">
 	<!-- 검색 -->
 	<div class="searchDiv" style="padding-top:20px; float: right;">
 		<form method="get" id="searchForm" action="recipe">
-		<!-- 기간 select -->
-			
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 		</form>

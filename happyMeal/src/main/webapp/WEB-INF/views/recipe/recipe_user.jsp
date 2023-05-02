@@ -65,32 +65,19 @@
 	});
 </script>
 
- <!-- banner -->
- <div class= "banner">
-	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
+<!-- 배너 -->
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 <div class="container">
 	<div style="padding-top: 80px;">
 	<!-- 검색 -->
 	<div class="searchDiv" style="padding-top:20px; float: right;">
 		<form method="get" id="searchForm" action="recipe">
-		<!-- 기간 select -->
-			<select name="searchDate" class="form-select" aria-label="Default select example" style="width: auto; display: inline; white-space:nowrap;">
-				<option value="">전체기간 </option>
-				<option value="">오늘 </option>
-				<option value="">이번주 </option>
-			</select>
-		<!-- 검색 시 제목 작성자 글내용 선택 -->
-				<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
-				<option value="subject">제목 </option>
-				<option value="username">작성자 </option>
-				<option value="content">글내용 </option>
-			</select>
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 			
 		</form>
-		<a href="/happy/recipe">recipe 페이지로 이동</a>
 		
 	</div>
 
@@ -99,6 +86,10 @@
 	<h1 class="title" style="display: inline; font-size: 40px">&nbsp레시피&nbsp&nbsp</h1>
 	</div>
 	<hr style="height: 1px; background: black"/>
+	</div>
+	<!-- recipe 버튼 -->
+	<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="/happy/recipe">전문 레시피</a></div></button>
 	</div>
 
 	<!-- 게시글 row 상단 -->
