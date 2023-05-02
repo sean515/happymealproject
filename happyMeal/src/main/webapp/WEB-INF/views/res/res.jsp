@@ -6,7 +6,7 @@
 		display:flex;
 		justify-content:flex-end;
 		flex-direction:row;
-		height:2000px;
+		height:3000px;
 	}
 	.resList{
 		width:1300px;
@@ -14,9 +14,10 @@
 	}
 	.resSide{
 		width:450px;
+		background-color:#f6f6f6;
 	}
 	.titleWrap{
-		padding:80px 60px 0;
+		padding:80px 150px 0;
 	}
 	.searchDiv{
 		float:right;
@@ -59,7 +60,17 @@
 	    margin-left: -1px;
 	    font-size: 12px;
 	}
-	
+	.resBest{
+		display:flex;
+		justify-content:center;
+		padding-top:50px;
+		text-align:center;
+		
+	}
+	.resBestList > li{
+		margin:20px 0;
+		font-size:1.2em;
+	}
 	.thumbnail{
 		width:320px;
 		height:180px;
@@ -70,6 +81,17 @@
 	}
 	.desc{
 		font-size:0.9em;
+	}
+	.container > .row{
+		padding:0 70px 0 120px;
+	}
+	.col-md-6{
+		width:400px;
+		height:400px;
+		margin:0 30px;
+	}
+	.staff-img{
+		height:250px !important;
 	}
 	
 	
@@ -109,7 +131,7 @@
 			</div>
 			<!-- 소제목 -->
 			<div class="row animate-box">
-				<h1 class="title" style="display: inline; font-size: 40px">&nbsp식당&nbsp&nbsp</h1>
+				<h1 class="title" style="display: inline; font-size: 40px">식당&nbsp&nbsp</h1>
 			</div>
 			<hr style="height: 1px; background: black"/>
 			<div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -129,12 +151,11 @@
 							<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
 							<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 								<c:forEach var="rDTO" items="${list}">	
-									<div class="col-md-3 animate-box text-center">
+									<div class="col-md-6 animate-box text-center">
 										<div class="staff">
-											<div class="staff-img" style="background-image: url('http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png');">
+											<div class="staff-img" style="background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
 											</div>
 											<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
-											<p> </p>
 											<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
 										</div>
 									</div>
@@ -205,40 +226,40 @@
 		<div id="map" style="width:100%;height:350px;"></div>
 		<!-- 베스트 맛집 -->
 		<div class="resBest">
-			<ul>		
+			<ul class="resBestList">		
 				<li>
 					<a href="resBestTop?res_type=채식음식점">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vegan.jpg"/>
 						<span>채식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>	
 					<a href="resBestTop?res_type=채식가능음식점">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vegeAvail.jpg"/>
 						<span>채식가능 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>
 					<a href="resBestTop?res_type=저염실천음식점">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
 						<span>저염식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>	
 					<a href="resBestTop?res_category=한식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/koreanFood.jpg"/>
 						<span>한식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>
 					<a href="resBestTop?res_category=중국식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vege.png"/>
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/chineseFood.jpg"/>
 						<span>중국식 맛집 TOP10</span>
 					</a>
 				</li>
 				<li>	
 					<a href="resBestTop?res_category=일식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/japaneseFood.jpg"/>
 						<span>일식 맛집 TOP10</span>
 					</a>
 				</li>	
