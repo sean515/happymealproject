@@ -135,6 +135,33 @@ public class myPageServiceImpl implements myPageService {
 		return dao.pageSelect(vo);
 	}
 
+	@Override
+	public int recipeCommentTotalRecord_user(PagingVO vo) {
+		return dao.recipeCommentTotalRecord_user(vo);
+	}
 
+	@Override
+	public List<RecipeCommentDTO> recipe_Comment_PageSelect_user(PagingVO vo) {
+		return dao.recipe_Comment_PageSelect_user(vo);
+	}
 
+	@Override
+	public int menuCommentTotalRecord_user(PagingVO vo) {
+		return dao.menuCommentTotalRecord_user(vo);
+	}
+
+	@Override
+	public List<MenuUserCommentDTO> menu_Comment_PageSelect_user(PagingVO vo) {
+		return dao.menu_Comment_PageSelect_user(vo);
+	}
+
+	@Override
+	public int commentTotalRecord(PagingVO vo) {
+		return dao.commentTotalRecord(vo);
+	}
+
+	@Override
+	public List<CommCommentDTO> comm_Comment_PageSelect(PagingVO vo) {
+		return dao.comm_Comment_PageSelect(vo);
+	}
 }

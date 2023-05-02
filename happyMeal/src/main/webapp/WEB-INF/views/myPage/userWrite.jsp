@@ -139,7 +139,6 @@
 	<div class="row animate-box">
 	<h1 class="title" style="display: inline; font-size: 40px">&nbsp커뮤니티&nbsp&nbsp</h1>
 	</div>
-	
 	</div>
 	<br/>
 	<hr style="height: 1px; background: black; margin-bottom:0;"/>

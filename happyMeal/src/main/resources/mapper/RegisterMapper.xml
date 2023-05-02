@@ -200,4 +200,29 @@
 					</when>
 				</choose>
 	</select>
+	
+	<select id="comm_Comment_PageSelect" resultType="com.meal.happy.dto.CommCommentDTO">
+		SELECT cc.comm_comment_no, cc.comm_no, c.comm_title, cc.comm_comment_text, cc.comm_comment_date
+		FROM community_comment cc
+		INNER JOIN community c ON cc.comm_no = c.comm_no
+		WHERE cc.userid = #{userid}
+		ORDER BY cc.comm_comment_no DESC
+	</select>
+	
+	<select id="recipe_Comment_PageSelect_user" resultType="com.meal.happy.dto.RecipeCommentDTO">
+		SELECT re.recipe_no, re.recipe_comment_text,re.userid,re.recipe_comment_date,r.recipe_name
+		FROM recipe_comment re
+		INNER JOIN recipe r ON re.recipe_no = r.recipe_no
+		WHERE re.userid = #{userid}
+		ORDER BY re.recipe_comment_no DESC
+	</select>
+	
+	<select id="menu_Comment_PageSelect_user" resultType="com.meal.happy.dto.MenuUserCommentDTO">
+		SELECT me.menu_comment_no, me.menu_no, m.menu_title, me.menu_comment_text, me.menu_comment_date
+		FROM menu_comment me
+		INNER JOIN menu m ON me.menu_no = m.menu_no
+		WHERE me.userid = #{userid}
+		ORDER BY me.menu_comment_no DESC
+	</select>
+	
 </mapper>

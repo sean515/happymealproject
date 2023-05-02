@@ -42,15 +42,15 @@ public class PagingVO {
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
-				+ ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", onePageNumCount="
-				+ onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord="
-				+ searchWord + ", parts1=" + parts1 + ", parts2=" + parts2 + ", parts3=" + parts3 + ", parts4=" + parts4
-				+ ", parts5=" + parts5 + ", delparts1=" + delparts1 + ", delparts2=" + delparts2 + ", delparts3="
-				+ delparts3 + ", delparts4=" + delparts4 + ", delparts5=" + delparts5 + ", amenu_type_no1="
-				+ amenu_type_no1 + ", amenu_type_no2=" + amenu_type_no2 + ", amenu_type_no3=" + amenu_type_no3
-				+ ", amenu_type_no4=" + amenu_type_no4 + ", amenu_type_no5=" + amenu_type_no5 + ", amenu_type_no6="
-				+ amenu_type_no6 + ", amenu_type_no=" + amenu_type_no + ", time=" + time + ", max_cal=" + max_cal
-				+ ", min_cal=" + min_cal + ", amenu_time=" + amenu_time + "]";
+				+ ", totalPage=" + totalPage + ", lastPageRecord=" + lastPageRecord + ", cate=" + cate
+				+ ", onePageNumCount=" + onePageNumCount + ", startPageNum=" + startPageNum + ", searchKey=" + searchKey
+				+ ", searchWord=" + searchWord + ", userid=" + userid + ", parts1=" + parts1 + ", parts2=" + parts2
+				+ ", parts3=" + parts3 + ", parts4=" + parts4 + ", parts5=" + parts5 + ", delparts1=" + delparts1
+				+ ", delparts2=" + delparts2 + ", delparts3=" + delparts3 + ", delparts4=" + delparts4 + ", delparts5="
+				+ delparts5 + ", amenu_type_no1=" + amenu_type_no1 + ", amenu_type_no2=" + amenu_type_no2
+				+ ", amenu_type_no3=" + amenu_type_no3 + ", amenu_type_no4=" + amenu_type_no4 + ", amenu_type_no5="
+				+ amenu_type_no5 + ", amenu_type_no6=" + amenu_type_no6 + ", amenu_type_no=" + amenu_type_no + ", time="
+				+ time + ", max_cal=" + max_cal + ", min_cal=" + min_cal + ", amenu_time=" + amenu_time + "]";
 	}
 
 
