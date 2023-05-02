@@ -94,7 +94,7 @@
 	}
 	
 	.container3{
-		padding: 25px 0;
+		padding: 25px 0 0 0;
 	}
 	
 	#my_header{
@@ -103,7 +103,7 @@
 	}
 	
 	#bottomline{
-		border-bottom: solid 1px #80808080;
+		/* border-bottom: solid 1px #80808080; */
     	padding-bottom: 25px;
     	margin-right: 10px;
     	margin-left: 10px;
@@ -255,14 +255,15 @@
   <div class="row">
   
     <div class="col" id="bottomline" style="width: 45% display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">
-    	<p id="my_header">내가 작성한 글<br/></p>
+    	<p id="my_header"><b>내가 작성한 글</b><br/></p>
     	
     	<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis;">
 		<div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;" >
 			<h5>커뮤니티</h5> 
 		</div>
 		<div  style="display: inline-block; text-align: center;">
-			<a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis; width:90%;" href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a>
+			<a style=" white-space:nowrap; overflow: hidden; text-overflow: ellipsis; width:90%;" href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a>
+			<span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;"> </span>
 		</div>
 		</div>
 		 
@@ -272,7 +273,7 @@
 			<h5>식단</h5> 
 		</div>
 		<div  style="display: inline-block; text-align: center;">
-		   <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="menuView_user?menu_no=${mdto.menu_no }">${mdto.menu_title }</a>
+		   <a style="white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="menuView_user?menu_no=${mdto.menu_no }">${mdto.menu_title }</a>
 		</div>
 		</div>   
 		   <hr class="hr3"/>
@@ -281,7 +282,7 @@
 			<h5>레시피</h5> 
 		</div>
 		<div  style="display: inline-block; text-align: center;">
-		   <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="recipeView_user?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
+		   <a style=" white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="recipeView_user?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
 		</div>
 		</div>   
 		   <hr class="hr3"/>
@@ -294,7 +295,7 @@
 	
 	<div class="col" id="bottomline" style="width: 45% display: block; white-space:nowrap; overflow: hidden;" >
 	
-		<p id="my_header">내가 작성한 댓글<br/></p>
+		<p id="my_header"><b>내가 작성한 댓글</b><br/></p>
 		
 <div style="display: inline-block; overflow:hidden; white-space:nowrap; vertical-align: top; width:90%;">
   <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;">
@@ -336,6 +337,7 @@
 </div>
 </div>
 <!-- --------------------------------------------------------------------------------------- -->
+<hr style="border-top: 1px solid #3c763d;"/>
 <div class="container3" style="padding-top:0px;">
   <div class="row">
     <div class="col" id="bottomline">

@@ -54,6 +54,14 @@ public interface RegisterDAO {
 	public int totalRecord(PagingVO vo);
 	public List<CommDTO> pageSelect(PagingVO vo);
 	
+	//comment
+	public int recipeCommentTotalRecord_user(PagingVO vo);
+	public List<RecipeCommentDTO> recipe_Comment_PageSelect_user(PagingVO vo);
+	public int menuCommentTotalRecord_user(PagingVO vo);
+	public List<MenuUserCommentDTO> menu_Comment_PageSelect_user(PagingVO vo);
+	public int commentTotalRecord(PagingVO vo);
+	public List<CommCommentDTO> comm_Comment_PageSelect(PagingVO vo);
+	
 	//bmi 계산 후 DB update
 	public void updateBMIAndKal(String userid, double bmi, double kal, String standardBmi);
 }

@@ -47,6 +47,7 @@ public class myPageController {
 		
 		RecipeDTO rdto = service.selectRecipe((String) session.getAttribute("logId"));
 		RecipeCommentDTO re_redto = service.selectRecipeComment((String) session.getAttribute("logId"));
+		
 		System.out.println(re_redto);
 		MenuUserDTO mdto = service.selectMenu((String) session.getAttribute("logId"));
 		MenuUserCommentDTO me_medto = service.selectMenuComment((String) session.getAttribute("logId"));
@@ -152,9 +153,10 @@ public class myPageController {
 	// 내가 작성한 글
 	@GetMapping("/myPage/userWrite")
 	public ModelAndView recipeList_user(PagingVO vo, HttpSession session, Integer cate) {
-		System.out.println(vo);
+		
 		ModelAndView mav = new ModelAndView();
 		vo.setUserid((String) session.getAttribute("logId"));
+		System.out.println(vo);
 		//레시피
 		if (Objects.equals(cate, 1) || cate == null) {
 		vo.setTotalRecord(service.recipeTotalRecord_user(vo));
@@ -173,14 +175,44 @@ public class myPageController {
 		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
 		
 		mav.setViewName("myPage/userWrite");
+		System.out.println(mav);
 		return mav;
 	}
 
 
 	// 내가 작성한 댓글
 	@GetMapping("/myPage/userWriteReply")
-	public String userWriteReplyForm() {
-		return "myPage/userWriteReply";
+	public ModelAndView userWriteReplyForm(PagingVO vo, HttpSession session, Integer cate) {
+		
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+		System.out.println(vo);
+		//레시피
+		if (Objects.equals(cate, 1) || cate == null) {
+			//vo.setTotalRecord(service.recipeCommentTotalRecord_user(vo));
+		mav.addObject("list",service.recipe_Comment_PageSelect_user(vo));
+		
+		System.out.println("recipe"+mav);
+		}
+		//식단
+		if (Objects.equals(cate, 2)) {
+			//vo.setTotalRecord(service.menuCommentTotalRecord_user(vo));
+		mav.addObject("list",service.menu_Comment_PageSelect_user(vo));
+		System.out.println(mav);
+
+		}
+				
+		if (Objects.equals(cate, 3)) {
+			//vo.setTotalRecord(service.commentTotalRecord(vo));
+			mav.addObject("list",service.comm_Comment_PageSelect(vo));
+			System.out.println(mav);
+
+		}
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+				
+		mav.setViewName("myPage/userWriteReply");
+		System.out.println(mav);
+		return mav;		
 	}
 
 	// 식당 정보 업데이트

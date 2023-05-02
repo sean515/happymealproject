@@ -191,6 +191,7 @@ public class CommController {
 					int result = service.findLike(like);
 					
 					like.setResult(result);
+					System.out.println("commlike2"+like);
 					return like;
 				}
 		//현재 좋아요 취소
