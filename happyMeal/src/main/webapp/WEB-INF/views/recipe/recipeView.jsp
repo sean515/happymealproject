@@ -5,6 +5,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
 <style>
+
+	a{
+	 color:black;
+	}
 	.topBtns{
 		height:50px;
 		padding:10px 0;
@@ -17,7 +21,7 @@
 		margin:0;
 	}
 	.articleBox{
-		padding:30px 30px 0;
+		padding:20px 20px 100px 20px;
 		border: 0.8px solid #ddd;
 		border-radius:10px;
 		position:relative;
@@ -38,15 +42,16 @@
 	}
 	#manual li{
 		float:left;
-		width:60%;
+		width:80%;
 	}
 	#manual li:nth-child(2n){
-		width:40%;
-		font-size:24px;
+		width:100%;
+		font-size:14px;
+		padding: 20px 0;
 	}
 	#manualImage{
-		max-width:350px;
-		max-height:300px;
+		max-width: 100%;
+    	max-height: 400px;
 	}
 	#recipe_comment_text{
 		width:100%;
@@ -210,11 +215,11 @@
 				success:function(comment1){	
 					var tag = "";
 					$(comment1).each(function(i, cDTO){
-						tag += "<li><div><b>"+cDTO.userid+" ("+cDTO.recipe_comment_date+")</b>";
+						tag += "<li><div style='font-size: 12px;' ><b>"+cDTO.userid+" ("+cDTO.recipe_comment_date+")</b>";
 						//본인이 쓴 댓글 일때
 						if(cDTO.userid == '${logId}'){ //cDTO.userid(클라이언트 실행 ) = 'goguma' ${logId}(서버에서 실행)goguma
-							tag +="<input type='button' value='Edit'/>";
-							tag +="<input type='button' value='Del' title='"+cDTO.recipe_comment_no+"'/>";
+							tag +="<input type='button' value='수정' style='background-color:white; border:none; color:#8BC34A;'/>";
+							tag +="<input type='button' value='삭제' style='background-color:white; border:none; color:#8BC34A;' title='"+cDTO.recipe_comment_no+"'/>";
 							
 							tag += "<p style='white-space: pre-line'>"+cDTO.recipe_comment_text+"</p></div>";
 							
@@ -279,7 +284,7 @@
 			return false; //form의 기본 이벤트 때문 다음 실행이
 		});
 		//댓글 수정폼 보여주기 : 본인이 쓴 글일 때 Edit버튼을 클릭하면 글 내용은 숨기고, 폼을 보여준다.
-		$(document).on('click','#recipecommentList input[value=Edit]',function(){
+		$(document).on('click','#recipecommentList input[value=수정]',function(){
 			
 			//var dom = $(document).cjildren("li");
 			//기존의 열어놓은 폼이나, 숨겨놓은 댓글내용을 처리하고
@@ -314,7 +319,7 @@
 			return false;
 		});
 			//댓글 삭제
-			$(document).on('click','#recipecommentList input[value=Del]',function(){
+			$(document).on('click','#recipecommentList input[value=삭제]',function(){
 				if(confirm("댓글을 삭제할까요?")){
 					var params = "recipe_comment_no=" +$(this).attr("title");
 					console.log(params);
@@ -347,8 +352,8 @@
 <div class="container">
 	
 	<!-- 배너 -->
-	<div class= "banner">
-		<img src="img/banner.png" width="100%" height="150px"/>
+	<div class= "banner" style="overflow: hidden;">
+		<img src="img/bannerimg2.png" width="100%" height="300px;">
 	</div>
 	
 	<div class="topBtns">
@@ -356,36 +361,30 @@
 	</div>
 	
 	<div class="articleBox">
-		<div class="articleHeader">
-			<div class="articleTitle">
-				<!-- 제목 -->
-				<h1>${dto.recipe_name }</h1>
-			</div>
-			
-			<div class="articleInfo row">
-				<div class="col-8">
-					<img src="img/loginImg.png" width="60px" height="60px"/>
-					<span style="font-size:24px">${dto.username}</span>
-					<br/>
-					<span>${dto.recipe_date }&nbsp;&nbsp;&nbsp;조회&nbsp;&nbsp;${dto.recipe_hit }</span>
-			
-				</div>
-				<div class="col-4">
-					<c:if test="${logId==dto.userid }">
-						<a href="recipeEdit?recipe_no=${dto.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-secondary">수정</a>
-						<a href="javascript:recipeDel()" class="btn btn-secondary">삭제</a>
-					</c:if>		
-				</div>
-			</div>
-		</div>	
 	
-		<hr style="height: 3px; background: black"/>
+	
+		<div class="articleHeader">
+		<div style="border-bottom: 1px solid gray;">
+			<ul id="view"  style="margin-top: 30px; padding:0;">
+			<li style="margin: 15px 0px 15px 10px; width: 80%; display:inline-block;">
+				<!-- 제목 -->
+				<h2 style="width: 80%; display:inline-block;">${dto.recipe_name }</h2>
+			</li>
+			<c:if test="${logId==dto.userid }">
+				<div class="searchDiv" style="padding-top:20px; float: right;">	
+					<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="recipeEdit?recipe_no=${dto.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" >수정</a></div></button>
+					<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="javascript:recipeDel()">삭제</a></div></button>
+				</div>
+			</c:if>	
+			</ul>
+		</div>	
+		</div>	
 			
 		<div class="articleContentBox">
 			
-			<div id="ingredients">
-				<h2>재료</h2>
-				<pre>${dto.recipe_parts }</pre>
+			<div id="ingredients" style="padding-top:10px;border-bottom: 1px solid #ddd;">
+				<h3>재료</h3>
+				<p style=" line-height:30px; font-size:14px; font-family: 'Noto Sans KR', sans-serif;">${dto.recipe_parts }</p>
 			</div>
 			
 			<div id="manual">
@@ -405,51 +404,60 @@
 				</ul>
 			</div>
 		</div>
+		</div>
+		<!-- 작성자시작 -->
+		<ul>
+		<div style="padding-top:20px;">
+		<li style="display: inline; font-size: 14px; position: relative; left:10px;">
+		<a style="color:black;" href="recipe?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b>님의 게시글 더보기</li></a>
+		</div>
+		<div>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.recipe_date }</li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">조회 </li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.recipe_hit } </li>
+		<li style="display: inline; position: relative;  font-size: 12px; float: right;"><a href="test">신고</a></li>
 		
-		<div class="articleWriter">
-			<div>
-				<ul>
-					<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
-					<li style="display: inline; font-size: 15px; position: relative; left:10px;"><a href="recipe?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b> 님의 게시글 더보기</a></li>
-				</ul>
+		</div>
+			<div style= "overflow: hidden">	
+				<div style="clear:right;text-align:right; width: 30%;  font-size: 14px;">
+					
+				</div>
 			</div>
+		</ul>
 		
-			<div style= "overflow: hidden">
-				<div style= "width: 30%; float: left; overflow: hidden">
-					<ul>
-						<img src="" class="LikeBtn" style="width:12px"></img>
-						<li style="display: inline;">좋아요</li>
-						<li style="display: inline;" id="recipe_like_hit"></li>
-						<li style="display: inline;">댓글</li>
-						<li style="display: inline;" id="recipe_comment_hit"></li>
-						
-					</ul>
-				</div>
-		
-				<div style="clear:right;text-align:right; width: 30%; float: right;">
-					<a href="test">신고</a>
-				</div>
+		<hr style = "height: 1px; background-color: black;"/>
+		<!-- 작성자끝 -->
+		<!-- 댓글 수정 시작-->
+		<div style="padding-top:10px; padding-bottom:40px;">
+			<div style="width: 5%;  display: inline-block; float: left;">
+				<h4 style="padding-left:10px;">댓글</h4>
+			</div>
+			<div style= "padding-left:10px; width: 30%; float: left; overflow: hidden">
+				<img src="" class="LikeBtn" style="width:18px; margin-top:-5px;"></img>
+				<li style="display: inline;  font-size: 12px;" > 좋아요</li>
+				<li style="display: inline;  font-size: 12px;" id="recipe_like_hit"></li>
+				<li style="display: inline;  font-size: 12px;" > 댓글</li>
+				<li style="display: inline;  font-size: 12px;" id="recipe_comment_hit"></li>
 			</div>
 		</div>
 		
-		<hr style = "height: 1px; background-color: black;"/>
+		
 		
 		
 		<!-- 댓글 -->
-		<h4>댓글</h4>
 		<div>
 			<c:if test="${logStatus=='Y'}"><!-- 로그인한 경우 댓글쓰기 폼 보여주기 -->
 				<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px; margin-bottom: 30px; "><!-- 댓글 입력 테두리 -->
 					<form method="post" id="recipecommentForm">
-						<p>		${dto.username }님</p>
+						<p style="padding-left: 10px; font-size: 12px;">		${sessionScope.logId}님</p>
 						<input type="hidden" name="recipe_no" value="${dto.recipe_no}"/><!-- 원글 글번호 -->
 						<textarea name="recipe_comment_text" id="recipe_comment_text"  placeholder="댓글을 남겨보세요"
-							style="padding: 10px;
+							style="padding: 10px 0px 0px 10px;
 							width: 100%;
 							box-sizing: border-box;
 							border: none;
-							border-radius: 5px;
-							font-size: 16px;
+							border-radius: 3px;
+							font-size: 12px;
 							resize : none;"></textarea>
 						<!-- 댓글 등록 버튼 -->
 						<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px; overflow: hidden;">
@@ -474,3 +482,4 @@
 	</div>
 	
 </div>
+<div style="padding-bottom:100px;"></div>

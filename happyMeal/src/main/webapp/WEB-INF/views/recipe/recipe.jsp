@@ -295,10 +295,7 @@ input.test:focus, input:not(:placeholder-shown){
 			
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
-			
-
 		</form>
-		<a href="/happy/recipe_user">recipe_user 페이지로 이동</a>
 	</div>
 
 	<!-- 소재목 -->
@@ -308,7 +305,10 @@ input.test:focus, input:not(:placeholder-shown){
 	<hr style="height: 1px; background: black"/>
 	</div>
 	<div>
-	
+	<!-- userrecipe 버튼 -->
+	<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="recipe_user">사용자 레시피</a></div></button>
+	</div>
 	<!-- 아코디언 추가 -->
 			
 	<div class="accordion accordion-flush" id="accordionFlushExample">
@@ -323,7 +323,7 @@ input.test:focus, input:not(:placeholder-shown){
 			</h2>
 
 			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-			<form method="get" id="partsForm" action="recipe">
+			<form style="padding-bottom: 20px;" method="get" id="partsForm" action="recipe">
 			<br/>
 			<c:if test="${dto.kal != null and dto.kal !=0.0}">
 			<h3>하루 권장 섭취 칼로리: ${dto.kal}</h3>
@@ -412,8 +412,6 @@ input.test:focus, input:not(:placeholder-shown){
 			  <input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="background-color: #8BC34A; color: white; border: navajowhite;"/>
 			</form>
 
-
-			 <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
 			 </div>
 		</div>
 	<!-- 게시글 row 상단 -->
@@ -429,12 +427,9 @@ input.test:focus, input:not(:placeholder-shown){
 					<div class="staff-img" style="background-image: url('${bDTO.recipe_thumbnail }');">
 					</div>
 					<h3><a href="recipeView?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.recipe_name }</a></h3>
-					<p> </p>
-					<p>칼로리${bDTO.recipe_cal } </p>	
-					<p>탄수화물${bDTO.recipe_car } </p>	
-					<p>단백질${bDTO.recipe_pro } </p>	
-					<p>지방${bDTO.recipe_fat } </p>	
-					<p>나트륨${bDTO.recipe_na } </p>	
+					<p style="margin-bottom:10px;">${bDTO.recipe_cal } kal </p>	
+					<p style="margin-bottom:0px;">탄수화물 ${bDTO.recipe_car }  단백질 ${bDTO.recipe_pro }</p>
+					<p style="margin-bottom:0px;">지방 ${bDTO.recipe_fat }  나트륨 ${bDTO.recipe_na }</p>
 				</div>
 			</div>
 		<c:set var="recordNum" value="${recordNum-1 }"></c:set>	

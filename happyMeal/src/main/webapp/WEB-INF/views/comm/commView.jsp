@@ -313,8 +313,6 @@
 			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="commEdit?comm_no=${dto.comm_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">수정</a></div></button>
 			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="javascript:commDel()">삭제</a></div></button>
 		</div>
-	
-		
 		</c:if>	
 		</div>
 		
@@ -326,7 +324,7 @@
 			
 		
 		<div>
-		
+
 		<li style="font-size: 14px; padding-top: 50px; padding-bottom: 100px; padding-left: 20px; padding-right: 20px;">${dto.comm_text }</li>
 		<div style="overflow: hidden; margin-top: 50px;">
 		<li style="display: inline; font-size: 14px; position: relative; left:10px;">
