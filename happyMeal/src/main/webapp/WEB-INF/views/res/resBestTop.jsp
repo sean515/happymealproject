@@ -8,7 +8,7 @@
 	.resList{
 		width:1000px;
 		padding:0 15px;
-		margin:0 200px;
+		margin:0 auto;
 	}
 	.titleWrap{
 		width:100%;
@@ -26,8 +26,8 @@
 		border-bottom:1px solid #ddd;
 	}
 	.resThumb img{
-		width:150px;
-		height:150px;
+		width:250px;
+		height:200px;
 	}
 	.resThumb{
 		margin-right:50px;
@@ -56,7 +56,7 @@
 			<ul>
 				<c:forEach var="bDTO" items="${list}" varStatus="status" end="9">
 					<li class="bestList_list">
-						<div class="resThumb"><a href="resView?res_no=${bDTO.res_no }"><img src="http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png"/></a></div>
+						<div class="resThumb"><a href="resView?res_no=${bDTO.res_no }"><img src="${empty bDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : bDTO.res_image}"/></a></div>
 						<a href="resView?res_no=${bDTO.res_no }">
 							<div class="resInfo">
 								<h3>${bDTO.res_name }</h3>
