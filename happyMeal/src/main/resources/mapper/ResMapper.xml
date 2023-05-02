@@ -12,12 +12,13 @@
 		select * from
 			(select * from
 				(select res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time,  
-				res_note, res_like, res_hit, res_image, res_date, res_category, res_status from restaurant
+				res_note, res_like, res_hit, res_image, res_date, res_category, res_status 
+				from restaurant
 				where res_status=1
 		 		<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 		 			and ${searchKey} like '%${searchWord}%' 
 		 		</if>
-		 		order by res_no desc
+			    order by res_no desc 
 		 		)
 		 	
 			 	<![CDATA[
@@ -54,9 +55,35 @@
 	</insert>
 	
 	<insert id="resReqInsert">
-		insert into restaurant(res_no, res_name, res_addr, res_latitude, res_longitude, res_type, res_note, ip, res_status, userid) 
-		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_type}, #{res_note}, #{ip}, #{res_status}, #{userid})
+		insert into restaurant(res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time, res_note, ip, res_category, res_status, userid) 
+		values(res_no_sq.nextval, #{res_name}, #{res_addr}, #{res_latitude}, #{res_longitude}, #{res_tel}, #{res_type}, #{res_time}, #{res_note}, #{ip}, #{res_category}, #{res_status}, #{userid})
 	</insert>
+	
+	<select id="resBestTypeSelect" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant where res_type = #{res_type} order by res_hit desc 
+	</select>
+	
+	<select id="resBestCategorySelect" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant where res_category = #{res_category} order by res_hit desc 
+	</select>
+	
+	
+	<select id="findLike" resultType="int">
+		select count(*)result from res_like where res_no = ${res_no} and userid = #{userid}
+	</select>
+	
+	<delete id="delResLike" >
+		delete from res_like where res_no = ${res_no} and userid = #{userid}
+	</delete>
+	
+	<insert id="resLikeUp" >
+		insert into res_like(like_no, res_no, userid)
+  		values(res_like_sq.nextval, #{res_no}, #{userid})
+	</insert>
+	
+	<select id="count_like_hit" resultType="int">
+		select count(*) res_like_hit FROM res_like where res_no = #{res_no}
+	</select>
 
 </mapper>
   

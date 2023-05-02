@@ -1,15 +1,22 @@
 package com.meal.happy.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.meal.happy.dto.LikeVO;
 import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -90,5 +97,75 @@ public class ResController {
 		}
 		return mav;
 	}
+	
+	//베스트 식당 페이지
+	@GetMapping("resBestTop")
+	public ModelAndView resBestTop(String res_type, String res_category) {
+		ModelAndView mav = new ModelAndView();
+		
+		List<ResDTO> list = null;
+		if(res_type != null) {
+			list = service.resBestTypeSelect(res_type);
+		} else if(res_category != null) {
+			list = service.resBestCategorySelect(res_category);
+		}
+		
+		mav.addObject("list", list);
+		mav.setViewName("res/resBestTop");
+		
+		return mav;
+	}
+
+	
+	
+	//현재 좋아요 상태
+	@GetMapping("/resLike")
+	@ResponseBody
+	public LikeVO resLike(int res_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRes_no(res_no);
+		int result = service.findLike(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	
+	//현재 좋아요 취소
+	@GetMapping("/delResLike")
+	@ResponseBody
+	public LikeVO delResLike(int res_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRes_no(res_no);
+		int result = service.delResLike(like);
+		
+		like.setResult(result);
+		return like;
+	}
+	
+	//현재 좋아요 등록
+	@GetMapping("/resLikeup")
+	@ResponseBody
+	public LikeVO resLikeup(int res_no, HttpSession session ,LikeVO like) {
+		
+		like.setUserid((String)session.getAttribute("logId"));
+		like.setRes_no(res_no);
+		int result = service.resLikeUp(like);
+		
+		like.setResult(result);
+		return like;
+	}
+
+	//좋아요 수 조회
+	@GetMapping("/res_count_like_hit")
+	@ResponseBody
+	public LikeVO count_like_hit(LikeVO vo) {
+		ModelAndView mav = new ModelAndView();
+		vo.setRes_like_hit(service.count_like_hit(vo));
+		mav.addObject("vo",vo);
+		return vo;
+	}	
+	
 	
 }

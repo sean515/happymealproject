@@ -25,9 +25,11 @@
 		margin-top:100px;
 	}
 	
+	
 </style>
 <script>
 	$(function(){
+		
 		$("#resUpdateForm").submit(function(){
 			if($("#res_type").val()==""){
 				alert('식당유형을 선택하세요');
@@ -49,6 +51,19 @@
 		});
 	});
 	
+	function addOpeningHours() {
+		var dayOfWeek = document.getElementById("dayOfWeek").value;
+		var openingTime = document.getElementById("openingTime").value;
+		var closingTime = document.getElementById("closingTime").value;
+
+		// 요일, 영업 시작 시간, 종료 시간을 출력
+		document.getElementById("openingHours").innerHTML += dayOfWeek + ": " + openingTime + " - " + closingTime + "<br>";
+
+		// 추가된 영업시간 값을 res_time 요소에 저장
+		var resTimeElement = document.getElementById("res_time");
+		resTimeElement.value += dayOfWeek + ": " + openingTime + " - " + closingTime + ";";
+	}
+	
 </script>
 
 <div class="container">	 
@@ -57,7 +72,7 @@
 		
 		<!-- 식당유형 -->
 		<div class="res_Type">
-	    	<span>식당유형</span>
+	    	<span style="margin-right:20px">식당유형 <span style="color:red;">※필수</span></span>
 		    <div class="form-check form-check-inline">
 			  채식<input type="radio" class="form-check-input" name="res_type" id="res_type" value="채식음식점">
 			</div>
@@ -70,19 +85,69 @@
 	    </div>
 		<!-- 점포명 -->
 		<div class="res_name mb-3">
-		    <input class="form-control" type="text" name="res_name" id="res_name" placeholder="점포명" aria-label="default input example">
+		    <input class="form-control" type="text" name="res_name" id="res_name" placeholder="점포명    ※필수" aria-label="default input example">
 		</div>
 		<!-- 식당주소 -->
 		<div class="res_addr mb-3">
 			<input type="button" onclick="res_addrSearch()" value="주소 찾기"><br>
-			<input class="form-control" type="text" name="res_addr1" id="res_addr1" placeholder="주소" aria-label="default input example">
-			<input class="form-control" type="text" name="res_addrExtra" id="res_addrExtra" placeholder="참고주소" aria-label="default input example">
+			<input class="form-control" type="text" name="res_addr1" id="res_addr1" placeholder="주소    ※필수" aria-label="default input example">
+			<input class="form-control" type="text" name="res_addrExtra" id="res_addrExtra" placeholder="참고주소    ※필수" aria-label="default input example">
 			<input class="form-control" type="text" name="res_addrDetail" id="res_addrDetail" placeholder="상세주소" aria-label="default input example">
 			<input type="hidden" name="res_addr" id="res_addr" value="">
 			<input type="hidden" name="res_latitude" id="res_latitude" value="">
 			<input type="hidden" name="res_longitude" id="res_longitude" value="">
 		</div>
+		<!-- 전화번호 -->
+		<div class="res_tel mb-3">
+		    <input class="form-control" type="text" name="res_tel" id="res_tel" placeholder="전화번호  -  포함해서 입력해주세요(예시: 02-1234-5678)" aria-label="default input example">
+		</div>
+		<!-- 식당카테고리 -->
+		<div class="res_category mb-3">
+			<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="res_category" id="res_category">
+			    <option value="">식당 카테고리</option>
+			    <option value="한식">한식</option>
+			    <option value="중국식">중국식</option>
+			    <option value="일식">일식</option>
+			    <option value="양식">양식</option>
+			    <option value="동남아">동남아</option>
+			    <option value="인도/중동">인도/중동</option>
+			    <option value="분식">분식</option>
+			    <option value="탕류">탕류</option>
+			    <option value="복어취급">복어취급</option>
+			    <option value="김밥(도시락)">김밥(도시락)</option>
+			    <option value="술집">술집</option>
+			    <option value="카페">카페</option>
+			    <option value="베이커리">베이커리</option>
+			    <option value="기타(일반음식점)">기타(일반음식점)</option>
+			    
+			</select>
+		</div>
 		
+		
+		<div class="res_time mb-3">
+			<span>영업시간</span>
+			<br>
+			<label for="dayOfWeek">요일:</label>
+			<select id="dayOfWeek" name="dayOfWeek">
+				<option value="월">월요일</option>
+				<option value="화">화요일</option>
+				<option value="수">수요일</option>
+				<option value="목">목요일</option>
+				<option value="금">금요일</option>
+				<option value="토">토요일</option>
+				<option value="일">일요일</option>
+			</select>
+			<label for="openingTime">영업 시작 :</label>
+			<input type="time" id="openingTime" name="openingTime">
+			<label for="closingTime">영업 종료 :</label>
+			<input type="time" id="closingTime" name="closingTime">
+			<input type="button" value="추가" onclick="addOpeningHours()">
+			<input type="button" value="리셋" onclick="delOpeningHours()">
+			<p>입력된 영업시간:</p>
+			<div id="openingHours">
+			</div>
+			<input type="hidden" name="res_time" id="res_time">
+		</div>
 		
 			    
 	    <div class="res_note mb-3">
@@ -98,6 +163,30 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=46d3750493a46ebe690cd8ac9d3be958&libraries=services"></script>
 <script>
+    
+	//res_time 요소에 저장된 값을 출력
+	var resTimeElement = document.getElementById("res_time");
+	resTimeElement.addEventListener("change", function() {
+	    document.getElementById("openingHours").innerHTML = "";
+	    var openingHours = this.value.split(";");
+	    for (var i = 0; i < openingHours.length; i++) {
+	        if (openingHours[i] === "") {
+	            continue;
+	        }
+	        var openingHour = openingHours[i].split(": ");
+	        document.getElementById("openingHours").innerHTML += openingHour[0] + ": " + openingHour[1] + "<br>";
+	    }
+	});
+	function delOpeningHours(){
+        // 추가된 영업시간 제거
+        document.getElementById("openingHours").innerHTML = "";
+        
+        // 추가된 영업시간 값을 저장하는 요소 초기화
+        var resTimeElement = document.getElementById("res_time");
+        resTimeElement.value = "";
+     }
+    
+    
     function res_addrSearch() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -157,8 +246,7 @@
 						
                         document.getElementById("res_latitude").value = res_lat;
                         document.getElementById("res_longitude").value = res_lng;
-                        console.log(res_lat);
-                        console.log(res_lng);
+                        
                     } 
                 });
             }

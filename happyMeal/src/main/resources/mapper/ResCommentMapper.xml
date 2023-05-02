@@ -10,9 +10,9 @@
 	</insert>
 	
 	<select id="resCommentListSelect" resultType="com.meal.happy.dto.ResCommentDTO">
-  		select res_comment_no, res_no, userid, res_comment_text, res_star, res_comment_date 
-  		from res_comment where res_no=${param1} 
-  		order by res_comment_no desc
+  		select c.res_comment_no, c.res_no, c.userid, m.nickname, c.res_comment_text, c.res_star, c.res_comment_date 
+  		from res_comment c join member m on c.userid=m.userid where res_no=${param1} 
+  		order by c.res_comment_no desc
   	</select>
 	
 	<update id="resCommentUpdate">
