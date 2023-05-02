@@ -14,7 +14,7 @@
 				(select res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time,  
 				res_note, res_like, res_hit, res_image, res_date, res_category, res_status 
 				from restaurant
-				where res_status=1
+				where res_status in (1,2,3)
 		 		<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 		 			and ${searchKey} like '%${searchWord}%' 
 		 		</if>
@@ -50,8 +50,8 @@
 	</update>
 	
 	<insert id="resEditInsert">
-		insert into res_edit(res_edit_no, res_no, userid, res_edit_type, res_edit_text)  
-		values(res_edit_sq.nextval, #{res_no}, #{userid}, #{res_edit_type}, #{res_edit_text})
+		insert into res_edit(res_edit_no, res_no, userid, res_edit_type, res_edit_text, res_status)  
+		values(res_edit_sq.nextval, #{res_no}, #{userid}, #{res_edit_type}, #{res_edit_text}, #{res_status})
 	</insert>
 	
 	<insert id="resReqInsert">

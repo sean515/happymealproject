@@ -7,12 +7,13 @@ public class ResEditDTO {
 	private int res_edit_type;
 	private String res_edit_text;
 	private String res_edit_date;
-	
+	private int res_status;
+
 	@Override
 	public String toString() {
 		return "ResEditDTO [res_edit_no=" + res_edit_no + ", res_no=" + res_no + ", userid=" + userid
 				+ ", res_edit_type=" + res_edit_type + ", res_edit_text=" + res_edit_text + ", res_edit_date="
-				+ res_edit_date + "]";
+				+ res_edit_date + ", res_status=" + res_status + "]";
 	}
 
 	public int getRes_edit_no() {
@@ -61,6 +62,14 @@ public class ResEditDTO {
 
 	public void setRes_edit_date(String res_edit_date) {
 		this.res_edit_date = res_edit_date;
+	}
+
+	public int getRes_status() {
+		return res_status;
+	}
+
+	public void setRes_status(int res_status) {
+		this.res_status = res_status;
 	}
 	
 }
