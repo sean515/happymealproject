@@ -483,6 +483,7 @@
 					    	></textarea>
 					</div>
 				</div>
+				<input type="hidden" name="res_status" value="4"/>
 			</div>
 			<div class="requestFooter">
 				<button class="requestBtn">요청</button>
@@ -557,7 +558,7 @@
 						<h4>리뷰</h4>
 						<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px; margin-bottom: 30px; "><!-- 리뷰 입력 테두리 -->
 							<form method="post" id="resCommentForm">
-								<p>		${dto.username }님</p>
+								<p>님</p>
 								<input type="hidden" name="res_no" value="${dto.res_no}"/><!-- 원글 글번호 -->
 								<fieldset>
 									<span class="text-bold">별점을 선택해주세요</span>
