@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.meal.happy.dao.RegisterDAO;
 import com.meal.happy.dto.CommCommentDTO;
 import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.MenuUserCommentDTO;
+import com.meal.happy.dto.MenuUserDTO;
+import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
@@ -83,6 +86,53 @@ public class myPageServiceImpl implements myPageService {
 	@Override
 	public void updateBMIAndKal(String userid, double bmi, double kal, String standardBmi) {
 		dao.updateBMIAndKal(userid, bmi, kal, standardBmi);
+	}
+
+	@Override
+	public MenuUserDTO selectMenu(String userid) {
+		return dao.selectMenu(userid);
+	}
+
+	@Override
+	public RecipeCommentDTO selectRecipeComment(String userid) {
+		return dao.selectRecipeComment(userid);
+	}
+
+	@Override
+	public MenuUserCommentDTO selectMenuComment(String userid) {
+		return dao.selectMenuComment(userid);
+	}
+
+
+
+	@Override
+	public int recipeTotalRecord_user(PagingVO vo) {
+		return dao.recipeTotalRecord_user(vo);
+	}
+
+	@Override
+	public List<RecipeDTO> pageSelect_user(PagingVO vo) {
+		return dao.pageSelect_user(vo);
+	}
+
+	@Override
+	public int menuTotalRecord_user(PagingVO vo) {
+		return dao.menuTotalRecord_user(vo);
+	}
+
+	@Override
+	public List<MenuUserDTO> menu_pageSelect_user(PagingVO vo) {
+		return dao.menu_pageSelect_user(vo);
+	}
+
+	@Override
+	public int totalRecord(PagingVO vo) {
+		return dao.totalRecord(vo);
+	}
+
+	@Override
+	public List<CommDTO> pageSelect(PagingVO vo) {
+		return dao.pageSelect(vo);
 	}
 
 

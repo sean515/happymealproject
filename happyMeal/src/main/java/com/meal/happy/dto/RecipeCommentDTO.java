@@ -7,6 +7,7 @@ public class RecipeCommentDTO {
 	private String userid;
 	private String recipe_comment_date;
 	private String ip;
+	private String recipe_name;
 	private int recipe_comment_hit;
 	@Override
 	public String toString() {
@@ -55,5 +56,12 @@ public class RecipeCommentDTO {
 	}
 	public void setRecipe_comment_hit(int recipe_comment_hit) {
 		this.recipe_comment_hit = recipe_comment_hit;
+	}
+	public String getRecipe_name() {
+		return recipe_name;
+	}
+	public void setRecipe_name(String recipe_name) {
+		this.recipe_name = recipe_name;
 	} 
+	
 }

@@ -7,6 +7,7 @@ public class PagingVO {
 	private int totalRecord; //총레코드 수
 	private int totalPage; //총페이지수
 	private int lastPageRecord; //마지막 페이지에 남아있는 레코드 수
+	private int cate; 
 
 	private int onePageNumCount=5; //한페이지당 페이지 갯수
 	private int startPageNum=1;
@@ -14,6 +15,7 @@ public class PagingVO {
 	//검색에 필요한 변수들
 	private String searchKey;
 	private String searchWord;
+	private String userid;
 	private String parts1;
 	private String parts2;
 	private String parts3;
@@ -307,6 +309,26 @@ public class PagingVO {
 
 	public void setAmenu_time(String amenu_time) {
 		this.amenu_time = amenu_time;
+	}
+
+
+	public String getUserid() {
+		return userid;
+	}
+
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+
+	public int getCate() {
+		return cate;
+	}
+
+
+	public void setCate(int cate) {
+		this.cate = cate;
 	}
 
 
