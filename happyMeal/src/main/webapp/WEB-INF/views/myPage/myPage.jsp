@@ -254,15 +254,37 @@
 
   <div class="row">
   
-    <div class="col" id="bottomline">
+    <div class="col" id="bottomline" style="width: 45% display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">
     	<p id="my_header">내가 작성한 글<br/></p>
-		<p>
-		   커뮤니티 | &nbsp;<a href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a></li>
+    	
+    	<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis;">
+		<div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;" >
+			<h5>커뮤니티</h5> 
+		</div>
+		<div  style="display: inline-block; text-align: center;">
+			<a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis; width:90%;" href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a>
+		</div>
+		</div>
+		 
 		   <hr class="hr3"/>
-		   식단&emsp;&ensp;&nbsp; | &nbsp;봄 당뇨 식단
+		<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis;">
+		<div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;" >
+			<h5>식단</h5> 
+		</div>
+		<div  style="display: inline-block; text-align: center;">
+		   <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="menuView_user?menu_no=${mdto.menu_no }">${mdto.menu_title }</a>
+		</div>
+		</div>   
 		   <hr class="hr3"/>
-		   레시피&ensp;&nbsp; | &nbsp;<a href="recipeView?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
-		</p>
+		<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis;">
+		<div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;" >
+			<h5>레시피</h5> 
+		</div>
+		<div  style="display: inline-block; text-align: center;">
+		   <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="recipeView_user?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
+		</div>
+		</div>   
+		   <hr class="hr3"/>
 		<ul>
 			<li>
 				<div style="text-align:right; padding:0 auto; margin-right: 0.1em;"><a href="/happy/myPage/userWrite">내가 작성한 글 더보기</a></div>
@@ -270,15 +292,41 @@
 		</ul>
 	</div>
 	
-	<div class="col" id="bottomline">
+	<div class="col" id="bottomline" style="width: 45% display: block; white-space:nowrap; overflow: hidden;" >
+	
 		<p id="my_header">내가 작성한 댓글<br/></p>
-		<p>
-		   커뮤니티 | &nbsp;<a href="commView?comm_no=${co_codto.comm_no }">${co_codto.comm_title }</a>
-		   &emsp;&emsp;&ensp;&nbsp; | &nbsp;${co_codto.comm_comment_text }
-		   <hr class="hr3"/>
-		   식단&emsp;&ensp;&nbsp; | &nbsp;고혈압 환자도 먹어도 되나요?<hr class="hr3"/>
-		   레시피&emsp; | &nbsp;오늘은 이거 먹어야겠어요.
-		</p>
+		
+<div style="display: inline-block; overflow:hidden; white-space:nowrap; vertical-align: top; width:90%;">
+  <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;">
+    <h5>커뮤니티</h5> 
+  </div>
+  <div style="display: inline-block; vertical-align: top;">
+    <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="commView?comm_no=${co_codto.comm_no }">${co_codto.comm_title }</a>
+    <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">${co_codto.comm_comment_text }</span>
+  </div>
+</div>
+ <hr class="hr3"/>
+<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis; vertical-align: top;">
+  <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;">
+    <h5>식단</h5> 
+  </div>
+  <div style="display: inline-block; vertical-align: top;">
+    <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="menuView_user?menu_no=${me_medto.menu_no }">${me_medto.menu_title }</a>
+    <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">${me_medto.menu_comment_text }</span>
+  </div>
+</div>	
+ <hr class="hr3"/>
+<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis; vertical-align: top;">
+  <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;">
+    <h5>레시피</h5> 
+  </div>
+  <div style="display: inline-block; vertical-align: top;">
+    <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="recipeView_user?recipe_no=${re_redto.recipe_no }">${re_redto.recipe_name }</a>
+    <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">${re_redto.recipe_comment_text }</span>
+  </div>
+</div>	
+ <hr class="hr3"/>
+
 		<ul>
 			<li>
 				<div style="text-align:right; padding:0 auto; margin-right: 0.1em;"><a href="/happy/myPage/userWriteReply">내가 작성한 댓글 더보기</a></div>

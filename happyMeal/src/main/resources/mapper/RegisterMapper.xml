@@ -45,7 +45,11 @@
 	<select id="selectRecipe" resultType="com.meal.happy.dto.RecipeDTO">
 		select recipe_no, recipe_name from (select * from recipe order by rownum desc) where userid = #{param1} and rownum =1
 	</select>
-	
+
+	<select id="selectMenu" resultType="com.meal.happy.dto.MenuUserDTO">
+		select menu_no, menu_title from (select * from menu order by rownum desc) where userid = #{param1} and rownum =1
+	</select>
+		
 	<select id="selectSup" resultType="com.meal.happy.dto.SupDTO">
 		select sup_no, sup_title from (select * from support order by rownum desc) where userid = #{param1} and rownum =1
 	</select>
@@ -56,6 +60,22 @@
 		INNER JOIN community c ON cc.comm_no = c.comm_no
 		WHERE cc.userid = #{param1} and rownum =1
 		ORDER BY cc.comm_comment_no DESC
+	</select>
+	
+	<select id="selectRecipeComment" resultType="com.meal.happy.dto.RecipeCommentDTO">
+		SELECT *
+		FROM recipe_comment re
+		INNER JOIN recipe r ON re.recipe_no = r.recipe_no
+		WHERE re.userid = #{param1} and rownum =1
+		ORDER BY re.recipe_comment_no DESC
+	</select>
+	
+	<select id="selectMenuComment" resultType="com.meal.happy.dto.MenuUserCommentDTO">
+		SELECT me.menu_comment_no, me.menu_no, m.menu_title, me.menu_comment_text
+		FROM menu_comment me
+		INNER JOIN menu m ON me.menu_no = m.menu_no
+		WHERE me.userid = #{param1} and rownum =1
+		ORDER BY me.menu_comment_no DESC
 	</select>
 
 	<select id="pwSearch" resultType="string">
@@ -71,4 +91,113 @@
     WHERE userid = #{param1} AND (bmi != #{param2} OR kal != #{param3})
 	</update>
 	
+	
+	<select id="recipeTotalRecord_user" resultType="int">
+		select count(b.recipe_no) totalRecord from recipe b join member r on b.userid=r.userid
+		
+		    where b.userid = #{userid}   
+
+
+	</select> 
+	
+		 
+	<select id="pageSelect_user" resultType="com.meal.happy.dto.RecipeDTO">
+		select * from
+			(select * from
+				(
+					select b.recipe_no, b.recipe_name, b.recipe_thumbnail, b.userid, r.username, b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
+					from recipe b join member r on b.userid=r.userid 
+
+					where b.userid = #{userid}
+					order by b.recipe_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by recipe_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by recipe_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by recipe_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
+	
+	<select id="menuTotalRecord_user" resultType="int">
+		select count(m.menu_no) totalRecord from menu m join member r on m.userid=r.userid
+		
+		where m.userid = #{userid}   
+
+	</select>
+  	
+	<select id="menu_pageSelect_user" resultType="com.meal.happy.dto.MenuUserDTO">
+		select * from
+			(select * from
+				(
+					select r.username,r.nickname,b.menu_thumbnail, b.menu_no, b.amenu_type_no, b.userid, b.menu_title, b.menu_text, b.menu_hit, to_char(b.menu_date,'MM-DD HH:MI') menu_date 
+					from menu b join member r on b.userid=r.userid 
+					
+					where b.userid = #{userid}
+					order by b.menu_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by menu_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by menu_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by menu_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
+	
+	<select id="totalRecord" resultType="int">
+		select count(b.comm_no) totalRecord from community b join member r on b.userid=r.userid
+		where b.userid = #{userid}
+	</select>
+	
+
+	<select id="pageSelect" resultType="com.meal.happy.dto.CommDTO">
+		select * from
+			(select * from
+				(
+					select b.comm_no, b.comm_bullet_point, b.comm_title, b.userid, r.username, b.comm_hit, to_char(b.comm_date,'MM-DD HH:MI') comm_date 
+					from community b join member r on b.userid=r.userid 
+					
+					where b.userid = #{userid}
+					order by b.comm_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by comm_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by comm_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by comm_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
 </mapper>

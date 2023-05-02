@@ -4,6 +4,7 @@ public class MenuUserCommentDTO {
 	private int menu_comment_no;
 	private int menu_no;
 	private String menu_comment_text;
+	private String menu_title;
 	private String userid;
 	private String menu_comment_date;
 	private String ip;
@@ -70,6 +71,14 @@ public class MenuUserCommentDTO {
 
 	public void setMenu_comment_hit(int menu_comment_hit) {
 		this.menu_comment_hit = menu_comment_hit;
+	}
+
+	public String getMenu_title() {
+		return menu_title;
+	}
+
+	public void setMenu_title(String menu_title) {
+		this.menu_title = menu_title;
 	}
 	
 }

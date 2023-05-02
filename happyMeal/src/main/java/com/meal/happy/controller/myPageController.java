@@ -3,6 +3,7 @@ package com.meal.happy.controller;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,10 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.meal.happy.dto.CommCommentDTO;
 import com.meal.happy.dto.CommDTO;
+import com.meal.happy.dto.MenuUserCommentDTO;
+import com.meal.happy.dto.MenuUserDTO;
+import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
 import com.meal.happy.dto.SupDTO;
+import com.meal.happy.service.RecipeService;
 import com.meal.happy.service.myPageService;
 
 @Controller
@@ -38,9 +43,14 @@ public class myPageController {
 	public ModelAndView myPage(HttpSession session) {
 		RegisterDTO dto = service.myPage((String) session.getAttribute("logId"));
 		CommDTO cdto = service.selectComm((String) session.getAttribute("logId"));
-		RecipeDTO rdto = service.selectRecipe((String) session.getAttribute("logId"));
 		CommCommentDTO co_codto = service.selectCommComment((String) session.getAttribute("logId"));
-		//RecipeCommentDTO re_codto = service.selectRecipeComment((String) session.getAttribute("logId"));
+		
+		RecipeDTO rdto = service.selectRecipe((String) session.getAttribute("logId"));
+		RecipeCommentDTO re_redto = service.selectRecipeComment((String) session.getAttribute("logId"));
+		System.out.println(re_redto);
+		MenuUserDTO mdto = service.selectMenu((String) session.getAttribute("logId"));
+		MenuUserCommentDTO me_medto = service.selectMenuComment((String) session.getAttribute("logId"));
+		
 		SupDTO sdto = service.selectSup((String) session.getAttribute("logId"));
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
@@ -48,6 +58,9 @@ public class myPageController {
 		mav.addObject("rdto", rdto);
 		mav.addObject("sdto", sdto);
 		mav.addObject("co_codto", co_codto);
+		mav.addObject("re_redto", re_redto);
+		mav.addObject("me_medto", me_medto);
+		mav.addObject("mdto", mdto);
 	    
 		System.out.println(mav);
 		mav.setViewName("myPage/myPage");
@@ -138,9 +151,31 @@ public class myPageController {
 
 	// 내가 작성한 글
 	@GetMapping("/myPage/userWrite")
-	public String userWriteForm() {
-		return "myPage/userWrite";
+	public ModelAndView recipeList_user(PagingVO vo, HttpSession session, Integer cate) {
+		System.out.println(vo);
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+		//레시피
+		if (Objects.equals(cate, 1) || cate == null) {
+		vo.setTotalRecord(service.recipeTotalRecord_user(vo));
+		mav.addObject("list",service.pageSelect_user(vo));
+		}
+		//식단
+		if (Objects.equals(cate, 2)) {
+		vo.setTotalRecord(service.menuTotalRecord_user(vo));
+		mav.addObject("list",service.menu_pageSelect_user(vo));
+		}
+		
+		if (Objects.equals(cate, 3)) {
+			vo.setTotalRecord(service.totalRecord(vo));
+			mav.addObject("list",service.pageSelect(vo));
+		}
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+		
+		mav.setViewName("myPage/userWrite");
+		return mav;
 	}
+
 
 	// 내가 작성한 댓글
 	@GetMapping("/myPage/userWriteReply")
