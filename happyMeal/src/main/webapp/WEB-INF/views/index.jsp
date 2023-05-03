@@ -122,7 +122,7 @@
 		</div>
 	</div>
 	<!-- 맞춤 식단 -->
-	<div class=" justify-content-center" id="fh5co-course-categories">
+	<div id="fh5co-course-categories">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
@@ -130,7 +130,7 @@
 					<p>질병 정보에 맞춰 개인에게 맞는 건강 식단을 추천 받아보세요</p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row justify-content-center">
 				<div class="col-md-3 col-sm-6 text-center animate-box">
 					<div class="services">
 						<span class="icon">

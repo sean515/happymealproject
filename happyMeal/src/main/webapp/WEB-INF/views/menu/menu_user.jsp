@@ -31,8 +31,6 @@
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-default"
 					style="width: 70px; height: 30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
-
-
 			</form>
 		</div>
 		<!-- 소제목 -->
@@ -140,5 +138,6 @@
 	</nav>
 	</center>
 	</div>
+</div>
 </div>
   <br>

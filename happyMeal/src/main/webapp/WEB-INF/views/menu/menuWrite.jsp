@@ -276,7 +276,7 @@
 <div class="container">
 	<form method="post" action="menuWriteOk" id="menuForm" enctype="multipart/form-data">  
 		<ul>
-			<h1 style="display: inline;">레시피 등록</h1>
+			<h1 style="display: inline;">식단 등록</h1>
 			<hr style="height: 3px; background-color:black;"/>
 			<li>
 				<label for="file" style="width:250px">

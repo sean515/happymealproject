@@ -9,6 +9,20 @@
 	text-decoration: none;
 	color: black;
 	}
+	
+	.articleBox{
+		padding:20px 20px 50px 20px;
+		border: 0.8px solid #ddd;
+		border-radius:10px;
+		position:relative;
+		display:flex;
+		flex-direction:column;
+	}
+	.topBtns{
+		height:50px;
+		padding:10px 0;
+	}
+	
 	ul{
 	margin-bottom:0;
 	}
@@ -301,9 +315,14 @@
 
 <div class="container">
 
+		<div class="topBtns">
+		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+		</div>
+		
+	<div class="articleBox">
+	
 	<ul id="view"  style="margin-top: 30px; padding:0;">
 		<li style="padding-left:10px;display: inline;font-size: 12px;"> [ ${dto.comm_bullet_point} ]</li>
-		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" style="float:right; color: black; font-size: 12px;">전체 글 보기</a>
 		
 		<!-- 제목 -->
 		<div style="border-bottom: 1px solid gray;">
@@ -387,7 +406,7 @@
 		<ul id ="commcommentList">
 
 		</ul>
-		
+	</div>
 	</div>
 </div>
 <div style="padding-bottom:100px;"></div>

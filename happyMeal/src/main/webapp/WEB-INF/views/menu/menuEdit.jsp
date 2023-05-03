@@ -271,10 +271,10 @@
 		<img src="img/bannerimg2.png" width="100%" height="300px;">
 	</div>
 <div class="container">
-	<h1>게시판 글수정 폼</h1>
+	<h1>식단 수정 폼</h1>
 	<form method="post" action="menuEditOk" id="menuForm" enctype="multipart/form-data">  
 		<ul>
-			<h1 style="display: inline;">레시피 등록</h1>
+			<h1 style="display: inline;">식단 등록</h1>
 			<hr style="height: 3px; background-color:black;"/>
 			<li>
 				<label for="file" style="width:250px">

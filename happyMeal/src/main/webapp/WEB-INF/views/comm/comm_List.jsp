@@ -3,6 +3,9 @@
 
 
 <style>
+	a{
+		color:black;
+	}
 	
 	.commHeader{
 	text-align:right;
@@ -76,24 +79,6 @@
 	<!-- 검색 -->
 	<div class="searchDiv" style="padding-top:20px; float: right;">	
 		<form method="get" id="searchForm" action="comm_List">
-		<!-- 좋아요 기반 출력, 글 번호 기반 출력 -->
-			<select name="filter"class="form-select" aria-label="Default select example" style="width: auto; display: inline; white-space:nowrap;">
-				<option value="popularity">인기순</option>
-				<option value="recent" ">최신순 </option>
-			</select>
-		<!-- 기간 select -->
-			<select name="searchDate" class="form-select" aria-label="Default select example" style="width: auto; display: inline; white-space:nowrap;">
-				<option value="">전체기간 </option>
-				<option value="">오늘 </option>
-				<option value="">이번주 </option>
-			</select>
-		<!-- 검색 시 제목 작성자 글내용 선택 -->
-				
-				<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
-				<option value="comm_title">제목 </option>
-				<option value="username">작성자 </option>
-				<option value="comm_text">글내용 </option>
-			</select>
 			<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
 			<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 		</form>

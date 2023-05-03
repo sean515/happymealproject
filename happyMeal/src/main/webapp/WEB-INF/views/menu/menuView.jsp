@@ -108,7 +108,18 @@
 	</style>
 			<c:forEach var="nDTO" items="${list}">
 				<div id="ingredients" style="padding-top:10px;border-bottom: 1px solid #ddd;">
-					<h3>식단</h3> <p style=" line-height:30px; font-size:14px; font-family: 'Noto Sans KR', sans-serif;"> ${nDTO.amenu_text }</p>
+					<h3>
+						<c:if test="${nDTO.amenu_type_no == 1}">당뇨식 </c:if>
+						<c:if test="${nDTO.amenu_type_no == 2}">연식 </c:if>
+						<c:if test="${nDTO.amenu_type_no == 3}">일반식 </c:if>
+						<c:if test="${nDTO.amenu_type_no == 4}">저염식 </c:if>
+						<c:if test="${nDTO.amenu_type_no == 5}">저요오드식 </c:if>
+						<c:if test="${nDTO.amenu_type_no == 6}">항암식 </c:if>
+						<c:if test="${nDTO.amenu_time == 1}">아침 </c:if>
+						<c:if test="${nDTO.amenu_time == 2}">점심 </c:if>
+						<c:if test="${nDTO.amenu_time == 3}">저녁 </c:if>
+						식단
+					</h3> <p style=" line-height:30px; font-size:14px; font-family: 'Noto Sans KR', sans-serif;"> ${nDTO.amenu_text }</p>
 				</div>
 				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img1 }" <c:if test="${nDTO.amenu_img1 == null}"> style="visibility: hidden;"</c:if>>
 				<img class="img1" alt="" src="/happy/uploadfile/amenu/${nDTO.amenu_img2 }" <c:if test="${nDTO.amenu_img2 == null}"> style="visibility: hidden;"</c:if>>
