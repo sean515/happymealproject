@@ -8,11 +8,16 @@
 		flex-direction:row;
 		height:3000px;
 	}
-
+	.resList{
+		width:1300px;
+		padding:0 15px;
+	}
 	.resSide{
 		width:450px;
-		padding: 0 50px;
 		background-color:#f6f6f6;
+	}
+	.titleWrap{
+		padding:80px 150px 0;
 	}
 	.searchDiv{
 		float:right;
@@ -82,14 +87,16 @@
 	.desc{
 		font-size:0.9em;
 	}
-	
+	.container > .row{
+		padding:0 70px 0 120px;
+	}
 	.col-md-6{
 		width:400px;
-		height:450px;
+		height:400px;
 		margin:0 30px;
 	}
 	.staff-img{
-		height:300px !important;
+		height:250px !important;
 	}
 	
 	
@@ -107,16 +114,17 @@
 	});
 </script>
 
-<!-- 배너 -->
-<div class= "banner" style="overflow: hidden;">
-	<img src="img/bannerimg2.png" width="100%" height="300px;">
+<!-- banner -->
+<div class= "banner">
+	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
 </div>
 
-						
-<div class="container">
-<div class="searchDiv">
+<div class="resContainer">
+	<div class="resList">
+		<div class="titleWrap">
+			<div class="searchDiv">
 				<form method="get" id="searchForm" action="res">
-					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요 (지역 또는 식당)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 400px; height:40px; display: inline;"/>
+					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요 (지역 또는 식당)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 400px; height:50px; display: inline;"/>
 					<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 				</form>
 				
@@ -125,137 +133,36 @@
 			<div class="row animate-box">
 				<h1 class="title" style="display: inline; font-size: 40px">식당&nbsp&nbsp</h1>
 			</div>
-</div>
-			<hr style="width:100%; height: 1px; background: black"/>
-<div class="container">
+			<hr style="height: 1px; background: black"/>
 			<div class="btn-group" role="group" aria-label="Basic outlined example">
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res'">전체</button>
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식음식점'">채식</button>
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식가능음식점'">채식가능</button>
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=저염실천음식점'">저염</button>
 			</div>
-</div>
-
-<!-- 그리드 적용하기 시작-->
-
- <div class="row">
-    <div class="col-9">
-		<ul>
-			<div class="row">
-				<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
-					<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
-						<c:forEach var="rDTO" items="${list}">	
-							<div class="col-md-6 animate-box text-center">
-								<div class="staff">
-									<div class="staff-img" style="background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
-									</div>
-									<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
-									<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
-								</div>
-							</div>
-						</c:forEach>
-					<c:set var="recordNum" value="${recordNum-1 }"></c:set>	
-				</div>
-		</ul>
-	</div>
-	
-	
-    </div>
-   
-    <div class="resSide">
-    <!-- 지도 -->
-		<div id="map" style="width:100%;height:350px;"></div>
-		<!-- 베스트 맛집 -->
-		<div class="resBest">
-			<ul class="resBestList">		
-				<li>
-					<a href="resBestTop?res_type=채식음식점">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vegan.jpg"/>
-						<span>채식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_type=채식가능음식점">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/vegeAvail.jpg"/>
-						<span>채식가능 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>
-					<a href="resBestTop?res_type=저염실천음식점">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/lowNa.png"/>
-						<span>저염식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_category=한식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/koreanFood.jpg"/>
-						<span>한식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>
-					<a href="resBestTop?res_category=중국식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/chineseFood.jpg"/>
-						<span>중국식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_category=일식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/japaneseFood.jpg"/>
-						<span>일식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_category=양식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/westernFood.jpg"/>
-						<span>양식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_category=동남아">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/eaAsianFood.jpg"/>
-						<span>동남아음식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_category=분식">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/bunsik.jpg"/>
-						<span>분식 맛집 TOP10</span>
-					</a>
-				</li>
-				<li>	
-					<a href="resBestTop?res_category=카페">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/img/cafeImage.jpg"/>
-						<span>카페 맛집 TOP10</span>
-					</a>
-				</li>	
-			</ul>
 		</div>
-	</div>
-
-
-  
- <!-- 그리드 적용하기 끝 -->
-<div class="container">
-			
-		
 		
 		<!-- 식당리스트 -->
 		<div>
-			<ul>
-				<div class="row">
-				<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
-					<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
-						<c:forEach var="rDTO" items="${list}">	
-							<div class="col-md-6 animate-box text-center">
-								<div class="staff">
-									<div class="staff-img" style="background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
+			<ul class="res" style="overflow: hidden; padding-left: 0;">
+				<div id="fh5co-staff">
+					<div class="container">
+						<div class="row">
+							<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
+							<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
+								<c:forEach var="rDTO" items="${list}">	
+									<div class="col-md-6 animate-box text-center">
+										<div class="staff">
+											<div class="staff-img" style="background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
+											</div>
+											<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
+											<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
+										</div>
 									</div>
-									<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
-									<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
-								</div>
-							</div>
-						</c:forEach>
-					<c:set var="recordNum" value="${recordNum-1 }"></c:set>	
+								</c:forEach>
+							<c:set var="recordNum" value="${recordNum-1 }"></c:set>	
+						</div>
+					</div>
 				</div>
 			</ul>
 		</div>
@@ -313,6 +220,7 @@
 		</div>
 		
 		
+	</div>
 	<!-- 사이드페이지 -->
 	<div class="resSide">
 		<!-- 지도 -->

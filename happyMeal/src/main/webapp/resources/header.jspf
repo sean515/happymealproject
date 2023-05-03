@@ -57,8 +57,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-2">
-						<img style="width: 150px;" src="${pageContext.request.contextPath}/img/logo.png"/>
-						<div id="fh5co-logo"><a href="/happy"><i class="icon-study"></i><span>행복한끼</span></a></div>
+						<a href="/happy"><img style="margin-top:-15px;width: 170px;" src="${pageContext.request.contextPath}/img/logo.png"/></a>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
