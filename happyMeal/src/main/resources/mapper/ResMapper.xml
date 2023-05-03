@@ -14,7 +14,7 @@
 				(select res_no, res_name, res_addr, res_latitude, res_longitude, res_tel, res_type, res_time,  
 				res_note, res_like, res_hit, res_image, res_date, res_category, res_status 
 				from restaurant
-				where res_status in (1,2,3)
+				where res_status in (1,2)
 		 		<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
 		 			and (res_name like '%${searchWord}%' or res_addr like '%${searchWord}%' or res_type like '%${searchWord}%')
 		 		</if>
