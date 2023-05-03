@@ -422,8 +422,8 @@ input.test:focus, input:not(:placeholder-shown){
 		<c:forEach var="bDTO" items="${list}">	
 			<div class="col-md-3 animate-box text-center">
 				<div class="staff">
-					<div class="staff-img" style="background-image: url('${bDTO.recipe_thumbnail }');">
-					</div>
+					<a href="recipeView?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>"><div class="staff-img" style="background-image: url('${bDTO.recipe_thumbnail }');">
+					</div></a>
 					<h3><a href="recipeView?recipe_no=${bDTO.recipe_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${bDTO.recipe_name }</a></h3>
 					<p style="margin-bottom:10px;">${bDTO.recipe_cal } kal </p>	
 					<p style="margin-bottom:0px;">탄수화물 ${bDTO.recipe_car }  단백질 ${bDTO.recipe_pro }</p>
