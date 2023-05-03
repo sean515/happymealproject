@@ -15,7 +15,7 @@
 		display:none;
 	}
 	.reportWrite{
-		width:400px;
+		width:500px;
 		height:500px;
 	}
 	.writeInner{
@@ -26,6 +26,22 @@
 	.popHeader{
 		text-align:center;
 		border-bottom: 1px solid #ddd;
+	}
+	.popBody{
+		margin-top:20px;
+	}
+	#reportBtn{
+		background-color: #8aa1a1;
+		border:none;
+		color:white;
+		border-radius: 5px;
+		width:60%;
+		height:35px;
+		font-size: 14pt;
+	}
+	.popFooter{
+		margin-top:20px;
+		text-align:center;
 	}
 </style>
 <script>
@@ -82,26 +98,39 @@
 <div class="reportWrite">
 	<div class="writeInner">
 		<div class="popHeader">
-			<h3>신고하기</h3>
+			<h2>신고하기</h2>
 		</div>
 		<div class="popBody">
 			<form method="post" id="reportWriteForm">
-				<input type="text" name="userid" value="${logId }"/>
-				<input type="text" name="board_type" id="board_type" value=""/>
-				<input type="text" name="report_post_no" id="report_post_no" value=""/>
+				<input type="hidden" name="userid" value="${logId }"/>
+				<input type="hidden" name="board_type" id="board_type" value=""/>
+				<input type="hidden" name="report_post_no" id="report_post_no" value=""/>
+				<span style="font-size:1.2em"><strong>신고유형</strong></span>
 				<div class="reportReasonSelect">
-					<div>신고유형</div>
-					광고<input type="radio" name="report_reason" value="1" checked/>
-					비방<input type="radio" name="report_reason" value="2"/>
-					허위정보<input type="radio" name="report_reason" value="3"/>
-					기타<input type="radio" name="report_reason" value="4"/>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="report_reason" id="flexRadioDefault1" value="1" checked/>
+						<label class="form-check-label" for="flexRadioDefault1">광고</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="report_reason" id="flexRadioDefault1" value="2" checked/>
+						<label class="form-check-label" for="flexRadioDefault1">비방</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="report_reason" id="flexRadioDefault1" value="3" checked/>
+						<label class="form-check-label" for="flexRadioDefault1">허위정보</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="report_reason" id="flexRadioDefault1" value="4" checked/>
+						<label class="form-check-label" for="flexRadioDefault1">기타</label>
+					</div>
 				</div>
-				<div class="reportText">
-					<div>신고내용</div>
-					<textarea name="report_text" value="" placeholder="신고내용을 상세히 기재해주세요"></textarea>
+				<div class="reportText mb-3">
+					<label for="exampleFormControlTextarea1" class="form-label" style="font-size:1.2em">신고 내용</label>
+					<textarea class="form-control" name="report_text" id="exampleFormControlTextarea1" rows="5" value="" placeholder="신고내용을 상세히 기재해주세요"></textarea>
 				</div>
-				
-				<input type="submit" value="신고"/>
+				<div class="popFooter">
+					<input type="submit" id="reportBtn" value="신고"/>
+				</div>
 			</form>
 		</div>
 	</div>

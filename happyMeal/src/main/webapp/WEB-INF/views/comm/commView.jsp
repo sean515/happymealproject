@@ -306,6 +306,43 @@
 		commcommentList();
 		
 	});//jquery
+	
+	
+	//신고--------------------------------------------------------------------------------
+	$(function(){
+		$("input[value=신고]").click(function(){
+			if(${logStatus!='Y'}){
+				alert('로그인후 이용가능합니다');
+				return false;
+			}else{
+				// url에서 쿼리 문자열 가져옴
+				const queryString = window.location.search;
+				// 쿼리 문자열에서 ? 문자를 제거후 & 문자를 기준으로 분할하여 배열에 담음
+				const params = queryString.substr(1).split("&");
+				//값을 담을 변수 선언
+				let board_type, board_no;
+				//분할된 배열의 각 요소를 돌면서 값이 있는지 확인
+				for(let i=0; i<params.length; i++){
+					const keyValue = params[i].split("="); // = 를 기준으로 키와 값으로 분리
+					const key = keyValue[0];
+					const value = keyValue[1];
+					
+					if(key === "comm_no" || key === "recipe_no" || key === "menu_no"){
+						// board_type 변수에 값을 할당
+						board_type = key;
+						
+						// board_no 변수에 값을 할당
+						board_no = parseInt(value);
+						
+						break; //값을 찾으면 반복문 중지
+					}
+				}
+				var popupX = (window.screen.width/2)-(500/2);
+				var popupY = (window.screen.height/2)-(500/2);
+				window.open("reportForm?"+board_type+"="+board_no, "reportSend", "width=500, height=500, left=${popupX}, top=${popupY}");
+			}
+		});
+	});
 </script>
 
 <!-- 배너 -->
@@ -353,7 +390,11 @@
 		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.comm_date }</li>
 		<li style="display: inline; position: relative; left:10px; font-size: 12px;">조회 </li>
 		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.comm_hit } </li>
-		<li style="display: inline; position: relative;  font-size: 12px; float: right;"><a href="test">신고</a></li>
+		<li style="display: inline; position: relative;  font-size: 12px; float: right;">
+			<c:if test="${logStatus=='Y' and logId!=dto.userid }">
+				<input type="button" value="신고"/>
+			</c:if>
+		</li>
 		</div>
 			<div style= "overflow: hidden">	
 				<div style="clear:right;text-align:right; width: 30%;  font-size: 14px;">
