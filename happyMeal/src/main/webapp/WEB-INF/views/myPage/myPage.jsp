@@ -94,7 +94,7 @@
 	}
 	
 	.container3{
-		padding: 25px 0 0 0;
+		padding: 25px 0;
 	}
 	
 	#my_header{
@@ -103,7 +103,7 @@
 	}
 	
 	#bottomline{
-		/* border-bottom: solid 1px #80808080; */
+		border-bottom: solid 1px #80808080;
     	padding-bottom: 25px;
     	margin-right: 10px;
     	margin-left: 10px;
@@ -199,45 +199,43 @@
 	<form method="post" id="joinEditForm">
 		<ul>
 			<li>
-				<img src="img/restaurant_sample.jpg" width="200" height="200" align="left"/>
+				<a href="/happy/resView?res_no=${rs_dto.res_no}"><img src="${rs_dto.res_image}" width="200" height="170" align="left"/></a>
 				
 				<div class="fr hbox">
 					<button class="btn" id="btn" type="button" style="padding:0px; display: block; margin-left: auto;"><img class="img_btn" src="img/heart_icon.png" width="40" height="40" align="right"></button><br/>
 				</div>
 				
 				&emsp;&emsp;&emsp;
-				식당 이름 : 행복 샐러드<br/>&emsp;&emsp;&emsp;
-				식당 위치 : 서울특별시 강남구 OO로<br/>&emsp;&emsp;&emsp;
-				대표 메뉴 : 단호박 샐러드<br/>&emsp;&emsp;&emsp;
-				운영 시간 : 11:00~21:00<br/>
+				식당 이름 : ${rs_dto.res_name}<br/>&emsp;&emsp;&emsp;
+				주소 : ${rs_dto.res_addr}<br/>&emsp;&emsp;&emsp;
+				전화 번호 : ${rs_dto.res_tel}<br/>&emsp;&emsp;&emsp;
+				음식 타입 : ${rs_dto.res_type}
 				<div style="text-align:right"><a href="/happy/myPage/userLikeRes">식당 즐겨찾기 더보기</a><hr class="hr2"/></div>
 				
-				
-				<img src="img/menu_sample.jpg" width="200" height="200" align="left"/>
+				<div style="">
+				<a href="/happy/menuView_user?menu_no=${m_ldto.menu_no}"><img src="/happy/uploadfile/${m_ldto.menu_thumbnail}" width="200" height="170" align="left"/></a>
 				
 				<div class="fr hbox">
 					<button class="btn" id="btn" type="button" style="padding:0px; display: block; margin-left: auto;"><img class="img_btn" src="img/heart_icon.png" width="40" height="40" align="right"></button><br/>
 				</div>
 				
 				&emsp;&emsp;&emsp;
-				식단 이름 : 겨울 당뇨 식단<br/>&emsp;&emsp;&emsp;
-				아침 식단 : 흑미밥, 채접 맑은국, 꽈리고추찜 등<br/>&emsp;&emsp;&emsp;
-				점심 식단 : 현미밥, 소고기 샤브샤브, 박고지 묵은 김치 만두 등<br/>&emsp;&emsp;&emsp;
-				저녁 식단 : 수수밥, 비지찌개, 갈치구이 등<br/>
+				식단명 : ${m_ldto.menu_title}<br/>&emsp;&emsp;&emsp;
+				작성일 :${m_ldto.menu_date}<br/>&emsp;&emsp;&emsp;
+				작성자 : ${m_ldto.userid}&emsp;&emsp;&emsp;
 				<div style="text-align:right"><a href="/happy/myPage/userLikeMenu">식단 즐겨찾기 더보기</a><hr class="hr2"/></div>
+				</div>
 				
-				
-				<img src="img/recipe_sample.jpg" width="200" height="200" align="left"/>
+				<a href="/happy/recipeView?recipe_no=${r_ldto.recipe_no}""><img src="${r_ldto.recipe_thumbnail}" width="200" height="170" align="left"/></a>
 				
 				<div class="fr hbox">
 					<button class="btn" id="btn" type="button" style="padding:0px; display: block; margin-left: auto;"><img class="img_btn" src="img/heart_icon.png" width="40" height="40" align="right"></button><br/>
 				</div>
 				
 				&emsp;&emsp;&emsp;
-				레시피 이름 : 칼륨 듬뿍 고구마죽<br/>&emsp;&emsp;&emsp;
-				조리방법 : 끓이기<br/>&emsp;&emsp;&emsp;
-				요리 종류 : 후식<br/>&emsp;&emsp;&emsp;
-				열량 : 205cal<br/>
+				레시피 : ${r_ldto.recipe_name}<br/>&emsp;&emsp;&emsp;
+				작성일 : ${r_ldto.recipe_date}<br/>&emsp;&emsp;&emsp;
+				작성자 : ${r_ldto.userid}
 				<div style="text-align:right"><a href="/happy/myPage/userLikeRecipe">레시피 즐겨찾기 더보기</a></div>
 			</li>
 		</ul>
@@ -255,15 +253,14 @@
   <div class="row">
   
     <div class="col" id="bottomline" style="width: 45% display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">
-    	<p id="my_header"><b>내가 작성한 글</b><br/></p>
+    	<p id="my_header">내가 작성한 글<br/></p>
     	
     	<div style="display: inline-block; overflow:hidden; white-space:nowrap;text-overflow:ellipsis;">
 		<div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;" >
 			<h5>커뮤니티</h5> 
 		</div>
 		<div  style="display: inline-block; text-align: center;">
-			<a style=" white-space:nowrap; overflow: hidden; text-overflow: ellipsis; width:90%;" href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a>
-			<span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;"> </span>
+			<a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis; width:90%;" href="commView?comm_no=${cdto.comm_no }">${cdto.comm_title }</a>
 		</div>
 		</div>
 		 
@@ -273,7 +270,7 @@
 			<h5>식단</h5> 
 		</div>
 		<div  style="display: inline-block; text-align: center;">
-		   <a style="white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="menuView_user?menu_no=${mdto.menu_no }">${mdto.menu_title }</a>
+		   <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="menuView_user?menu_no=${mdto.menu_no }">${mdto.menu_title }</a>
 		</div>
 		</div>   
 		   <hr class="hr3"/>
@@ -282,7 +279,7 @@
 			<h5>레시피</h5> 
 		</div>
 		<div  style="display: inline-block; text-align: center;">
-		   <a style=" white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="recipeView_user?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
+		   <a style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;" href="recipeView_user?recipe_no=${rdto.recipe_no }">${rdto.recipe_name }</a>
 		</div>
 		</div>   
 		   <hr class="hr3"/>
@@ -295,7 +292,7 @@
 	
 	<div class="col" id="bottomline" style="width: 45% display: block; white-space:nowrap; overflow: hidden;" >
 	
-		<p id="my_header"><b>내가 작성한 댓글</b><br/></p>
+		<p id="my_header">내가 작성한 댓글<br/></p>
 		
 <div style="display: inline-block; overflow:hidden; white-space:nowrap; vertical-align: top; width:90%;">
   <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:70px;">
@@ -337,15 +334,51 @@
 </div>
 </div>
 <!-- --------------------------------------------------------------------------------------- -->
-<hr style="border-top: 1px solid #3c763d;"/>
 <div class="container3" style="padding-top:0px;">
   <div class="row">
     <div class="col" id="bottomline">
 		<p id="my_header">식당 업데이트 요청<br/></p>
-		<p>
-		   추가 | &nbsp;서울 관악구 | &nbsp;할랄푸드 전문점<hr class="hr3"/>
-		   수정 | &nbsp;서울 강남구 | &nbsp;샐러드 전문점
-		</p>
+		<div style="display: inline-block; overflow:hidden; white-space:nowrap; vertical-align: top; width:90%;">
+		  <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:35px; height: 70px;">
+		    <h5>추가</h5> 
+		  </div>
+		  <div style="display: inline-block; vertical-align: top;">
+		   <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;"> ${add_dto.res_addr }</span>
+		   <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">${add_dto.res_name }</span>
+		   <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">
+		    <c:if test="${add_dto.res_status==4}">
+		       심사중
+		    </c:if>
+			<c:if test="${add_dto.res_status==2}">
+			   승인
+			</c:if>
+			<c:if test="${add_dto.res_status==3}">
+			   반려
+			</c:if>
+		   </span>
+		  </div>
+		</div>
+ <hr class="hr3"/>
+ 		<div style="display: inline-block; overflow:hidden; white-space:nowrap; vertical-align: top; width:90%;">
+		  <div style="display: inline-block; margin-right: 5px; border-right: 2px solid black; width:35px; height: 70px;">
+		    <h5>수정</h5> 
+		  </div>
+		  <div style="display: inline-block; vertical-align: top;">
+		   <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;"> ${ed_dto.res_addr }</span>
+		   <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">${ed_dto.res_name }</span>
+		   <span style="display: block; white-space:nowrap; overflow: hidden; text-overflow: ellipsis;">
+		    <c:if test="${add_dto.res_status==4}">
+		       심사중
+		    </c:if>
+			<c:if test="${add_dto.res_status==2}">
+			   승인
+			</c:if>
+			<c:if test="${add_dto.res_status==3}">
+			   반려
+			</c:if>
+		   </span>
+		  </div>
+		</div>
 		<ul>
 			<li>
 				<div style="text-align:right; padding:0 auto; margin-right: 0.1em;"><a href="/happy/myPage/userResUpdate">내가 요청한 식당 더보기</a></div>

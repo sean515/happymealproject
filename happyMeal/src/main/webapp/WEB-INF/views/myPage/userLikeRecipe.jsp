@@ -6,23 +6,18 @@
 <div class="container"><br/><br/>
 	<h1>즐겨찾기한 레시피 리스트</h1>
 		<ul>
-			<li><img src="../img/recipe_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				레시피 이름 : 칼륨 듬뿍 고구마죽<br/>&emsp;&emsp;&emsp;
-				조리방법 : 끓이기<br/>&emsp;&emsp;&emsp;
-				요리 종류 : 후식<br/>&emsp;&emsp;&emsp;
-				열량 : 205cal<br/><br/><hr class="hr3"/>
+			<li>
+			<c:set var="recordNum"
+				value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 				
-				<img src="../img/recipe_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				레시피 이름 : 칼륨 듬뿍 고구마죽<br/>&emsp;&emsp;&emsp;
-				조리방법 : 끓이기<br/>&emsp;&emsp;&emsp;
-				요리 종류 : 후식<br/>&emsp;&emsp;&emsp;
-				열량 : 205cal<br/><br/><hr class="hr3"/>
+				<c:forEach var="RecipeDTO" items="${list}">
+				<a href="//happy/recipeView?recipe_no=${RecipeDTO.recipe_no}"><img src="/happy/uploadfile/${RecipeDTO.recipe_thumbnail}" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;</a>
+				식단명 : ${RecipeDTO.recipe_name}<br/>&emsp;&emsp;&emsp;
+				작성일 : ${RecipeDTO.recipe_date}<br/>&emsp;&emsp;&emsp;
+				작성자 : ${RecipeDTO.userid}&emsp;&emsp;&emsp;
+				<hr class="hr3"/>
 				
-				<img src="../img/recipe_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				레시피 이름 : 칼륨 듬뿍 고구마죽<br/>&emsp;&emsp;&emsp;
-				조리방법 : 끓이기<br/>&emsp;&emsp;&emsp;
-				요리 종류 : 후식<br/>&emsp;&emsp;&emsp;
-				열량 : 205cal<br/><br/>
+			</c:forEach>
 			</li>
 		</ul>
 </div>

@@ -15,6 +15,9 @@ import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ResCommentDTO;
+import com.meal.happy.dto.ResDTO;
+import com.meal.happy.dto.ResEditDTO;
 import com.meal.happy.dto.SupDTO;
 
 @Service
@@ -164,4 +167,60 @@ public class myPageServiceImpl implements myPageService {
 	public List<CommCommentDTO> comm_Comment_PageSelect(PagingVO vo) {
 		return dao.comm_Comment_PageSelect(vo);
 	}
+	@Override
+	public RecipeDTO selectRecipeLike(String userid) {
+		return dao.selectRecipeLike(userid);
+	}
+
+	@Override
+	public MenuUserDTO selectMenuLike(String userid) {
+		return dao.selectMenuLike(userid);
+	}
+
+	@Override
+	public ResDTO selectResLike(String userid) {
+		return dao.selectResLike(userid);
+	}
+
+	@Override
+	public List<ResDTO> res_PageSelect_user(PagingVO vo) {
+		return dao.res_PageSelect_user(vo);
+	}
+
+	@Override
+	public int resTotalRecord_user(PagingVO vo) {
+		return dao.resTotalRecord_user(vo);
+	}
+
+	@Override
+	public List<MenuUserDTO> menulike_pageSelect_user(PagingVO vo) {
+		return dao.menulike_pageSelect_user(vo);
+	}
+
+	@Override
+	public List<RecipeDTO> recipelike_pageSelect_user(PagingVO vo) {
+		return dao.recipelike_pageSelect_user(vo);
+	}
+
+	@Override
+	public ResDTO selectAddRes(String userid) {
+		return dao.selectAddRes(userid);
+	}
+
+	@Override
+	public ResEditDTO selectEditRes(String userid) {
+		return dao.selectEditRes(userid);
+	}
+
+	@Override
+	public List<ResDTO> selectAllAddRes(PagingVO vo) {
+		return dao.selectAllAddRes(vo);
+	}
+
+	@Override
+	public List<ResEditDTO> selectAllEditRes(PagingVO vo) {
+		return dao.selectAllEditRes(vo);
+	}
+
+
 }

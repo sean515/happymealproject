@@ -10,6 +10,9 @@ import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ResCommentDTO;
+import com.meal.happy.dto.ResDTO;
+import com.meal.happy.dto.ResEditDTO;
 import com.meal.happy.dto.SupDTO;
 
 public interface myPageService {
@@ -30,7 +33,12 @@ public interface myPageService {
 	public CommCommentDTO selectCommComment (String userid);
 	//public RecipeCommentDTO selectRecipeComment  (String userid);
 	public SupDTO selectSup (String userid);
-	
+	public RecipeDTO selectRecipeLike (String userid);
+	public MenuUserDTO selectMenuLike (String userid);
+	public ResDTO selectResLike (String userid);
+	public ResDTO selectAddRes (String userid);
+	public ResEditDTO selectEditRes (String userid);
+
 	//page
 	public List<RecipeDTO> pageSelect_user(PagingVO vo);
 	public int recipeTotalRecord_user(PagingVO vo);
@@ -38,6 +46,16 @@ public interface myPageService {
 	public List<MenuUserDTO> menu_pageSelect_user(PagingVO vo);
 	public int totalRecord(PagingVO vo);
 	public List<CommDTO> pageSelect(PagingVO vo);
+	
+	public List<ResDTO> selectAllAddRes(PagingVO vo);
+	public List<ResEditDTO> selectAllEditRes(PagingVO vo);
+	
+	//like page
+	public List<ResDTO> res_PageSelect_user(PagingVO vo);
+	public int resTotalRecord_user(PagingVO vo);
+	public List<MenuUserDTO> menulike_pageSelect_user(PagingVO vo);
+	public List<RecipeDTO> recipelike_pageSelect_user(PagingVO vo);
+
 	//comment
 	public int recipeCommentTotalRecord_user(PagingVO vo);
 	public List<RecipeCommentDTO> recipe_Comment_PageSelect_user(PagingVO vo);

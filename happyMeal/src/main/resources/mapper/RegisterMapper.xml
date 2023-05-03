@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.meal.happy.dao.RegisterDAO">
 	<select id="loginOk" resultType="com.meal.happy.dto.RegisterDTO">
-		select userid, username from member
+		select userid, username, nickname from member
 		where userid = #{param1} and userpwd = #{param2}
 	</select>
 	<select id="idCheck" parameterType="String" resultType="int">
@@ -38,6 +38,46 @@
 		select userid from member where username=#{param1} and email=#{param2}
 	</select>
 
+	<select id="selectAddRes" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant r INNER JOIN member rc on r.userid = rc.userid
+		where r.userid=#{param1} and  r.res_status=4 and rownum=1 
+	</select>
+
+	<select id="selectEditRes" resultType="com.meal.happy.dto.ResEditDTO">
+		select re.res_no,re.res_addr, re.res_name, r.res_edit_no, r.res_edit_text,r.res_edit_type, m.nickname, r.userid, r.res_status, to_char(r.res_edit_date, 'YYYY-MM-DD') res_edit_date 
+		from res_edit r 
+		join restaurant re on r.res_no = re.res_no 
+		join member m on r.userid = m.userid 
+		where r.userid=#{param1} and r.res_status != 1 and rownum=1
+	
+	</select>
+		<select id="selectAllAddRes" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant r INNER JOIN member rc on r.userid = rc.userid
+		where r.userid=#{userid} and  r.res_status != 1
+	</select>
+
+	<select id="selectAllEditRes" resultType="com.meal.happy.dto.ResEditDTO">
+		select re.res_no,re.res_addr,re.res_type ,re.res_name,r.res_edit_no, r.res_edit_text,r.res_edit_type, m.nickname, r.userid, r.res_status, to_char(r.res_edit_date, 'YYYY-MM-DD') res_edit_date 
+		from res_edit r 
+		join restaurant re on r.res_no = re.res_no 
+		join member m on r.userid = m.userid 
+		where r.userid=#{userid} and r.res_status != 1
+	</select>
+		
+	<select id="selectResLike" resultType="com.meal.happy.dto.ResDTO">
+		select * from restaurant r INNER JOIN res_like rc on r.res_no = rc.res_no
+		where rc.userid=#{param1} and rownum=1 
+	</select>
+	
+	<select id="selectRecipeLike" resultType="com.meal.happy.dto.RecipeDTO">
+		select * from recipe r INNER JOIN recipe_like rc on r.recipe_no = rc.recipe_no
+		where rc.userid=#{param1} and rownum=1 
+	</select>
+
+	<select id="selectMenuLike" resultType="com.meal.happy.dto.MenuUserDTO">
+		select * from menu m INNER JOIN menu_like ml on m.menu_no = ml.menu_no
+		where ml.userid = #{param1} and rownum =1
+	</select>
 	<select id="selectComm" resultType="com.meal.happy.dto.CommDTO">
 		select comm_no, comm_title from (select * from community order by rownum desc) where userid = #{param1} and rownum =1
 	</select>
@@ -225,4 +265,97 @@
 		ORDER BY me.menu_comment_no DESC
 	</select>
 	
+	
+	
+	<select id="resTotalRecord_user" resultType="int">
+		select count(b.res_no) totalRecord from restaurant b join res_like r on b.res_no=r.res_no
+		
+	</select>
+	
+
+	<select id="res_PageSelect_user" resultType="com.meal.happy.dto.ResDTO">
+		select * from
+			(select * from
+				(
+					select b.res_no, b.res_name, b.res_addr,b.res_tel,b.res_type,b.res_image, b.userid, b.res_hit, to_char(b.res_date,'MM-DD HH:MI') res_date 
+					from restaurant b join res_like r on b.res_no=r.res_no 
+					
+					where r.userid = #{userid}
+					order by b.res_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by res_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by res_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by res_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
+	<select id="menulike_pageSelect_user" resultType="com.meal.happy.dto.MenuUserDTO">
+		select * from
+			(select * from
+				(
+					select b.menu_thumbnail, b.menu_no, b.amenu_type_no, b.userid, b.menu_title, b.menu_text, b.menu_hit, to_char(b.menu_date,'MM-DD HH:MI') menu_date 
+					from menu b join menu_like r on b.menu_no=r.menu_no 
+					
+					where b.userid = #{userid}
+					order by b.menu_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by menu_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by menu_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by menu_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
+	
+	<select id="recipelike_pageSelect_user" resultType="com.meal.happy.dto.RecipeDTO">
+		select * from
+			(select * from
+				(
+					select b.recipe_no, b.recipe_name, b.recipe_thumbnail, b.userid,  b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
+					from recipe b join recipe_like r on b.recipe_no=r.recipe_no 
+
+					where b.userid = #{userid}
+					order by b.recipe_no desc
+				) 
+				
+				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by recipe_no asc	
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+					<![CDATA[
+					where rownum <=${onePageRecord} order by recipe_no desc
+					]]>
+					</when>
+					<when test="nowPage==totalPage">
+					<![CDATA[
+					where rownum <=${lastPageRecord} order by recipe_no desc
+					]]>	
+					</when>
+				</choose>
+	</select>
 </mapper>
