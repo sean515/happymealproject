@@ -15,6 +15,7 @@ import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ReportDTO;
 import com.meal.happy.dto.ResCommentDTO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -220,6 +221,21 @@ public class myPageServiceImpl implements myPageService {
 	@Override
 	public List<ResEditDTO> selectAllEditRes(PagingVO vo) {
 		return dao.selectAllEditRes(vo);
+	}
+
+	@Override
+	public List<SupDTO> selectAllAddSup(PagingVO vo) {
+		return dao.selectAllAddSup(vo);
+	}
+
+	@Override
+	public ReportDTO reportList(String userid) {
+		return dao.reportList(userid);
+	}
+
+	@Override
+	public List<ReportDTO> selectreportList(PagingVO vo) {
+		return dao.selectreportList(vo);
 	}
 
 

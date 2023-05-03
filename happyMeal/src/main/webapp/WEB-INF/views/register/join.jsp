@@ -220,30 +220,6 @@
 	        <label for="email">이메일</label>
 	    </div>
 	    
-	    <div class="input-box2 diseaseCheck">
-	    	<span>맞춤 식단 추천 받기</span>
-	    	<div class="form-check form-check-inline">
-			  해당없음<input type="checkbox" class="form-check-input" name="diseaseArr" value="해당없음">
-			</div>
-			<div class="form-check form-check-inline">
-			  일반식<input type="checkbox" class="form-check-input" name="diseaseArr" value="일반식">
-			</div>
-			<div class="form-check form-check-inline">
-			  당뇨식<input type="checkbox" class="form-check-input" name="diseaseArr" value="당뇨식">
-			</div>
-			<div class="form-check form-check-inline">
-			  연식<input type="checkbox" class="form-check-input" name="diseaseArr" value="연식">
-			</div>
-			<div class="form-check form-check-inline">
-			  저염식<input type="checkbox" class="form-check-input" name="diseaseArr" value="저염식">
-			</div>
-			<div class="form-check form-check-inline">
-			  저요오드식<input type="checkbox" class="form-check-input" name="diseaseArr" value="저요오드식">
-			</div>
-			<div class="form-check form-check-inline">
-			  항암식<input type="checkbox" class="form-check-input" name="diseaseArr" value="항암식">
-			</div>
-	    </div>
 		
 		<!-- 식단 정보 라디오 버튼 -->
 		<div class="input-box2">
