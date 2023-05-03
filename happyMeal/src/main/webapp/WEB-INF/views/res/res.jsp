@@ -27,7 +27,9 @@
 	.justify-content-center {
 	    justify-content: center!important;
 	}
-	
+	.updateRequest{
+		float:right;
+	}
 	.page-link {
 	    color: #8BC34A; 
 	    background-color: #000;
@@ -78,7 +80,10 @@
 	.wrap{
 		width:200px;
 		height:100px;
+		display:flex;
+		justify-content:center;
 	}
+	
 	.desc{
 		font-size:0.9em;
 	}
@@ -119,12 +124,7 @@
 		<div class="titleWrap">
 			<div class="searchDiv">
 				<form method="get" id="searchForm" action="res">
-					<select name="searchKey"class="form-select" aria-label="Default select example" style=" display: inline; width: auto">
-						<option value="res_name">식당이름 </option>
-						<option value="res_addr">주소 </option>
-					</select>
-				
-					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 200px; height:24.5px; display: inline;"/>
+					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요 (지역 또는 식당)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 400px; height:50px; display: inline;"/>
 					<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 				</form>
 				
@@ -136,9 +136,9 @@
 			<hr style="height: 1px; background: black"/>
 			<div class="btn-group" role="group" aria-label="Basic outlined example">
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='res'">전체</button>
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=채식음식점'">채식</button>
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=채식가능음식점'">채식가능</button>
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchKey=res_type&searchWord=저염실천음식점'">저염</button>
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식음식점'">채식</button>
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식가능음식점'">채식가능</button>
+				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=저염실천음식점'">저염</button>
 			</div>
 		</div>
 		
@@ -155,7 +155,7 @@
 										<div class="staff">
 											<div class="staff-img" style="background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
 											</div>
-											<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
+											<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
 											<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
 										</div>
 									</div>
@@ -171,6 +171,7 @@
 			<button class="btn btn-primary" onclick="location.href='resUpdateReq'">업데이트요청</button>
 		</div>
 		
+		
 		<!-- 페이지네이션 부트스트랩 -->
 		<div>
 			<center>
@@ -182,7 +183,7 @@
 				</c:if>
 				<c:if test="${vo.nowPage>1}"> <!-- 현재페이지가 첫번째 페이지가 아닐때 -->
 				    <li class="page-item">
-				      <a class="page-link" href="res?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Previous">
+				      <a class="page-link" href="res?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchWord=${vo.searchWord}</c:if>" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
 				      </a>
 				    </li>
@@ -198,14 +199,14 @@
 						<c:if test="${p!=vo.nowPage}">
 						<li class="page-item">
 						</c:if>
-						<a class="page-link" href="res?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
+						<a class="page-link" href="res?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchWord=${vo.searchWord}</c:if>">${p}</a></li>
 						</c:if>
 					</c:forEach>
 			   
 			   	<!-- 다음페이지 -->
 			   	<c:if test="${vo.nowPage<vo.totalPage}"> <!-- 다음페이지가 있다 -->
 			    <li class="page-item">
-			      <a class="page-link" href="res?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>" aria-label="Next">
+			      <a class="page-link" href="res?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchWord=${vo.searchWord}</c:if>" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
@@ -262,6 +263,30 @@
 						<img class="thumbnail" src="${pageContext.request.contextPath}/img/japaneseFood.jpg"/>
 						<span>일식 맛집 TOP10</span>
 					</a>
+				</li>
+				<li>	
+					<a href="resBestTop?res_category=양식">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/westernFood.jpg"/>
+						<span>양식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>	
+					<a href="resBestTop?res_category=동남아">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/eaAsianFood.jpg"/>
+						<span>동남아음식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>	
+					<a href="resBestTop?res_category=분식">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/bunsik.jpg"/>
+						<span>분식 맛집 TOP10</span>
+					</a>
+				</li>
+				<li>	
+					<a href="resBestTop?res_category=카페">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/img/cafeImage.jpg"/>
+						<span>카페 맛집 TOP10</span>
+					</a>
 				</li>	
 			</ul>
 		</div>
@@ -291,7 +316,7 @@
 	        	{
 	            	content: '<div class="wrap">'+
 	            			 '    <div class="info">'+
-	            			 '	      <div class="title" style="font-size:1.2em">'+
+	            			 '	      <div class="title" style="font-size:1.1em">'+
 	            			 '            <a href="resView?res_no=${resDTO.res_no}&nowPage=${vo.nowPage}"><b>${resDTO.res_name}</b></a>'+
 	            			 '        </div>'+
 	            			 '        <div class="infobody">'+

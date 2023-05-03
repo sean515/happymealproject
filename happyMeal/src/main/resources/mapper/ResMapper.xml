@@ -16,7 +16,7 @@
 				from restaurant
 				where res_status in (1,2,3)
 		 		<if test="searchWord!=null"><!-- 검색어가 있을 경우 -->
-		 			and ${searchKey} like '%${searchWord}%' 
+		 			and (res_name like '%${searchWord}%' or res_addr like '%${searchWord}%' or res_type like '%${searchWord}%')
 		 		</if>
 			    order by res_no desc 
 		 		)

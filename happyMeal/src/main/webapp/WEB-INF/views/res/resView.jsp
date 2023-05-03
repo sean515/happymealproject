@@ -309,7 +309,7 @@
 					var tag = "";
 					$(comment1).each(function(i, DTO){
 						
-						tag += "<li><div style='display:block'><b>"+DTO.nickname+" ("+DTO.res_comment_date+")</b>";
+						tag += "<li><div class='reviewList' style='display:block'><b>"+DTO.nickname+" ("+DTO.res_comment_date+")</b>";
 						tag +="<div id='commentStar'>";
 						for(let i=0; i<DTO.res_star; i++){
 							tag += "<span>★</sapn>";
@@ -403,8 +403,8 @@
 		//리뷰 수정 취소(수정폼 가리기)
 		$(document).on('click','#resCommentEditForm input[name=editCancel]',function(){
 			
-			$(this).parent().css("display","none");	//폼 숨기고
-			$(this).parent().prev().css("display","block");//리뷰 보여주고
+			$(this).parent().parent().css("display","none");	//폼 숨기고
+			$(this).parent().parent().prev().css("display","block");//리뷰 보여주고
 		});
 		
 		//리뷰 수정 - DB
@@ -558,7 +558,7 @@
 						<h4>리뷰</h4>
 						<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px; margin-bottom: 30px; "><!-- 리뷰 입력 테두리 -->
 							<form method="post" id="resCommentForm">
-								<p>님</p>
+								<p>${logNickname}님</p>
 								<input type="hidden" name="res_no" value="${dto.res_no}"/><!-- 원글 글번호 -->
 								<fieldset>
 									<span class="text-bold">별점을 선택해주세요</span>
