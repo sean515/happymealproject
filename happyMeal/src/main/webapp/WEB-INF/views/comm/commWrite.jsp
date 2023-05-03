@@ -3,7 +3,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 
 <style>
-
+	
 	#commForm {
 	margin-top: 100px;
 	}
@@ -197,17 +197,12 @@
 		<ul>
 		<h1 style="display: inline;">커뮤니티 글쓰기</h1>
 			<hr style="height: 3px; background-color:black;"/>
-			
-			<select name="comm_bullet_point" id="comm_bullet_point" class="form-select" aria-label="Default select example" style="width:80%; display: inline;">
+			<select name="comm_bullet_point" id="comm_bullet_point" class="form-select" aria-label="Default select example" style="width:100%; font-size:14px; display: inline;">
 				<option value="공지사항">공지사항</option>
-				<option value="공지사항">공지사항 </option>
-				<option value="공지사항">공지사항 </option>
+				<option value="자유게시판">자유게시판 </option>
+				<option value="질문하기">질문하기 </option>
 			</select>
-			<select name="bulletpoint" id="bulletpoint" class="form-select" aria-label="Default select example" style="float:right; width:19%;line-height: auto;"">
-				<option value="10">말머리 선택</option>
-				<option value="15">말머리 선택 </option>
-				<option value="20">말머리 선택 </option>
-			</select>
+			
 			<li><input type="text" name="comm_title" id="comm_title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="제목"/></li>
 			<li>
 				<!-- 에디터... -->

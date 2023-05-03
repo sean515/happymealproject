@@ -133,7 +133,7 @@
 									<div class="col-lg-4 col-md-4">
 										<div class="fh5co-blog animate-box">
 											<a href="menuView?amenu_type_no=${MenuDTO.amenu_type_no }&amenu_name=${MenuDTO.amenu_name }" class="blog-img-holder"
-												style="background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>
+												style="position: center; background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>
 											<div class="blog-text">
 												<p></p>
 												<%-- <p>${MenuDTO.amenu_no }</p> --%>

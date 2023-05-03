@@ -5,6 +5,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
 <style>
+
+	
+	a{
+	 color:black;
+	}
+	
 	.topBtns{
 		height:50px;
 		padding:10px 0;
@@ -210,11 +216,11 @@
 				success:function(comment1){	
 					var tag = "";
 					$(comment1).each(function(i, cDTO){
-						tag += "<li><div><b>"+cDTO.userid+" ("+cDTO.menu_comment_date+")</b>";
+						tag += "<li><div style='font-size: 12px;'><b>"+cDTO.userid+" ("+cDTO.menu_comment_date+")</b>";
 						//본인이 쓴 댓글 일때
 						if(cDTO.userid == '${logId}'){ //cDTO.userid(클라이언트 실행 ) = 'goguma' ${logId}(서버에서 실행)goguma
-							tag +="<input type='button' value='Edit'/>";
-							tag +="<input type='button' value='Del' title='"+cDTO.menu_comment_no+"'/>";
+							tag +="<input type='button' value='수정' style='background-color:white; border:none; color:#8BC34A;'/>";
+							tag +="<input type='button' value='삭제' style='background-color:white; border:none; color:#8BC34A;' title='"+cDTO.menu_comment_no+"'/>";
 							
 							tag += "<p style='white-space: pre-line'>"+cDTO.menu_comment_text+"</p></div>";
 							
@@ -279,7 +285,7 @@
 			return false; //form의 기본 이벤트 때문 다음 실행이
 		});
 		//댓글 수정폼 보여주기 : 본인이 쓴 글일 때 Edit버튼을 클릭하면 글 내용은 숨기고, 폼을 보여준다.
-		$(document).on('click','#menucommentList input[value=Edit]',function(){
+		$(document).on('click','#menucommentList input[value=수정]',function(){
 			
 			//var dom = $(document).cjildren("li");
 			//기존의 열어놓은 폼이나, 숨겨놓은 댓글내용을 처리하고
@@ -314,7 +320,7 @@
 			return false;
 		});
 			//댓글 삭제
-			$(document).on('click','#menucommentList input[value=Del]',function(){
+			$(document).on('click','#menucommentList input[value=삭제]',function(){
 				if(confirm("댓글을 삭제할까요?")){
 					var params = "menu_comment_no=" +$(this).attr("title");
 					console.log(params);
@@ -353,31 +359,25 @@
 	</div>
 	
 	<div class="articleBox">
+	
+	
 		<div class="articleHeader">
-			<div class="articleTitle">
-				<!-- 제목 -->
-				<h1>${dto.menu_title }</h1>
-			</div>
-			
-			<div class="articleInfo row">
-				<div class="col-8">
-					<img src="img/loginImg.png" width="60px" height="60px"/>
-					<span style="font-size:24px">${dto.username}</span>
-					<br/>
-					<span>${dto.menu_date }&nbsp;&nbsp;&nbsp;조회&nbsp;&nbsp;${dto.menu_hit }</span>
-			
-				</div>
-				<div class="col-4">
-					<c:if test="${logId==dto.userid }">
-						<a href="menuEdit?menu_no=${dto.menu_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-secondary">수정</a>
-						<a href="javascript:menuDel()" class="btn btn-secondary">삭제</a>
-					</c:if>		
-				</div>
+			<div style="border-bottom: 1px solid gray;">
+				<ul id="view"  style="margin-top: 30px; padding:0;">
+				<li style="margin: 15px 0px 15px 10px; width: 80%; display:inline-block;">
+					<!-- 제목 -->
+					<h2 style="width: 80%; display:inline-block;">${dto.menu_title }</h2>
+				</li>
+				<c:if test="${logId==dto.userid }">
+					<div class="searchDiv" style="padding-top:20px; float: right;">	
+						<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="menuEdit?menu_no=${dto.menu_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" >수정</a></div></button>
+						<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a style="color: white;" href="javascript:menuDel()">삭제</a></div></button>
+					</div>
+				</c:if>	
+				</ul>
 			</div>
 		</div>	
-	
-		<hr style="height: 3px; background: black"/>
-			
+						
 		<div class="articleContentBox">
 			
 			<div id="ingredients">
@@ -393,50 +393,55 @@
 
 
 			<div id="manual">
-				<ul >			
-					<li>${dto.menu_text }</li>
-				</ul>
+				<h2>식단 메뉴</h2>
 				<br/>
-	<hr style="height: 3px; background: black"/>
-	<br/>
-	<h2>식단 메뉴</h2>
-	<br/>
-				<img src="${dto.menu_img1 }"/>
-				<img src="${dto.menu_img2 }"/>
-				<img src="${dto.menu_img3 }"/>
-				<img src="${dto.menu_img4 }"/>
-				<img src="${dto.menu_img5 }"/>
-				<img src="${dto.menu_img6 }"/>
-
-			</div>
-		</div>
-		
-		<div class="articleWriter">
-			<div>
-				<ul>
-					<li style="display: inline;float :left;"><img src="img/loginImg.png" width="50px" height="50px"/></li>
-					<li style="display: inline; font-size: 15px; position: relative; left:10px;"><a href="menu_user?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b> 님의 게시글 더보기</a></li>
+					<img src="${dto.menu_img1 }"/>
+					<img src="${dto.menu_img2 }"/>
+					<img src="${dto.menu_img3 }"/>
+					<img src="${dto.menu_img4 }"/>
+					<img src="${dto.menu_img5 }"/>
+					<img src="${dto.menu_img6 }"/>
+				<ul>			
+					<li style="font-size: 14px;">${dto.menu_text }</li>
 				</ul>
 			</div>
+		</div>
 		
-			<div style= "overflow: hidden">
-				<div style= "width: 30%; float: left; overflow: hidden">
-					<ul>
-						<img src="" class="LikeBtn" style="width:12px"></img>
-						<li style="display: inline;">좋아요</li>
-						<li style="display: inline;" id="menu_like_hit"></li>
-						<li style="display: inline;">댓글</li>
-						<li style="display: inline;" id="menu_comment_hit"></li>
-					</ul>
-				</div>
+		<!-- 작성자시작 -->
+		<ul>
+		<div style="padding-top:20px;">
+		<li style="display: inline; font-size: 14px; position: relative; left:10px;">
+		<a style="color:black;" href=href="menu_user?searchKey=username&searchWord=${dto.username}"><b>${dto.username}</b>님의 게시글 더보기</li></a>
+		</div>
+		<div>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.menu_date }</li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">조회 </li>
+		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.menu_hit } </li>
+		<li style="display: inline; position: relative;  font-size: 12px; float: right;"><a href="test">신고</a></li>
 		
-				<div style="clear:right;text-align:right; width: 30%; float: right;">
-					<a href="test">신고</a>
+		</div>
+			<div style= "overflow: hidden">	
+				<div style="clear:right;text-align:right; width: 30%;  font-size: 14px;">
+					
 				</div>
 			</div>
-		</div>
+		</ul>
 		
 		<hr style = "height: 1px; background-color: black;"/>
+		<!-- 작성자 끝 -->
+		
+		<div style="padding-top:10px; padding-bottom:40px;">
+			<div style="width: 5%;  display: inline-block; float: left;">
+				<h4 style="padding-left:10px;">댓글</h4>
+			</div>
+			<div style= "padding-left:10px; width: 30%; float: left; overflow: hidden">
+				<img src="" class="LikeBtn" style="width:18px; margin-top:-5px;"></img>
+				<li style="display: inline;  font-size: 12px;" > 좋아요</li>
+				<li style="display: inline;  font-size: 12px;" id="menu_like_hit"></li>
+				<li style="display: inline;  font-size: 12px;" > 댓글</li>
+				<li style="display: inline;  font-size: 12px;" id="menu_comment_hit"></li>
+			</div>
+		</div>
 		
 		
 		<!-- 댓글 -->
@@ -445,15 +450,15 @@
 			<c:if test="${logStatus=='Y'}"><!-- 로그인한 경우 댓글쓰기 폼 보여주기 -->
 				<div style="border: 1px solid gray;border-radius: 10px;padding : 10px 10px; margin-bottom: 30px; "><!-- 댓글 입력 테두리 -->
 					<form method="post" id="menucommentForm">
-						<p>		${dto.username }님</p>
+						<p style="padding-left: 10px; font-size: 12px;">		${sessionScope.logId}님</p>
 						<input type="hidden" name="menu_no" value="${dto.menu_no}"/><!-- 원글 글번호 -->
 						<textarea name="menu_comment_text" id="menu_comment_text"  placeholder="댓글을 남겨보세요"
-							style="padding: 10px;
+							style="padding: 10px 0px 0px 10px;
 							width: 100%;
 							box-sizing: border-box;
 							border: none;
-							border-radius: 5px;
-							font-size: 16px;
+							border-radius: 3px;
+							font-size: 12px;
 							resize : none;"></textarea>
 						<!-- 댓글 등록 버튼 -->
 						<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px; overflow: hidden;">
@@ -470,11 +475,12 @@
 		
 			</ul>
 		</div>
-		
-	</div>
-	
-	<div class="topBtns">
+		<div class="topBtns">
 		<a href="menu?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
 	</div>
+	</div>
+	
+	
 	
 </div>
+<div style="padding-bottom:100px;"></div>
