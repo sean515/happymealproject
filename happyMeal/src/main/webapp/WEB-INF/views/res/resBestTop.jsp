@@ -3,7 +3,7 @@
 
 <style>
 	.resContainer{
-		height:2800px;
+		height:2900px;
 	}
 	.resList{
 		width:1000px;
@@ -46,7 +46,13 @@
 	<div class="titleWrap">
 		<!-- 소제목 -->
 		<div class="row animate-box">
-			<h1 class="title" style="display: inline; font-size: 40px">맛집 TOP10</h1>
+			<h1 class="title" style="display: inline; font-size: 40px">
+				<c:set var="paramName" value="res_type"/><!-- 파라미터 이름 지정 -->
+				<c:if test="${empty param.res_type }">
+					<c:set var="paramName" value="res_category"/><!-- 파라미터 이름을 res_category로 변경 -->
+				</c:if>
+				<p>${param[paramName]} 맛집 TOP10</p>
+			</h1>
 		</div>
 	</div>
 		
