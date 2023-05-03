@@ -5,24 +5,22 @@
 </style>
 <div class="container"><br/><br/>
 	<h1>즐겨찾기한 식당 리스트</h1>
+	
 		<ul>
-			<li><img src="../img/restaurant_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				식당 이름 : 행복 샐러드<br/>&emsp;&emsp;&emsp;
-				식당 위치 : 서울특별시 강남구 OO로<br/>&emsp;&emsp;&emsp;
-				대표 메뉴 : 단호박 샐러드<br/>&emsp;&emsp;&emsp;
-				운영 시간 : 11:00~21:00<br/><br/><hr class="hr3"/>
+			<li>
+			<c:set var="recordNum"
+				value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
+
+				<c:forEach var="ResDTO" items="${list}">
+				<a href="/happy/resView?res_no=${ResDTO.res_no}"><img src="${ResDTO.res_image}" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;</a>
+				식당 이름 : ${ResDTO.res_name}<br/>&emsp;&emsp;&emsp;
+				주소 : ${ResDTO.res_addr}<br/>&emsp;&emsp;&emsp;
+				전화 번호 : ${ResDTO.res_tel}<br/>&emsp;&emsp;&emsp;
+				음식 타입 : ${ResDTO.res_type}<br/><br/><hr class="hr3"/>
 				
-				<img src="../img/restaurant_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				식당 이름 : 행복 샐러드<br/>&emsp;&emsp;&emsp;
-				식당 위치 : 서울특별시 강남구 OO로<br/>&emsp;&emsp;&emsp;
-				대표 메뉴 : 단호박 샐러드<br/>&emsp;&emsp;&emsp;
-				운영 시간 : 11:00~21:00<br/><br/><hr class="hr3"/>
+			</c:forEach>
+			
 				
-				<img src="../img/restaurant_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				식당 이름 : 행복 샐러드<br/>&emsp;&emsp;&emsp;
-				식당 위치 : 서울특별시 강남구 OO로<br/>&emsp;&emsp;&emsp;
-				대표 메뉴 : 단호박 샐러드<br/>&emsp;&emsp;&emsp;
-				운영 시간 : 11:00~21:00<br/>
 			</li>
 		</ul>
 </div>

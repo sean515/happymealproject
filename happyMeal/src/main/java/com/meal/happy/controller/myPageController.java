@@ -29,6 +29,9 @@ import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ResCommentDTO;
+import com.meal.happy.dto.ResDTO;
+import com.meal.happy.dto.ResEditDTO;
 import com.meal.happy.dto.SupDTO;
 import com.meal.happy.service.RecipeService;
 import com.meal.happy.service.myPageService;
@@ -42,18 +45,28 @@ public class myPageController {
 	@GetMapping("/myPage")
 	public ModelAndView myPage(HttpSession session) {
 		RegisterDTO dto = service.myPage((String) session.getAttribute("logId"));
+		
 		CommDTO cdto = service.selectComm((String) session.getAttribute("logId"));
 		CommCommentDTO co_codto = service.selectCommComment((String) session.getAttribute("logId"));
 		
 		RecipeDTO rdto = service.selectRecipe((String) session.getAttribute("logId"));
 		RecipeCommentDTO re_redto = service.selectRecipeComment((String) session.getAttribute("logId"));
-		
-		System.out.println(re_redto);
+		RecipeDTO r_ldto = service.selectRecipeLike((String) session.getAttribute("logId"));
+
+		//System.out.println(re_redto);
 		MenuUserDTO mdto = service.selectMenu((String) session.getAttribute("logId"));
 		MenuUserCommentDTO me_medto = service.selectMenuComment((String) session.getAttribute("logId"));
-		
+		MenuUserDTO m_ldto = service.selectMenuLike((String) session.getAttribute("logId"));
+
+		ResDTO rs_dto = service.selectResLike((String) session.getAttribute("logId"));
+		ResDTO add_dto = service.selectAddRes((String) session.getAttribute("logId"));
+		ResEditDTO ed_dto = service.selectEditRes((String) session.getAttribute("logId"));
 		SupDTO sdto = service.selectSup((String) session.getAttribute("logId"));
+		
+		
 		ModelAndView mav = new ModelAndView();
+		
+		
 		mav.addObject("dto", dto);
 		mav.addObject("cdto", cdto);
 		mav.addObject("rdto", rdto);
@@ -62,8 +75,14 @@ public class myPageController {
 		mav.addObject("re_redto", re_redto);
 		mav.addObject("me_medto", me_medto);
 		mav.addObject("mdto", mdto);
-	    
-		System.out.println(mav);
+		mav.addObject("m_ldto", m_ldto);
+		mav.addObject("r_ldto", r_ldto);
+		mav.addObject("rs_dto", rs_dto);
+		mav.addObject("add_dto", add_dto);
+		mav.addObject("ed_dto", ed_dto);
+		
+		System.out.println(add_dto);
+		System.out.println(rs_dto);
 		mav.setViewName("myPage/myPage");
 		return mav;
 	}
@@ -134,20 +153,38 @@ public class myPageController {
 	
 	// 즐겨찾는 식당
 	@GetMapping("/myPage/userLikeRes")
-	public String userLikeResForm() {
-		return "myPage/userLikeRes";
+	public ModelAndView userLikeResForm(PagingVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+		vo.setTotalRecord(service.resTotalRecord_user(vo));
+		mav.addObject("list",service.res_PageSelect_user(vo));
+		System.out.println(mav);
+		System.out.println(vo);
+		mav.setViewName("myPage/userLikeRes");
+		return mav;
 	}
 
 	// 즐겨찾는 식단
 	@GetMapping("/myPage/userLikeMenu")
-	public String menuLikeListForm() {
-		return "myPage/userLikeMenu";
+	public ModelAndView menuLikeListForm(PagingVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+		
+		vo.setTotalRecord(service.menuTotalRecord_user(vo));
+		mav.addObject("list",service.menulike_pageSelect_user(vo));
+		
+		mav.setViewName("myPage/userLikeMenu");
+		return mav;
 	}
 
 	// 즐겨찾는 레시피
 	@GetMapping("/myPage/userLikeRecipe")
-	public String recipeLikeListForm() {
-		return "myPage/userLikeRecipe";
+	public ModelAndView recipeLikeListForm(PagingVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+		vo.setTotalRecord(service.recipeTotalRecord_user(vo));
+		mav.addObject("list",service.recipelike_pageSelect_user(vo));
+		return mav;
 	}
 
 	// 내가 작성한 글
@@ -217,8 +254,22 @@ public class myPageController {
 
 	// 식당 정보 업데이트
 	@GetMapping("/myPage/userResUpdate")
-	public String userResUpdateForm() {
-		return "myPage/userResUpdate";
+	public ModelAndView userResUpdateForm(PagingVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+
+		ResDTO add_dto = service.selectAddRes((String) session.getAttribute("logId"));
+		ResEditDTO ed_dto = service.selectEditRes((String) session.getAttribute("logId"));
+		
+		mav.addObject("list1",service.selectAllAddRes(vo));
+		mav.addObject("list2",service.selectAllEditRes(vo));
+		
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+		
+		System.out.println(mav);
+		mav.setViewName("myPage/userResUpdate");		
+
+		return mav;
 	}
 
 	// 문의사항

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.meal.happy.dao.RegisterDAO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ResCommentDTO;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {

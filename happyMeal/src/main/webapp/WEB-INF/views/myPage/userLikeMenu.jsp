@@ -6,23 +6,18 @@
 <div class="container"><br/><br/>
 	<h1>즐겨찾기한 식단 리스트</h1>
 		<ul>
-			<li><img src="../img/menu_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				식단 이름 : 겨울 당뇨 식단<br/>&emsp;&emsp;&emsp;
-				아침 식단 : 흑미밥, 채접 맑은국, 꽈리고추찜 등<br/>&emsp;&emsp;&emsp;
-				점심 식단 : 현미밥, 소고기 샤브샤브, 박고지 묵은 김치 만두 등<br/>&emsp;&emsp;&emsp;
-				저녁 식단 : 수수밥, 비지찌개, 갈치구이 등<br/><br/><hr class="hr3"/>
+			<li>
+			<c:set var="recordNum"
+				value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
+
+				<c:forEach var="MenuDTO" items="${list}">
+				<a href="/happy/menuView_user?menu_no=${MenuDTO.menu_no}"><img src="/happy/uploadfile/${MenuDTO.menu_thumbnail}" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;</a>
+				식단명 : ${MenuDTO.menu_title}<br/>&emsp;&emsp;&emsp;
+				작성일 : ${MenuDTO.menu_date}<br/>&emsp;&emsp;&emsp;
+				작성자 : ${MenuDTO.userid}&emsp;&emsp;&emsp;
+				<hr class="hr3"/>
 				
-				<img src="../img/menu_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				식단 이름 : 겨울 당뇨 식단<br/>&emsp;&emsp;&emsp;
-				아침 식단 : 흑미밥, 채접 맑은국, 꽈리고추찜 등<br/>&emsp;&emsp;&emsp;
-				점심 식단 : 현미밥, 소고기 샤브샤브, 박고지 묵은 김치 만두 등<br/>&emsp;&emsp;&emsp;
-				저녁 식단 : 수수밥, 비지찌개, 갈치구이 등<br/><br/><hr class="hr3"/>
-				
-				<img src="../img/menu_sample.jpg" width="100" height="100" align="left"/>&emsp;&emsp;&emsp;
-				식단 이름 : 겨울 당뇨 식단<br/>&emsp;&emsp;&emsp;
-				아침 식단 : 흑미밥, 채접 맑은국, 꽈리고추찜 등<br/>&emsp;&emsp;&emsp;
-				점심 식단 : 현미밥, 소고기 샤브샤브, 박고지 묵은 김치 만두 등<br/>&emsp;&emsp;&emsp;
-				저녁 식단 : 수수밥, 비지찌개, 갈치구이 등<br/><br/>
+			</c:forEach>
 			</li>
 		</ul>
 </div>

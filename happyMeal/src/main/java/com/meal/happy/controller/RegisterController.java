@@ -48,6 +48,7 @@ public class RegisterController {
 		if(dto!=null) {//로그인 성공
 			session.setAttribute("logId", dto.getUserid());
 			session.setAttribute("logName", dto.getUsername());
+			session.setAttribute("logNickname", dto.getNickname());			
 			session.setAttribute("logStatus", "Y");
 			mav.setViewName("redirect:/");
 		}else {//로그인실패
