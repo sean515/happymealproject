@@ -19,6 +19,9 @@
 	.title{
 		margin-top:70px;
 	}
+	.resBestList{
+		margin:0 auto;
+	}
 	.bestList_list{
 		display:flex;
 		flex-direction:row;
@@ -30,13 +33,14 @@
 		height:200px;
 	}
 	.resThumb{
-		margin-right:50px;
+		margin-right:100px;
 	}
 	.resInfo{
 		width:400px;
 	}
 		
 </style>
+
 <!-- banner -->
 <div class= "banner">
 	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
@@ -65,10 +69,9 @@
 						<div class="resThumb"><a href="resView?res_no=${bDTO.res_no }"><img src="${empty bDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : bDTO.res_image}"/></a></div>
 						<a href="resView?res_no=${bDTO.res_no }">
 							<div class="resInfo">
-								<h3>${bDTO.res_name }</h3>
-								<h6>${bDTO.res_addr }</h6>
-								<h6>${bDTO.res_type }</h6>
-								<h6>${bDTO.res_category }</h6>
+								<h2>${bDTO.res_name }</h2>
+								<h5>${bDTO.res_addr }</h5>
+								<h6>${bDTO.res_type }, ${bDTO.res_category }</h6>
 								<h6>조회수   ${bDTO.res_hit }</h6>
 							</div>
 						</a>
