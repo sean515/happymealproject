@@ -155,13 +155,32 @@
 			</li>
 			<li>이메일</li>
 			<li><input type="text" name="email" id="email" style="height:40px;" value="${dto.email}"/></li>
-			<li>질병 정보</li>
+			<li>맞춤 식단 추천 받기</li>
 			<li>
-				<input type="checkbox" id="chk1" name="diseaseArr" value="고혈압" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='고혈압'}">checked</c:if></c:forEach>/>고혈압
-				<input type="checkbox" id="chk1" name="diseaseArr" value="당뇨" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='당뇨'}">checked</c:if></c:forEach>/>당뇨
-				<input type="checkbox" id="chk1" name="diseaseArr" value="통풍" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='통풍'}">checked</c:if></c:forEach>/>통풍
-				<input type="checkbox" id="chk1" name="diseaseArr" value="류마티스" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='류마티스'}">checked</c:if></c:forEach>/>류마티스
-				<label><input type="checkbox" id="chk5" name="diseaseArr" value="해당사항 없음" onclick="chkDisable()" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='해당사항 없음'}">checked</c:if></c:forEach>/>해당사항 없음</label>
+			<!-- 식단 정보 라디오 버튼 -->
+		<div class="input-box2">
+		    <div class="form-check form-check-inline">
+			  해당없음<input type="radio" class="form-check-input" name="diseaseArr" value="해당없음" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='해당없음'}">checked</c:if></c:forEach>/>
+			</div>
+			<div class="form-check form-check-inline">
+			  일반식<input type="radio" class="form-check-input" name="diseaseArr" value="일반식" <c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='일반식'}">checked</c:if></c:forEach>/>
+			</div>
+			<div class="form-check form-check-inline">
+			  당뇨식<input type="radio" class="form-check-input" name="diseaseArr" value="당뇨식"<c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='당뇨식'}">checked</c:if></c:forEach>/>
+			</div>
+			<div class="form-check form-check-inline">
+			  연식<input type="radio" class="form-check-input" name="diseaseArr" value="연식"<c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='연식'}">checked</c:if></c:forEach>/>
+			</div>
+			<div class="form-check form-check-inline">
+			  저염식<input type="radio" class="form-check-input" name="diseaseArr" value="저염식"<c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='저염식'}">checked</c:if></c:forEach>/>
+			</div>
+			<div class="form-check form-check-inline">
+			  저요오드식<input type="radio" class="form-check-input" name="diseaseArr" value="저요오드식"<c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='저요오드식'}">checked</c:if></c:forEach>/>
+			</div>
+			<div class="form-check form-check-inline">
+			  항암식<input type="radio" class="form-check-input" name="diseaseArr" value="항암식"<c:forEach var="h" items="${dto.diseaseArr}"><c:if test="${h=='항암식'}">checked</c:if></c:forEach>/>
+			</div>
+	    </div>
 			</li>
 				
 			<li>

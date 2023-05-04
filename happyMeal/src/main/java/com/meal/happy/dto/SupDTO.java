@@ -5,6 +5,7 @@ public class SupDTO {
 	private String sup_title;
 	private String sup_text;
 	private String userid;
+	private String username;
 	private int sup_hit;
 	private String sup_date;
 	private String ip;
@@ -107,6 +108,15 @@ public class SupDTO {
 	public void setSup_answer(int sup_answer) {
 		this.sup_answer = sup_answer;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	
 	
 }

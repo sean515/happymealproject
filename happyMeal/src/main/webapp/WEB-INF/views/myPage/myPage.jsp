@@ -388,9 +388,10 @@
 	<div class="col" id="bottomline">
 		<p id="my_header">문의사항<br/></p>
 		<p>
-		   커뮤니티 | &nbsp;<a href="sup/supView?sup_no=${sdto.sup_no}">${sdto.sup_title}</a>
+		   고객센터 | &nbsp;<a href="sup/supView?sup_no=${sdto.sup_no}">${sdto.sup_title}</a></p>
 		   <hr class="hr3"/>
-		   레시피&emsp; | &nbsp;이 정보 확실한가요?
+		   <p>
+		   신고내역 | &nbsp;${rp_dto.report_text }
 		</p>
 		<ul>
 			<li>

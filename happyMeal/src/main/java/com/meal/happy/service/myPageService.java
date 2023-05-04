@@ -10,6 +10,7 @@ import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ReportDTO;
 import com.meal.happy.dto.ResCommentDTO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -50,6 +51,11 @@ public interface myPageService {
 	public List<ResDTO> selectAllAddRes(PagingVO vo);
 	public List<ResEditDTO> selectAllEditRes(PagingVO vo);
 	
+	public List<SupDTO> selectAllAddSup(PagingVO vo);
+	public List<ReportDTO> selectreportList(PagingVO vo);
+
+	public ReportDTO reportList(String userid);
+
 	//like page
 	public List<ResDTO> res_PageSelect_user(PagingVO vo);
 	public int resTotalRecord_user(PagingVO vo);
