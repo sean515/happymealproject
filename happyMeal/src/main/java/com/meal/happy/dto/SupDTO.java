@@ -12,6 +12,8 @@ public class SupDTO {
 	private int sup_lvl;	//들여쓰기
 	private int sup_step;
 	private int sup_answer;
+	private String username;
+	private String nickname;
 	
 	@Override
 	public String toString() {
@@ -106,6 +108,22 @@ public class SupDTO {
 
 	public void setSup_answer(int sup_answer) {
 		this.sup_answer = sup_answer;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 	
