@@ -121,19 +121,21 @@
 								<c:set var="counter" value="-1" />
 								<c:forEach var="MenuDTO" items="${list}">
 									<c:if test="${counter == -1}">
-										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name }${1}</h3>
+										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name }</h3>
 									</c:if>
 									<c:set var="counter" value="${counter + 1}" />
 	
 									<c:if test="${counter % 3 == 0 and counter != 0}">
 										<c:set var="pageNo" value="${(counter/ 3)+1}" />
 										<c:set var="pageNo" value="${pageNo.intValue()}" />
-										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name}${pageNo}</h3>
+										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name}</h3>
 									</c:if>
-									<div class="col-lg-4 col-md-4">
+									
+									<div style="margin-bottom:10px; border-bottom:1px solid #ddd;"class="col-lg-4 col-md-4">
 										<div class="fh5co-blog animate-box">
 											<a href="menuView?amenu_type_no=${MenuDTO.amenu_type_no }&amenu_name=${MenuDTO.amenu_name }" class="blog-img-holder"
 												style="position: center; background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>
+											
 											<div class="blog-text">
 												<p></p>
 												<%-- <p>${MenuDTO.amenu_no }</p> --%>
@@ -149,9 +151,12 @@
 												</c:if>
 												<p>${MenuDTO.amenu_text }</p>
 											</div>
+											
+											</div>
 										</div>
-									</div>
+										
 									<c:set var="recordNum" value="${recordNum-1 }"></c:set>
+									
 								</c:forEach>
 							</div>
 	

@@ -38,14 +38,14 @@ public class SupController {
 	public ModelAndView supList(SupPagingVO svo) {
 		
 		ModelAndView mav = new ModelAndView();
-		
+		SupDTO sdto= new SupDTO();
 		//총레코드
 		int totalRecord = service.supTotalRecord(svo);
 		svo.setSupTotalRecord(service.supTotalRecord(svo));
 		//레코드선택
 		List<SupDTO> list =(service.supPageSelect(svo));
 		//List<SupDTO> list =(service.supAllSelect());
-		
+		mav.addObject("sdto",sdto);
 		mav.addObject("totalRecord", totalRecord);
 		mav.addObject("list", service.supPageSelect(svo));
 		mav.addObject("svo", svo);

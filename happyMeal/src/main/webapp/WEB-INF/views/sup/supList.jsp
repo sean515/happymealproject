@@ -128,7 +128,7 @@
 			<a href="supView?sup_no=${supDTO.sup_no}">${supDTO.sup_title}</a>
 			</li>
 			
-			<li>${supDTO.username}</li>
+			<li>${supDTO.nickname}</li>
 			<li>${supDTO.sup_hit}</li>
 			<li>${supDTO.sup_date}</li>
 			

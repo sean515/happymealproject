@@ -7,10 +7,14 @@
 		select count(sup_no) from support
 		
 	</select>
+	
 	<select id="supAllSelect" resultType="com.meal.happy.dto.SupDTO">
-		select sup_no, sup_title, userid, sup_hit, sup_date, sup_lvl
-		from support order by sup_ref desc, sup_step asc
+	    SELECT s.sup_no, s.sup_title, m.nickname, s.sup_hit, s.sup_date, s.sup_lvl
+	    FROM support s
+	    INNER JOIN member m ON s.userid = m.userid
+	    ORDER BY s.sup_ref DESC, s.sup_step ASC
 	</select>
+	
 	<!-- 페이징 --> 
 	<select id="supPageSelect" resultType="com.meal.happy.dto.SupDTO">
 		select * from
