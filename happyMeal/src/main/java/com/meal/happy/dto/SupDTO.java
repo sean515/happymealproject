@@ -5,6 +5,7 @@ public class SupDTO {
 	private String sup_title;
 	private String sup_text;
 	private String userid;
+	private String username;
 	private int sup_hit;
 	private String sup_date;
 	private String ip;
@@ -125,6 +126,7 @@ public class SupDTO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+
 	
 	
 }

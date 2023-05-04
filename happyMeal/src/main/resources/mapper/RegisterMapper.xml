@@ -94,6 +94,10 @@
 		select sup_no, sup_title from (select * from support order by rownum desc) where userid = #{param1} and rownum =1
 	</select>
 	
+		<select id="selectAllAddSup" resultType="com.meal.happy.dto.SupDTO">
+		select sup_no, sup_title, sup_hit, sup_date, sup_text from (select * from support order by rownum desc) where userid = #{userid}
+	</select>
+	
 	<select id="selectCommComment" resultType="com.meal.happy.dto.CommCommentDTO">
 		SELECT cc.comm_comment_no, cc.comm_no, c.comm_title, cc.comm_comment_text
 		FROM community_comment cc
@@ -102,6 +106,20 @@
 		ORDER BY cc.comm_comment_no DESC
 	</select>
 	
+	 <select id="reportList" resultType="com.meal.happy.dto.ReportDTO">
+		select r.report_no, r.userid, r.report_post_no, r.report_reason, m.nickname, 
+		r.report_text,to_char(r.report_date,'YYYY-MM-DD') report_date, r.report_status,r.report_response,r.board_type
+		from report r join member m on r.userid= m.userid
+		WHERE r.userid = #{param1} and rownum =1
+	</select>
+	
+	 <select id="selectreportList" resultType="com.meal.happy.dto.ReportDTO">
+		select r.report_no, r.userid, r.report_post_no, r.report_reason, m.nickname, 
+		r.report_text,to_char(r.report_date,'YYYY-MM-DD') report_date, r.report_status,r.report_response,r.board_type
+		from report r join member m on r.userid= m.userid
+		WHERE r.userid = #{userid} and rownum =1
+	</select>
+		
 	<select id="selectRecipeComment" resultType="com.meal.happy.dto.RecipeCommentDTO">
 		SELECT *
 		FROM recipe_comment re

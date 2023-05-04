@@ -2,6 +2,7 @@ package com.meal.happy.controller;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -29,6 +30,7 @@ import com.meal.happy.dto.PagingVO;
 import com.meal.happy.dto.RecipeCommentDTO;
 import com.meal.happy.dto.RecipeDTO;
 import com.meal.happy.dto.RegisterDTO;
+import com.meal.happy.dto.ReportDTO;
 import com.meal.happy.dto.ResCommentDTO;
 import com.meal.happy.dto.ResDTO;
 import com.meal.happy.dto.ResEditDTO;
@@ -62,10 +64,10 @@ public class myPageController {
 		ResDTO add_dto = service.selectAddRes((String) session.getAttribute("logId"));
 		ResEditDTO ed_dto = service.selectEditRes((String) session.getAttribute("logId"));
 		SupDTO sdto = service.selectSup((String) session.getAttribute("logId"));
-		
+		ReportDTO rp_dto = service.reportList((String) session.getAttribute("logId"));
+
 		
 		ModelAndView mav = new ModelAndView();
-		
 		
 		mav.addObject("dto", dto);
 		mav.addObject("cdto", cdto);
@@ -80,8 +82,9 @@ public class myPageController {
 		mav.addObject("rs_dto", rs_dto);
 		mav.addObject("add_dto", add_dto);
 		mav.addObject("ed_dto", ed_dto);
+		mav.addObject("rp_dto",rp_dto);
 		
-		System.out.println(add_dto);
+		System.out.println(rp_dto);
 		System.out.println(rs_dto);
 		mav.setViewName("myPage/myPage");
 		return mav;
@@ -274,8 +277,16 @@ public class myPageController {
 
 	// 문의사항
 	@GetMapping("/myPage/userSupView")
-	public String userSupViewForm() {
-		return "myPage/userSupView";
+	public ModelAndView userSupViewForm(PagingVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		vo.setUserid((String) session.getAttribute("logId"));
+		
+		mav.addObject("list2",service.selectreportList(vo));
+		mav.addObject("list1",service.selectAllAddSup(vo));
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+		mav.setViewName("myPage/userSupView");		
+
+		return mav;
 	}
 	
 	//bmi계산하러가기
