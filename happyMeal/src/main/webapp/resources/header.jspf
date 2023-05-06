@@ -96,13 +96,20 @@
 							<c:if test="${logStatus=='Y'}">	
 								<li><a href="/happy/myPage">마이페이지</a></li>
 							</c:if>
+							
+							<% if (session != null && session.getAttribute("logId") != null && session.getAttribute("logId").equals("admin")) { %>
+							    <li><a href="/admin/" style="font-weight:bold">관리자 페이지</a></li>
+							<% } %>
+							
 							<c:if test="${logStatus!='Y'}">
 								<li class="btn-cta"><a href="/happy/loginForm"><span>Login</span></a></li>
 							</c:if>
 							<c:if test="${logStatus=='Y'}">
 								<li class="btn-cta"><a href="/happy/logout"><span>Logout</span></a></li>
 							</c:if>
-						
+							
+							
+							
 						</ul>
 					</div>
 				</div>
