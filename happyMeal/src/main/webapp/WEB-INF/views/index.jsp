@@ -100,21 +100,17 @@
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="row">
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="fh5co-counter js-counter" data-from="0" data-to="3297" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">당뇨</span>
+						<div class="col-md-4 col-sm-6 text-center animate-box">
+							<span class="fh5co-counter js-counter" data-from="0" data-to="${ mvo.totalRecord}" data-speed="5000" data-refresh-interval="50"></span>
+							<span class="fh5co-counter-label">건강 식단</span>
 						</div>
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="fh5co-counter js-counter" data-from="0" data-to="3700" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">고혈압</span>
+						<div class="col-md-4 col-sm-6 text-center animate-box">
+							<span class="fh5co-counter js-counter" data-from="0" data-to="${ rvo.totalRecord}" data-speed="5000" data-refresh-interval="50"></span>
+							<span class="fh5co-counter-label">건강 레시피</span>
 						</div>
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="fh5co-counter js-counter" data-from="0" data-to="5034" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">비만</span>
-						</div>
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="fh5co-counter js-counter" data-from="0" data-to="1080" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">골다골증</span>
+						<div class="col-md-4 col-sm-6 text-center animate-box">
+							<span class="fh5co-counter js-counter" data-from="0" data-to="${ resvo.totalRecord}" data-speed="5000" data-refresh-interval="50"></span>
+							<span class="fh5co-counter-label">건강 식당</span>
 						</div>
 					</div>
 				</div>
