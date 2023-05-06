@@ -84,33 +84,108 @@
 		font-size:0.9em;		
 		display:none;
 	}
-	
+	.id-invalid {
+    	color:red;
+		font-size:0.9em;		
+		display:none;
+    }
+	.pwd2-ok{
+		color:#6A82FB;
+		font-size:0.9em;
+		display:none;
+	}
+	.pwd2-discord{
+		color:red;
+		font-size:0.9em;		
+		display:none;
+	}
+	.username-ok{
+	    color:#6A82FB;
+	    font-size:0.9em;
+	    display:none;
+	}
+	.username-invalid{
+	    color:red;
+	    font-size:0.9em;
+	    display:none;
+	}
 </style>
 <script>
 	function checkId(){
-		var userid = $("#userid").val(); //id값이 "userid"인 입력란의 값을 저장
+	    var userid = $("#userid").val(); //id값이 "userid"인 입력란의 값을 저장
 			
-		$.ajax({
-			url: './idCheck', // Controller에서 요청받을 주소
-			type:'POST', //POST 방식으로 전달
-			data:{userid:userid},
-			success:function(cnt){//컨트롤러에서 넘어온 cnt값을 받는다.
-				if(cnt==0){//cnt가 0이면 -> 사용 가능한 아이디
-					$('.id-ok').css("display","inline-block");
-					$('.id-already').css("display","none");
-				} else{//cnt가 1일 경우 -> 이미 존재하는 아이디
-					$('.id-already').css("display","inline-block");
-					$('.id-ok').css("display","none");
-					
-				}
-				
-			},error:function(){
-				alert("error!!!")
-			}
-		});
+	    if(/^[A-Za-z]{1}\w{4,11}$/.test(userid)){ // 정규식 패턴에 부합하는 경우
+	        $.ajax({
+	        	url: './idCheck', // Controller에서 요청받을 주소
+	        	type:'POST', //POST 방식으로 전달
+	        	data:{userid:userid},
+	        	success:function(cnt){//컨트롤러에서 넘어온 cnt값을 받는다.
+	            if(cnt==0){//cnt가 0이면 -> 사용 가능한 아이디
+	            	$('.id-ok').css("display","inline-block");
+	            	$('.id-already').css("display","none");
+	            	$('.id-invalid').css("display","none");
+	            } else{//cnt가 1일 경우 -> 이미 존재하는 아이디
+	            	$('.id-already').css("display","inline-block");
+	            	$('.id-ok').css("display","none");
+	            	$('.id-invalid').css("display","none");
+	            }
+	
+	        	},error:function(){
+	            	alert("error!!!")
+	        	}
+	        });
+	    }else{ // 정규식 패턴에 부합하지 않는 경우
+	        $('.id-invalid').css("display","inline-block");
+	        $('.id-ok').css("display","none");
+	        $('.id-already').css("display","none");
+	    }
 	}
 	$(function(){
 		
+		const userPwd = document.getElementById("userpwd");
+		const userPwd2 = document.getElementById("userpwd2");
+		const pwd2Ok = document.querySelector(".pwd2-ok");
+		const pwd2Discord = document.querySelector(".pwd2-discord");
+
+		userPwd2.addEventListener("keyup", function() {
+		    if (userPwd.value === userPwd2.value) {
+		    	pwd2Ok.style.display = "block";
+		    	pwd2Discord.style.display = "none";
+		    } else {
+		    	pwd2Ok.style.display = "none";
+		    	pwd2Discord.style.display = "block";
+		    }
+		});
+		
+		userPwd.addEventListener("keyup", function() {
+			userPwd2.value = "";
+			pwd2Ok.style.display = "none";
+			pwd2Discord.style.display = "none";
+		});
+
+		userPwd.addEventListener("blur", function() {
+			userPwd2.value = "";
+			pwd2Ok.style.display = "none";
+			pwd2Discord.style.display = "none";
+		});
+		
+		
+		function checkName(){
+			var username = $("#username").val();
+			    
+			if(!/^[가-힣]{2,10}$/.test(username)){
+				$('.username-invalid').css("display","inline-block");
+				$('.username-ok').css("display","none");
+			} else {
+				$('.username-ok').css("display","inline-block");
+				$('.username-invalid').css("display","none");
+			}
+		}
+		
+		$("#username").on("input", function(){
+			checkName();
+		});
+			
 		//유효성검사
 		$("#joinForm").submit(function(){
 			//아이디검사
@@ -126,7 +201,7 @@
 			var reg = /^[A-Za-z]{1}\w{4,11}$/
 			
 			if(!reg.test($("#userid").val()) ){//   유효한 값이면 true, 잘못된 데이터면 false
-				alert("아이디는 첫번째문자는 영어대소문자로 시작하여야 하며, \n영어대소문자, 숫자, _가능, 아이디길이는 5~12글자까지 가능");
+				alert("아이디는 알파벳 대소문자로 시작하여야 하며, 알파벳, 숫자, _가능, 길이는 5~12글자까지 가능");
 				return false;
 			}
 			if($("#idStatus").val()=="N"){
@@ -162,7 +237,7 @@
 			});
 			
 			if(diseaseCount<1){
-				alert("질병정보는 1개이상 선택하여야 합니다. 없을경우 '해당없음'을 선택하세요.");
+				alert("식단은 1개이상 선택하여야 합니다. 없을경우 '해당없음'을 선택하세요.");
 				return false;
 			}
 			
@@ -179,6 +254,7 @@
 			<label for="userid">아이디</label>
 			<span class="id-ok">사용 가능한 아이디입니다.</span>
 			<span class="id-already">사용 불가능한 아이디입니다.</span>
+			<span class="id-invalid">아이디는 알파벳 대소문자로 시작하여야 하며, 알파벳, 숫자, _가능, 길이는 5~12글자까지 가능</span>
 		</div>
 		
         <div class="input-box">
@@ -189,11 +265,15 @@
 		<div class="input-box">
 		    <input type="password" name="userpwd2" id="userpwd2" placeholder="비밀번호 확인"/>
 		    <label for="userpwd2">비밀번호 확인</label>
+		    <span class="pwd2-ok">비밀번호가 일치합니다.</span>
+			<span class="pwd2-discord">비밀번호가 일치하지 않습니다.</span>
 		</div>
 		
 		<div class="input-box">
 		    <input type="text" name="username" id="username" minlength="2" maxlength="10" placeholder="이름"/>
 		    <label for="username">이름</label>
+		    <span class="username-ok">이름이 유효합니다.</span>
+			<span class="username-invalid">이름은 2~10글자까지 한글만 가능합니다.</span>
 		</div>
 		
 	    <div class="input-box2">
