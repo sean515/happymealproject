@@ -510,7 +510,7 @@
 						</span>
 					</div>
 					<div class="EditRequest">
-						<button class="btn-open-popup">정보수정제안</button>
+						<button style="background-color:#8BC34A; color:white; border:0;"class="btn-open-popup">정보수정제안</button>
 					</div>
 					<div class="Status">
 						<span>조회수 ${dto.res_hit }</span>
