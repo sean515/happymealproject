@@ -45,7 +45,7 @@ public class myPageController {
 
 	// 마이페이지 폼 - session 로그인 아이디에 해당하는 회원정보 select하여 뷰페이지로 이동
 	@GetMapping("/myPage")
-	public ModelAndView myPage(HttpSession session) {
+	public ModelAndView myPage(HttpSession session, PagingVO vo) {
 		RegisterDTO dto = service.myPage((String) session.getAttribute("logId"));
 		
 		CommDTO cdto = service.selectComm((String) session.getAttribute("logId"));
@@ -86,6 +86,19 @@ public class myPageController {
 		
 		System.out.println(rp_dto);
 		System.out.println(rs_dto);
+		
+		//문의 내역
+		vo.setUserid((String) session.getAttribute("logId"));
+			
+		mav.addObject("list2",service.selectreportList(vo));
+		mav.addObject("list1",service.selectAllAddSup(vo));
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+		
+		mav.addObject("list3",service.selectAllAddRes(vo));
+		mav.addObject("list4",service.selectAllEditRes(vo));
+		
+		
+		
 		mav.setViewName("myPage/myPage");
 		return mav;
 	}
@@ -97,6 +110,7 @@ public class myPageController {
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
+		
 		mav.setViewName("myPage/registerEdit");
 		
 		return mav;
@@ -382,7 +396,7 @@ public class myPageController {
 	    
 	    
 	    System.out.println(dto.toString());
-	    myPage(session);
+	    myPage(session, null);
 	    
 	    return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 	}
