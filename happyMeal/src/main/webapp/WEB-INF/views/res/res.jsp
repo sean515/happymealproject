@@ -87,9 +87,7 @@
 	.desc{
 		font-size:0.9em;
 	}
-	.container > .row{
-		padding:0 70px 0 10%;
-	}
+	
 	.col-md-6{
 		width:400px;
 		height:450px;
@@ -121,7 +119,7 @@
 <div class="titleWrap">
 			<div class="searchDiv">
 				<form method="get" id="searchForm" action="res">
-					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요 (지역 또는 식당)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 400px; height:50px; display: inline;"/>
+					<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="검색어를 입력해주세요 (지역 또는 식당)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 400px; height:40px; display: inline;"/>
 					<input type="submit" value="검색" class="btn-cta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: 70px; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;" />
 				</form>
 				
@@ -132,10 +130,10 @@
 			</div>
 			<hr style="height: 1px; background: black"/>
 			<div class="btn-group" role="group" aria-label="Basic outlined example">
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res'">전체</button>
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식음식점'">채식</button>
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식가능음식점'">채식가능</button>
-				<button type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=저염실천음식점'">저염</button>
+				<button style="color:white; background-color: #8BC34A; border-radius: 0; margin-bottom:20px;" type="button" class="btn btn-outline-success" onclick="location.href='res'">전체</button>
+				<button style="color:white; background-color: #8BC34A; border-radius: 0;" type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식음식점'">채식</button>
+				<button style="color:white; background-color: #8BC34A; border-radius: 0;" type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=채식가능음식점'">채식가능</button>
+				<button style="color:white; background-color: #8BC34A; border-radius: 0;" type="button" class="btn btn-outline-primary" onclick="location.href='res?searchWord=저염실천음식점'">저염</button>
 			</div>
 		</div>
 <div class="resContainer" >
@@ -150,13 +148,13 @@
 			<ul class="res" style=" padding-left: 0;">
 				<div id="fh5co-staff" style="padding: 0">
 					<div class="container"style="width: auto;">
-						<div class="row">
+						<div style="padding:0 70px 0 12%;" class="row">
 							<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
 							<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 								<c:forEach var="rDTO" items="${list}">	
 									<div style="margin-right: 60px;"class="col-md-5 animate-box text-center">
 										<div class="staff">
-											<div class="staff-img" style="width:300px; background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
+											<div class="staff-img" style="width:400px; background-image: url('${empty rDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : rDTO.res_image}');">
 											</div>
 											<h3><a href="resView?res_no=${rDTO.res_no }&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchWord=${vo.searchWord }</c:if>">${rDTO.res_name }</a></h3>
 											<p>${rDTO.res_type }<br/>${rDTO.res_category }</p>
@@ -171,7 +169,7 @@
 		</div>
 		
 		<div class="updateRequest">
-			<button class="btn btn-primary" onclick="location.href='resUpdateReq'">업데이트요청</button>
+			<button style="color:white; background-color: #8BC34A; border-radius: 0; border: 0;" class="btn btn-primary" onclick="location.href='resUpdateReq'">업데이트요청</button>
 		</div>
 		
 		
