@@ -45,9 +45,7 @@
 		</div>
 	<div>
 
-		<!-- 아코디언 추가 -->
 
-		<div class="accordion accordion-flush" id="accordionFlushExample">
 			<form action="/happy/menu" method="get">
 
 			</form>
@@ -58,7 +56,7 @@
 				<c:set var="recordNum"
 					value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 
-				<div id="fh5co-blog">
+				<div style="padding-top:100px;"id="fh5co-blog">
 					<div class="container">
 
 						<div class="row">
@@ -83,7 +81,7 @@
 					</div>
 				</div>
 			</ul>
-		</div>
+		
 
 
 		<div class="recipeHeader" style="float: right; margin-top: -50px;">

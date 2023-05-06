@@ -16,6 +16,16 @@
 	.accordion-button {
     font-size: 15px;
     }
+    
+    .accordion-flush .accordion-item .accordion-button, .accordion-flush .accordion-item .accordion-button.collapsed {
+    border-radius: 0;
+    background-color: #8bc34a38;
+    border: 3px solid #8bc34a40;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #008846;
+}
 </style>
 <!-- 배너 -->
 <div class= "banner" style="overflow: hidden;">
@@ -131,7 +141,7 @@
 										<h3 style="padding-top:30px; padding-left:12.5px;">${MenuDTO.amenu_type_name}</h3>
 									</c:if>
 									
-									<div style="margin-bottom:10px; border-bottom:1px solid #ddd;"class="col-lg-4 col-md-4">
+									<div style="margin-bottom:10px; border-bottom:2px solid #ddd;"class="col-lg-4 col-md-4">
 										<div class="fh5co-blog animate-box">
 											<a href="menuView?amenu_type_no=${MenuDTO.amenu_type_no }&amenu_name=${MenuDTO.amenu_name }" class="blog-img-holder"
 												style="position: center; background-image: url('/happy/uploadfile/amenu/${MenuDTO.amenu_thumbnail }');"></a>

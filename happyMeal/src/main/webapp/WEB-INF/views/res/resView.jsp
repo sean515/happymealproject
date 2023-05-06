@@ -11,11 +11,12 @@
 	
 	.resContent {
 		width: 1200px;
-		padding: 0 15px;
+		padding: 0 50px 0 15px;
 	}
 	
 	.resSide {
 		width: 366.5px;
+		padding-right: 50px;
 	}
 	
 	.resInfo, .resReview {
@@ -317,8 +318,8 @@
 						tag +="</div>";
 						//본인이 쓴 리뷰 일때
 						if(DTO.userid == '${logId}'){ //DTO.userid(클라이언트 실행 ) = 'goguma' ${logId}(서버에서 실행)goguma
-							tag +="<input type='button' value='Edit'/>";
-							tag +="<input type='button' value='Del' title='"+DTO.res_comment_no+"'/>";
+							tag +="<input type='button' style='background-color:white; border:none; color:#8BC34A;' value='수정'/>";
+							tag +="<input type='button' style='background-color:white; border:none; color:#8BC34A;' value='삭제' title='"+DTO.res_comment_no+"'/>";
 							
 							tag += "<p style='white-space: pre-line'>"+DTO.res_comment_text+"</p></div>";
 							
@@ -391,7 +392,7 @@
 			return false; //form의 기본 이벤트 때문 다음 실행이
 		});
 		//리뷰 수정폼 보여주기 : 본인이 쓴 글일 때 Edit버튼을 클릭하면 글 내용은 숨기고, 폼을 보여준다.
-		$(document).on('click','#resCommentList input[value=Edit]',function(){
+		$(document).on('click','#resCommentList input[value=수정]',function(){
 			
 			//var dom = $(document).cjildren("li");
 			//기존의 열어놓은 폼이나, 숨겨놓은 댓글내용을 처리하고
@@ -429,7 +430,7 @@
 			return false;
 		});
 			//리뷰 삭제
-			$(document).on('click','#resCommentList input[value=Del]',function(){
+			$(document).on('click','#resCommentList input[value=삭제]',function(){
 				if(confirm("리뷰를 삭제할까요?")){
 					var params = "res_comment_no=" +$(this).attr("title");
 					console.log(params);
@@ -493,10 +494,10 @@
 </div>
 
 <!-- 배너 -->
-<div class= "banner">
-	<img src="img/banner.png" width="100%" height="150px"/>
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
-
+<div style="padding-top:80px;"></div>
 <div class="resContainer">
 	<div class="resContent">
 		<div class="inner">
@@ -595,7 +596,7 @@
 	</div><!-- resContent end -->
 	<div class="resSide">
 		<!-- 지도 -->
-		<div id="map" style="width:100%;height:450px;"></div>
+		<div id="map" style="=width:100%;height:650px;"></div>
 	</div><!-- resSide end -->
 	
 </div><!-- resContainer end -->
