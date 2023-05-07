@@ -45,6 +45,9 @@
 		<div class="searchDiv" style="display:flex; justify-content:flex-end;">	
 			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;">
         <div class="board_header">
+        <c:if test="${logStatus!='Y'}">
+        	<a style="color: white;" href="/happy/menu?amenu_type_no=3">전문 식단</a>
+        </c:if>
           <c:if test="${logStatus=='Y'}">
 					<c:if test="${logDisease=='해당없음'}">
 				<a style="color: white;" href="/happy/menu?amenu_type_no=3">전문 식단</a>
