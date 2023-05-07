@@ -50,10 +50,14 @@ public class RegisterController {
 			session.setAttribute("logName", dto.getUsername());
 			session.setAttribute("logNickname", dto.getNickname());			
 			session.setAttribute("logStatus", "Y");
+			
+			session.setAttribute("logAdmin", dto.getAdmin() == 1 ? 1 : 0);
+			
 			mav.setViewName("redirect:/");
 		}else {//로그인실패
 			mav.setViewName("redirect:loginForm");
 		}
+		System.out.println("logAdmin: " + dto.getAdmin());
 		return mav;
 	}
 	//로그아웃 - 세션제거
