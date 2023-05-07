@@ -48,12 +48,21 @@ public class RegisterController {
 		if(dto!=null) {//로그인 성공
 			session.setAttribute("logId", dto.getUserid());
 			session.setAttribute("logName", dto.getUsername());
-			session.setAttribute("logNickname", dto.getNickname());			
+			session.setAttribute("logNickname", dto.getNickname());	
+			
+			session.setAttribute("logDisease", dto.getDisease());	
+
 			session.setAttribute("logStatus", "Y");
+			
+			session.setAttribute("logAdmin", dto.getAdmin() == 1 ? 1 : 0);
+			
 			mav.setViewName("redirect:/");
 		}else {//로그인실패
 			mav.setViewName("redirect:loginForm");
 		}
+		System.out.println("logAdmin: " + dto.getAdmin());
+		System.out.println("logDisease: " + dto.getDisease());
+		
 		return mav;
 	}
 	//로그아웃 - 세션제거

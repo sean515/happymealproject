@@ -198,7 +198,6 @@
 		<h1 style="display: inline;">커뮤니티 글쓰기</h1>
 			<hr style="height: 3px; background-color:black;"/>
 			<select name="comm_bullet_point" id="comm_bullet_point" class="form-select" aria-label="Default select example" style="width:100%; font-size:14px; display: inline;">
-				<option value="공지사항">공지사항</option>
 				<option value="자유게시판">자유게시판 </option>
 				<option value="질문하기">질문하기 </option>
 			</select>

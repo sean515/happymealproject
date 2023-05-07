@@ -400,7 +400,7 @@
 		<li style="display: inline; position: relative; left:10px; font-size: 12px;">${dto.comm_hit } </li>
 		<li style="display: inline; position: relative;  font-size: 12px; float: right;">
 			<c:if test="${logStatus=='Y' and logId!=dto.userid }">
-				<input type="button" value="신고"/>
+				<input type="button" value="신고" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"/>
 			</c:if>
 		</li>
 		</div>
