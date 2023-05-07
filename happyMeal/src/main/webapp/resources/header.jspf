@@ -97,7 +97,7 @@
 								<li><a href="/happy/myPage">마이페이지</a></li>
 							</c:if>
 							
-							<% if (session != null && session.getAttribute("logId") != null && session.getAttribute("logId").equals("admin")) { %>
+							<% if (session != null && session.getAttribute("logAdmin") != null && session.getAttribute("logAdmin").equals(Integer.valueOf(1))) { %>
 							    <li><a href="/admin/" style="font-weight:bold">관리자 페이지</a></li>
 							<% } %>
 							
