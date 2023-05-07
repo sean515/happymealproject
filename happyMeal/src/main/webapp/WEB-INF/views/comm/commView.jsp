@@ -19,10 +19,18 @@
 		flex-direction:column;
 	}
 	.topBtns{
-		height:50px;
+		height:80px;
 		padding:10px 0;
+		display:flex;
+		justify-content:flex-end;
+		align-items:flex-end;
 	}
-	
+	#listBtn{
+		width:45px;
+		height:30px;
+		font-size:14px;
+		margin:0;
+	}
 	ul{
 	margin-bottom:0;
 	}
@@ -353,7 +361,7 @@
 <div class="container">
 
 		<div class="topBtns">
-		<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+			<a href="comm_List?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchKey=${vo.searchKey }&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
 		</div>
 		
 	<div class="articleBox">

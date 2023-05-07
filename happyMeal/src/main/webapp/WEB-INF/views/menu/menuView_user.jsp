@@ -12,14 +12,16 @@
 	}
 	
 	.topBtns{
-		height:50px;
+		height:80px;
 		padding:10px 0;
+		display:flex;
+		justify-content:flex-end;
+		align-items:flex-end;
 	}
 	#listBtn{
 		width:45px;
 		height:30px;
 		font-size:14px;
-		float:right;
 		margin:0;
 	}
 	.articleBox{

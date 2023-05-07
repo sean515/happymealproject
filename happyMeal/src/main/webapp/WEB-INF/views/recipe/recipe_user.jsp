@@ -18,7 +18,7 @@
     justify-content: center!important;
 }
 #fh5co-staff{
-	padding-top:80px;
+	padding-top:40px;
 }
 .page-link {
   color: #8BC34A; 

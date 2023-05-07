@@ -39,14 +39,14 @@
 		width:600px;
 	}
 	#resHit{
-		color:rgb(255, 121, 42);
+		color:#00AD7C;
 	}
 		
 </style>
 
 <!-- banner -->
-<div class= "banner">
-	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 
 <div class="resContainer">

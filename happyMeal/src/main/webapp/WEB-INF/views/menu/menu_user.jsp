@@ -56,7 +56,7 @@
 				<c:set var="recordNum"
 					value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 
-				<div style="padding-top:80px;"id="fh5co-blog">
+				<div style="padding-top:40px;"id="fh5co-blog">
 					<div class="container">
 
 						<div class="row">
