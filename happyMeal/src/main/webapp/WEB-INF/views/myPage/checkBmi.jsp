@@ -5,7 +5,7 @@
 <style>
 	.bmidiv{
 		width:30%;
-		margin: 50px auto 62px;
+		margin: 51px auto 62px;
 		
 	}
 	#bmiHeader{
