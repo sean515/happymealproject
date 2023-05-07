@@ -25,6 +25,13 @@
  input::placeholder{
 		color:transparent;
 	}
+		
+ .accordion-flush .accordion-item .accordion-button, .accordion-flush .accordion-item .accordion-button.collapsed {
+    border-radius: 0;
+    background-color: #8bc34a38;
+    border: 3px solid #8bc34a40;
+
+	}
 
 /* input.test:placeholder-shown + label{
   		color:#aaa;

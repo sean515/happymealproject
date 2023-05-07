@@ -39,12 +39,12 @@
 		</div>
 		<hr style="height: 1px; background: black" />
 	</div>
-		<!-- usermenu 버튼 -->
-		<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
-			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="/happy/menu?amenu_type_no=3">전문 식단</a></div></button>
-		</div>
+		
 	<div>
-
+		<!-- usermenu 버튼 -->
+				<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
+					<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="/happy/menu?amenu_type_no=3">전문 식단</a></div></button>
+				</div>
 
 			<form action="/happy/menu" method="get">
 
@@ -87,7 +87,7 @@
 		<div class="recipeHeader" style="float: right; margin-top: -50px;">
 			<!-- <a href="recipeWrite">글쓰기</a> -->
 			<button type="button" class="btn btn-outline-dark" onclick="location.href='menuWrite_user'"
-		style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button> 
+		style="margin-top: 10px; background-color:#8BC34A; color: white; border: 0;"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button> 
 		</div>
 
 	<!-- 페이지네이션 부트스트랩 -->

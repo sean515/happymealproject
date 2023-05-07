@@ -131,7 +131,7 @@
 	<div class="commHeader" style="margin-bottom: 20px; margin-top: 10px">
 	<!-- <a href="commWrite">글쓰기</a> -->
 	<button type="button" class="btn btn-outline-dark" onclick="location.href='commWrite'"
-	style="margin-top: 10px"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button></div>
+	style="margin-top: 10px; background-color:#8BC34A; color: white;"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button></div>
 	
 	
 		<!-- 페이징 -->
