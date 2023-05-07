@@ -17,7 +17,9 @@
 .justify-content-center {
     justify-content: center!important;
 }
-
+#fh5co-staff{
+	padding-top:40px;
+}
 .page-link {
   color: #8BC34A; 
   background-color: #000;
@@ -88,7 +90,7 @@
 	<hr style="height: 1px; background: black"/>
 	</div>
 	<!-- recipe 버튼 -->
-	<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
+	<div class="searchDiv" style="display:flex; justify-content:flex-end;">	
 			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; display: inline; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="/happy/recipe">전문 레시피</a></div></button>
 	</div>
 

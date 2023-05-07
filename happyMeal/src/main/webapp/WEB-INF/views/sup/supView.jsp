@@ -5,9 +5,7 @@
 		border-bottom:1px solid #ddd;
 		padding:10px 0;
 	}
-	a{
-	color:#8BC34A;
-	}
+	
 	
 </style>
 <script>
@@ -26,7 +24,7 @@
 	<h1>문의내역</h1>
 	<hr style="border: solid 2px black;">
 	 <!-- 목록으로가는 홈버튼 -->
-  <button type="button" class="btn btn-outline-success" style="background-color:white; border:none; color:#8BC34A; float:right;" ><a href="supList">목록으로</a></button>
+  <button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px; float:right;"><a style="color:white;" href="supList">목록</a></button>
 <br/>
 	<br/>
 	<!-- 내역목록 -->
@@ -40,15 +38,11 @@
 	</ul>
 	<br/>
 	<p id="s">
-		<!-- 로그인이 된경우 답변글쓰기 가능 -->
-		<c:if test="${logStatus=='Y'}">
-		<button type="button" class="btn btn-outline-info"><a href="supAnswer/${dto.sup_no}">답변작성</a></button>
-		</c:if>
 		<!-- 본인이 쓴 글일때 -->
 		<c:if test="${dto.userid==logId}">
 		<!-- 수정,삭제버튼 -->
-			 <button type="button" class="btn btn-outline-warning" ><a href="supEdit/${dto.sup_no}">수정</a></button>
-			<button type="button" class="btn btn-outline-danger"><a href="javascript:supDelCheck()">삭제</a></button>
+			 <button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><a style="color:white;" href="supEdit/${dto.sup_no}">수정</a></button>
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><a style="color:white;" href="javascript:supDelCheck()">삭제</a></button>
 		</c:if>
 	</p>
 </div>

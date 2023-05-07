@@ -8,12 +8,36 @@
 		flex-direction: row;
 		height: 2000px;
 	}
-	
+	.top{
+		height:80px;
+	}
 	.resContent {
 		width: 1200px;
 		padding: 0 50px 0 15px;
 	}
-	
+	.resTitle{
+		height:100px;
+	}
+	.title{
+		position:relative;
+		height:60px;
+	}
+	#resName{
+		position:absolute;
+		left:0;
+	}
+	#listGo{
+		position:absolute;
+		right:0;
+	}
+	#listBtn{
+		width:45px;
+		height:30px;
+		padding:5px 0 0;
+		text-align:center;
+		font-size:14px;
+		border-radius:0.375rem;
+	}
 	.resSide {
 		width: 366.5px;
 		padding-right: 50px;
@@ -497,17 +521,24 @@
 <div class= "banner" style="overflow: hidden;">
 	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
-<div style="padding-top:80px;"></div>
+<div class="top">
+	
+</div>
 <div class="resContainer">
 	<div class="resContent">
 		<div class="inner">
 			<div class="resInfo">
 				<header>
 					<div class="resTitle">
-						<span class="title">
-							<h1>${dto.res_name }</h1>
-							<p>${dto.res_type }</p>
-						</span>
+						<div class="title">
+							<div id="resName">
+								<h1>${dto.res_name }</h1>
+							</div>
+							<div id="listGo">
+								<a href="res?nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null }">&searchWord=${vo.searchWord }</c:if>" class="btn btn-light" id="listBtn">목록</a>
+							</div>
+						</div>
+						<p>${dto.res_type }</p>
 					</div>
 					<div class="EditRequest">
 						<button style="background-color:#8BC34A; color:white; border:0;"class="btn-open-popup">정보수정제안</button>

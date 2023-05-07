@@ -41,14 +41,11 @@
 		<hr style="height: 1px; background: black" />
 	</div>
 
-	<!-- usermenu 버튼 -->
-	<div class="searchDiv"
-		style="padding-top: 20px; padding-bottom: 20px; float: right;">
-		<button type="button" aria-label="Sizing example input"
-			aria-describedby="inputGroup-sizing-default"
-			style="width: auto; height: 30px; background-color: #8BC34A; color: white; border: 0px;">
-			<div class="board_header">
-				<c:if test="${logStatus=='Y'}">
+		<!-- usermenu 버튼 -->
+		<div class="searchDiv" style="display:flex; justify-content:flex-end;">	
+			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;">
+        <div class="board_header">
+          <c:if test="${logStatus=='Y'}">
 					<c:if test="${logDisease=='해당없음'}">
 				<a style="color: white;" href="/happy/menu?amenu_type_no=3">전문 식단</a>
 					</c:if>
@@ -71,15 +68,10 @@
 				<a style="color: white;" href="/happy/menu?amenu_type_no=6">전문 식단</a>
 					</c:if>
 				</c:if>
-					
-			</div>
-		</button>
-	</div>
+        </div>
+      </button>
+		</div>
 	<div>
-		<!-- usermenu 버튼 -->
-				<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
-					<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="/happy/menu?amenu_type_no=3">전문 식단</a></div></button>
-				</div>
 
 		<form action="/happy/menu" method="get"></form>
 
@@ -89,8 +81,8 @@
 			<c:set var="recordNum"
 				value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 
-			<div style="padding-top: 100px;" id="fh5co-blog">
-				<div class="container">
+				<div style="padding-top:40px;"id="fh5co-blog">
+					<div class="container">
 
 					<div class="row">
 						<c:forEach var="MenuUserDTO" items="${list}">

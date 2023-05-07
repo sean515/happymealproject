@@ -36,14 +36,17 @@
 		margin-right:100px;
 	}
 	.resInfo{
-		width:400px;
+		width:600px;
+	}
+	#resHit{
+		color:#00AD7C;
 	}
 		
 </style>
 
 <!-- banner -->
-<div class= "banner">
-	<img src="${pageContext.request.contextPath}/img/banner.png" width="100%" height="300px"/>
+<div class= "banner" style="overflow: hidden;">
+	<img src="img/bannerimg2.png" width="100%" height="300px;">
 </div>
 
 <div class="resContainer">
@@ -69,10 +72,10 @@
 						<div class="resThumb"><a href="resView?res_no=${bDTO.res_no }"><img src="${empty bDTO.res_image ? "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png" : bDTO.res_image}"/></a></div>
 						<a href="resView?res_no=${bDTO.res_no }">
 							<div class="resInfo">
-								<h2>${bDTO.res_name }</h2>
+								<h1>${status.index+1}. ${bDTO.res_name }</h1>
+								<h4>조회수 <strong id="resHit">${bDTO.res_hit }</strong></h4>
 								<h5>${bDTO.res_addr }</h5>
 								<h6>${bDTO.res_type }, ${bDTO.res_category }</h6>
-								<h6>조회수   ${bDTO.res_hit }</h6>
 							</div>
 						</a>
 					</li>
