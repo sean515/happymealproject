@@ -40,7 +40,7 @@
 		<hr style="height: 1px; background: black" />
 	</div>
 		<!-- usermenu 버튼 -->
-		<div class="searchDiv" style="padding-top:20px; padding-bottom:20px; float: right;">	
+		<div class="searchDiv" style="display:flex; justify-content:flex-end;">	
 			<button type="button" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="width: auto; height:30px; background-color: #8BC34A; color: white; border: 0px;"><div class="board_header"><a  style="color:white;"href="/happy/menu?amenu_type_no=3">전문 식단</a></div></button>
 		</div>
 	<div>
@@ -56,7 +56,7 @@
 				<c:set var="recordNum"
 					value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 
-				<div style="padding-top:100px;"id="fh5co-blog">
+				<div style="padding-top:80px;"id="fh5co-blog">
 					<div class="container">
 
 						<div class="row">

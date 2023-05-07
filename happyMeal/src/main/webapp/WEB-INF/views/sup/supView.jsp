@@ -40,10 +40,6 @@
 	</ul>
 	<br/>
 	<p id="s">
-		<!-- 로그인이 된경우 답변글쓰기 가능 -->
-		<c:if test="${logStatus=='Y'}">
-		<button type="button" class="btn btn-outline-info"><a href="supAnswer/${dto.sup_no}">답변작성</a></button>
-		</c:if>
 		<!-- 본인이 쓴 글일때 -->
 		<c:if test="${dto.userid==logId}">
 		<!-- 수정,삭제버튼 -->
