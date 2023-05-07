@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
+a {
+color: black;
+}
 .table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #f9f9f9;
     white-space: nowrap;
@@ -266,7 +269,7 @@ h1 {
 <style>
 .bg-gradient-primary {
 	background-color: #1cc88a;
-	background-image: linear-gradient(180deg, #1cc88a 10%, #1cc88a 100%);
+	background-image: linear-gradient(180deg, #8BC34A 10%, #1cc88a 100%);
 	background-size: cover;
 	width: 200px;
 	padding: 10px;
@@ -304,15 +307,14 @@ h1 {
 			<!-- 식당 관리 -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <span>내가
-						쓴 글</span>
+				aria-expanded="true" aria-controls="collapseTwo"> <span>내가쓴 글</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/happy/myPage?level=write&cate=1">커뮤니티</a><br />
-						<a class="collapse-item" href="/happy/myPage?level=write&cate=2">레시피</a><br />
-						<a class="collapse-item" href="/happy/myPage?level=write&cate=3">식단</a>
+						<a class="collapse-item" href="/happy/myPage?level=write&cate=1">&nbsp&nbsp커뮤니티</a><br />
+						<a class="collapse-item" href="/happy/myPage?level=write&cate=2">&nbsp&nbsp레시피</a><br />
+						<a class="collapse-item" href="/happy/myPage?level=write&cate=3">&nbsp&nbsp식단</a>
 					</div>
 				</div></li>
 
@@ -325,9 +327,9 @@ h1 {
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/happy/myPage?level=comm&cate=1">커뮤니티</a><br />
-						<a class="collapse-item" href="/happy/myPage?level=comm&cate=2">레시피</a><br />
-						<a class="collapse-item" href="/happy/myPage?level=comm&cate=3">식단</a>
+						<a class="collapse-item" href="/happy/myPage?level=comm&cate=1">&nbsp&nbsp커뮤니티</a><br />
+						<a class="collapse-item" href="/happy/myPage?level=comm&cate=2">&nbsp&nbsp레시피</a><br />
+						<a class="collapse-item" href="/happy/myPage?level=comm&cate=3">&nbsp&nbsp식단</a>
 					</div>
 				</div></li>
 
@@ -340,9 +342,9 @@ h1 {
 				<div id="collapseRecipe" class="collapse"
 					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/happy/myPage?level=like&state=1">레시피</a><br />
-						<a class="collapse-item" href="/happy/myPage?level=like&state=2">식단</a><br />
-						<a class="collapse-item" href="/happy/myPage?level=like&state=3">식당</a>
+						<a class="collapse-item" href="/happy/myPage?level=like&state=1">&nbsp&nbsp레시피</a><br />
+						<a class="collapse-item" href="/happy/myPage?level=like&state=2">&nbsp&nbsp식단</a><br />
+						<a class="collapse-item" href="/happy/myPage?level=like&state=3">&nbsp&nbsp식당</a>
 					</div>
 				</div></li>
 
@@ -355,9 +357,9 @@ h1 {
 				<div id="collapseMenu" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/happy/myPage?level=ras&state=1">식당
+						<a class="collapse-item" href="/happy/myPage?level=ras&state=1">&nbsp&nbsp식당
 							추가 요청</a><br /> <a class="collapse-item"
-							href="/happy/myPage?level=ras&state=2">식당 수정 요청</a><br />
+							href="/happy/myPage?level=ras&state=2">&nbsp&nbsp식당 수정 요청</a><br />
 					</div>
 				</div></li>
 
@@ -370,9 +372,9 @@ h1 {
 				<div id="collapseSub" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/happy/myPage?level=Inq&state=1">문의
+						<a class="collapse-item" href="/happy/myPage?level=Inq&state=1">&nbsp&nbsp문의
 							내역</a><br /> <a class="collapse-item"
-							href="/happy/myPage?level=Inq&state=2">신고 내역</a><br />
+							href="/happy/myPage?level=Inq&state=2">&nbsp&nbsp신고 내역</a><br />
 					</div>
 				</div></li>
 
@@ -562,6 +564,58 @@ h1 {
 					</div>
 				</div>
 			</div>
+		</div>
+		<!-- 페이지네이션 부트스트랩 -->
+		<div style="margin-top: -80px;">
+			<center>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<!-- 이전페이지       : nowPage를 기준으로 -->
+					<c:if test="${vo.nowPage==1}">
+						<!-- 현재페이지가 첫번쨰 페이지일때 -->
+						<li></li>
+					</c:if>
+					<c:if test="${vo.nowPage>1}">
+						<!-- 현재페이지가 첫번째 페이지가 아닐때 -->
+						<li class="page-item"><a class="page-link"
+							href="recipe_user?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:if>
+					<!-- 이전페이지 끝 -->
+					<!-- 페이지 번호 -->
+					<c:forEach var="p" begin="${vo.startPageNum}"
+						end="${vo.startPageNum+vo.onePageNumCount-1}">
+						<c:if test="${p<=vo.totalPage}">
+							<!-- 표시할 페이지번호 총페이지수보다 작거나 같을때 페이지번호를 출력한다. -->
+							<!-- 현재페이지 표시하기 -->
+							<c:if test="${p==vo.nowPage}">
+								<li class="page-item active" style="background-color: #8BC34A;">
+							</c:if>
+							<c:if test="${p!=vo.nowPage}">
+								<li class="page-item">
+							</c:if>
+							<a class="page-link"
+								href="recipe_user?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
+							</li>
+						</c:if>
+					</c:forEach>
+
+					<!-- 다음페이지 -->
+					<c:if test="${vo.nowPage<vo.totalPage}">
+						<!-- 다음페이지가 있다 -->
+						<li class="page-item"><a class="page-link"
+							href="recipe_user?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:if>
+					<c:if test="${vo.nowPage==vo.totalPage}">
+						<!-- 현재페이지가 마지막일때 -->
+						<li></li>
+					</c:if>
+				</ul>
+			</nav>
+
 		</div>
 	</c:if>
 
@@ -919,8 +973,7 @@ h1 {
 					</c:if></li>
 			</ul>
 		</div>
-	</c:if>
-<!-- 페이지네이션 부트스트랩 -->
+		<!-- 페이지네이션 부트스트랩 -->
 		<div style="margin-top: -80px;">
 			<center>
 			<nav aria-label="Page navigation example">
@@ -972,6 +1025,8 @@ h1 {
 			</nav>
 
 		</div>
+	</c:if>
+
 
 	<!-- 식당 요청 정보 -->
 	<c:if test="${param.level == 'ras'}">
