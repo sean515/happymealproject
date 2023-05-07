@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<style>
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table > tbody > tr > td {
+    padding: 8px;
+    line-height: 1.42857;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
 <style>
 .commHeader {
 	text-align: right;
@@ -8,13 +26,13 @@
 
 .comm_List li {
 	float: left;
-	width: 10%;
+	width: 12.5%;
 	height: 40px;
 	line-height: 40px;
 	border-bottom: 1px solid #ddd;
 }
 
-.comm_List li:nth-child(6n+3) {
+.comm_List li:nth-child(5n+2) {
 	width: 50%;
 	/* 밑줄임표시하기 */
 	white-space: nowrap; /* 줄바꾸지 않는다. */
@@ -485,11 +503,11 @@ h1 {
 				<div class="row">
 					<div class="col-xs-12">
 						<table id="example" class="table table-striped"
-							style="width: 100%">
+							style="width: 100%; table-layout: fixed">
 							<thead>
 									<tr>
-										<th>글번호</th>
-										<th>제목</th>
+										<th style="width:10%">글번호</th>
+										<th style="width:40%">제목</th>
 										<th>댓글</th>
 										<th>작성일</th>
 									</tr>
@@ -501,10 +519,10 @@ h1 {
 
 									<c:forEach var="bDTO" items="${list11}">
 										<tr>
-											<td><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_no }</a></td>
-											<td><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_title }</a></td>
-											<td><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_comment_text }</a></td>
-											<td><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_comment_date }</a></td>
+											<td style="width: 10%"><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_no }</a></td>
+											<td style="width: 40%"><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_title }</a></td>
+											<td style="width: 40%"><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_comment_text }</a></td>
+											<td style="width: 10%"><a href="/happy/commView?comm_no=${bDTO.comm_no }">${bDTO.comm_comment_date }</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -522,6 +540,7 @@ h1 {
 										</tr>
 									</c:forEach>
 								</tbody>
+								</div>
 							</c:if>
 							<c:if test="${param.cate == '3'}">
 	
@@ -554,18 +573,18 @@ h1 {
 			<c:set var="recordNum"
 				value="${vo.totalRecord - (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 			<div style="height: 50px;">
-				<form action="/happy/myPage/" method="get">
-					<input id="te" type="text" name="level" value="like"
+				<form action="/happy/myPage" method="get">
+					<input id="te" type="text" name="level" value="write"
 						style="display: none;" />
-					<button type="submit" id="change-restaurant-button" name="state"
+					<button type="submit" id="change-restaurant-button" name="cate"
 						value="3"
 						style="float: right; border: none; color: white; background-color: #8BC34A; padding: 4px 10px;">
 						식단</button>
-					<button type="submit" id="change-restaurant-button" name="state"
+					<button type="submit" id="change-restaurant-button" name="cate"
 						value="2"
 						style="float: right; border: none; color: white; background-color: #8BC34A; padding: 4px 10px;">
 						레시피</button>
-					<button type="submit" id="add-restaurant-button" name="state"
+					<button type="submit" id="add-restaurant-button" name="cate"
 						value="1"
 						style="float: right; border: none; color: white; background-color: #8BC34A; padding: 4px 10px;">
 						커뮤니티</button>
@@ -574,10 +593,10 @@ h1 {
 			<c:if test="${param.cate == '1'}">
 				<!-- 소재목 -->
 				<div class="pFilter">
-					<div>
+					<div style="height: 320px">
 						<!-- 게시글 row 상단 -->
 						<ul class="comm_List" style="overflow: hidden; padding-left: 0;">
-							<li style="background-color: #dddddd45;">번호</li>
+							
 							<li style="background-color: #dddddd45;">글머리</li>
 							<li style="background-color: #dddddd45;">제목</li>
 							<li style="background-color: #dddddd45;">작성자</li>
@@ -589,7 +608,7 @@ h1 {
 
 							<c:forEach var="bDTO" items="${list10}">
 
-								<li>${recordNum }</li>
+								
 								<!-- bDTO.no  -->
 								<li>${bDTO.comm_bullet_point }</li>
 								<!-- bDTO.no  -->
@@ -674,7 +693,7 @@ h1 {
 						<a
 							href="menuView_user?menu_no=${MenuUserDTO.menu_no}&nowPage=${vo.nowPage}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>"
 							class="blog-img-holder"
-							style="background-image: url('/happy/uploadfile/${fileDto.filename }${MenuUserDTO.menu_thumbnail }');"></a>
+							style="height:200px; background-image: url('/happy/uploadfile/${fileDto.filename }${MenuUserDTO.menu_thumbnail }');"></a>
 
 
 						<div class="blog-text" style="padding: 20px 15px;">
@@ -689,14 +708,6 @@ h1 {
 			</c:forEach>
 		</div>
 		<!-- 게시글 row 상단 -->
-		<ul class="recipe" style="overflow: hidden; padding-left: 0;">
-			<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
-			<c:set var="recordNum" value="${vo.totalRecord - (vo.nowPage-1)*6 }"></c:set>
-
-			<div id="fh5co-blog">
-				<div class="container"></div>
-			</div>
-		</ul>
 </div>
 
 
@@ -705,7 +716,7 @@ h1 {
 
 
 	<!-- 페이지네이션 부트스트랩 -->
-	<div>
+	<div style="margin-top: -80px;">
 		<center>
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
@@ -772,7 +783,7 @@ h1 {
 				<div class="row">
 					<!-- 시작번호 설정 			   총레코드 수 		  현재 페이지	한페이지에 표시할 레코드 수-->
 					<c:set var="recordNum"
-						value="${vo.totalRecord - (vo.nowPage-1)*3 }"></c:set>
+						value="${vo.totalRecord -  (vo.nowPage-1)*vo.onePageRecord }"></c:set>
 					<c:forEach var="bDTO" items="${list8}">
 						<div class="col-md-3 animate-box text-center">
 							<div class="staff" style="padding: 0">
@@ -793,7 +804,8 @@ h1 {
 			</div>
 		</ul>
 		<!-- 페이지네이션 부트스트랩 -->
-		<div style="float: right;">
+		<div style="margin-top: -30px;">
+			<center>
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
 					<!-- 이전페이지       : nowPage를 기준으로 -->
@@ -845,6 +857,7 @@ h1 {
 		</div>
 
 		<div class="recipeHeader" style="float: center; margin-top: -50px;">
+		</div>
 	</c:if>
 	</c:if>
 
@@ -880,7 +893,7 @@ h1 {
 				식단명 : ${MenuDTO.menu_title}<br />&emsp;&emsp;&emsp;
 				작성일 : ${MenuDTO.menu_date}<br />&emsp;&emsp;&emsp;
 				작성자 : ${MenuDTO.userid}&emsp;&emsp;&emsp;
-				<hr class="hr3" />
+				<hr class="hr3" style="height: 2px;"/>
 
 						</c:forEach>
 					</c:if> <c:if test="${param.state == '1'}">
@@ -894,22 +907,71 @@ h1 {
 				<hr class="hr3" style="height: 2px;" />
 
 						</c:forEach>
-					</c:if> <c:if test="${param.cate == '3'}">
+					</c:if> <c:if test="${param.state == '3'}">
 						<c:forEach var="ResDTO" items="${list6}">
 							<a href="/happy/resView?res_no=${ResDTO.res_no}"><img
 								src="${ResDTO.res_image}" width="90" height="90" align="left" />&emsp;&emsp;&emsp;</a>
 				식당 이름 : ${ResDTO.res_name}<br />&emsp;&emsp;&emsp;
 				주소 : ${ResDTO.res_addr}<br />&emsp;&emsp;&emsp;
-				전화 번호 : ${ResDTO.res_tel}<br />&emsp;&emsp;&emsp;
-				음식 타입 : ${ResDTO.res_type}<br />
-							<br />
-							<hr class="hr3" />
+				전화 번호 : ${ResDTO.res_tel}&emsp;&emsp;&emsp;
+							<hr class="hr3" style="height: 2px;"/>
 						</c:forEach>
 					</c:if></li>
 			</ul>
 		</div>
 	</c:if>
+<!-- 페이지네이션 부트스트랩 -->
+		<div style="margin-top: -80px;">
+			<center>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<!-- 이전페이지       : nowPage를 기준으로 -->
+					<c:if test="${vo.nowPage==1}">
+						<!-- 현재페이지가 첫번쨰 페이지일때 -->
+						<li></li>
+					</c:if>
+					<c:if test="${vo.nowPage>1}">
+						<!-- 현재페이지가 첫번째 페이지가 아닐때 -->
+						<li class="page-item"><a class="page-link"
+							href="recipe_user?nowPage=${vo.nowPage-1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:if>
+					<!-- 이전페이지 끝 -->
+					<!-- 페이지 번호 -->
+					<c:forEach var="p" begin="${vo.startPageNum}"
+						end="${vo.startPageNum+vo.onePageNumCount-1}">
+						<c:if test="${p<=vo.totalPage}">
+							<!-- 표시할 페이지번호 총페이지수보다 작거나 같을때 페이지번호를 출력한다. -->
+							<!-- 현재페이지 표시하기 -->
+							<c:if test="${p==vo.nowPage}">
+								<li class="page-item active" style="background-color: #8BC34A;">
+							</c:if>
+							<c:if test="${p!=vo.nowPage}">
+								<li class="page-item">
+							</c:if>
+							<a class="page-link"
+								href="recipe_user?nowPage=${p}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>">${p}</a>
+							</li>
+						</c:if>
+					</c:forEach>
 
+					<!-- 다음페이지 -->
+					<c:if test="${vo.nowPage<vo.totalPage}">
+						<!-- 다음페이지가 있다 -->
+						<li class="page-item"><a class="page-link"
+							href="recipe_user?nowPage=${vo.nowPage+1}<c:if test="${vo.searchWord!=null}">&searchKey=${vo.searchKey}&searchWord=${vo.searchWord}</c:if>"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:if>
+					<c:if test="${vo.nowPage==vo.totalPage}">
+						<!-- 현재페이지가 마지막일때 -->
+						<li></li>
+					</c:if>
+				</ul>
+			</nav>
+
+		</div>
 
 	<!-- 식당 요청 정보 -->
 	<c:if test="${param.level == 'ras'}">

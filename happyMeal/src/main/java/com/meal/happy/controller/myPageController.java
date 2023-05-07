@@ -124,13 +124,17 @@ public class myPageController {
 		}
 		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
 		
+		vo.setTotalRecord(service.totalRecord(vo));
 		mav.addObject("list11",service.comm_Comment_PageSelect(vo));
-		
+		//vo.setTotalRecord(service.commentTotalRecord(vo));
+
 		mav.addObject("list12",service.menu_Comment_PageSelect_user(vo));
-		
+		//vo.setTotalRecord(service.menuCommentTotalRecord_user(vo));
+
 		mav.addObject("list13",service.recipe_Comment_PageSelect_user(vo));
-		
-		
+		//vo.setTotalRecord(service.recipeCommentTotalRecord_user(vo));
+
+		System.out.println(vo);
 		
 		mav.setViewName("myPage/myPage");
 		return mav;
@@ -276,20 +280,22 @@ public class myPageController {
 		System.out.println(vo);
 		//레시피
 		if (Objects.equals(cate, 1) || cate == null) {
-			//vo.setTotalRecord(service.recipeCommentTotalRecord_user(vo));
+		vo.setTotalRecord(service.recipeCommentTotalRecord_user(vo));
+		vo.setTotalRecord(service.menuCommentTotalRecord_user(vo));
+		vo.setTotalRecord(service.commentTotalRecord(vo));
 		mav.addObject("list",service.recipe_Comment_PageSelect_user(vo));
 		
 		System.out.println("recipe"+mav);
 		}
 		//식단
 		if (Objects.equals(cate, 2)) {
-			//vo.setTotalRecord(service.menuCommentTotalRecord_user(vo));
+		vo.setTotalRecord(service.menuCommentTotalRecord_user(vo));
 		mav.addObject("list",service.menu_Comment_PageSelect_user(vo));
 		
 		}
 				
 		if (Objects.equals(cate, 3)) {
-			//vo.setTotalRecord(service.commentTotalRecord(vo));
+			vo.setTotalRecord(service.commentTotalRecord(vo));
 			mav.addObject("list",service.comm_Comment_PageSelect(vo));
 			
 			System.out.println(mav);
