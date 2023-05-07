@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.meal.happy.dao.RegisterDAO">
 	<select id="loginOk" resultType="com.meal.happy.dto.RegisterDTO">
-		select userid, username, nickname, admin from member
+		select userid, username, nickname, admin, disease from member
 		where userid = #{param1} and userpwd = #{param2}
 	</select>
 	<select id="idCheck" parameterType="String" resultType="int">
