@@ -45,7 +45,7 @@ public class myPageController {
 
 	// 마이페이지 폼 - session 로그인 아이디에 해당하는 회원정보 select하여 뷰페이지로 이동
 	@GetMapping("/myPage")
-	public ModelAndView myPage(HttpSession session) {
+	public ModelAndView myPage(HttpSession session, PagingVO vo,  Integer cate) {
 		RegisterDTO dto = service.myPage((String) session.getAttribute("logId"));
 		
 		CommDTO cdto = service.selectComm((String) session.getAttribute("logId"));
@@ -86,6 +86,52 @@ public class myPageController {
 		
 		System.out.println(rp_dto);
 		System.out.println(rs_dto);
+		
+		//문의 내역
+		vo.setUserid((String) session.getAttribute("logId"));
+			
+		mav.addObject("list2",service.selectreportList(vo));
+		mav.addObject("list1",service.selectAllAddSup(vo));
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+		//식당 요청 내역
+		mav.addObject("list3",service.selectAllAddRes(vo));
+		mav.addObject("list4",service.selectAllEditRes(vo));
+		//좋아요 식단
+		vo.setTotalRecord(service.menuTotalRecord_user(vo));
+		mav.addObject("list5",service.menulike_pageSelect_user(vo));
+		//식당
+		vo.setTotalRecord(service.resTotalRecord_user(vo));
+		mav.addObject("list6",service.res_PageSelect_user(vo));
+		//레시피
+		vo.setTotalRecord(service.recipeTotalRecord_user(vo));
+		mav.addObject("list7",service.recipelike_pageSelect_user(vo));
+		
+		
+		//레시피
+		if (Objects.equals(cate, 2) || cate == null) {
+		vo.setTotalRecord(service.recipeTotalRecord_user(vo));
+		mav.addObject("list8",service.pageSelect_user(vo));
+		}
+		//식단
+		if (Objects.equals(cate, 3)) {
+		vo.setTotalRecord(service.menuTotalRecord_user(vo));
+		mav.addObject("list9",service.menu_pageSelect_user(vo));
+		}
+		
+		if (Objects.equals(cate, 1)) {
+			vo.setTotalRecord(service.totalRecord(vo));
+			mav.addObject("list10",service.pageSelect(vo));
+		}
+		mav.addObject("vo", vo);//뷰페이지로 페이지정보 셋팅.
+		
+		mav.addObject("list11",service.comm_Comment_PageSelect(vo));
+		
+		mav.addObject("list12",service.menu_Comment_PageSelect_user(vo));
+		
+		mav.addObject("list13",service.recipe_Comment_PageSelect_user(vo));
+		
+		
+		
 		mav.setViewName("myPage/myPage");
 		return mav;
 	}
@@ -97,6 +143,7 @@ public class myPageController {
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
+		
 		mav.setViewName("myPage/registerEdit");
 		
 		return mav;
@@ -238,13 +285,13 @@ public class myPageController {
 		if (Objects.equals(cate, 2)) {
 			//vo.setTotalRecord(service.menuCommentTotalRecord_user(vo));
 		mav.addObject("list",service.menu_Comment_PageSelect_user(vo));
-		System.out.println(mav);
-
+		
 		}
 				
 		if (Objects.equals(cate, 3)) {
 			//vo.setTotalRecord(service.commentTotalRecord(vo));
 			mav.addObject("list",service.comm_Comment_PageSelect(vo));
+			
 			System.out.println(mav);
 
 		}
@@ -379,10 +426,10 @@ public class myPageController {
 	    dto.setBmi(bmi);
 	    dto.setStandardBmi(standardBmi);
 	    
-	    
+	    PagingVO pagingVO = new PagingVO();
 	    
 	    System.out.println(dto.toString());
-	    myPage(session);
+	    myPage(session, pagingVO, null);
 	    
 	    return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 	}

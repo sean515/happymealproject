@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
@@ -338,20 +339,20 @@ input.test:focus, input:not(:placeholder-shown){
 				<div class="form_toggle row-vh d-flex flex-row justify-content-between" >
 					<div class="form_radio_btn radio_male">
 						<input id="radio-1" type="radio" name="time" value=" ${dto.kal * 0.4}">
-						<label for="radio-1"> 아침 : ${dto.kal * 0.4} 칼로리 </label>
+						<label for="radio-1"> 아침 : ${String.format('%.2f', dto.kal * 0.4)} 칼로리 </label>
 					</div>
 												 
 					<div class="form_radio_btn">
-						<input id="radio-2" type="radio" name="time" value=" ${dto.kal * 0.3}">
-						<label for="radio-2">점심 : ${dto.kal * 0.3} 칼로리</label>
+						<input id="radio-2" type="radio" name="time" value=" ${String.format('%.2f', dto.kal * 0.3)}">
+						<label for="radio-2">점심 : ${String.format('%.2f', dto.kal * 0.3)} 칼로리</label>
 					</div>
 					<div class="form_radio_btn">
 						<input id="radio-3" type="radio" name="time" value=" ${dto.kal * 0.2}">
-						<label for="radio-3">저녁 : ${dto.kal * 0.2} 칼로리</label>
+						<label for="radio-3">저녁 : ${String.format('%.2f', dto.kal * 0.2)} 칼로리</label>
 					</div>
 					<div class="form_radio_btn">
 						<input id="radio-4" type="radio" name="time" value=" ${dto.kal * 0.1}">
-						<label for="radio-4">간식 : ${dto.kal * 0.1} 칼로리</label>
+						<label for="radio-4">간식 : ${String.format('%.2f', dto.kal * 0.1)} 칼로리</label>
 					</div>
 				</div>
 			</div>
