@@ -163,23 +163,39 @@ $(function(){
 });
 	
 </script>
+<aside id="fh5co-hero">
+		<div class="flexslider">
+			<ul class="slides">
+		   	<li style="background-image: url(${pageContext.request.contextPath}/img/bmipage1.png);">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container">
+		   			<div class="row">
+			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
+			   				<div class="slider-text-inner">
+			   						<h1 style=" font-size: 30px; margin-left: -200px;">BMI의 중요성</h1>
+									<h5 style="width: 1200px; margin-left: -200px;padding-bottom: 20px; color:white; line-height:30px; font-size: 18px;">BMI는 비만도를 나타내는 지표로 비만도가 높을수록 당뇨, 고혈압, 심장병, 중풍 등 다양한 질병과 문제를 유발할<br/> 가능성이 높아지기 때문에 
+									 BMI를 체크하고 적절한 비만 관리와 생활습관 개선이 매우 중요합니다.
+
+								<br/>또한 당뇨, 고혈압, 심장병, 중풍은 심장 질환, 뇌졸중, 신장 질환 등 매우 심각한 합병증을 유발할 수 있습니다.
+
+								<br/>이처럼 BMI가 각종 질병과 건강에 끼치는 영향은 매우 크기 때문에, 건강을 유지하기 위해서는 적절한 체중 관리와 생활습관 개선이 필요합니다.
+								</p></h5>
+
+			   				</div>
+			   			</div>
+			   		</div>
+		   		</div>
+		   	</li>	   	
+		  	</ul>
+	  	</div>
+	</aside>
 <div class="container">
-
-	<h2 style= " display:flex; justify-content: center; margin-top: 100px;">BMI의 중요성</h2>
-	<p>
-	<br/>
-	BMI는 비만도를 나타내는 지표로 비만도가 높을수록 당뇨, 고혈압, 심장병, 중풍 등 다양한 질병과 문제를 유발할 가능성이 높아지기 때문에 BMI를 체크하고 적절한 비만 관리와 생활습관 개선이 매우 중요합니다.
-
-	<br/>또한 당뇨, 고혈압, 심장병, 중풍은 심장 질환, 뇌졸중, 신장 질환 등 매우 심각한 합병증을 유발할 수 있습니다.
-
-	<br/>이처럼 BMI가 각종 질병과 건강에 끼치는 영향은 매우 크기 때문에, 건강을 유지하기 위해서는 적절한 체중 관리와 생활습관 개선이 필요합니다.
-	</p>
 	
 	<div class="bmidiv">
 	
 		<form method="post" id="bmicheck">
 			<div id="bmiHeader">
-				<h2>BMI 계산기</h2>
+				<h2 style="padding-top: 100px;">BMI 계산기</h2>
 			</div>
 			
 			<div class="input-box">
@@ -232,6 +248,7 @@ $(function(){
 		</form>
 	</div>
 </div>
+<div style="padding-bottom: 150px;"></div>
 <script>
     const body = document.querySelector('body');
     const modal = document.querySelector('.modal');

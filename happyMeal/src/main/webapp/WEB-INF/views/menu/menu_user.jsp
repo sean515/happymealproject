@@ -120,7 +120,7 @@
 			<!-- <a href="recipeWrite">글쓰기</a> -->
 
 			<button type="button" class="btn btn-outline-dark" onclick="location.href='menuWrite_user'"
-		style="margin-top: 10px; background-color:#8BC34A; color: white; border: 0;"><img  src="img/filler-g9a7890a31_640.png" width="15px" height="15px"> 글쓰기</button> 
+		style="margin-top: 10px; background-color:#8BC34A; color: white; border: 0;"><img  src="img/icon3.png" width="17px" height="17px"> 글쓰기</button> 
 
 		</div>
 

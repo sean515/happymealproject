@@ -350,12 +350,12 @@
 				<choose>
 					<when test="nowPage!=totalPage">
 					<![CDATA[
-					where rownum <=${3} order by res_no desc
+					where rownum <=3 order by res_no desc
 					]]>
 					</when>
 					<when test="nowPage==totalPage">
 					<![CDATA[
-					where rownum <=${lastPageRecord} order by res_no desc
+					where rownum <=3 order by res_no desc
 					]]>	
 					</when>
 				</choose>
@@ -367,7 +367,7 @@
 					select b.menu_thumbnail, b.menu_no, b.amenu_type_no, b.userid, b.menu_title, b.menu_text, b.menu_hit, to_char(b.menu_date,'MM-DD HH:MI') menu_date 
 					from menu b join menu_like r on b.menu_no=r.menu_no 
 					
-					where b.userid = #{userid}
+					where r.userid = #{userid}
 					order by b.menu_no desc
 				) 
 				
@@ -378,12 +378,12 @@
 				<choose>
 					<when test="nowPage!=totalPage">
 					<![CDATA[
-					where rownum <=${3} order by menu_no desc
+					where rownum <=3 order by menu_no desc
 					]]>
 					</when>
 					<when test="nowPage==totalPage">
 					<![CDATA[
-					where rownum <=${lastPageRecord} order by menu_no desc
+					where rownum <=3 order by menu_no desc
 					]]>	
 					</when>
 				</choose>
@@ -396,7 +396,7 @@
 					select b.recipe_no, b.recipe_name, b.recipe_thumbnail, b.userid,  b.recipe_hit, to_char(b.recipe_date,'MM-DD HH:MI') recipe_date 
 					from recipe b join recipe_like r on b.recipe_no=r.recipe_no 
 
-					where b.userid = #{userid}
+					where r.userid = #{userid}
 					order by b.recipe_no desc
 				) 
 				
@@ -407,12 +407,12 @@
 				<choose>
 					<when test="nowPage!=totalPage">
 					<![CDATA[
-					where rownum <=${3} order by recipe_no desc
+					where rownum <=3 order by recipe_no desc
 					]]>
 					</when>
 					<when test="nowPage==totalPage">
 					<![CDATA[
-					where rownum <=${lastPageRecord} order by recipe_no desc
+					where rownum <=3 order by recipe_no desc
 					]]>	
 					</when>
 				</choose>

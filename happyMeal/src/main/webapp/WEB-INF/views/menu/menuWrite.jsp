@@ -1,4 +1,5 @@
-6<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
 <style>
@@ -43,6 +44,7 @@
 	}
 	.btn-upload {
 	margin-right:100px;
+	margin-left:110%;
 	  width: 250px;
 	  height: 200px;
 	  background: #fff;
@@ -72,6 +74,7 @@
 		height :200px;
 		float :right;
 		border: none;
+		margin-right:25%;
 	}
 	
 	#menuForm{
@@ -320,8 +323,8 @@
 				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec2">사진 2</button>
 				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec3">사진 3</button>
 				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec4">사진 4</button>
-				<button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#rec5">사진 5</button>
-				<button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#rec6">사진 6</button>
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec5">사진 5</button>
+				<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#rec6">사진 6</button>
 				 <div id="rec1" class="collapse" >
 				 <b>식단사진 1 :&emsp;</b>
 				<input type="file"  id="img1" onchange="readURL1(this);" style="padding:10px;"/>
@@ -378,13 +381,17 @@
 	</form>
 </div>
 <script>
+
 //사진 1
 function readURL1(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+	      $('#rec1').collapse('hide');
+	      document.querySelector('[data-target="#rec1"]').click();
 		  document.getElementById('preview_img1').src = e.target.result;
 	      document.getElementById('menu_img1').value = e.target.result;
+	     
 	    };
 	    reader.readAsDataURL(input.files[0]);
 	  } else {
@@ -398,6 +405,7 @@ function readURL2(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		  document.querySelector('[data-target="#rec2"]').click();
 		  document.getElementById('preview_img2').src = e.target.result;
 	      document.getElementById('menu_img2').value = e.target.result;
 	    };
@@ -413,6 +421,7 @@ function readURL3(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		      document.querySelector('[data-target="#rec3"]').click();
 		  document.getElementById('preview_img3').src = e.target.result;
 	      document.getElementById('menu_img3').value = e.target.result;
 	    };
@@ -428,6 +437,7 @@ function readURL4(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		      document.querySelector('[data-target="#rec4"]').click();
 		  document.getElementById('preview_img4').src = e.target.result;
 	      document.getElementById('menu_img4').value = e.target.result;
 	    };
@@ -443,6 +453,7 @@ function readURL5(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		      document.querySelector('[data-target="#rec5"]').click();
 		  document.getElementById('preview_img5').src = e.target.result;
 	      document.getElementById('menu_img5').value = e.target.result;
 	    };
@@ -458,6 +469,7 @@ function readURL6(input) {
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
+		      document.querySelector('[data-target="#rec6"]').click();
 		  document.getElementById('preview_img6').src = e.target.result;
 	      document.getElementById('menu_img6').value = e.target.result;
 	    };

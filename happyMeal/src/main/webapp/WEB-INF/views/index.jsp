@@ -40,7 +40,7 @@
 			   				<div class="slider-text-inner">
 			   					<h1>행복한끼</h1>
 									<h2>맞춤 건강식 식당 정보 제공 </h2>
-									<h5><a href="myPage/checkBmi" target="_blank">BMI 계산하러 가기</a></h5>
+									<h5><a href="myPage/checkBmi" target="_blank">건강식 필요성</a></h5>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -54,7 +54,7 @@
 			   				<div class="slider-text-inner">
 			   					<h1>행복한끼</h1>
 									<h2>맞춤 건강식 식당 정보 제공 </h2>
-									<h5><a href="myPage/checkBmi" target="_blank">BMI 계산하러 가기</a></h5>
+									<h5><a href="https://www.diabetes.or.kr/general/dietary/dietary_01.php" target="_blank">더 알아 보기</a></h5>
 			   				</div>
 			   			</div>
 			   		</div>

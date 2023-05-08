@@ -85,7 +85,7 @@
 	    </div>
 		<!-- 점포명 -->
 		<div class="res_name mb-3">
-		    <input class="form-control" type="text" name="res_name" id="res_name" placeholder="점포명    ※필수" aria-label="default input example">
+		    <input class="form-control" type="text" name="res_name" id="res_name" placeholder="점포명    ※필수" value="채식식당" aria-label="default input example">
 		</div>
 		<!-- 식당주소 -->
 		<div class="res_addr mb-3">
@@ -99,13 +99,13 @@
 		</div>
 		<!-- 전화번호 -->
 		<div class="res_tel mb-3">
-		    <input class="form-control" type="text" name="res_tel" id="res_tel" placeholder="전화번호  -  포함해서 입력해주세요(예시: 02-1234-5678)" aria-label="default input example">
+		    <input class="form-control" type="text" name="res_tel" id="res_tel" placeholder="전화번호  -  포함해서 입력해주세요(예시: 02-1234-5678)" value="02-233-5465" aria-label="default input example">
 		</div>
 		<!-- 식당카테고리 -->
 		<div class="res_category mb-3">
 			<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="res_category" id="res_category">
 			    <option value="">식당 카테고리</option>
-			    <option value="한식">한식</option>
+			    <option value="한식" selected >한식</option>
 			    <option value="중국식">중국식</option>
 			    <option value="일식">일식</option>
 			    <option value="양식">양식</option>
