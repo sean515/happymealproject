@@ -394,13 +394,13 @@ h1 {
 					<ul>
 						<div style="background-color: blue; width: auto; height: auto;">
 							<div style="width: 20%; height: auto; float: left;">
-								<li><img src="img/testface.png" width="100" height="100"
+								<li><img src="img/icon1.png" width="120" height="120"
 									align="left" style="border-radius: 20px" /></li>
 							</div>
 
 							<div
 								style="width: 30%; height: auto; float: left; padding-right: 30px;">
-								<li>아이디: <b>${dto.username}</b></li>
+								<li>이름: <b>${dto.username}</b></li>
 								<li>닉네임: <b>${dto.nickname}</b></li>
 								<li>성별: ${dto.gender}</li>
 								<li>생년월일: ${dto.age}</li>
@@ -1279,3 +1279,4 @@ h1 {
 	</c:if>
 </div>
 </div>
+<div style="margin-bottom: 150px;"></div>

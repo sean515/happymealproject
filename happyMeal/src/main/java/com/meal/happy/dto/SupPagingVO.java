@@ -4,7 +4,7 @@ public class SupPagingVO {
 	
 	//고객센터 페이징 변수
 	private int supNowPage = 1; //현재페이지
-	private int supOnePageRecord = 5; // 한페이지에 표시할 레코드 수
+	private int supOnePageRecord = 12; // 한페이지에 표시할 레코드 수
 	private int supTotalRecord; // 총레코드 수
 	private int supTotalPage; //총페이지 수
 	private int supLastPageRecord; // 마지막 페이지에 남아있는 레코드 수

@@ -123,7 +123,7 @@
 	<div class="recipeHeader" style="float: right; margin-top: -50px; " >
 	<!-- <a href="recipeWrite"></a> -->
 	<button type="button" class="btn btn-outline-dark" onclick="location.href='recipeWrite'"
-	style="margin-top: 10px; background-color:#8BC34A; color: white; border:0; border-radius: 50px;"> 글쓰기</button>
+	style="margin-top: 10px; background-color:#8BC34A; color: white; border:0; border-radius: 50px;"><img  src="img/icon3.png" width="17px" height="17px"> 글쓰기</button>
 	</div>
 	
 	<!-- 페이지네이션 부트스트랩 -->
