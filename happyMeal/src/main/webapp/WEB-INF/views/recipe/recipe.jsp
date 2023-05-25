@@ -338,13 +338,13 @@ input.test:focus, input:not(:placeholder-shown){
 				<label for="userSex" class="form-label">식사 시간</label>
 				<div class="form_toggle row-vh d-flex flex-row justify-content-between" >
 					<div class="form_radio_btn radio_male">
-						<input id="radio-1" type="radio" name="time" value=" ${dto.kal * 0.4}">
-						<label for="radio-1"> 아침 : ${String.format('%.2f', dto.kal * 0.4)} 칼로리 </label>
+						<input id="radio-1" type="radio" name="time" value=" ${dto.kal * 0.3}">
+						<label for="radio-1"> 아침 : ${String.format('%.2f', dto.kal * 0.3)} 칼로리 </label>
 					</div>
 												 
 					<div class="form_radio_btn">
-						<input id="radio-2" type="radio" name="time" value=" ${String.format('%.2f', dto.kal * 0.3)}">
-						<label for="radio-2">점심 : ${String.format('%.2f', dto.kal * 0.3)} 칼로리</label>
+						<input id="radio-2" type="radio" name="time" value=" ${String.format('%.2f', dto.kal * 0.4)}">
+						<label for="radio-2">점심 : ${String.format('%.2f', dto.kal * 0.4)} 칼로리</label>
 					</div>
 					<div class="form_radio_btn">
 						<input id="radio-3" type="radio" name="time" value=" ${dto.kal * 0.2}">
